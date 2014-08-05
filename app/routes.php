@@ -22,4 +22,9 @@ Route::get('/registro', function()
 	//return View::make('hello');
     return View::make('registro');
 });
-
+ Route::get('/prueba', function(){
+     $compa = new Compania();
+     $compa->nombre = 'jasd';
+     $compa->save();
+     return 'datos guardados correctamente';
+ });
