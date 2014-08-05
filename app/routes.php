@@ -13,6 +13,8 @@
 
 Route::resource('naviera', 'NavieraController');
 
+Route::resource('container', 'ContainerController');
+
 Route::get('/', function()
 {
 	//return View::make('hello');
