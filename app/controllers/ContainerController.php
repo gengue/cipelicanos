@@ -1,6 +1,6 @@
 <?php
 
-class NavieraController extends BaseController {
+class ContainerController extends BaseController {
 
     /**
      * Display a listing of the resource.
@@ -9,11 +9,11 @@ class NavieraController extends BaseController {
      */
     public function index() {
         // get all the nerds
-        $navieras = Naviera::all();
+        $container = Container::all();
 
         // load the view and pass the nerds
-        return View::make('navieras.index')
-                        ->with('navieras', $navieras);
+        return View::make('container.index')
+                        ->with('container', $container);
     }
 
     /**
@@ -22,7 +22,7 @@ class NavieraController extends BaseController {
      * @return Response
      */
     public function create() {
-        return View::make('create');
+        return View::make('container.create');
     }
 
     /**
@@ -34,27 +34,24 @@ class NavieraController extends BaseController {
         // validate
         // read more on validation at http://laravel.com/docs/validation
         $rules = array(
-            'nombre' => 'required'
+            'numero_container' => 'required'
         );
         $validator = Validator::make(Input::all(), $rules);
 
         // process the login
         if ($validator->fails()) {
-            return Redirect::to('naviera/create')
+            return Redirect::to('container/create')
                             ->withErrors($validator)
                             ->withInput(Input::except('password'));
         } else {
             // store
-            $naviera = new Naviera;
-            $naviera->nombre = Input::get('nombre');
-            $naviera->nombre_contacto = Input::get('nombre_contacto');
-            $naviera->telefono = Input::get('telefono');
-            $naviera->direccion = Input::get('direccion');
-            $naviera->save();
+            $container = new Container;
+            $container->numero_container = Input::get('numero_container');
+            $container->save();
 
             // redirect
-            Session::flash('message', 'Successfully created nerd!');
-            return Redirect::to('naviera');
+            Session::flash('message', 'Successfully created!');
+            return Redirect::to('container');
         }
     }
 
@@ -66,11 +63,11 @@ class NavieraController extends BaseController {
      */
     public function show($id) {
         // get the nerd
-        $naviera = Naviera::find($id);
+        $container = Container::find($id);
 
         // show the view and pass the nerd to it
-        return View::make('navieras.show')
-                        ->with('naviera', $naviera);
+        return View::make('container.show')
+                        ->with('container', $container);
     }
 
     /**
@@ -81,11 +78,11 @@ class NavieraController extends BaseController {
      */
     public function edit($id) {
         // get the nerd
-        $naviera = Naviera::find($id);
+        $container = Container::find($id);
 
         // show the view and pass the nerd to it
-        return View::make('navieras.edit')
-                        ->with('naviera', $naviera);
+        return View::make('container.edit')
+                        ->with('container', $container);
     }
 
     /**
@@ -98,27 +95,23 @@ class NavieraController extends BaseController {
         // validate
         // read more on validation at http://laravel.com/docs/validation
         $rules = array(
-            'nombre' => 'required',
+            'numero_container' => 'required',
         );
         $validator = Validator::make(Input::all(), $rules);
 
         // process the login
         if ($validator->fails()) {
-            return Redirect::to('naviera/' . $id . '/edit')
+            return Redirect::to('container/' . $id . '/edit')
                             ->withErrors($validator)
                             ->withInput(Input::except('password'));
         } else {
             // store
-            $naviera = Naviera::find($id);
-            $naviera->nombre = Input::get('nombre');
-            $naviera->nombre_contacto = Input::get('nombre_contacto');
-            $naviera->telefono = Input::get('telefono');
-            $naviera->direccion = Input::get('direccion');
-            $naviera->save();
-
+            $container = Container::find($id);
+            $container->numero_container = Input::get('numero_container');
+            $container->save();
             // redirect
-            Session::flash('message', 'Naviera actualizada correctamente!');
-            return Redirect::to('naviera');
+            Session::flash('message', 'Successfully updated!');
+            return Redirect::to('container');
         }
     }
 
@@ -130,12 +123,12 @@ class NavieraController extends BaseController {
      */
     public function destroy($id) {
         // delete
-        $naviera = Naviera::find($id);
-        $naviera->delete();
+        $container = Container::find($id);
+        $container->delete();
 
         // redirect
-        Session::flash('message', 'Successfully deleted the nerd!');
-        return Redirect::to('naviera');
+        Session::flash('message', 'Successfully deleted!');
+        return Redirect::to('container');
     }
 
 }

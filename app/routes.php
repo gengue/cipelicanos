@@ -1,8 +1,11 @@
 <?php
 
 Route::resource('naviera', 'NavieraController');
+
 Route::resource('proveedores', 'ProveedoresController');
 Route::resource('guias', 'GuiasController');
+
+Route::resource('container', 'ContainerController');
 
 Route::get('/', function()
 {
