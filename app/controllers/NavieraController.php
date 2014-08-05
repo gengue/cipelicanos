@@ -12,7 +12,7 @@ class NavieraController extends BaseController {
         $navieras = Naviera::all();
 
         // load the view and pass the nerds
-        return View::make('navieras.navieras')
+        return View::make('navieras.index')
                         ->with('navieras', $navieras);
     }
 
