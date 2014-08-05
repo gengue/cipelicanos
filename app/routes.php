@@ -11,6 +11,8 @@
 |
 */
 
+Route::resource('naviera', 'NavieraController');
+
 Route::get('/', function()
 {
 	//return View::make('hello');
@@ -23,8 +25,8 @@ Route::get('/registro', function()
     return View::make('registro');
 });
  Route::get('/prueba', function(){
-     $compa = new Compania();
-     $compa->nombre = 'jasd';
+     $compa = new Container();
+     $compa->numero_container = 'jasd';
      $compa->save();
      return 'datos guardados correctamente';
  });
