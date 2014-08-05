@@ -12,6 +12,7 @@
 */
 
 Route::resource('naviera', 'NavieraController');
+Route::resource('proveedores', 'ProveedoresController');
 
 Route::get('/', function()
 {

@@ -12,7 +12,7 @@ class NavieraController extends BaseController {
         $navieras = Naviera::all();
 
         // load the view and pass the nerds
-        return View::make('navieras')
+        return View::make('navieras.navieras')
                         ->with('navieras', $navieras);
     }
 
@@ -69,7 +69,7 @@ class NavieraController extends BaseController {
         $naviera = Naviera::find($id);
 
         // show the view and pass the nerd to it
-        return View::make('show')
+        return View::make('navieras.show')
                         ->with('naviera', $naviera);
     }
 
@@ -84,7 +84,7 @@ class NavieraController extends BaseController {
         $naviera = Naviera::find($id);
 
         // show the view and pass the nerd to it
-        return View::make('edit')
+        return View::make('navieras.edit')
                         ->with('naviera', $naviera);
     }
 
@@ -117,7 +117,7 @@ class NavieraController extends BaseController {
             $naviera->save();
 
             // redirect
-            Session::flash('message', 'Successfully updated nerd!');
+            Session::flash('message', 'Naviera actualizada correctamente!');
             return Redirect::to('naviera');
         }
     }

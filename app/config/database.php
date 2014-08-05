@@ -68,7 +68,7 @@ return array(
 			'host'      => 'localhost',
 			'database'  => 'cipelicanos',
 			'username'  => 'root',
-			'password'  => '1234',
+			'password'  => 'admin',
 			'charset'   => 'utf8',
 			'collation' => 'utf8_unicode_ci',
 			'prefix'    => '',
