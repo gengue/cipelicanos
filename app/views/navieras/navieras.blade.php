@@ -3,7 +3,7 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>Look! I'm CRUDding</title>
+        <title>C.I Pelicanos Admin - Navieras</title>
         <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css">
     </head>
     <body>
@@ -14,12 +14,12 @@
                     <a class="navbar-brand" href="{{ URL::to('naviera') }}">Nerd Alert</a>
                 </div>
                 <ul class="nav navbar-nav">
-                    <li><a href="{{ URL::to('naviera') }}">View All Nerds</a></li>
-                    <li><a href="{{ URL::to('naviera/create') }}">Create a Nerd</a>
+                    <li><a href="{{ URL::to('naviera') }}">Ver todas las Navieras</a></li>
+                    <li><a href="{{ URL::to('naviera/create') }}">Crear Naviera</a>
                 </ul>
             </nav>
 
-            <h1>All the Nerds</h1>
+            <h1>Todas las navieras</h1>
 
             <!-- will be used to show any messages -->
             @if (Session::has('message'))
@@ -48,16 +48,16 @@
                         <!-- we will also add show, edit, and delete buttons -->
                         <td>                            
                             <!-- show the nerd (uses the show method found at GET /nerds/{id} -->
-                            <a class="btn btn-small btn-success" href="{{ URL::to('naviera/' . $value->id) }}">Show this Nerd</a>
+                            <a class="btn btn-small btn-success" href="{{ URL::to('naviera/' . $value->id) }}">Detalle</a>
 
                             <!-- edit this nerd (uses the edit method found at GET /nerds/{id}/edit -->
-                            <a class="btn btn-small btn-info" href="{{ URL::to('naviera/' . $value->id . '/edit') }}">Edit this Nerd</a>
+                            <a class="btn btn-small btn-info" href="{{ URL::to('naviera/' . $value->id . '/edit') }}">Editar</a>
                             <!-- delete the nerd (uses the destroy method DESTROY /nerds/{id} -->
                             <!-- we will add this later since its a little more complicated than the other two buttons -->
 
                             {{ Form::open(array('url' => 'naviera/' . $value->id, 'class' => 'pull-right')) }}
                             {{ Form::hidden('_method', 'DELETE') }}
-                            {{ Form::submit('Delete this Nerd', array('class' => 'btn btn-warning')) }}
+                            {{ Form::submit('Eliminar', array('class' => 'btn btn-warning')) }}
                             {{ Form::close() }}
                         </td>
                     </tr>
