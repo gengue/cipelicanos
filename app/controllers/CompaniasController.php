@@ -22,7 +22,9 @@ class CompaniasController extends BaseController {
      * @return Response
      */
     public function create() {
-        return View::make('companias.create');
+        $usuarios = Usuario::lists('nombre','id');
+        
+        return View::make('companias.create')->with('usuarios', $usuarios);
     }
 
     /**
@@ -49,7 +51,7 @@ class CompaniasController extends BaseController {
             $companias->nit = Input::get('nit');
             $companias->telefono = Input::get('telefono');
             $companias->correo = Input::get('correo');
-            $companias->id_usuario = 0;
+            $companias->usuario_id = 1;
             $companias->save();
 
             // redirect

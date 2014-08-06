@@ -4,7 +4,7 @@
 <html>
     <head>
         <title>C.I Pelicanos Admin - Compañias</title>
-        <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css">
+        {{ HTML::style('css/bootstrap.css') }}
     </head>
     <body>
         <div class="container">
@@ -45,7 +45,7 @@
                         <td>{{ $value->nit }}</td>
                         <td>{{ $value->telefono }}</td>
                         <td>{{ $value->correo}}</td>
-                        <td>{{ $value->id_usuario}}</td>
+                        <td>{{ $value->usuario_id}}</td>
 
                         <!-- we will also add show, edit, and delete buttons -->
                         <td>                            
