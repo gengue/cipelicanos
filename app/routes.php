@@ -1,19 +1,9 @@
 <?php
 
-/*
-|--------------------------------------------------------------------------
-| Application Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register all of the routes for an application.
-| It's a breeze. Simply tell Laravel the URIs it should respond to
-| and give it the Closure to execute when that URI is requested.
-|
-*/
-
 Route::resource('naviera', 'NavieraController');
 
 Route::resource('proveedores', 'ProveedoresController');
+Route::resource('guias', 'GuiasController');
 
 Route::resource('container', 'ContainerController');
 
@@ -21,18 +11,15 @@ Route::resource('companias', 'CompaniasController');
 
 Route::get('/', function()
 {
-	//return View::make('hello');
     return View::make('login');
 });
-
+Route::get('/download/{id}', function($id){
+    $guia = Guia::find($id);
+    
+    return Response::download($guia->url_archivo);
+});
 Route::get('/registro', function()
 {
-	//return View::make('hello');
     return View::make('registro');
 });
- Route::get('/prueba', function(){
-     $compa = new Container();
-     $compa->numero_container = 'jasd';
-     $compa->save();
-     return 'datos guardados correctamente';
- });
+
