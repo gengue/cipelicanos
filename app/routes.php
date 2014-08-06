@@ -17,6 +17,8 @@ Route::resource('proveedores', 'ProveedoresController');
 
 Route::resource('container', 'ContainerController');
 
+Route::resource('companias', 'CompaniasController');
+
 Route::get('/', function()
 {
 	//return View::make('hello');
