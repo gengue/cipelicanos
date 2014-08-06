@@ -23,6 +23,7 @@ class BdCompleta extends Migration {
             $table->string('pais');
             $table->string('ciudad');
             $table->timestamps();
+            $table->softDeletes();
         });
 
         Schema::create('companias', function($table) {
@@ -31,13 +32,16 @@ class BdCompleta extends Migration {
             $table->integer('nit');
             $table->string('telefono');
             $table->string('correo');
-            $table->integer('id_usuario');
+            $table->integer('usuario_id')->unsigned();
+            $table->foreign('usuario_id')->references('id')->on('usuarios')->on_delete('set null');
             $table->timestamps();
+            $table->softDeletes();
         });
         Schema::create('containers', function($table) {
             $table->increments('id');
             $table->string('numero_container');
             $table->timestamps();
+            $table->softDeletes();
         });
         Schema::create('navieras', function($table) {
             $table->increments('id');
@@ -46,6 +50,7 @@ class BdCompleta extends Migration {
             $table->string('telefono');
             $table->string('direccion');
             $table->timestamps();
+            $table->softDeletes();
         });
         Schema::create('guias', function($table) {
             $table->increments('id');
@@ -53,6 +58,7 @@ class BdCompleta extends Migration {
             $table->string('empresa_envio');
             $table->string('url_archivo');
             $table->timestamps();
+            $table->softDeletes();
         });
         Schema::create('proveedores', function($table) {
             $table->increments('id');
@@ -62,21 +68,23 @@ class BdCompleta extends Migration {
             $table->string('direccion');
             $table->string('correo');
             $table->timestamps();
+            $table->softDeletes();
         });
         Schema::create('productos', function($table) {
             $table->increments('id');
             $table->string('nombre');
             $table->string('descripcion');
             $table->timestamps();
+            $table->softDeletes();
         });
         
         Schema::create('pedidos', function($table) {
             $table->increments('id');
-            $table->integer('id_producto')->unsigned();
-            $table->integer('id_proveedor')->unsigned();
-            $table->integer('id_naviera')->unsigned();
-            $table->integer('id_container')->unsigned();
-            $table->integer('id_guia')->unsigned();
+            $table->integer('producto_id')->unsigned();
+            $table->integer('proveedor_id')->unsigned();
+            $table->integer('naviera_id')->unsigned();
+            $table->integer('container_id')->unsigned();
+            $table->integer('guia_id')->unsigned();
             $table->string('numero_reserva');
             $table->string('buque');
             $table->date('fecha_carga');
@@ -84,32 +92,35 @@ class BdCompleta extends Migration {
             $table->date('fecha_entrega');
             $table->date('fecha_vencimiento');
             $table->decimal('importe_facturado', 12, 2);
-            $table->foreign('id_producto')->references('id')->on('productos')->on_delete('set null');
-            $table->foreign('id_proveedor')->references('id')->on('proveedores')->on_delete('set null');
-            $table->foreign('id_naviera')->references('id')->on('navieras')->on_delete('set null');
-            $table->foreign('id_container')->references('id')->on('containers')->on_delete('set null');
-            $table->foreign('id_guia')->references('id')->on('guias')->on_delete('set null');
+            $table->foreign('producto_id')->references('id')->on('productos')->on_delete('set null');
+            $table->foreign('proveedor_id')->references('id')->on('proveedores')->on_delete('set null');
+            $table->foreign('naviera_id')->references('id')->on('navieras')->on_delete('set null');
+            $table->foreign('container_id')->references('id')->on('containers')->on_delete('set null');
+            $table->foreign('guia_id')->references('id')->on('guias')->on_delete('set null');
             $table->timestamps();
+            $table->softDeletes();
         });
 
         
         Schema::create('pedidos_containers', function($table) {
             $table->increments('id');
-            $table->integer('id_container')->unsigned();
-            $table->integer('id_pedido')->unsigned();
-            $table->foreign('id_container')->references('id')->on('containers')->on_delete('set null');
-            $table->foreign('id_pedido')->references('id')->on('pedidos')->on_delete('set null');
+            $table->integer('container_id')->unsigned();
+            $table->integer('pedido_id')->unsigned();
+            $table->foreign('container_id')->references('id')->on('containers')->on_delete('set null');
+            $table->foreign('pedido_id')->references('id')->on('pedidos')->on_delete('set null');
             $table->timestamps();
+            $table->softDeletes();
         });
         
         
         Schema::create('proveedores_productos', function($table) {
             $table->increments('id');
-            $table->integer('id_proveedores')->unsigned();
-            $table->integer('id_productos')->unsigned();
-            $table->foreign('id_proveedores')->references('id')->on('proveedores')->on_delete('set null');
-            $table->foreign('id_productos')->references('id')->on('productos')->on_delete('set null');
+            $table->integer('proveedores_id')->unsigned();
+            $table->integer('productos_id')->unsigned();
+            $table->foreign('proveedores_id')->references('id')->on('proveedores')->on_delete('set null');
+            $table->foreign('productos_id')->references('id')->on('productos')->on_delete('set null');
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 
@@ -122,8 +133,8 @@ class BdCompleta extends Migration {
         Schema::drop('pedidos_containers');
         Schema::drop('proveedores_productos');
         Schema::drop('pedidos');
-        Schema::drop('usuarios');
         Schema::drop('companias');
+        Schema::drop('usuarios');
         Schema::drop('containers');
         Schema::drop('navieras');
         Schema::drop('guias');
