@@ -9,13 +9,15 @@ Route::resource('container', 'ContainerController');
 
 Route::get('/', function()
 {
-	//return View::make('hello');
     return View::make('login');
 });
-
+Route::get('/download/{id}', function($id){
+    $guia = Guia::find($id);
+    
+    return Response::download($guia->url_archivo);
+});
 Route::get('/registro', function()
 {
-	//return View::make('hello');
     return View::make('registro');
 });
 

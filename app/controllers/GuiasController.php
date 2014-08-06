@@ -1,141 +1,105 @@
 <?php
 
-class NavieraController extends BaseController {
+class GuiasController extends BaseController {
 
-    /**
-     * Display a listing of the resource.
-     *
-     * @return Response
-     */
     public function index() {
-        // get all the nerds
-        $navieras = Naviera::all();
+        $guias = Guia::all();
 
-        // load the view and pass the nerds
-        return View::make('navieras.navieras')
-                        ->with('navieras', $navieras);
+        return View::make('guias.index')
+                        ->with('guias', $guias);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return Response
-     */
     public function create() {
-        return View::make('create');
+        return View::make('guias.create');
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @return Response
-     */
     public function store() {
-        // validate
-        // read more on validation at http://laravel.com/docs/validation
+
         $rules = array(
-            'nombre' => 'required'
+            'numero_guia' => 'required'
         );
         $validator = Validator::make(Input::all(), $rules);
 
-        // process the login
         if ($validator->fails()) {
-            return Redirect::to('naviera/create')
+            return Redirect::to('guias/create')
                             ->withErrors($validator)
                             ->withInput(Input::except('password'));
         } else {
-            // store
-            $naviera = new Naviera;
-            $naviera->nombre = Input::get('nombre');
-            $naviera->nombre_contacto = Input::get('nombre_contacto');
-            $naviera->telefono = Input::get('telefono');
-            $naviera->direccion = Input::get('direccion');
-            $naviera->save();
+            $dir = 'public/archivos/';
+            $nombreArchivo = Input::get('numero_guia') . '.pdf';
+            $archivo = Input::file('url_archivo');
+            // store            
+            $guia = new Guia;
+            $guia->numero_guia = Input::get('numero_guia');
+            $guia->empresa_envio = Input::get('empresa_envio');
+            $guia->url_archivo = $dir . $nombreArchivo;
 
+            if ($guia->save()) {
+                $archivo->move($dir, $nombreArchivo);
+            }
             // redirect
-            Session::flash('message', 'Successfully created nerd!');
-            return Redirect::to('naviera');
+            Session::flash('message', 'Guia creada correctamente!');
+            return Redirect::to('guias');
         }
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return Response
-     */
     public function show($id) {
-        // get the nerd
-        $naviera = Naviera::find($id);
 
-        // show the view and pass the nerd to it
-        return View::make('navieras.show')
-                        ->with('naviera', $naviera);
+        $guia = Guia::find($id);
+
+        return View::make('guias.show')
+                        ->with('guia', $guia);
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return Response
-     */
     public function edit($id) {
-        // get the nerd
-        $naviera = Naviera::find($id);
 
-        // show the view and pass the nerd to it
-        return View::make('navieras.edit')
-                        ->with('naviera', $naviera);
+        $guia = Guia::find($id);
+
+        return View::make('guias.edit')
+                        ->with('guia', $guia);
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  int  $id
-     * @return Response
-     */
     public function update($id) {
-        // validate
-        // read more on validation at http://laravel.com/docs/validation
         $rules = array(
-            'nombre' => 'required',
+            'numero_guia' => 'required',
         );
+
         $validator = Validator::make(Input::all(), $rules);
 
-        // process the login
         if ($validator->fails()) {
-            return Redirect::to('naviera/' . $id . '/edit')
+            return Redirect::to('guias/' . $id . '/edit')
                             ->withErrors($validator)
                             ->withInput(Input::except('password'));
         } else {
-            // store
-            $naviera = Naviera::find($id);
-            $naviera->nombre = Input::get('nombre');
-            $naviera->nombre_contacto = Input::get('nombre_contacto');
-            $naviera->telefono = Input::get('telefono');
-            $naviera->direccion = Input::get('direccion');
-            $naviera->save();
+            $dir = 'public/archivos/';
+            $nombreArchivo = Input::get('numero_guia') . '.pdf';
+
+            // store            
+            $guia = Guia::find($id);
+            $guia->numero_guia = Input::get('numero_guia');
+            $guia->empresa_envio = Input::get('empresa_envio');
+            if (Input::hasFile('url_archivo')) {
+                $archivo = Input::file('url_archivo');
+                $guia->url_archivo = $dir . $nombreArchivo;
+                $archivo->move($dir, $nombreArchivo);             
+            }
+           
+            $guia->save();           
 
             // redirect
-            Session::flash('message', 'Naviera actualizada correctamente!');
-            return Redirect::to('naviera');
+            Session::flash('message', 'Guia actualizada correctamente!');
+            return Redirect::to('guias');
         }
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return Response
-     */
     public function destroy($id) {
         // delete
-        $naviera = Naviera::find($id);
-        $naviera->delete();
+        $guia = Guia::find($id);
+        $guia->delete();
 
         // redirect
-        Session::flash('message', 'Successfully deleted the nerd!');
-        return Redirect::to('naviera');
+        Session::flash('message', 'Guia eliminada correctamente!');
+        return Redirect::to('guias');
     }
 
 }
