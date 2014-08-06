@@ -30,6 +30,7 @@
                         <td>Telefono</td>
                         <td>Direccion</td>
                         <td>Correo</td>
+                        <td>Opciones</td>
                     </tr>
                 </thead>
                 <tbody>

@@ -34,6 +34,7 @@
                         <td>Nombre de Contacto</td>
                         <td>Telefono</td>
                         <td>Direccion</td>
+                        <td>Opciones</td>
                     </tr>
                 </thead>
                 <tbody>

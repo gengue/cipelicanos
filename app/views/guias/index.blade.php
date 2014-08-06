@@ -20,7 +20,7 @@
             @if (Session::has('message'))
             <div class="alert alert-info">{{ Session::get('message') }}</div>
             @endif
-            
+
             <table class="table table-striped table-bordered">
                 <thead>
                     <tr>
@@ -28,6 +28,7 @@
                         <td>Numero de guia</td>
                         <td>Empresa de envio</td>
                         <td>Documento</td>
+                        <td>Opciones</td>
                     </tr>
                 </thead>
                 <tbody>
@@ -36,28 +37,30 @@
                         <td>{{ $value->id }}</td>
                         <td>{{ $value->numero_guia }}</td>
                         <td>{{ $value->empresa_envio }}</td>
-                        <td><a href="{{ URL::to('download/'.$value->id)}}">Descargar {{ $value->numero_guia }}</a></td>
+                        <td><a href="{{ URL::to('download/'.$value->id)}}"> <span class="glyphicon glyphicon-floppy-save"></span>  {{ $value->numero_guia }}</a></td>
 
-                        <!-- we will also add show, edit, and delete buttons -->
-                        <td>                            
-                            <!-- show the nerd (uses the show method found at GET /nerds/{id} -->
-                            <a class="btn btn-small btn-success" href="{{ URL::to('guias/' . $value->id) }}">Detalle</a>
-
-                            <!-- edit this nerd (uses the edit method found at GET /nerds/{id}/edit -->
-                            <a class="btn btn-small btn-info" href="{{ URL::to('guias/' . $value->id . '/edit') }}">Editar</a>
-                            <!-- delete the nerd (uses the destroy method DESTROY /nerds/{id} -->
-                            <!-- we will add this later since its a little more complicated than the other two buttons -->
-
-                            {{ Form::open(array('url' => 'guias/' . $value->id, 'class' => 'pull-right')) }}
-                            {{ Form::hidden('_method', 'DELETE') }}
-                            {{ Form::submit('Eliminar', array('class' => 'btn btn-warning')) }}
-                            {{ Form::close() }}
+                        <td> 
+                            <a class="btn btn-small btn-info" href="{{ URL::to('guias/' . $value->id) }}"><i class="glyphicon glyphicon-search"></i></a>
+                            <a class="btn btn-small btn-success" href="{{ URL::to('guias/' . $value->id . '/edit') }}"><i class="glyphicon glyphicon-pencil"></i></a>
+                            <a class="btn btn-small btn-danger" onclick="eliminar({{$value->id}})" href="javascript:void(0)"><i class="glyphicon glyphicon-remove"></i></a>
                         </td>
                     </tr>
                     @endforeach
                 </tbody>
             </table>
-
+            <script src="http://code.jquery.com/jquery-2.1.0.min.js"></script>
+            <script>
+              
+              function eliminar(id){
+                 $.ajax({
+                    url: "/guias/"+id,
+                    type: "DELETE",
+                    success: function(data, textStatus, jqXHR) {
+                         location.href='/guias';
+                    }
+                  });               
+              }             
+            </script>
         </div>
     </body>
 </html>
