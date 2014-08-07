@@ -85,9 +85,10 @@ class CompaniasController extends BaseController {
         // get the nerd
         $companias = Compania::find($id);
 
+        $usuarios = Usuario::lists('nombre','id');
+        
         // show the view and pass the nerd to it
-        return View::make('companias.edit')
-                        ->with('companias', $companias);
+        return View::make('companias.edit', array('companias' => $companias, 'usuarios'=>$usuarios ));
     }
 
     /**
@@ -116,7 +117,7 @@ class CompaniasController extends BaseController {
             $companias->nit = Input::get('nit');
             $companias->telefono = Input::get('telefono');
             $companias->correo = Input::get('correo');
-            $companias->id_usuario = 0;
+            $companias->usuario_id = Input::get('usuario_id');
             $companias->save();
             // redirect
             Session::flash('message', 'Successfully updated!');

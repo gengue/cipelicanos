@@ -14,7 +14,8 @@ Route::resource('companias', 'CompaniasController');
 
 Route::get('/', function()
 {
-    return View::make('login');
+    //return View::make('login');
+    return View::make('cruds');
 });
 
 Route::get('crud', function()
