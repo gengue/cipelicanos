@@ -51,7 +51,7 @@ class CompaniasController extends BaseController {
             $companias->nit = Input::get('nit');
             $companias->telefono = Input::get('telefono');
             $companias->correo = Input::get('correo');
-            $companias->usuario_id = 1;
+            $companias->usuario_id = Input::get('usuario_id');
             $companias->save();
 
             // redirect
