@@ -21,9 +21,10 @@
                 <li><a href="{{ URL::to('companias') }}">Compañias</a></li>
                 <li><a href="{{ URL::to('container') }}">Container</a></li>
                 <li><a href="{{ URL::to('guias') }}">Guias</a></li>
-                <li><a href="{{ URL::to('naviera') }}">Navieras</a></li>
+                <li><a href="{{ URL::to('navieras') }}">Navieras</a></li>
                 <li><a href="{{ URL::to('usuarios') }}">Usuarios</a></li>
                 <li><a href="{{ URL::to('proveedores') }}">Proveedores</a></li>
+                <li><a href="{{ URL::to('productos') }}">Productos</a></li>
             </ul>
         </div>
     </body>

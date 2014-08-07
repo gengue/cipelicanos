@@ -1,5 +1,3 @@
-<!-- app/views/nerds/create.blade.php -->
-
 <!DOCTYPE html>
 <html>
 <head>
@@ -10,21 +8,18 @@
 <div class="container">
 
 <nav class="navbar navbar-inverse">
-	<div class="navbar-header">
-		<a class="navbar-brand" href="{{ URL::to('naviera') }}">Nerd Alert</a>
-	</div>
+	
 	<ul class="nav navbar-nav">
-		<li><a href="{{ URL::to('naviera') }}">View All Nerds</a></li>
-		<li><a href="{{ URL::to('naviera/create') }}">Create a Nerd</a>
+		<li><a href="{{ URL::to('navieras') }}">Ver todas las navieras</a></li>
+		<li><a href="{{ URL::to('navieras/create') }}">Crear una naviera</a>
 	</ul>
 </nav>
 
-<h1>Create a Nerd</h1>
+<h1>Crear una naviera</h1>
 
-<!-- if there are creation errors, they will show here -->
 {{ HTML::ul($errors->all()) }}
 
-{{ Form::open(array('url' => 'naviera')) }}
+{{ Form::open(array('url' => 'navieras')) }}
 
 	<div class="form-group">
 		{{ Form::label('nombre', 'Nombre') }}

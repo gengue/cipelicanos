@@ -10,12 +10,10 @@
         <div class="container">
 
             <nav class="navbar navbar-inverse">
-                <div class="navbar-header">
-                    <a class="navbar-brand" href="{{ URL::to('naviera') }}">Nerd Alert</a>
-                </div>
+
                 <ul class="nav navbar-nav">
-                    <li><a href="{{ URL::to('naviera') }}">Ver todas las Navieras</a></li>
-                    <li><a href="{{ URL::to('naviera/create') }}">Crear Naviera</a>
+                    <li><a href="{{ URL::to('navieras') }}">Ver todas las Navieras</a></li>
+                    <li><a href="{{ URL::to('navieras/create') }}">Crear Naviera</a>
                 </ul>
             </nav>
 
@@ -56,7 +54,7 @@
                             <!-- delete the nerd (uses the destroy method DESTROY /nerds/{id} -->
                             <!-- we will add this later since its a little more complicated than the other two buttons -->
 
-                            {{ Form::open(array('url' => 'naviera/' . $value->id, 'class' => 'pull-right')) }}
+                            {{ Form::open(array('url' => 'navieras/' . $value->id, 'class' => 'pull-right')) }}
                             {{ Form::hidden('_method', 'DELETE') }}
                             {{ Form::submit('Eliminar', array('class' => 'btn btn-warning')) }}
                             {{ Form::close() }}

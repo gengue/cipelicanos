@@ -74,7 +74,6 @@ class GuiasController extends BaseController {
         } else {
             $dir = 'public/archivos/';
             $nombreArchivo = Input::get('numero_guia') . '.pdf';
-
             // store            
             $guia = Guia::find($id);
             $guia->numero_guia = Input::get('numero_guia');
@@ -82,11 +81,9 @@ class GuiasController extends BaseController {
             if (Input::hasFile('url_archivo')) {
                 $archivo = Input::file('url_archivo');
                 $guia->url_archivo = $dir . $nombreArchivo;
-                $archivo->move($dir, $nombreArchivo);             
+                $archivo->move($dir, $nombreArchivo);     
             }
-           
-            $guia->save();           
-
+            $guia->save();  
             // redirect
             Session::flash('message', 'Guia actualizada correctamente!');
             return Redirect::to('guias');

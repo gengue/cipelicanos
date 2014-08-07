@@ -14,8 +14,8 @@
 		<a class="navbar-brand" href="{{ URL::to('naviera') }}">Nerd Alert</a>
 	</div>
 	<ul class="nav navbar-nav">
-		<li><a href="{{ URL::to('naviera') }}">View All Nerds</a></li>
-		<li><a href="{{ URL::to('naviera/create') }}">Create a Nerd</a>
+		<li><a href="{{ URL::to('navieras') }}">View All Nerds</a></li>
+		<li><a href="{{ URL::to('navieras/create') }}">Create a Nerd</a>
 	</ul>
 </nav>
 
@@ -24,7 +24,7 @@
 <!-- if there are creation errors, they will show here -->
 {{ HTML::ul($errors->all()) }}
 
-{{ Form::model($naviera, array('route' => array('naviera.update', $naviera->id), 'method' => 'PUT')) }}
+{{ Form::model($naviera, array('route' => array('navieras.update', $naviera->id), 'method' => 'PUT')) }}
 
 	<div class="form-group">
 		{{ Form::label('nombre', 'Nombre') }}
