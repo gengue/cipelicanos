@@ -13,15 +13,16 @@ class BdCompleta extends Migration {
     public function up() {
         Schema::create('usuarios', function($table) {
             $table->increments('id');
-            $table->enum('tipo_usuario', array('ADMINISTADOR', 'DIGITADOR', 'CLIENTE'));
-            $table->string('password', 60);
-            $table->string('nombre', 50);
-            $table->string('apellido', 50);
-            $table->string('telefono', 25);
-            $table->string('email');
+            $table->enum('tipo_usuario', array('ADMINISTRADOR', 'DIGITADOR', 'CLIENTE'));
+            $table->string('password');
+            $table->string('nombre');
+            $table->string('apellido');
+            $table->string('telefono');
+            $table->string('correo');
             $table->string('direccion');
             $table->string('pais');
             $table->string('ciudad');
+            $table->enum('estado', array('ACTIVO','INACTIVO'));
             $table->timestamps();
             $table->softDeletes();
         });

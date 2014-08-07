@@ -41,10 +41,8 @@ class NavierasController extends BaseController {
     }
 
     public function show($id) {
-        // get the nerd
         $naviera = Naviera::find($id);
 
-        // show the view and pass the nerd to it
         return View::make('navieras.show')
                         ->with('naviera', $naviera);
     }
@@ -53,14 +51,11 @@ class NavierasController extends BaseController {
         // get the nerd
         $naviera = Naviera::find($id);
 
-        // show the view and pass the nerd to it
         return View::make('navieras.edit')
                         ->with('naviera', $naviera);
     }
  
     public function update($id) {
-        // validate
-        // read more on validation at http://laravel.com/docs/validation
         $rules = array(
             'nombre' => 'required',
         );
