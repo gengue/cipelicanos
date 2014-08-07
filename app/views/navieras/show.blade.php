@@ -12,8 +12,8 @@
 <nav class="navbar navbar-inverse">
 	
 	<ul class="nav navbar-nav">
-		<li><a href="{{ URL::to('naviera') }}">Ver todas las navieras</a></li>
-		<li><a href="{{ URL::to('naviera/create') }}">Crear naviera</a>
+		<li><a href="{{ URL::to('navieras') }}">Ver todas las navieras</a></li>
+		<li><a href="{{ URL::to('navieras/create') }}">Crear naviera</a>
 	</ul>
 </nav>
 

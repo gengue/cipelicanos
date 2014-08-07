@@ -49,9 +49,8 @@ class CompaniasController extends BaseController {
             $companias->nit = Input::get('nit');
             $companias->telefono = Input::get('telefono');
             $companias->correo = Input::get('correo');
-            $companias->id_usuario = 0;
+            $companias->usuario_id = 0;
             $companias->save();
-
             // redirect
             Session::flash('message', 'Successfully created!');
             return Redirect::to('companias');
