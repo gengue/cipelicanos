@@ -45,7 +45,7 @@
                         <td>{{ $value->nit }}</td>
                         <td>{{ $value->telefono }}</td>
                         <td>{{ $value->correo}}</td>
-                        <td>{{ $value->usuario_id}}</td>
+                        <td>{{ $value->nombre_usuario}}</td>
 
                         <!-- we will also add show, edit, and delete buttons -->
                         <td>                            

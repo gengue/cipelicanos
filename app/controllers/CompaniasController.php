@@ -6,7 +6,12 @@ class CompaniasController extends BaseController {
     public function index() {
       
         $companias = Compania::all();
-       
+        
+        $companias = DB::table('companias')
+            ->join('usuarios', 'companias.usuario_id', '=', 'usuarios.id')
+            ->select('companias.*','usuarios.nombre as nombre_usuario')
+            ->get();
+    //print_r($companias);
         return View::make('companias.index')
                         ->with('companias', $companias);
     }
@@ -36,8 +41,6 @@ class CompaniasController extends BaseController {
             $companias->nit = Input::get('nit');
             $companias->telefono = Input::get('telefono');
             $companias->correo = Input::get('correo');
-
-            $companias->usuario_id = 0;
 
             $companias->usuario_id = Input::get('usuario_id');
 
