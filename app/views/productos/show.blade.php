@@ -1,14 +1,16 @@
-<!-- app/views/nerds/show.blade.php -->
-
-<!DOCTYPE html>
-<html>
-<head>
-	<title>C.I Pelicanos Admin - Productos</title>
-	<link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css">
-</head>
-<body>
-<div class="container">
-
+<div class="container-fluid">
+<div class="row">
+                    <div class="col-lg-12">
+                        <h1 class="page-header">
+                            <!--i></i-->Dashboard <small>Administrador</small>
+                        </h1>
+                        <ol class="breadcrumb">
+                            <li class="active">
+                                <i class="fa fa-dashboard"></i> &Uacute;ltima sesi&oacute;n:
+                            </li>
+                        </ol>
+                    </div>
+                </div>
 <nav class="navbar navbar-inverse">
 	
 	<ul class="nav navbar-nav">
@@ -28,5 +30,3 @@
 	</div>
 
 </div>
-</body>
-</html>
