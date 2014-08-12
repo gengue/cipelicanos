@@ -1,12 +1,4 @@
-<!DOCTYPE html>
-<html>
-<head>
-	<title>Look! I'm CRUDding</title>
-	{{ HTML::style('css/bootstrap.css') }}
-</head>
-<body>
-<div class="container">
-
+<div class="container-fluid">
 <nav class="navbar navbar-inverse">
 	
 	<ul class="nav navbar-nav">
@@ -43,5 +35,3 @@
 {{ Form::close() }}
 
 </div>
-</body>
-</html>

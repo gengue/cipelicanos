@@ -1,13 +1,4 @@
-<!-- app/views/nerds/create.blade.php -->
-
-<!DOCTYPE html>
-<html>
-    <head>
-        <title>C.I Pelicamos admin - Usuarios</title>
-        {{ HTML::style('css/bootstrap.css') }}
-    </head>
-    <body>
-        <div class="container">
+<div class="container-fluid">
 
             <nav class="navbar navbar-inverse">
 
@@ -66,5 +57,3 @@
             {{ Form::close() }}
 
         </div>
-    </body>
-</html>

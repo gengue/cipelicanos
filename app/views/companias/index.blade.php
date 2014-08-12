@@ -1,12 +1,4 @@
-<!-- app/views/nerds/index.blade.php -->
-
-<!DOCTYPE html>
-<html>
-    <head>
-        <title>C.I Pelicanos Admin - Compañias</title>
-        {{ HTML::style('css/bootstrap.css') }}
-    </head>
-    <body>
+<div class="container-fluid">
         <div class="container">
 
             <nav class="navbar navbar-inverse">
@@ -68,5 +60,4 @@
             </table>
 
         </div>
-    </body>
-</html>
+</div>

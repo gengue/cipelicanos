@@ -132,7 +132,7 @@
                         <a href="#"><i class="fa fa-fw fa-dashboard"></i> Inicio</a>
                     </li>
                     <li>
-                        <a href="{{ URL::to('guias') }}"><i class="fa fa-fw fa-shopping-cart"></i> Pedidos</a>
+                        <a href="{{ URL::to('pedidos') }}"><i class="fa fa-fw fa-shopping-cart"></i> Pedidos</a>
                     </li>
                     <li>
                         <a href="javascript:alert('no implementado');"><i class="fa fa-fw fa-user"></i> Clientes</a>

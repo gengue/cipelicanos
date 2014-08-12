@@ -1,14 +1,4 @@
-<!-- app/views/nerds/index.blade.php -->
-
-<!DOCTYPE html>
-<html>
-    <head>
-        <title>C.I Pelicanos Admin - Compañias</title>
-        {{ HTML::style('css/bootstrap.css') }}
-    </head>
-    <body>
-        <div class="container">
-
+<div class="container-fluid">
             <nav class="navbar navbar-inverse">
                 <div class="navbar-header">
                     <a class="navbar-brand" href="{{ URL::to('Pedidos') }}">Alert</a>
@@ -88,5 +78,3 @@
             </table>
 
         </div>
-    </body>
-</html>
