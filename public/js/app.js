@@ -1,3 +1,9 @@
+/*
+ *
+ *  PRODUCTOS  
+ *
+ */
+
 function abrirProductos() {
 
     $.ajax(
@@ -11,6 +17,23 @@ function abrirProductos() {
 
 }
 
+function mostrarCrearProducto() {
+
+    $.ajax(
+            {
+                url: '/productos/create',
+                type: 'GET',
+                success: function(data) {
+                    $('#page-wrapper').html(data);
+                }
+            });
+
+}
+/*
+ *
+ *  PEDIDOS  
+ *
+ */
 function abrirPedidos() {
 
     $.ajax(
@@ -23,6 +46,23 @@ function abrirPedidos() {
             });
 
 }
+function mostrarCrearPedido() {
+
+    $.ajax(
+            {
+                url: '/pedidos/create',
+                type: 'GET',
+                success: function(data) {
+                    $('#page-wrapper').html(data);
+                }
+            });
+
+}
+/*
+ *
+ *  NAVIERAS  
+ *
+ */
 function abrirNavieras() {
 
     $.ajax(
@@ -35,6 +75,23 @@ function abrirNavieras() {
             });
 
 }
+function mostrarCrearNaviera() {
+
+    $.ajax(
+            {
+                url: '/navieras/create',
+                type: 'GET',
+                success: function(data) {
+                    $('#page-wrapper').html(data);
+                }
+            });
+
+}
+/*
+ *
+ *  PROVEEDORES  
+ *
+ */
 function abrirProveedores() {
 
     $.ajax(
@@ -47,6 +104,23 @@ function abrirProveedores() {
             });
 
 }
+function mostrarCrearProveedores() {
+
+    $.ajax(
+            {
+                url: '/proveedores/create',
+                type: 'GET',
+                success: function(data) {
+                    $('#page-wrapper').html(data);
+                }
+            });
+
+}
+/*
+ *
+ *  USUARIOS 
+ *
+ */
 function abrirUsuarios() {
 
     $.ajax(
@@ -59,11 +133,11 @@ function abrirUsuarios() {
             });
 
 }
-function abrirClientes() {
+function mostrarCrearUsuario() {
 
     $.ajax(
             {
-                url: '/clientes',
+                url: '/usuarios/create',
                 type: 'GET',
                 success: function(data) {
                     $('#page-wrapper').html(data);
@@ -71,3 +145,15 @@ function abrirClientes() {
             });
 
 }
+//function abrirClientes() {
+//
+//    $.ajax(
+//            {
+//                url: '/clientes',
+//                type: 'GET',
+//                success: function(data) {
+//                    $('#page-wrapper').html(data);
+//                }
+//            });
+//
+//}

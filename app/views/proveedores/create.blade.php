@@ -1,54 +1,48 @@
-<!-- app/views/nerds/create.blade.php -->
+<div class="container-fluid">
 
-<!DOCTYPE html>
-<html>
-<head>
-	<title>C.I Pelicamos admin - Proveedores</title>
-	{{ HTML::style('css/bootstrap.css') }}
-</head>
-<body>
-<div class="container">
+    <div class="row">
+        <div class="col-lg-12">
+            <h1 class="page-header">
+                <!--i></i-->Proveedores <small>Agregar un proveedor</small>
+            </h1>
+            <ol class="breadcrumb">
+                <li class="active">
+                    <i class="fa fa-dashboard"></i> &Uacute;ltima sesi&oacute;n:
+                </li>
+            </ol>
+        </div>
+    </div>
+    <a class="btn btn-small btn-info" href="javascript:abrirProveedores();"><i class="fa fa-list"></i> Listar todos</a>
+    <br><br>
 
-<nav class="navbar navbar-inverse">
-	
-	<ul class="nav navbar-nav">
-		<li><a href="{{ URL::to('proveedores') }}">Ver todos los proveedores</a></li>
-		<li><a href="{{ URL::to('proveedores/create') }}">Crear un proveedor</a>
-	</ul>
-</nav>
+    <!-- if there are creation errors, they will show here -->
+    {{ HTML::ul($errors->all()) }}
 
-<h1>Crear un proveedor</h1>
+    {{ Form::open(array('url' => 'proveedores')) }}
 
-<!-- if there are creation errors, they will show here -->
-{{ HTML::ul($errors->all()) }}
+    <div class="form-group">
+        {{ Form::label('nombre', 'Nombre') }}
+        {{ Form::text('nombre', Input::old('nombre'), array('class' => 'form-control')) }}
+    </div>
+    <div class="form-group">
+        {{ Form::label('nombre_contacto', 'Nombre de Contacto') }}
+        {{ Form::text('nombre_contacto', Input::old('nombre de contacto'), array('class' => 'form-control')) }}
+    </div>
+    <div class="form-group">
+        {{ Form::label('telefono', 'Telefono') }}
+        {{ Form::text('telefono', Input::old('telefono'), array('class' => 'form-control')) }}
+    </div>
+    <div class="form-group">
+        {{ Form::label('direccion', 'Direccion') }}
+        {{ Form::text('direccion', Input::old('direccion'), array('class' => 'form-control')) }}
+    </div>
+    <div class="form-group">
+        {{ Form::label('correo', 'Email') }}
+        {{ Form::text('correo', Input::old('ejemplo@dominio.com'), array('class' => 'form-control')) }}
+    </div>
 
-{{ Form::open(array('url' => 'proveedores')) }}
+    {{ Form::submit('Crear Proveedor!', array('class' => 'btn btn-primary')) }}
 
-	<div class="form-group">
-		{{ Form::label('nombre', 'Nombre') }}
-		{{ Form::text('nombre', Input::old('nombre'), array('class' => 'form-control')) }}
-	</div>
-	<div class="form-group">
-		{{ Form::label('nombre_contacto', 'Nombre de Contacto') }}
-		{{ Form::text('nombre_contacto', Input::old('nombre de contacto'), array('class' => 'form-control')) }}
-	</div>
-	<div class="form-group">
-		{{ Form::label('telefono', 'Telefono') }}
-		{{ Form::text('telefono', Input::old('telefono'), array('class' => 'form-control')) }}
-	</div>
-	<div class="form-group">
-		{{ Form::label('direccion', 'Direccion') }}
-		{{ Form::text('direccion', Input::old('direccion'), array('class' => 'form-control')) }}
-	</div>
-	<div class="form-group">
-		{{ Form::label('correo', 'Email') }}
-		{{ Form::text('correo', Input::old('ejemplo@dominio.com'), array('class' => 'form-control')) }}
-	</div>
-
-	{{ Form::submit('Crear Proveedor!', array('class' => 'btn btn-primary')) }}
-
-{{ Form::close() }}
+    {{ Form::close() }}
 
 </div>
-</body>
-</html>

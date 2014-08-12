@@ -1,24 +1,19 @@
-<!-- app/views/nerds/index.blade.php -->
-
-<!DOCTYPE html>
-<html>
-    <head>
-        <title>C.I Pelicanos Admin - Navieras</title>
-        {{ HTML::style('css/bootstrap.css') }}
-    </head>
-    <body>
-        <div class="container">
-
-            <nav class="navbar navbar-inverse">
-
-                <ul class="nav navbar-nav">
-                    <li><a href="{{ URL::to('navieras') }}">Ver todas las Navieras</a></li>
-                    <li><a href="{{ URL::to('navieras/create') }}">Crear Naviera</a>
-                </ul>
-            </nav>
-
-            <h1>Todas las navieras</h1>
-
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-lg-12">
+            <h1 class="page-header">
+                <!--i></i-->Navieras <small>Todas las navieras</small>
+            </h1>
+            <ol class="breadcrumb">
+                <li class="active">
+                    <i class="fa fa-dashboard"></i> &Uacute;ltima sesi&oacute;n:
+                </li>
+            </ol>
+        </div>
+    </div>
+    <a class="btn btn-small btn-info" href="javascript:abrirNavieras();"><i class="fa fa-list"></i> Listar todos</a>
+    <a class="btn btn-small btn-info" href="javascript:mostrarCrearNaviera();"><i class="fa fa-plus"></i> Agregar naviera</a>
+    <br><br>
             <!-- will be used to show any messages -->
             @if (Session::has('message'))
             <div class="alert alert-info">{{ Session::get('message') }}</div>
@@ -65,5 +60,3 @@
             </table>
 
         </div>
-    </body>
-</html>

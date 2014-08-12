@@ -1,13 +1,4 @@
-<!-- app/views/nerds/show.blade.php -->
-
-<!DOCTYPE html>
-<html>
-<head>
-	<title>C.I Pelicanos Admin - Proveedores</title>
-	{{ HTML::style('css/bootstrap.css') }}
-</head>
-<body>
-<div class="container">
+<div class="container-fluid">
 
 <nav class="navbar navbar-inverse">
 	
@@ -30,5 +21,3 @@
 	</div>
 
 </div>
-</body>
-</html>

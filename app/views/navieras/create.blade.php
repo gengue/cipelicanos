@@ -1,47 +1,42 @@
-<!DOCTYPE html>
-<html>
-<head>
-	<title>Look! I'm CRUDding</title>
-	{{ HTML::style('css/bootstrap.css') }}
-</head>
-<body>
-<div class="container">
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-lg-12">
+            <h1 class="page-header">
+                <!--i></i-->Navieras <small>Agregar naviera</small>
+            </h1>
+            <ol class="breadcrumb">
+                <li class="active">
+                    <i class="fa fa-dashboard"></i> &Uacute;ltima sesi&oacute;n:
+                </li>
+            </ol>
+        </div>
+    </div>
+    <a class="btn btn-small btn-info" href="javascript:abrirNavieras();"><i class="fa fa-list"></i> Listar todos</a>
+    <br><br>
 
-<nav class="navbar navbar-inverse">
-	
-	<ul class="nav navbar-nav">
-		<li><a href="{{ URL::to('navieras') }}">Ver todas las navieras</a></li>
-		<li><a href="{{ URL::to('navieras/create') }}">Crear una naviera</a>
-	</ul>
-</nav>
+    {{ HTML::ul($errors->all()) }}
 
-<h1>Crear una naviera</h1>
+    {{ Form::open(array('url' => 'navieras')) }}
 
-{{ HTML::ul($errors->all()) }}
+    <div class="form-group">
+        {{ Form::label('nombre', 'Nombre') }}
+        {{ Form::text('nombre', Input::old('nombre'), array('class' => 'form-control')) }}
+    </div>
+    <div class="form-group">
+        {{ Form::label('nombre_contacto', 'Nombre de Contacto') }}
+        {{ Form::text('nombre_contacto', Input::old('nombre de contacto'), array('class' => 'form-control')) }}
+    </div>
+    <div class="form-group">
+        {{ Form::label('telefono', 'Telefono') }}
+        {{ Form::text('telefono', Input::old('telefono'), array('class' => 'form-control')) }}
+    </div>
+    <div class="form-group">
+        {{ Form::label('direccion', 'Direccion') }}
+        {{ Form::text('direccion', Input::old('direccion'), array('class' => 'form-control')) }}
+    </div>
 
-{{ Form::open(array('url' => 'navieras')) }}
+    {{ Form::submit('Crear naviera!', array('class' => 'btn btn-primary')) }}
 
-	<div class="form-group">
-		{{ Form::label('nombre', 'Nombre') }}
-		{{ Form::text('nombre', Input::old('nombre'), array('class' => 'form-control')) }}
-	</div>
-	<div class="form-group">
-		{{ Form::label('nombre_contacto', 'Nombre de Contacto') }}
-		{{ Form::text('nombre_contacto', Input::old('nombre de contacto'), array('class' => 'form-control')) }}
-	</div>
-	<div class="form-group">
-		{{ Form::label('telefono', 'Telefono') }}
-		{{ Form::text('telefono', Input::old('telefono'), array('class' => 'form-control')) }}
-	</div>
-	<div class="form-group">
-		{{ Form::label('direccion', 'Direccion') }}
-		{{ Form::text('direccion', Input::old('direccion'), array('class' => 'form-control')) }}
-	</div>
-
-	{{ Form::submit('Crear naviera!', array('class' => 'btn btn-primary')) }}
-
-{{ Form::close() }}
+    {{ Form::close() }}
 
 </div>
-</body>
-</html>

@@ -1,24 +1,20 @@
-<!-- app/views/nerds/create.blade.php -->
+<div class="container-fluid">
 
-<!DOCTYPE html>
-<html>
-    <head>
-        <title>C.I Pelicamos admin - Usuarios</title>
-        {{ HTML::style('css/bootstrap.css') }}
-    </head>
-    <body>
-        <div class="container">
+            <div class="row">
+        <div class="col-lg-12">
+            <h1 class="page-header">
+                <!--i></i-->Usuarios <small>Agregar usuario</small>
+            </h1>
+            <ol class="breadcrumb">
+                <li class="active">
+                    <i class="fa fa-dashboard"></i> &Uacute;ltima sesi&oacute;n:
+                </li>
+            </ol>
+        </div>
+    </div>
 
-            <nav class="navbar navbar-inverse">
-
-                <ul class="nav navbar-nav">
-                    <li><a href="{{ URL::to('usuarios') }}">Ver todos</a></li>
-                    <li><a href="{{ URL::to('usuarios/create') }}">Crear</a>
-                </ul>
-            </nav>
-
-            <h1>Crear</h1>
-
+    <a class="btn btn-small btn-info" href="javascript:abrirUsuarios();"><i class="fa fa-list"></i> Listar todos</a>
+   <br><br>
             <!-- if there are creation errors, they will show here -->
             {{ HTML::ul($errors->all()) }}
 
@@ -66,5 +62,3 @@
             {{ Form::close() }}
 
         </div>
-    </body>
-</html>
