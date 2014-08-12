@@ -132,7 +132,7 @@
                         <a href="#"><i class="fa fa-fw fa-dashboard"></i> Inicio</a>
                     </li>
                     <li>
-                        <a href="{{ URL::to('guias') }}"><i class="fa fa-fw fa-shopping-cart"></i> Pedidos</a>
+                        <a href="javascript:abrirPedidos();"><i class="fa fa-fw fa-shopping-cart"></i> Pedidos</a>
                     </li>
                     <li>
                         <a href="javascript:alert('no implementado');"><i class="fa fa-fw fa-user"></i> Clientes</a>
@@ -141,16 +141,16 @@
                         <a href="javascript:abrirProductos();"><i class="fa fa-fw fa-gift"></i> Productos</a>
                     </li>
                     <li>
-                        <a href="{{ URL::to('navieras') }}"><i class="fa fa-fw fa-truck"></i> Navieras</a>
+                        <a href="javascript:abrirNavieras();"><i class="fa fa-fw fa-truck"></i> Navieras</a>
                     </li>
                     <li>
-                        <a href="{{ URL::to('proveedores') }}"><i class="fa fa-fw fa-suitcase"></i> Proveedores</a>
+                        <a href="javascript:abrirProveedores();"><i class="fa fa-fw fa-suitcase"></i> Proveedores</a>
                     </li>
                     <li>
                         <a href="javascript:alert('no implementado');"><i class="fa fa-fw fa-calendar"></i> Historial pedidos</a>
                     </li>
                     <li>
-                        <a href="{{ URL::to('usuarios') }}"><i class="fa fa-fw fa-male"></i> Usuarios</a>
+                        <a href=;javascript:abrirUsuarios();"><i class="fa fa-fw fa-male"></i> Usuarios</a>
                     </li>
                     <!--li>
                         <a href="javascript:;" data-toggle="collapse" data-target="#demo"><i class="fa fa-fw fa-arrows-v"></i> Dropdown <i class="fa fa-fw fa-caret-down"></i></a>
@@ -409,18 +409,11 @@
 
     </div>
     <!-- /#wrapper -->
-        
-            <!-- jQuery Version 1.11.0 -->
-    <script src="js/jquery-1.11.0.js"></script>
-
-    <!-- Bootstrap Core JavaScript -->
-    <script src="js/bootstrap.min.js"></script>
-
-    <!-- Morris Charts JavaScript -->
+    <script src="js/plugins/jquery-1.11.0.js"></script>
+    <script src="js/plugins/bootstrap.min.js"></script>
     <script src="js/plugins/morris/raphael.min.js"></script>
     <script src="js/plugins/morris/morris.min.js"></script>
     <script src="js/plugins/morris/morris-data.js"></script>
     <script src="js/app.js"></script>
-
     </body>
 </html>
