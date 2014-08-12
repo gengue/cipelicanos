@@ -17,10 +17,10 @@ Route::resource('pedidos', 'PedidosController');
 Route::get('/', function()
 {
     //return View::make('login');
-    return View::make('cruds');
+    return View::make('index');
 });
 
-Route::get('crud', function()
+Route::get('/crud', function()
 {
     return View::make('cruds');
 });
