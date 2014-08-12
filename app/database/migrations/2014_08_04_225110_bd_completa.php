@@ -84,7 +84,7 @@ class BdCompleta extends Migration {
             $table->integer('producto_id')->unsigned();
             $table->integer('proveedor_id')->unsigned();
             $table->integer('naviera_id')->unsigned();
-            $table->integer('container_id')->unsigned();
+            //$table->integer('container_id')->unsigned();
             $table->integer('guia_id')->unsigned();
             $table->string('numero_reserva');
             $table->string('buque');
@@ -96,7 +96,7 @@ class BdCompleta extends Migration {
             $table->foreign('producto_id')->references('id')->on('productos')->on_delete('set null');
             $table->foreign('proveedor_id')->references('id')->on('proveedores')->on_delete('set null');
             $table->foreign('naviera_id')->references('id')->on('navieras')->on_delete('set null');
-            $table->foreign('container_id')->references('id')->on('containers')->on_delete('set null');
+            //$table->foreign('container_id')->references('id')->on('containers')->on_delete('set null');
             $table->foreign('guia_id')->references('id')->on('guias')->on_delete('set null');
             $table->timestamps();
             $table->softDeletes();

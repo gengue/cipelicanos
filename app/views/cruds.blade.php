@@ -25,6 +25,7 @@
                 <li><a href="{{ URL::to('usuarios') }}">Usuarios</a></li>
                 <li><a href="{{ URL::to('proveedores') }}">Proveedores</a></li>
                 <li><a href="{{ URL::to('productos') }}">Productos</a></li>
+                <li><a href="{{ URL::to('pedidos') }}">Pedidos</a></li>
             </ul>
         </div>
     </body>

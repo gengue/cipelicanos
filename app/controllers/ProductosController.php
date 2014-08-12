@@ -12,6 +12,7 @@ class ProductosController extends BaseController {
         $productos = DB::table('productos')
             ->join('proveedores_productos', 'productos.id', '=', 'proveedores_productos.productos_id')
             ->join('proveedores', 'proveedores_productos.proveedores_id', '=', 'proveedores.id')
+            ->whereNull('productos.deleted_at')
             ->select('productos.id','productos.nombre', 'productos.descripcion', 'proveedores.nombre as nombreprov')
             ->get();
     //    print_r($productos);
@@ -102,7 +103,7 @@ class ProductosController extends BaseController {
     public function destroy($id) {
 
         $producto = Producto::find($id);
-        $relacion = ProveedoresProducto::where('productos_id', '=', $id)->first();
+        $relacion = ProveedoresProducto::where('productos_id', '=', $id);
 
         $relacion->delete();
         $producto->delete();
