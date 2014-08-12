@@ -3,18 +3,8 @@
 class ProductosController extends BaseController {
 
     public function index() {
-
-//        $productos = Producto::all();
-//        foreach ($productos as $producto){
-//            $proveedor = Proveedore::find(ProveedoresProducto::where('productos_id', '=', $id)->first()->proveedores_id);
-//        
-//        }
-        $productos = DB::table('productos')
-            ->join('proveedores_productos', 'productos.id', '=', 'proveedores_productos.productos_id')
-            ->join('proveedores', 'proveedores_productos.proveedores_id', '=', 'proveedores.id')
-            ->select('productos.id','productos.nombre', 'productos.descripcion', 'proveedores.nombre as nombreprov')
-            ->get();
-    //    print_r($productos);
+        $productosdb = new Producto();
+        $productos = $productosdb->obtenerProductos();
         return View::make('productos.index')->with('productos', $productos);
     }
 

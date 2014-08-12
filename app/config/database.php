@@ -65,10 +65,11 @@ return array(
 
 		'cipelicanos_mySQL' => array(
 			'driver'    => 'mysql',
-			'host'      => 'localhost',
+			'host'      => '127.0.0.1',
+			'unix_socket'   => '/Applications/MAMP/tmp/mysql/mysql.sock',
 			'database'  => 'cipelicanos',
 			'username'  => 'root',
-			'password'  => 'admin',
+			'password'  => 'root',
 			'charset'   => 'utf8',
 			'collation' => 'utf8_unicode_ci',
 			'prefix'    => '',
