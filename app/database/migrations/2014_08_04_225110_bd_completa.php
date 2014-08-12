@@ -85,6 +85,7 @@ class BdCompleta extends Migration {
             $table->integer('proveedor_id')->unsigned();
             $table->integer('naviera_id')->unsigned();
             //$table->integer('container_id')->unsigned();
+            $table->enum('estado', array('ACTIVO','INACTIVO'));
             $table->integer('guia_id')->unsigned();
             $table->string('numero_reserva');
             $table->string('buque');
