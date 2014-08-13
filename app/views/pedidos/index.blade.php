@@ -79,3 +79,7 @@
         </table>
     </div>
 </div>
+<script>
+    $('#menu-vertical li').removeClass();
+    $('#menu-vertical').find('a:contains("Pedidos")').parent().addClass("active");
+</script>

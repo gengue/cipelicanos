@@ -1,7 +1,19 @@
-
+//SEGURIDAD CON TOKEN
 $.ajaxSetup({
     headers: {'X-CSRF-Token': $('meta[name=_token]').attr('content')}
 });
+
+//INICIO
+function abrirDashboard() {
+    $.ajax(
+            {
+                url: '/dashboard',
+                type: 'GET',
+                success: function(data) {
+                    $('#page-wrapper').html(data);
+                }
+            });
+}
 
 /*
  *
@@ -60,10 +72,10 @@ function mostrarEditarProducto(id) {
                 }
             });
 }
-function editarProducto(datos, id){
+function editarProducto(datos, id) {
     $.ajax(
             {
-                url: '/productos/'+id,
+                url: '/productos/' + id,
                 type: 'PUT',
                 data: datos,
                 success: function(data) {
@@ -84,13 +96,13 @@ function mostrarDetalleProducto(id) {
                 }
             });
 }
-function eliminarProducto(id){
-     $.ajax(
+function eliminarProducto(id) {
+    $.ajax(
             {
                 url: '/productos/' + id,
                 type: 'DELETE',
                 success: function(data) {
-                    if(data.msg === 'error'){
+                    if (data.msg === 'error') {
                         alert("Error al intentar eliminar");
                     }
                     abrirProductos();

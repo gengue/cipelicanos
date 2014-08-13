@@ -48,3 +48,7 @@
     </table>
 
 </div>
+<script>
+    $('#menu-vertical li').removeClass();
+    $('#menu-vertical').find('a:contains("Productos")').parent().addClass("active");
+</script>

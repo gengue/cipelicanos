@@ -72,3 +72,7 @@
     </table>
 
 </div>
+<script>
+    $('#menu-vertical li').removeClass();
+    $('#menu-vertical').find('a:contains("Proveedores")').parent().addClass("active");
+</script>
