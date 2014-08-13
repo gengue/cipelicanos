@@ -1,31 +1,26 @@
-
 <div class="container-fluid">
-<div class="row">
-                    <div class="col-lg-12">
-                        <h1 class="page-header">
-                            <!--i></i-->Dashboard <small>Administrador</small>
-                        </h1>
-                        <ol class="breadcrumb">
-                            <li class="active">
-                                <i class="fa fa-dashboard"></i> &Uacute;ltima sesi&oacute;n:
-                            </li>
-                        </ol>
-                    </div>
-                </div>
-<nav class="navbar navbar-inverse">
-	
-	<ul class="nav navbar-nav">
-		<li><a href="{{ URL::to('productos') }}">Ver todos los Productos</a></li>
-		<li><a href="{{ URL::to('productos/create') }}">Crear un producto</a>
-	</ul>
-</nav>
-
-<h1>Editar {{ $producto->nombre }}</h1>
+    <div class="row">
+        <div class="col-lg-12">
+            <h1 class="page-header">
+                <!--i></i-->Producto <small>Editar producto</small>
+            </h1>
+            <ol class="breadcrumb">
+                <li class="active">
+                    <i class="fa fa-dashboard"></i> &Uacute;ltima sesi&oacute;n:
+                </li>
+            </ol>
+        </div>
+    </div>
+    <a class="btn btn-small btn-info" href="javascript:abrirProductos();"><i class="fa fa-list"></i> Listar todos</a>
+    <br><br>
 
 <!-- if there are creation errors, they will show here -->
 {{ HTML::ul($errors->all()) }}
 
-{{ Form::model($producto, array('route' => array('productos.update', $producto->id), 'method' => 'PUT')) }}
+{{ Form::model($producto, array('route' => array('productos.update', $producto->id), 
+            'id' => 'formEditarProducto', 
+            'method' => 'PUT')) 
+}}
 
 	<div class="form-group">
 		{{ Form::label('nombre', 'Nombre') }}
@@ -46,3 +41,17 @@
 {{ Form::close() }}
 
 </div>
+<script>
+
+    $("#formEditarProducto").submit(function(e) {
+        e.preventDefault();       
+        var datos = {
+            nombre: $("#nombre").val(),
+            descripcion: $("#descripcion").val(),
+            proveedor: $("#proveedor").val(),
+            token: $("input[name=_token]").val()
+        };
+        editarProducto(datos, {{ $producto->id }});
+    });
+
+</script>

@@ -37,13 +37,10 @@
                 <td>{{ $value->nombreprov }}</td>
 
                 <td>                            
-                    <a class="btn btn-small btn-success" href="{{ URL::to('productos/' . $value->id) }}">Detalle</a>
-                    <a class="btn btn-small btn-info" href="{{ URL::to('productos/' . $value->id . '/edit') }}">Editar</a>
-
-                    {{ Form::open(array('url' => 'productos/' . $value->id, 'class' => 'pull-right')) }}
-                    {{ Form::hidden('_method', 'DELETE') }}
-                    {{ Form::submit('Eliminar', array('class' => 'btn btn-warning')) }}
-                    {{ Form::close() }}
+                    <a class="btn btn-small btn-success" href="javascript:mostrarDetalleProducto({{ $value->id }});"><i class="fa fa-search"></i></a>
+                    <a class="btn btn-small btn-info" href="javascript:mostrarEditarProducto({{ $value->id }});"><i class="fa fa-pencil"></i></a>
+                    <a class="btn btn-small btn-danger" href="javascript:eliminarProducto({{ $value->id }});"><i class="fa fa-trash-o"></i></a>
+                    
                 </td>
             </tr>
             @endforeach
@@ -51,3 +48,7 @@
     </table>
 
 </div>
+<script>
+    $('#menu-vertical li').removeClass();
+    $('#menu-vertical').find('a:contains("Productos")').parent().addClass("active");
+</script>

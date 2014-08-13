@@ -17,29 +17,32 @@ class ProductosController extends BaseController {
     }
 
     public function store() {
-        $rules = array(
-            'nombre' => 'required',
-            'proveedor' => 'required'
-        );
-        $validator = Validator::make(Input::all(), $rules);
 
-        if ($validator->fails()) {
-            return Redirect::to('productos/create')
-                            ->withErrors($validator)
-                            ->withInput(Input::except('password'));
-        } else {
-            $producto = new Producto; //creamos un producto
-            $producto->nombre = Input::get('nombre');
-            $producto->descripcion = Input::get('descripcion');
-            $producto->save();
+        if (Request::ajax()) {
+            $rules = array(
+                'nombre' => 'required',
+                'proveedor' => 'required'
+            );
+            $validator = Validator::make(Input::all(), $rules);
 
-            $proveedorProducto = new ProveedoresProducto; //creamos una nueva relacion
-            $proveedorProducto->productos_id = $producto->id;
-            $proveedorProducto->proveedores_id = Input::get('proveedor');
-            $proveedorProducto->save();
+            if ($validator->fails()) {
+                return Response::json(array(
+                            'msg' => 'error'
+                ));
+            } else {
+                $producto = new Producto; //creamos un producto
+                $producto->nombre = Input::get('nombre');
+                $producto->descripcion = Input::get('descripcion');
+                $producto->save();
 
-            Session::flash('message', 'Producto guardado correctamente!');
-            return Redirect::to('productos');
+                $proveedorProducto = new ProveedoresProducto; //creamos una nueva relacion
+                $proveedorProducto->productos_id = $producto->id;
+                $proveedorProducto->proveedores_id = Input::get('proveedor');
+                $proveedorProducto->save();
+                return Response::json(array(
+                            'msg' => 'ok'
+                ));
+            }
         }
     }
 
@@ -52,41 +55,43 @@ class ProductosController extends BaseController {
     }
 
     public function edit($id) {
-        $producto = Producto::find($id);       
+        $producto = Producto::find($id);
         $proveedor = Proveedore::find(ProveedoresProducto::where('productos_id', '=', $id)->first()->proveedores_id);
-        
+
         $proveedores = Proveedore::lists('nombre', 'id');
         return View::make('productos.edit', array('producto' => $producto,
-                                                    'proveedor' => $proveedor,
-                                                    'proveedores' => $proveedores
-                                                ));
+                    'proveedor' => $proveedor,
+                    'proveedores' => $proveedores
+        ));
     }
 
     public function update($id) {
 
-        // read more on validation at http://laravel.com/docs/validation
-        $rules = array(
-            'nombre' => 'required',
-        );
-        $validator = Validator::make(Input::all(), $rules);
-        if ($validator->fails()) {
-            return Redirect::to('productos/' . $id . '/edit')
-                            ->withErrors($validator)
-                            ->withInput(Input::except('password'));
-        } else {
-            // store
-            $producto = Producto::find($id);
-            $producto->nombre = Input::get('nombre');
-            $producto->descripcion = Input::get('descripcion');
-            $producto->save();
-            
-            $proveedorProducto = ProveedoresProducto::where('productos_id', '=', $id)->first();           
-            $proveedorProducto->productos_id = $producto->id;
-            $proveedorProducto->proveedores_id = Input::get('proveedor');
-            $proveedorProducto->save();
-            // redirect
-            Session::flash('message', 'Producto actualizado correctamente!');
-            return Redirect::to('productos');
+        if (Request::ajax()) {
+            $rules = array(
+                'nombre' => 'required',
+                'proveedor' => 'required'
+            );
+            $validator = Validator::make(Input::all(), $rules);
+
+            if ($validator->fails()) {
+                return Response::json(array(
+                            'msg' => 'error'
+                ));
+            } else {
+                $producto = Producto::find($id);
+                $producto->nombre = Input::get('nombre');
+                $producto->descripcion = Input::get('descripcion');
+                $producto->save();
+
+                $proveedorProducto = ProveedoresProducto::where('productos_id', '=', $id)->first();
+                $proveedorProducto->productos_id = $producto->id;
+                $proveedorProducto->proveedores_id = Input::get('proveedor');
+                $proveedorProducto->save();
+                return Response::json(array(
+                            'msg' => 'ok'
+                ));
+            }
         }
     }
 
@@ -95,11 +100,14 @@ class ProductosController extends BaseController {
         $producto = Producto::find($id);
         $relacion = ProveedoresProducto::where('productos_id', '=', $id);
 
-        $relacion->delete();
-        $producto->delete();
-
-        Session::flash('message', 'Producto eliminado correctamente!');
-        return Redirect::to('productos');
+        if (!$relacion->delete() || !$producto->delete()) {
+            return Response::json(array(
+                        'msg' => 'error'
+            ));
+        }
+        return Response::json(array(
+                    'msg' => 'ok'
+        ));
     }
 
 }

@@ -20,9 +20,9 @@ Route::get('/', function()
     return View::make('index');
 });
 
-Route::get('/crud', function()
+Route::get('/dashboard', function()
 {
-    return View::make('cruds');
+    return View::make('dashboard');
 });
 
 
