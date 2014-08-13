@@ -6,6 +6,7 @@
         {{ HTML::style('css/sb-admin.css') }}
         {{ HTML::style('css/plugins/morris.css') }}
         {{ HTML::style('font-awesome-4.1.0/css/font-awesome.min.css') }}
+        <meta name="_token" content="{{ csrf_token() }}"/>
     </head>
     <body>
         <div id="wrapper">
@@ -137,13 +138,13 @@
 
                         </li>
                         <li>
-                            <a href="javascript:alert('no implementado');"><i class="fa fa-fw fa-user"></i> Clientes</a>
+                            <a href="javascript:alert('no implementado');"><i class="fa fa-fw fa-money"></i> Clientes</a>
                         </li>
                         <li>
                             <a href="javascript:abrirProductos();"><i class="fa fa-fw fa-gift"></i> Productos</a>
                         </li>
                         <li>
-                            <a href="javascript:abrirNavieras();"><i class="fa fa-fw fa-truck"></i> Navieras</a>
+                            <a href="javascript:abrirNavieras();"><i class="fa fa-fw fa-anchor"></i> Navieras</a>
                         </li>
                         <li>
                             <a href="javascript:abrirProveedores();"><i class="fa fa-fw fa-suitcase"></i> Proveedores</a>
@@ -152,7 +153,7 @@
                             <a href="javascript:alert('no implementado');"><i class="fa fa-fw fa-calendar"></i> Historial pedidos</a>
                         </li>
                         <li>
-                            <a href="javascript:abrirUsuarios();"><i class="fa fa-fw fa-male"></i> Usuarios</a>
+                            <a href="javascript:abrirUsuarios();"><i class="fa fa-fw fa-users"></i> Usuarios</a>
                         </li>
                         <!--li>
                             <a href="javascript:;" data-toggle="collapse" data-target="#demo"><i class="fa fa-fw fa-arrows-v"></i> Dropdown <i class="fa fa-fw fa-caret-down"></i></a>
