@@ -1,13 +1,23 @@
 <div class="container-fluid">
 
-    <nav class="navbar navbar-inverse">                
-        <ul class="nav navbar-nav">
-            <li><a href="{{ URL::to('proveedores') }}">Ver todos los proveedores</a></li>
-            <li><a href="{{ URL::to('proveedores/create') }}">Crear Proveedor</a>
-        </ul>
-    </nav>
+    <div class="row">
+        <div class="col-lg-12">
+            <h1 class="page-header">
+                <!--i></i-->Proveedores <small>Todos los proveedores</small>
+            </h1>
+            <ol class="breadcrumb">
+                <li class="active">
+                    <i class="fa fa-dashboard"></i> &Uacute;ltima sesi&oacute;n:
+                </li>
+            </ol>
+        </div>
+    </div>
+    
+    <a class="btn btn-small btn-info" href="javascript:abrirProveedores();"><i class="fa fa-list"></i> Listar todos</a>
+    <a class="btn btn-small btn-info" href="javascript:mostrarCrearProveedores();"><i class="fa fa-plus"></i> Agregar Proveedor</a>
+    <br><br>
 
-    <h1>Todas los proveedores</h1>
+
 
     <!-- will be used to show any messages -->
     @if (Session::has('message'))

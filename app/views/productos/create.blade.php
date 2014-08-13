@@ -3,7 +3,7 @@
     <div class="row">
         <div class="col-lg-12">
             <h1 class="page-header">
-                <!--i></i-->Dashboard <small>Administrador</small>
+                <!--i></i-->Productos <small>Agregar un producto</small>
             </h1>
             <ol class="breadcrumb">
                 <li class="active">
@@ -12,15 +12,8 @@
             </ol>
         </div>
     </div>
-    <nav class="navbar navbar-inverse">
-        <ul class="nav navbar-nav">
-            <li><a href="{{ URL::to('productos') }}">Ver todos los productos</a></li>
-            <li><a href="{{ URL::to('productos/create') }}">Crear un producto</a>
-        </ul>
-    </nav>
-
-    <h1>Crear un producto</h1>
-
+      <a class="btn btn-small btn-info" href="javascript:abrirProductos();"><i class="fa fa-list"></i> Listar todos</a>
+      <br><br>
     <!-- if there are creation errors, they will show here -->
     {{ HTML::ul($errors->all()) }}
 

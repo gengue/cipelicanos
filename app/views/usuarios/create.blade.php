@@ -1,15 +1,20 @@
 <div class="container-fluid">
 
-            <nav class="navbar navbar-inverse">
+            <div class="row">
+        <div class="col-lg-12">
+            <h1 class="page-header">
+                <!--i></i-->Usuarios <small>Agregar usuario</small>
+            </h1>
+            <ol class="breadcrumb">
+                <li class="active">
+                    <i class="fa fa-dashboard"></i> &Uacute;ltima sesi&oacute;n:
+                </li>
+            </ol>
+        </div>
+    </div>
 
-                <ul class="nav navbar-nav">
-                    <li><a href="{{ URL::to('usuarios') }}">Ver todos</a></li>
-                    <li><a href="{{ URL::to('usuarios/create') }}">Crear</a>
-                </ul>
-            </nav>
-
-            <h1>Crear</h1>
-
+    <a class="btn btn-small btn-info" href="javascript:abrirUsuarios();"><i class="fa fa-list"></i> Listar todos</a>
+   <br><br>
             <!-- if there are creation errors, they will show here -->
             {{ HTML::ul($errors->all()) }}
 

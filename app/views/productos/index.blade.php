@@ -1,9 +1,8 @@
-
 <div class="container-fluid">
     <div class="row">
         <div class="col-lg-12">
             <h1 class="page-header">
-                <!--i></i-->Dashboard <small>Administrador</small>
+                <!--i></i-->Productos <small>Todos los productos</small>
             </h1>
             <ol class="breadcrumb">
                 <li class="active">
@@ -12,15 +11,9 @@
             </ol>
         </div>
     </div>
-    <nav class="navbar navbar-inverse">                
-        <ul class="nav navbar-nav">
-            <li><a href="{{ URL::to('productos') }}">Ver todos los productos</a></li>
-            <li><a href="{{ URL::to('productos/create') }}">Crear producto</a>
-        </ul>
-    </nav>
-
-    <h1>Todas los Productos</h1>
-
+    <a class="btn btn-small btn-info" href="javascript:abrirProductos();"><i class="fa fa-list"></i> Listar todos</a>
+    <a class="btn btn-small btn-info" href="javascript:mostrarCrearProducto();"><i class="fa fa-plus"></i> Agregar Producto</a>
+    <br><br>
     @if (Session::has('message'))
     <div class="alert alert-info">{{ Session::get('message') }}</div>
     @endif

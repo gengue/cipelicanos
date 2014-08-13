@@ -3,8 +3,8 @@
     <nav class="navbar navbar-inverse">
 
         <ul class="nav navbar-nav">
-            <li><a href="{{ URL::to('proveedores') }}">Ver todos los proveedores</a></li>
-            <li><a href="{{ URL::to('proveedores/create') }}">Crear un proveedor</a>
+            <li><a href="javascript:abrirProveedores();">Ver todos los proveedores</a></li>
+            <li><a href="javascript:mostrarCrearProveedor();">Crear un proveedor</a>
         </ul>
     </nav>
 
