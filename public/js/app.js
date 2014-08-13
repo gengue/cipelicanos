@@ -1,6 +1,6 @@
 
 $.ajaxSetup({
-   headers: { 'X-CSRF-Token' : $('meta[name=_token]').attr('content') }
+    headers: {'X-CSRF-Token': $('meta[name=_token]').attr('content')}
 });
 
 /*
@@ -33,6 +33,69 @@ function mostrarCrearProducto() {
                 }
             });
 
+}
+function crearProducto(datos) {
+
+    $.ajax(
+            {
+                url: '/productos',
+                type: 'POST',
+                data: datos,
+                success: function(data) {
+                    if (data.msg === 'error') {
+                        alert("Error, algunos campos son obligatorios");
+                    }
+                    abrirProductos();
+                }
+            });
+}
+function mostrarEditarProducto(id) {
+
+    $.ajax(
+            {
+                url: '/productos/' + id + '/edit',
+                type: 'GET',
+                success: function(data) {
+                    $('#page-wrapper').html(data);
+                }
+            });
+}
+function editarProducto(datos, id){
+    $.ajax(
+            {
+                url: '/productos/'+id,
+                type: 'PUT',
+                data: datos,
+                success: function(data) {
+                    if (data.msg === 'error') {
+                        alert("Error, algunos campos son obligatorios");
+                    }
+                    abrirProductos();
+                }
+            });
+}
+function mostrarDetalleProducto(id) {
+    $.ajax(
+            {
+                url: '/productos/' + id,
+                type: 'GET',
+                success: function(data) {
+                    $('#page-wrapper').html(data);
+                }
+            });
+}
+function eliminarProducto(id){
+     $.ajax(
+            {
+                url: '/productos/' + id,
+                type: 'DELETE',
+                success: function(data) {
+                    if(data.msg === 'error'){
+                        alert("Error al intentar eliminar");
+                    }
+                    abrirProductos();
+                }
+            });
 }
 /*
  *

@@ -66,7 +66,7 @@
 
                     <td>  
                         <a class="btn btn-small btn-success" href="{{ URL::to('pedidos/' . $value->id) }}"><i class="fa fa-search"></i></a>
-                        <a class="btn btn-small btn-info" href="{{ URL::to('pedidos/' . $value->id . '/edit') }}"><i class="fa fa-plus"></i></a>
+                        <a class="btn btn-small btn-info" href="{{ URL::to('pedidos/' . $value->id . '/edit') }}"><i class="fa fa-pencil"></i></a>
                         <a class="btn btn-small btn-danger" href="{{ URL::to('pedidos/' . $value->id . '/edit') }}"><i class="fa fa-trash-o"></i></a>
 <!--                        {{ Form::open(array('url' => 'pedidos/' . $value->id, 'class' => 'pull-right')) }}
                         {{ Form::hidden('_method', 'DELETE') }}

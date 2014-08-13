@@ -12,12 +12,12 @@
             </ol>
         </div>
     </div>
-      <a class="btn btn-small btn-info" href="javascript:abrirProductos();"><i class="fa fa-list"></i> Listar todos</a>
-      <br><br>
+    <a class="btn btn-small btn-info" href="javascript:abrirProductos();"><i class="fa fa-list"></i> Listar todos</a>
+    <br><br>
     <!-- if there are creation errors, they will show here -->
     {{ HTML::ul($errors->all()) }}
 
-    {{ Form::open(array('url' => 'productos')) }}
+    {{ Form::open(array('', 'id' => 'formProducto')) }}
 
     <div class="form-group">
         {{ Form::label('nombre', 'Nombre') }}
@@ -37,3 +37,19 @@
     {{ Form::close() }}
 
 </div>
+
+<script>
+
+    $("#formProducto").submit(function(e) {
+        e.preventDefault();
+        
+        var datos = {
+            nombre: $("#nombre").val(),
+            descripcion: $("#descripcion").val(),
+            proveedor: $("#proveedor").val(),
+            token: $("input[name=_token]").val()
+        };
+        crearProducto(datos);
+    });
+
+</script>Ï
