@@ -43,12 +43,7 @@
     $("#formProducto").submit(function(e) {
         e.preventDefault();
         
-        var datos = {
-            nombre: $("#nombre").val(),
-            descripcion: $("#descripcion").val(),
-            proveedor: $("#proveedor").val(),
-            token: $("input[name=_token]").val()
-        };
+        var datos =  $("#formProducto").serialize();
         crearProducto(datos);
     });
 

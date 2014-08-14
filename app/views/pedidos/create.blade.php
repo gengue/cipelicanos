@@ -17,7 +17,7 @@
     <!-- if there are creation errors, they will show here -->
     {{ HTML::ul($errors->all()) }}
 
-    {{ Form::open(array('url' => 'pedidos')) }}
+    {{ Form::open(array('', 'id' => 'formPedidos')) }}
 
     <div class="form-group">
         {{ Form::label('producto_id', 'Producto') }}
@@ -108,9 +108,11 @@
 </html>
 <script>
 
-    $("#form").submit(function(e) {
+    $("#formPedidos").submit(function(e) {
         e.preventDefault();
-        alert("Handler for .submit() called.");
+        
+        var datos =  $("#formPedidos").serialize();
+        crearPedido(datos);
     });
 
 </script>

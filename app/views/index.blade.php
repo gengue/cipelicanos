@@ -1,8 +1,9 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>CRUDS</title>
+        <title>CI Pelicanos</title>
         {{ HTML::style('css/bootstrap.min.css') }}
+        {{ HTML::style('css/pnotify.custom.min.css') }}
         {{ HTML::style('css/sb-admin.css') }}
         {{ HTML::style('css/plugins/morris.css') }}
         {{ HTML::style('font-awesome-4.1.0/css/font-awesome.min.css') }}
@@ -134,11 +135,11 @@
                         </li>
                         <li>
 
-                          <a href="javascript:abrirPedidos();"><i class="fa fa-fw fa-shopping-cart"></i> Pedidos</a>
+                            <a href="javascript:abrirPedidos();"><i class="fa fa-fw fa-shopping-cart"></i> Pedidos</a>
 
                         </li>
                         <li>
-                            <a href="javascript:alert('no implementado');"><i class="fa fa-fw fa-money"></i> Clientes</a>
+                            <a href="javascript:msg_noimplementado();"><i class="fa fa-fw fa-money"></i> Clientes</a>
                         </li>
                         <li>
                             <a href="javascript:abrirProductos();"><i class="fa fa-fw fa-gift"></i> Productos</a>
@@ -151,7 +152,7 @@
                             <a href="javascript:abrirProveedores();"><i class="fa fa-fw fa-suitcase"></i> Proveedores</a>
                         </li>
                         <li>
-                            <a href="javascript:alert('no implementado');"><i class="fa fa-fw fa-calendar"></i> Historial pedidos</a>
+                            <a href="javascript:alert('Aun no implementado', 'Ups!', 'info', 'glyphicon glyphicon-exclamation-sign');"><i class="fa fa-fw fa-calendar"></i> Historial pedidos</a>
                         </li>
                         <li>
                             <a href="javascript:abrirUsuarios();"><i class="fa fa-fw fa-users"></i> Usuarios</a>
@@ -173,7 +174,7 @@
             </nav>
 
             <div id="page-wrapper">
-                
+
             </div>
             <!-- /#page-wrapper -->
 
@@ -184,7 +185,8 @@
         <script src="js/plugins/morris/raphael.min.js"></script>
         <script src="js/plugins/morris/morris.min.js"></script>
         <script src="js/plugins/morris/morris-data.js"></script>
+        <script src="js/plugins/pnotify.custom.min.js"></script>
         <script src="js/app.js"></script>
-        <script> abrirDashboard(); </script>
+        <script> abrirDashboard();</script>
     </body>
 </html>

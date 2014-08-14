@@ -42,13 +42,17 @@ class PedidosController extends BaseController {
 
     public function store() {
         $rules = array(
+            'containers'=> 'required',
+            'numero_reserva'=> 'required',
+            'buque'=> 'required',
+            'importe_facturado'=> 'required',
         );
         $validator = Validator::make(Input::all(), $rules);
 
         if ($validator->fails()) {
-            return Redirect::to('pedidos/create')
-                            ->withErrors($validator)
-                            ->withInput(Input::except('password'));
+            return Response::json(array(
+                        'msg' => 'error'
+            ));
         } else {
             $pedido = new Pedido; //creamos un pedido
             $pedido->producto_id = Input::get('producto_id');
@@ -72,8 +76,9 @@ class PedidosController extends BaseController {
                 $relacion->container_id = $containers[$key];
                 $relacion->save();
             }
-            Session::flash('message', 'Pedido guardado correctamente!');
-            return Redirect::to('pedidos');
+            return Response::json(array(
+                        'msg' => 'ok'
+            ));
         }
     }
 
@@ -101,16 +106,16 @@ class PedidosController extends BaseController {
         $pedido->containers = DB::table('pedidos_containers')
                         ->join('containers', 'containers.id', '=', 'pedidos_containers.container_id')
                         ->where('pedidos_containers.pedido_id', '=', $id)
-                        ->select('containers.id','containers.numero_container')->lists('id');
-        
-       
+                        ->select('containers.id', 'containers.numero_container')->lists('id');
+
+
         $productos = Producto::lists('nombre', 'id');
         $proveedores = Proveedore::lists('nombre', 'id');
         $navieras = Naviera::lists('nombre', 'id');
         $container = Container::lists('numero_container', 'id');
         $guias = Guia::lists('numero_guia', 'id');
-        
-        return View::make('pedidos.edit', array('pedido'=>$pedido,
+
+        return View::make('pedidos.edit', array('pedido' => $pedido,
                     'productos' => $productos,
                     'proveedores' => $proveedores,
                     'navieras' => $navieras,
@@ -122,13 +127,16 @@ class PedidosController extends BaseController {
 
         // read more on validation at http://laravel.com/docs/validation
         $rules = array(
-            
+            'containers'=> 'required',
+            'numero_reserva'=> 'required',
+            'buque'=> 'required',
+            'importe_facturado'=> 'required',
         );
         $validator = Validator::make(Input::all(), $rules);
         if ($validator->fails()) {
-            return Redirect::to('pedidos/' . $id . '/edit')
-                            ->withErrors($validator)
-                            ->withInput(Input::except('password'));
+            return Response::json(array(
+                        'msg' => 'error'
+            ));
         } else {
             // Update
             $pedido = Pedido::find($id);
@@ -144,9 +152,9 @@ class PedidosController extends BaseController {
             $pedido->fecha_vencimiento = Input::get('fecha_vencimiento');
             $pedido->importe_facturado = Input::get('importe_facturado');
             $pedido->save();
-            
-            PedidosContainer::where('pedido_id','=',$id)->forceDelete();
-            
+
+            PedidosContainer::where('pedido_id', '=', $id)->forceDelete();
+
             $containers = Input::get('containers');
             //Guardamos los containers asociados al pedido guardado
             foreach ($containers as $key => $value) {
@@ -156,17 +164,24 @@ class PedidosController extends BaseController {
                 $relacion->save();
             }
             // redirect
-            Session::flash('message', 'Pedidos actualizado correctamente!');
-            return Redirect::to('pedidos');
+            return Response::json(array(
+                        'msg' => 'ok'
+            ));
         }
     }
 
     public function destroy($id) {
-        PedidosContainer::where('pedido_id','=',$id)->delete();
-        Pedido::find($id)->delete();
-        
-        Session::flash('message', 'Pedido eliminado correctamente!');
-        return Redirect::to('pedidos');
+        $relacion = PedidosContainer::where('pedido_id', '=', $id);
+        $pedido = Pedido::find($id);
+
+        if (!$relacion->delete() || !$pedido->delete()) {
+            return Response::json(array(
+                        'msg' => 'error'
+            ));
+        }
+        return Response::json(array(
+                    'msg' => 'ok'
+        ));
     }
 
 }

@@ -18,9 +18,6 @@
     <br><br>
 
     <!-- will be used to show any messages -->
-    @if (Session::has('message'))
-    <div class="alert alert-info">{{ Session::get('message') }}</div>
-    @endif
     <div class="table-responsive">
 
         <table class="table table-striped table-bordered table-condensed">
@@ -64,13 +61,9 @@
                     <td>{{ $value->importe_facturado}}</td>
 
                     <td>  
-                        <a class="btn btn-small btn-success" href="{{ URL::to('pedidos/' . $value->id) }}"><i class="fa fa-search"></i></a>
-                        <a class="btn btn-small btn-info" href="{{ URL::to('pedidos/' . $value->id . '/edit') }}"><i class="fa fa-pencil"></i></a>
-                        <a class="btn btn-small btn-danger" href="{{ URL::to('pedidos/' . $value->id . '/edit') }}"><i class="fa fa-trash-o"></i></a>
-<!--                        {{ Form::open(array('url' => 'pedidos/' . $value->id, 'class' => 'pull-right')) }}
-                        {{ Form::hidden('_method', 'DELETE') }}
-                        {{ Form::submit('Eliminar', array('class' => 'btn btn-warning')) }}
-                        {{ Form::close() }}-->
+                        <a class="btn btn-small btn-success" href="javascript:mostrarDetallePedido({{ $value->id }});"><i class="fa fa-search"></i></a>
+                    <a class="btn btn-small btn-info" href="javascript:mostrarEditarPedido({{ $value->id }});"><i class="fa fa-pencil"></i></a>
+                    <a class="btn btn-small btn-danger" href="javascript:eliminarPedido({{ $value->id }});"><i class="fa fa-trash-o"></i></a>
                     </td>
                 </tr>
                 @endforeach

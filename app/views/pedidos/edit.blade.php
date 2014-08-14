@@ -17,7 +17,9 @@
     <!-- if there are creation errors, they will show here -->
     {{ HTML::ul($errors->all()) }}
 
-    {{ Form::model($pedido, array('route' => array('pedidos.update', $pedido->id), 'method' => 'PUT')) }}
+    {{ Form::model($pedido, array('route' => array('pedidos.update', $pedido->id),  
+            'id' => 'formEditarPedido', 
+            'method' => 'PUT')) }}
 
     <div class="form-group">
         {{ Form::label('producto_id', 'Producto') }}
@@ -87,3 +89,12 @@
     {{ Form::close() }}
 
 </div>
+<script>
+
+    $("#formEditarPedido").submit(function(e) {
+        e.preventDefault();       
+        var datos = $("#formEditarPedido").serialize();
+        editarPedido(datos, {{ $pedido->id }});
+    });
+
+</script>

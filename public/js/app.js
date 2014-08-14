@@ -2,7 +2,35 @@
 $.ajaxSetup({
     headers: {'X-CSRF-Token': $('meta[name=_token]').attr('content')}
 });
+//ALERTAS
+function msg_noimplementado() {
+    alert('Aun no implementado', 'Ups!', 'info', 'glyphicon glyphicon-exclamation-sign');
+}
+function msg_guadadocorreto() {
+    alert('Ha sido creado correctamente', 'Listo!', 'success', 'glyphicon glyphicon-floppy-saved');
+}
+function msg_guadadoerror() {
+    alert('Algunos campos son obligatorios', 'Error', 'error', 'glyphicon glyphicon-warning-sign');
+}
+function msg_borradocorrecto() {
+    alert('Se ha borrado Correctamente', 'Listo!', 'success', 'glyphicon glyphicon-floppy-remove');
+}
+function msg_borradoerror() {
+    alert('No se pudo borrar', 'Error', 'error', 'glyphicon glyphicon-warning-sign');
+}
 
+window.addEventListener('load', function() {
+
+    PNotify.prototype.options.delay = 1500;
+    window.alert = function(message, title, type, icon) {
+        new PNotify({
+            title: title,
+            text: message,
+            type: type,
+            icon: icon
+        });
+    };
+}, false);
 //INICIO
 function abrirDashboard() {
     $.ajax(
@@ -11,8 +39,10 @@ function abrirDashboard() {
                 type: 'GET',
                 success: function(data) {
                     $('#page-wrapper').html(data);
+
                 }
             });
+
 }
 
 /*
@@ -55,9 +85,13 @@ function crearProducto(datos) {
                 data: datos,
                 success: function(data) {
                     if (data.msg === 'error') {
-                        alert("Error, algunos campos son obligatorios");
+                        msg_guadadoerror();
+                    } else {
+                        abrirProductos();
+                        msg_guadadocorreto()
                     }
-                    abrirProductos();
+
+
                 }
             });
 }
@@ -80,9 +114,12 @@ function editarProducto(datos, id) {
                 data: datos,
                 success: function(data) {
                     if (data.msg === 'error') {
-                        alert("Error, algunos campos son obligatorios");
+                        msg_guadadoerror();
+                    } else {
+                        abrirProductos();
+                        msg_guadadocorreto();
                     }
-                    abrirProductos();
+
                 }
             });
 }
@@ -103,9 +140,12 @@ function eliminarProducto(id) {
                 type: 'DELETE',
                 success: function(data) {
                     if (data.msg === 'error') {
-                        alert("Error al intentar eliminar");
+                        msg_borradoerror();
+                    } else {
+                        abrirProductos();
+                        msg_borradocorrecto();
                     }
-                    abrirProductos();
+
                 }
             });
 }
@@ -137,6 +177,78 @@ function mostrarCrearPedido() {
                 }
             });
 
+}
+function crearPedido(datos) {
+
+    $.ajax(
+            {
+                url: '/pedidos',
+                type: 'POST',
+                data: datos,
+                success: function(data) {
+                    if (data.msg === 'error') {
+                        msg_guadadoerror();
+                    } else {
+                        abrirPedidos();
+                        msg_guadadocorreto();
+                    }
+
+                }
+            });
+}
+function mostrarEditarPedido(id) {
+
+    $.ajax(
+            {
+                url: '/pedidos/' + id + '/edit',
+                type: 'GET',
+                success: function(data) {
+                    $('#page-wrapper').html(data);
+                }
+            });
+}
+function editarPedido(datos, id) {
+    $.ajax(
+            {
+                url: '/pedidos/' + id,
+                type: 'PUT',
+                data: datos,
+                success: function(data) {
+                    if (data.msg === 'error') {
+                        msg_guadadoerror();
+                    } else {
+                        abrirPedidos();
+                        msg_guadadocorreto();
+                    }
+
+                }
+            });
+}
+function mostrarDetallePedido(id) {
+    $.ajax(
+            {
+                url: '/pedidos/' + id,
+                type: 'GET',
+                success: function(data) {
+                    $('#page-wrapper').html(data);
+                }
+            });
+}
+function eliminarPedido(id) {
+    $.ajax(
+            {
+                url: '/pedidos/' + id,
+                type: 'DELETE',
+                success: function(data) {
+                    if (data.msg === 'error') {
+                        msg_borradoerror();
+                    } else {
+                        abrirPedidos();
+                        msg_borradocorrecto();
+                    }
+
+                }
+            });
 }
 /*
  *
