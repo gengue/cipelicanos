@@ -5,9 +5,17 @@ class PedidosController extends BaseController {
     public function index() {
 
         $pedidosdb = new Pedido();
-        $pedidos = $pedidosdb->obtenerPedidos();
+        $pedidos = $pedidosdb->obtenerPedidos('ACTIVO');
         
         return View::make('pedidos.index')->with('pedidos', $pedidos);
+    }
+    
+    public function historial() {
+
+        $pedidosdb = new Pedido();
+        $pedidos = $pedidosdb->obtenerPedidos('INACTIVO');
+        
+        return View::make('pedidos.historial')->with('pedidos', $pedidos);
     }
 
     public function create() {

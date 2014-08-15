@@ -23,9 +23,9 @@ class NavierasController extends BaseController {
         $validator = Validator::make(Input::all(), $rules);
 
         if ($validator->fails()) {
-            return Redirect::to('navieras/create')
-                            ->withErrors($validator)
-                            ->withInput(Input::except('password'));
+            return Response::json(array(
+                            'msg' => 'error'
+                ));
         } else {
             
             $naviera = new Naviera;
@@ -35,8 +35,9 @@ class NavierasController extends BaseController {
             $naviera->direccion = Input::get('direccion');
             $naviera->save();
 
-            Session::flash('message', 'Successfully created nerd!');
-            return Redirect::to('navieras');
+            return Response::json(array(
+                            'msg' => 'ok'
+                ));
         }
     }
 
@@ -63,9 +64,9 @@ class NavierasController extends BaseController {
 
         // process the login
         if ($validator->fails()) {
-            return Redirect::to('navieras/' . $id . '/edit')
-                            ->withErrors($validator)
-                            ->withInput(Input::except('password'));
+            return Response::json(array(
+                            'msg' => 'error'
+                ));
         } else {
             // store
             $naviera = Naviera::find($id);
@@ -75,8 +76,9 @@ class NavierasController extends BaseController {
             $naviera->direccion = Input::get('direccion');
             $naviera->save();
             // redirect
-            Session::flash('message', 'Naviera actualizada correctamente!');
-            return Redirect::to('navieras');
+            return Response::json(array(
+                            'msg' => 'ok'
+                ));
         }
     }
 
@@ -84,10 +86,16 @@ class NavierasController extends BaseController {
     public function destroy($id) {
      
         $naviera = Naviera::find($id);
-        $naviera->delete();
-
-        Session::flash('message', 'Successfully deleted the nerd!');
-        return Redirect::to('navieras');
+        if($naviera->delete()){
+            return Response::json(array(
+                            'msg' => 'ok'
+                ));
+        }else{
+            return Response::json(array(
+                            'msg' => 'error'
+                ));
+        }
+         
     }
 
 }

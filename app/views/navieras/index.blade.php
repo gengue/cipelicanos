@@ -2,7 +2,7 @@
     <div class="row">
         <div class="col-lg-12">
             <h1 class="page-header">
-                <!--i></i-->Navieras <small>Todas las navieras</small>
+                <i class="fa fa-fw fa-anchor"></i> Navieras <small>Todas las navieras</small>
             </h1>
             <ol class="breadcrumb">
                 <li class="active">
@@ -39,20 +39,12 @@
                 <td>{{ $value->telefono }}</td>
                 <td>{{ $value->direccion }}</td>
 
-                <!-- we will also add show, edit, and delete buttons -->
+
                 <td>                            
-                    <!-- show the nerd (uses the show method found at GET /nerds/{id} -->
-                    <a class="btn btn-small btn-success" href="{{ URL::to('naviera/' . $value->id) }}">Detalle</a>
+                    <a class="btn btn-small btn-success" href="javascript:mostrarDetalleNaviera({{ $value->id }});"><i class="fa fa-search"></i></a>
+                    <a class="btn btn-small btn-info" href="javascript:mostrarEditarNaviera({{ $value->id }});"><i class="fa fa-pencil"></i></a>
+                    <a class="btn btn-small btn-danger" href="javascript:eliminarNaviera({{ $value->id }});"><i class="fa fa-trash-o"></i></a>
 
-                    <!-- edit this nerd (uses the edit method found at GET /nerds/{id}/edit -->
-                    <a class="btn btn-small btn-info" href="{{ URL::to('naviera/' . $value->id . '/edit') }}">Editar</a>
-                    <!-- delete the nerd (uses the destroy method DESTROY /nerds/{id} -->
-                    <!-- we will add this later since its a little more complicated than the other two buttons -->
-
-                    {{ Form::open(array('url' => 'navieras/' . $value->id, 'class' => 'pull-right')) }}
-                    {{ Form::hidden('_method', 'DELETE') }}
-                    {{ Form::submit('Eliminar', array('class' => 'btn btn-warning')) }}
-                    {{ Form::close() }}
                 </td>
             </tr>
             @endforeach

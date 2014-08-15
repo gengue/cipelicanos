@@ -250,6 +250,20 @@ function eliminarPedido(id) {
                 }
             });
 }
+/* 
+ * HISTORIAL DE PEDIDOS
+ * 
+ */
+function abrirHistorialPedidos(){
+    $.ajax(
+            {
+                url: '/pedidos/historial', 
+                type: 'GET',
+                success: function(data) {
+                        $('#page-wrapper').html(data);        
+                }
+            });
+}
 /*
  *
  *  NAVIERAS  
@@ -277,8 +291,80 @@ function mostrarCrearNaviera() {
                     $('#page-wrapper').html(data);
                 }
             });
+}
+function crearNaviera(datos) {
+
+    $.ajax(
+            {
+                url: '/navieras',
+                type: 'POST',
+                data: datos,
+                success: function(data) {
+                    if(data.msg ===  'error'){
+                        msg_guadadoerror();
+                    }else{
+                        abrirNavieras();
+                        msg_guadadocorreto();
+                    }
+                }
+            });
 
 }
+function mostrarEditarNaviera(id) {
+
+    $.ajax(
+            {
+                url: '/navieras/' + id + '/edit',
+                type: 'GET',
+                success: function(data) {
+                    $('#page-wrapper').html(data);
+                }
+            });
+}
+function editarNaviera(datos, id) {
+    $.ajax(
+            {
+                url: '/navieras/' + id,
+                type: 'PUT',
+                data: datos,
+                success: function(data) {
+                    if (data.msg === 'error') {
+                        msg_guadadoerror();
+                    } else {
+                        abrirNavieras();
+                        msg_guadadocorreto();
+                    }
+
+                }
+            });
+}
+function mostrarDetalleNaviera(id) {
+    $.ajax(
+            {
+                url: '/navieras/' + id,
+                type: 'GET',
+                success: function(data) {
+                    $('#page-wrapper').html(data);
+                }
+            });
+}
+function eliminarNaviera(id) {
+    $.ajax(
+            {
+                url: '/navieras/' + id,
+                type: 'DELETE',
+                success: function(data) {
+                    if (data.msg === 'error') {
+                        msg_borradoerror();
+                    } else {
+                        abrirNavieras();
+                        msg_borradocorrecto();
+                    }
+
+                }
+            });
+}
+
 /*
  *
  *  PROVEEDORES  

@@ -152,7 +152,7 @@
                             <a href="javascript:abrirProveedores();"><i class="fa fa-fw fa-suitcase"></i> Proveedores</a>
                         </li>
                         <li>
-                            <a href="javascript:alert('Aun no implementado', 'Ups!', 'info', 'glyphicon glyphicon-exclamation-sign');"><i class="fa fa-fw fa-calendar"></i> Historial pedidos</a>
+                            <a href="javascript:abrirHistorialPedidos();"><i class="fa fa-fw fa-calendar"></i> Historial pedidos</a>
                         </li>
                         <li>
                             <a href="javascript:abrirUsuarios();"><i class="fa fa-fw fa-users"></i> Usuarios</a>

@@ -2,7 +2,7 @@
     <div class="row">
         <div class="col-lg-12">
             <h1 class="page-header">
-                <!--i></i-->Clientes <small>Todos los clientes</small>
+                <i class="fa fa-fw fa-money"></i> Clientes <small>Todos los clientes</small>
             </h1>
             
       
@@ -78,7 +78,6 @@
                     <td>Direccion</td>
                     <td>Pais</td>
                     <td>Ciudad</td>
-                    <td>Estado</td>
                     <td>Opciones</td>
                 </tr>
             </thead>
@@ -92,8 +91,6 @@
                     <td>{{ $value->direccion }}</td>
                     <td>{{ $value->pais }}</td>
                     <td>{{ $value->ciudad }}</td>
-                    <td>{{ $value->estado }}</td>
-
 
                     <td>                            
                         <a class="btn btn-small btn-success" href="javascript:msg_noimplementado();"><i class="fa fa-search"></i></a>
