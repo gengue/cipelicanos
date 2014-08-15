@@ -2,11 +2,11 @@
 
 class CompaniasController extends BaseController {
 
- 
+
     public function index() {
-      
+
         $companias = Compania::all();
-        
+
         $companias = DB::table('companias')
             ->join('usuarios', 'companias.usuario_id', '=', 'usuarios.id')
             ->select('companias.*','usuarios.nombre as nombre_usuario')
@@ -23,7 +23,7 @@ class CompaniasController extends BaseController {
         return View::make('companias.create')->with('usuarios', $usuarios);
     }
 
- 
+
     public function store() {
        $rules = array(
         );
@@ -51,7 +51,7 @@ class CompaniasController extends BaseController {
         }
     }
 
- 
+
     public function show($id) {
         $companias = Compania::find($id);
 
@@ -64,13 +64,13 @@ class CompaniasController extends BaseController {
         $companias = Compania::find($id);
 
         $usuarios = Usuario::lists('nombre','id');
-        
+
         return View::make('companias.edit', array('companias' => $companias, 'usuarios'=>$usuarios ));
     }
 
     public function update($id) {
         $rules = array(
-            
+
         );
         $validator = Validator::make(Input::all(), $rules);
 
@@ -94,7 +94,7 @@ class CompaniasController extends BaseController {
         }
     }
 
-  
+
     public function destroy($id) {
         // delete
         $companias = Compania::find($id);
@@ -106,5 +106,3 @@ class CompaniasController extends BaseController {
     }
 
 }
-
-

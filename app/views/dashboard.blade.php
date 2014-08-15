@@ -232,3 +232,7 @@
 
 </div>
 <!-- /.container-fluid -->
+<script>
+    $('#menu-vertical li').removeClass();
+    $('#menu-vertical').find('a:contains("Inicio")').parent().addClass("active");
+</script>

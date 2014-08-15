@@ -1,14 +1,20 @@
 <div class="container-fluid">
 
-<nav class="navbar navbar-inverse">
-	
-	<ul class="nav navbar-nav">
-		<li><a href="{{ URL::to('pedidos') }}">Ver todas los Pedidos</a></li>
-		<li><a href="{{ URL::to('pedidos/create') }}">Crear pedido </a>
-	</ul>
-</nav>
+    <div class="row">
+        <div class="col-lg-12">
+            <h1 class="page-header">
+                <!--i></i-->Pedidos <small>Detalle pedido</small>
+            </h1>
+            <ol class="breadcrumb">
+                <li class="active">
+                    <i class="fa fa-dashboard"></i> &Uacute;ltima sesi&oacute;n:
+                </li>
+            </ol>
+        </div>
+    </div>
 
-<h1>Showing {{ $pedido->id}}</h1>
+    <a class="btn btn-small btn-info" href="javascript:abrirPedidos();"><i class="fa fa-list"></i> Listar todos</a>
+    <br><br>
 
 	<div class="jumbotron text-center">
 		<h2>{{ $pedido->nombre_producto }}</h2>

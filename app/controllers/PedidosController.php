@@ -4,25 +4,9 @@ class PedidosController extends BaseController {
 
     public function index() {
 
-        $pedidos = DB::table('pedidos')
-                        ->join('productos', 'productos.id', '=', 'pedidos.producto_id')
-                        ->join('proveedores', 'proveedores.id', '=', 'pedidos.proveedor_id')
-                        ->join('navieras', 'navieras.id', '=', 'pedidos.naviera_id')
-                        ->join('guias', 'guias.id', '=', 'pedidos.guia_id')
-                        ->whereNull('pedidos.deleted_at')
-                        ->select('pedidos.*', 'productos.nombre as nombre_producto', 'proveedores.nombre as nombre_proveedor', 'navieras.nombre as nombre_naviera', 'guias.numero_guia as nombre_guia')->get();
-
-        //Agregamos los containers por medio de una consulta
-        foreach ($pedidos as $key => $value) {
-            //containers para el CADA pedido
-            $pedidos[$key]->containers = DB::table('pedidos_containers')
-                            ->join('containers', 'containers.id', '=', 'pedidos_containers.container_id')
-                            ->where('pedidos_containers.pedido_id', '=', $pedidos[$key]->id)->get();
-        }
-
-        //print_r($pedidos[1]) ;
-
-
+        $pedidosdb = new Pedido();
+        $pedidos = $pedidosdb->obtenerPedidos();
+        
         return View::make('pedidos.index')->with('pedidos', $pedidos);
     }
 
@@ -84,30 +68,17 @@ class PedidosController extends BaseController {
 
     public function show($id) {
 
-        $pedido = DB::table('pedidos')
-                        ->join('productos', 'productos.id', '=', 'pedidos.producto_id')
-                        ->join('proveedores', 'proveedores.id', '=', 'pedidos.proveedor_id')
-                        ->join('navieras', 'navieras.id', '=', 'pedidos.naviera_id')
-                        ->join('guias', 'guias.id', '=', 'pedidos.guia_id')
-                        ->where('pedidos.id', '=', $id)
-                        ->select('pedidos.*', 'productos.nombre as nombre_producto', 'proveedores.nombre as nombre_proveedor', 'navieras.nombre as nombre_naviera', 'guias.numero_guia as nombre_guia')->first();
-
-        $pedido->containers = DB::table('pedidos_containers')
-                        ->join('containers', 'containers.id', '=', 'pedidos_containers.container_id')
-                        ->where('pedidos_containers.pedido_id', '=', $id)->get();
+        $pedidosdb = new Pedido();
+        $pedido = $pedidosdb->obtenerPedido($id);
         //print_r($pedido);
         return View::make('pedidos.show', array('pedido' => $pedido));
     }
 
     public function edit($id) {
-
+        $containerdb = new PedidosContainer();
         $pedido = Pedido::find($id);
 
-        $pedido->containers = DB::table('pedidos_containers')
-                        ->join('containers', 'containers.id', '=', 'pedidos_containers.container_id')
-                        ->where('pedidos_containers.pedido_id', '=', $id)
-                        ->select('containers.id', 'containers.numero_container')->lists('id');
-
+        $pedido->containers = $containerdb->obtenerListaContainer($id);
 
         $productos = Producto::lists('nombre', 'id');
         $proveedores = Proveedore::lists('nombre', 'id');
