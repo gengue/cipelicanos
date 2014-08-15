@@ -58,9 +58,7 @@
 
                     <!-- edit this nerd (uses the edit method found at GET /nerds/{id}/edit -->
                     <a class="btn btn-small btn-info" href="{{ URL::to('usuarios/' . $value->id . '/edit') }}">Editar</a>
-                    <!-- delete the nerd (uses the destroy method DESTROY /nerds/{id} -->
-                    <!-- we will add this later since its a little more complicated than the other two buttons -->
-
+                  
                     {{ Form::open(array('url' => 'usuarios/' . $value->id, 'class' => 'pull-right')) }}
                     {{ Form::hidden('_method', 'DELETE') }}
                     {{ Form::submit('Eliminar', array('class' => 'btn btn-warning')) }}
@@ -74,5 +72,5 @@
 </div>
 <script>
     $('#menu-vertical li').removeClass();
-    $('#menu-vertical').find('a:contains("Proveedores")').parent().addClass("active");
+    $('#menu-vertical').find('a:contains("Usuarios")').parent().addClass("active");
 </script>

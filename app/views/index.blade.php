@@ -139,7 +139,7 @@
 
                         </li>
                         <li>
-                            <a href="javascript:msg_noimplementado();"><i class="fa fa-fw fa-money"></i> Clientes</a>
+                            <a href="javascript:abrirClientes();"><i class="fa fa-fw fa-money"></i> Clientes</a>
                         </li>
                         <li>
                             <a href="javascript:abrirProductos();"><i class="fa fa-fw fa-gift"></i> Productos</a>

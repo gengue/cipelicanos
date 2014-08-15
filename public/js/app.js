@@ -337,15 +337,57 @@ function mostrarCrearUsuario() {
             });
 
 }
-//function abrirClientes() {
-//
-//    $.ajax(
-//            {
-//                url: '/clientes',
-//                type: 'GET',
-//                success: function(data) {
-//                    $('#page-wrapper').html(data);
-//                }
-//            });
-//
-//}
+/*
+ *
+ *  CLIENTES 
+ *
+ */
+function abrirClientes() {
+
+    $.ajax(
+            {
+                url: '/usuarios/clientes',
+                type: 'GET',
+                success: function(data) {
+                    $('#page-wrapper').html(data);
+                }
+            });
+}
+function aprobarCliente(aprobado, id){
+   
+    if(aprobado){        
+        $.ajax(
+            {
+                url: '/usuarios/clientes/aprobar/' + id,
+                type: 'GET',
+                data: {estado: "ACTIVO"},
+                success: function(data) {
+                    if (data.msg === 'error') {
+                        msg_guadadoerror();
+                    } else {
+                        abrirClientes();
+                        msg_guadadocorreto();
+                    }
+
+                }
+            });
+    }else{
+        eliminarCliente(id);
+    }
+}
+ function eliminarCliente(id){
+     $.ajax(
+            {
+                url: '/usuarios/' + id,
+                type: 'DELETE',
+                success: function(data) {
+                    if (data.msg === 'error') {
+                        msg_borradoerror();
+                    } else {
+                        abrirClientes();
+                        msg_borradocorrecto();
+                    }
+
+                }
+            });
+ }

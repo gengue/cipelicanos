@@ -2,12 +2,10 @@
 
 
 Route::resource('navieras', 'NavierasController');
-
+Route::get('usuarios/clientes', 'UsuarioController@clientes');
+Route::get('usuarios/clientes/aprobar/{id}', 'UsuarioController@aprobarCliente');
 Route::resource('usuarios', 'UsuarioController');
-
-
 Route::resource('proveedores', 'ProveedoresController');
-
 Route::resource('guias', 'GuiasController');
 Route::resource('container', 'ContainerController');
 Route::resource('companias', 'CompaniasController');

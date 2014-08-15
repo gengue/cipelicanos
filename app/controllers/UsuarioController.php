@@ -8,6 +8,22 @@ class UsuarioController extends BaseController {
         return View::make('usuarios.index')
                         ->with('usuarios', $usuarios);
     }
+    
+    public function clientes() {
+        
+        $usuarios = Usuario::where('tipo_usuario','=','cliente')->get();
+        $usuarios->pendientes = 'NO';
+        
+        foreach ($usuarios as $usuario){
+            if($usuario->estado == 'INACTIVO'){
+                $usuarios->pendientes = 'SI';
+                break;
+            }
+        }
+        
+        return View::make('usuarios.indexClientes')
+                        ->with('usuarios', $usuarios);
+    }
 
     public function create() {
         return View::make('usuarios.create');
@@ -65,7 +81,19 @@ class UsuarioController extends BaseController {
                         ->with('usuarios', $usuario);
     }
 
-   
+    public function aprobarCliente($id){
+        $usuario = Usuario::find($id);
+        $usuario->estado = 'ACTIVO';
+        if($usuario->save()){
+            return Response::json(array(
+                        'msg' => 'ok'
+            ));
+        }else{
+            return Response::json(array(
+                        'msg' => 'error'
+            ));
+        }
+    }
     public function update($id) {
        
         // read more on validation at http://laravel.com/docs/validation
@@ -81,7 +109,7 @@ class UsuarioController extends BaseController {
         } else {
             // store
             $usuario = Usuario::find($id);
-             $usuario->nombre = Input::get('nombre');
+            $usuario->nombre = Input::get('nombre');
             $usuario->password = Input::get('password');
             $usuario->apellido = Input::get('apellido');
             $usuario->telefono = Input::get('telefono');
@@ -108,10 +136,15 @@ class UsuarioController extends BaseController {
     public function destroy($id) {
     
         $usuario = Usuario::find($id);
-        $usuario->delete();
-        
-        Session::flash('message', 'Proveedor eliminado correctamente!');
-        return Redirect::to('usuarios');
+        if($usuario->delete()){
+            return Response::json(array(
+                    'msg' => 'ok'
+            )); 
+        }else{
+            return Response::json(array(
+                        'msg' => 'error'
+            ));
+        }
     }
 
 }
