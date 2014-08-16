@@ -15,8 +15,6 @@
     <a class="btn btn-small btn-info" href="javascript:abrirNavieras();"><i class="fa fa-list"></i> Listar todos</a>
     <br><br>
 
-    <h1>Naviera {{ $naviera->nombre }}</h1>
-
     <div class="jumbotron text-center">
         <h2>{{ $naviera->nombre }}</h2>
         <p>

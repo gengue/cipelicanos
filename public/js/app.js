@@ -254,13 +254,13 @@ function eliminarPedido(id) {
  * HISTORIAL DE PEDIDOS
  * 
  */
-function abrirHistorialPedidos(){
+function abrirHistorialPedidos() {
     $.ajax(
             {
-                url: '/pedidos/historial', 
+                url: '/pedidos/historial',
                 type: 'GET',
                 success: function(data) {
-                        $('#page-wrapper').html(data);        
+                    $('#page-wrapper').html(data);
                 }
             });
 }
@@ -300,9 +300,9 @@ function crearNaviera(datos) {
                 type: 'POST',
                 data: datos,
                 success: function(data) {
-                    if(data.msg ===  'error'){
+                    if (data.msg === 'error') {
                         msg_guadadoerror();
-                    }else{
+                    } else {
                         abrirNavieras();
                         msg_guadadocorreto();
                     }
@@ -457,14 +457,15 @@ function crearProveedor(datos) {
                 type: 'POST',
                 data: datos,
                 success: function(data) {
-                    if(data.msg ===  'error'){
+                    if (data.msg === 'error') {
                         msg_guadadoerror();
-                    }else{
+                    } else {
                         abrirProveedores();
                         msg_guadadocorreto();
                     }
                 }
-            });}
+            });
+}
 
 /*
  *
@@ -558,14 +559,15 @@ function crearUsuarios(datos) {
                 type: 'POST',
                 data: datos,
                 success: function(data) {
-                    if(data.msg ===  'error'){
+                    if (data.msg === 'error') {
                         msg_guadadoerror();
-                    }else{
+                    } else {
                         abrirUsuarios();
                         msg_guadadocorreto();
                     }
                 }
-            });}
+            });
+}
 
 
 /*
@@ -584,35 +586,33 @@ function abrirClientes() {
                 }
             });
 }
-function aprobarCliente(aprobado, id){
-   
-    if(aprobado){        
-        $.ajax(
-            {
-                url: '/usuarios/clientes/aprobar/' + id,
-                type: 'GET',
-                data: {estado: "ACTIVO"},
-                success: function(data) {
-                    if (data.msg === 'error') {
-                        msg_guadadoerror();
-                    } else {
-                        abrirClientes();
-                        msg_guadadocorreto();
-                    }
+function aprobarCliente(aprobado, id) {
 
-                }
-            });
-    }else{
+    if (aprobado) {
+        $.ajax(
+                {
+                    url: '/usuarios/clientes/aprobar/' + id,
+                    type: 'GET',
+                    data: {estado: "ACTIVO"},
+                    success: function(data) {
+                        if (data.msg === 'error') {
+                            msg_guadadoerror();
+                        } else {
+                            abrirClientes();
+                            msg_guadadocorreto();
+                        }
+
+                    }
+                });
+    } else {
         eliminarCliente(id);
     }
 }
- function eliminarCliente(id){
-     $.ajax(
+function eliminarCliente(id) {
+    $.ajax(
             {
                 url: '/usuarios/' + id,
-
-                type:'DELETE',
-
+                type: 'DELETE',
                 success: function(data) {
                     if (data.msg === 'error') {
                         msg_borradoerror();
@@ -623,9 +623,9 @@ function aprobarCliente(aprobado, id){
 
                 }
             });
+}
 
-    
-     function mostrarDetalleClientes(id) {
+function mostrarDetalleCliente(id) {
     $.ajax(
             {
                 url: '/usuarios/' + id,
@@ -635,5 +635,3 @@ function aprobarCliente(aprobado, id){
                 }
             });
 }
-
- }

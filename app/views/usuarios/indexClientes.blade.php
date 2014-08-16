@@ -93,8 +93,8 @@
                     <td>{{ $value->ciudad }}</td>
 
                     <td>                            
-                        <a class="btn btn-small btn-success" href="javascript:mostrarDetalleClientes({{ $value->id }});"><i class="fa fa-search"></i></a>
-                        <a class="btn btn-small btn-danger" href="javascript:eliminarClientes({{ $value->id }});"><i class="fa fa-trash-o"></i></a>
+                        <a class="btn btn-small btn-success" href="javascript:mostrarDetalleCliente({{ $value->id }});"><i class="fa fa-search"></i></a>
+                        <a class="btn btn-small btn-danger" href="javascript:eliminarCliente({{ $value->id }});"><i class="fa fa-trash-o"></i></a>
 
                     </td>
                 </tr>
