@@ -1,4 +1,5 @@
 <div class="container-fluid">
+<<<<<<< HEAD
     <div class="row">
         <div class="col-lg-12">
             <h1 class="page-header">
@@ -13,11 +14,27 @@
     </div>
     <a class="btn btn-small btn-info" href="javascript:abrirProveedores();"><i class="fa fa-list"></i> Listar todos</a>
     <br><br>
+=======
+
+    <nav class="navbar navbar-inverse">
+
+        <ul class="nav navbar-nav">
+            <li><a href="javascript:abrirProveedores();">Ver todos los proveedores</a></li>
+            <li><a href="javascript:mostrarCrearProveedor();">Crear un proveedor</a>
+        </ul>
+    </nav>
+
+    <h1>Editar {{ $proveedor->nombre }}</h1>
+>>>>>>> 19fe4703a942918e026c954f1c83e7af2d85d76e
 
     <!-- if there are creation errors, they will show here -->
     {{ HTML::ul($errors->all()) }}
 
+<<<<<<< HEAD
     {{ Form::model($proveedor, array('route' => array('proveedores.update', $proveedor->id),'id' => 'formEditarProveedor', 'method' => 'PUT')) }}
+=======
+    {{ Form::model($proveedor, array('route' => array('proveedores.update', $proveedor->id), 'method' => 'PUT')) }}
+>>>>>>> 19fe4703a942918e026c954f1c83e7af2d85d76e
 
     <div class="form-group">
         {{ Form::label('nombre', 'Nombre') }}
@@ -44,6 +61,7 @@
 
     {{ Form::close() }}
 
+<<<<<<< HEAD
 </div>
 <script>
 
@@ -54,3 +72,6 @@
     });
 
 </script>
+=======
+</div>
+>>>>>>> 19fe4703a942918e026c954f1c83e7af2d85d76e

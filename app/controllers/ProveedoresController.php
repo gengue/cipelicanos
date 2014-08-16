@@ -3,9 +3,10 @@
 class ProveedoresController extends BaseController {
 
     public function index() {
+
       
         $proveedores = Proveedore::all();
-       
+      
         return View::make('proveedores.index')
                         ->with('proveedores', $proveedores);
     }
@@ -17,16 +18,19 @@ class ProveedoresController extends BaseController {
     public function store() {
         // validate
         // read more on validation at http://laravel.com/docs/validation
+
          if (Request::ajax()) {
             $rules = array(
                 'nombre' => 'required',
               
             );
         
+
         $validator = Validator::make(Input::all(), $rules);
 
         // process the login
         if ($validator->fails()) {
+
             return Response::json(array(
                             'msg' => 'error'
                 ));
@@ -41,6 +45,7 @@ class ProveedoresController extends BaseController {
             $proveedor->save();
 
             // redirect
+
             return Response::json(array(
                             'msg' => 'ok'
                 ));
@@ -69,6 +74,7 @@ class ProveedoresController extends BaseController {
 
    
     public function update($id) {
+
           if (Request::ajax()) {
             $rules = array(
                 'nombre' => 'required',
@@ -82,23 +88,28 @@ class ProveedoresController extends BaseController {
                 ));
             } else {
                  $proveedor = Proveedore::find($id);
+
             $proveedor->nombre = Input::get('nombre');
             $proveedor->nombre_contacto = Input::get('nombre_contacto');
             $proveedor->telefono = Input::get('telefono');
             $proveedor->direccion = Input::get('direccion');
             $proveedor->correo = Input::get('correo');
             $proveedor->save();
+
                 return Response::json(array(
                             'msg' => 'ok'
                 ));
             }
         }
-        // read more on validation at http://laravel.com/docs/validation
+        // read more on validation at http://laravel.com/docs/validatio
+
+            
     }
   
     public function destroy($id) {
     
         $proveedor = Proveedore::find($id);
+
        
          if($proveedor->delete()){
             return Response::json(array(

@@ -2,15 +2,18 @@
 
 class UsuarioController extends BaseController {
 
+
   
     public function index() {
 
-        
+
         $usuarios = Usuario::all();
         return View::make('usuarios.index')
                         ->with('usuarios', $usuarios);
+
     
     }
+
 
     public function clientes() {
         
@@ -35,6 +38,7 @@ class UsuarioController extends BaseController {
     public function store() {
         // validate
         // read more on validation at http://laravel.com/docs/validation
+
        if (Request::ajax()) {
             $rules = array(
             );
@@ -44,6 +48,7 @@ class UsuarioController extends BaseController {
             return Response::json(array(
                             'msg' => 'error'
         ));
+
         } else {
             // store
             $usuario = new Usuario;
@@ -59,6 +64,7 @@ class UsuarioController extends BaseController {
             $usuario->save();    
                 
             // redirect
+
             return Response::json(array(
                             'msg' => 'ok'
                 ));
@@ -100,6 +106,7 @@ class UsuarioController extends BaseController {
     public function update($id) {
        
         // read more on validation at http://laravel.com/docs/validation
+
          if (Request::ajax()) {
             $rules = array(
                
@@ -130,11 +137,13 @@ class UsuarioController extends BaseController {
                 $usuario->tipo_usuario = 'CLIENTE';
             }
             $usuario->save();
+
              return Response::json(array(
                             'msg' => 'ok'
                 ));}
     }}
-  
+
+            
     public function destroy($id) {
     
         $usuario = Usuario::find($id);

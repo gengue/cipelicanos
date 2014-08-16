@@ -394,6 +394,7 @@ function mostrarCrearProveedores() {
             });
 
 }
+
 function mostrarEditarProveedores(id) {
 
     $.ajax(
@@ -464,6 +465,7 @@ function crearProveedor(datos) {
                     }
                 }
             });}
+
 /*
  *
  *  USUARIOS 
@@ -493,6 +495,7 @@ function mostrarCrearUsuario() {
             });
 
 }
+
 function mostrarEditarUsuarios(id) {
 
     $.ajax(
@@ -564,6 +567,7 @@ function crearUsuarios(datos) {
                 }
             });}
 
+
 /*
  *
  *  CLIENTES 
@@ -606,7 +610,9 @@ function aprobarCliente(aprobado, id){
      $.ajax(
             {
                 url: '/usuarios/' + id,
+
                 type:'DELETE',
+
                 success: function(data) {
                     if (data.msg === 'error') {
                         msg_borradoerror();
@@ -617,6 +623,7 @@ function aprobarCliente(aprobado, id){
 
                 }
             });
+
     
      function mostrarDetalleClientes(id) {
     $.ajax(
@@ -628,4 +635,5 @@ function aprobarCliente(aprobado, id){
                 }
             });
 }
+
  }

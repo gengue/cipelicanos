@@ -18,7 +18,11 @@
             <!-- if there are creation errors, they will show here -->
             {{ HTML::ul($errors->all()) }}
 
+<<<<<<< HEAD
             {{ Form::open(array('url' => 'usuarios','id' => 'formUsuarios')) }}
+=======
+            {{ Form::open(array('url' => 'usuarios')) }}
+>>>>>>> 19fe4703a942918e026c954f1c83e7af2d85d76e
 
             <div class="form-group">
                 {{ Form::label('tipo_usuario', 'Tipo de Usuario') }}
@@ -61,6 +65,7 @@
 
             {{ Form::close() }}
 
+<<<<<<< HEAD
         </div>
 <script>
 
@@ -72,3 +77,6 @@
     });
 
 </script>
+=======
+        </div>
+>>>>>>> 19fe4703a942918e026c954f1c83e7af2d85d76e

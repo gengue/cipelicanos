@@ -49,9 +49,11 @@
                 <!-- we will also add show, edit, and delete buttons -->
                 <td>                            
                     <!-- show the nerd (uses the show method found at GET /nerds/{id} -->
+
                     <a class="btn btn-small btn-success" href= "javascript:mostrarDetalleProveedores({{$value->id}});" title="Ver Detalles"><i class="fa fa-search" ></i></a>
                     <a class="btn btn-small btn-info" href="javascript:mostrarEditarProveedores({{ $value->id}});" title="Modificar" ><i class="fa fa-pencil" ></i></a>
                     <a class="btn btn-small btn-danger" href="javascript:eliminarProveedores({{ $value->id }});" title="Eliminar"><i class="fa fa-trash-o" ></i></a>
+
                 </td>
             </tr>
             @endforeach

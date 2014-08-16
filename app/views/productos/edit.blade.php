@@ -14,7 +14,12 @@
     <a class="btn btn-small btn-info" href="javascript:abrirProductos();"><i class="fa fa-list"></i> Listar todos</a>
     <br><br>
 
+<<<<<<< HEAD
 {{ Form::model($producto, array('route' => array('productos.update', $producto->id),'id' => 'formEditarProducto', 
+=======
+{{ Form::model($producto, array('route' => array('productos.update', $producto->id), 
+            'id' => 'formEditarProducto', 
+>>>>>>> 19fe4703a942918e026c954f1c83e7af2d85d76e
             'method' => 'PUT')) 
 }}
 
