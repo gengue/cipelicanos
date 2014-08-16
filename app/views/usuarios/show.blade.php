@@ -16,7 +16,7 @@
     <br><br>
 
     <div class="jumbotron text-center">
-        <h2>{{ $usuario->nombre }}</h2>
+        <h2>{{ $usuarios->nombre }}</h2>
         <p>
             <strong>Tipo Usuario:</strong> {{ $usuarios->tipo_usuario }}<br>
             <strong>Nombres:</strong> {{ $usuarios->nombre }}<br>

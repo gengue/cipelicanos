@@ -15,12 +15,7 @@
     <a class="btn btn-small btn-info" href="javascript:abrirUsuarios();"><i class="fa fa-list"></i> Listar todos</a>
     <br><br>
 
-
-            <!-- if there are creation errors, they will show here -->
-            {{ HTML::ul($errors->all()) }}
-
-
-            {{ Form::model($usuarios, array('route' => array('usuarios.update', $usuarios->id),'id' => 'formEditarUsuario', 'method' => 'PUT')) }}
+            {{ Form::model($usuario, array('route' => array('usuarios.update', $usuario->id),'id' => 'formEditarUsuario', 'method' => 'PUT')) }}
 
 
             <div class="form-group">

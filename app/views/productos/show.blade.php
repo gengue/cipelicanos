@@ -19,7 +19,7 @@
         <h2>{{ $producto->nombre }}</h2>
         <p>
             <strong>Descripcion:</strong> {{ $producto->descripcion }}<br>
-            <strong>Proveedor:</strong> {{ $proveedor->nombre }}
+            <strong>Proveedor:</strong> {{ $producto->nombreprov }}
         </p>
     </div>
 

@@ -26,8 +26,8 @@ return array(
 	|
 	*/
 
-	'default' => 'cipelicanos_mySQL',
-       // 'default' => 'cipelicanos2_mySQL',
+	//'default' => 'cipelicanos_mySQL',
+        'default' => 'cipelicanos2_mySQL',
 
 	/*
 	|--------------------------------------------------------------------------
@@ -84,9 +84,7 @@ return array(
 			'database'  => 'cipelicanos',
                         'unix_socket'   => '/Applications/MAMP/tmp/mysql/mysql.sock',   
 
-			'username'  => 'cipelicanos',
-			
-		
+			'username'  => 'root',		
 			'password'  => 'root',
 
 			'charset'   => 'utf8',

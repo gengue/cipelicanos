@@ -87,7 +87,7 @@ class UsuarioController extends BaseController {
         $usuario = Usuario::find($id);
 
         return View::make('usuarios.edit')
-                        ->with('usuarios', $usuario);
+                        ->with('usuario', $usuario);
     }
 
     public function aprobarCliente($id){
