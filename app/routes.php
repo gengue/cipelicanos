@@ -35,3 +35,8 @@ Route::get('/registro', function()
     return View::make('registro');
 });
 
+Route::get('/login', function()
+{
+    return View::make('login');
+});
+
