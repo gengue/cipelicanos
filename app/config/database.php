@@ -26,7 +26,8 @@ return array(
 	|
 	*/
 
-	'default' => 'mysql',
+	//'default' => 'cipelicanos_mySQL',
+        'default' => 'cipelicanos2_mySQL',
 
 	/*
 	|--------------------------------------------------------------------------
@@ -58,6 +59,28 @@ return array(
 			'database'  => 'forge',
 			'username'  => 'forge',
 			'password'  => '',
+			'charset'   => 'utf8',
+			'collation' => 'utf8_unicode_ci',
+			'prefix'    => '',
+		),
+
+		'cipelicanos_mySQL' => array(
+			'driver'    => 'mysql',
+			'host'      => 'localhost',
+			'database'  => 'cipelicanos',
+			'username'  => 'cipelicanos',
+			'password'  => '1234',
+			'charset'   => 'utf8',
+			'collation' => 'utf8_unicode_ci',
+			'prefix'    => '',
+		),
+               'cipelicanos2_mySQL' => array(
+			'driver'    => 'mysql',
+			'host'      => 'localhost',
+			'database'  => 'cipelicanos',
+                        'unix_socket'   => '/Applications/MAMP/tmp/mysql/mysql.sock',   
+			'username'  => 'cipelicanos',
+			'password'  => '1234',
 			'charset'   => 'utf8',
 			'collation' => 'utf8_unicode_ci',
 			'prefix'    => '',

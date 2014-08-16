@@ -1,25 +1,37 @@
 <?php
 
-/*
-|--------------------------------------------------------------------------
-| Application Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register all of the routes for an application.
-| It's a breeze. Simply tell Laravel the URIs it should respond to
-| and give it the Closure to execute when that URI is requested.
-|
-*/
+
+Route::resource('navieras', 'NavierasController');
+Route::get('usuarios/clientes', 'UsuarioController@clientes');
+Route::get('usuarios/clientes/aprobar/{id}', 'UsuarioController@aprobarCliente');
+Route::resource('usuarios', 'UsuarioController');
+Route::resource('proveedores', 'ProveedoresController');
+Route::resource('guias', 'GuiasController');
+Route::resource('container', 'ContainerController');
+Route::resource('companias', 'CompaniasController');
+Route::resource('productos', 'ProductosController');
+Route::get('pedidos/historial', 'PedidosController@historial');
+Route::resource('pedidos', 'PedidosController');
 
 Route::get('/', function()
 {
-	//return View::make('hello');
-    return View::make('login');
+    //return View::make('login');
+    return View::make('index');
 });
 
+Route::get('/dashboard', function()
+{
+    return View::make('dashboard');
+});
+
+
+Route::get('/download/{id}', function($id){
+    $guia = Guia::find($id);
+    
+    return Response::download($guia->url_archivo);
+});
 Route::get('/registro', function()
 {
-	//return View::make('hello');
     return View::make('registro');
 });
 

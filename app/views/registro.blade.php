@@ -12,10 +12,14 @@
     <div class="form-group col-md-4">
         {{ Form::label('email', 'Dirección de E-mail') }}
         {{ Form::text('email', null, array('placeholder' => 'Introduce tu E-mail', 'class' => 'form-control')) }}
-    </div>
+    </div>  
     <div class="form-group col-md-4">
         {{ Form::label('full_name', 'Nombre completo') }}
         {{ Form::text('full_name', null, array('placeholder' => 'Introduce tu nombre y apellido', 'class' => 'form-control')) }}        
+    </div>
+    <div class="form-group col-md-4">
+        {{ Form::label('compania', 'Compañia') }}
+        {{ Form::text('compania', null, array('placeholder' => '', 'class' => 'form-control')) }}        
     </div>
 </div>
 <div class="row">
