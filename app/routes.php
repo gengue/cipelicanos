@@ -10,6 +10,7 @@ Route::resource('guias', 'GuiasController');
 Route::resource('container', 'ContainerController');
 Route::resource('companias', 'CompaniasController');
 Route::resource('productos', 'ProductosController');
+Route::get('pedidos/historial', 'PedidosController@historial');
 Route::resource('pedidos', 'PedidosController');
 
 Route::get('/', function()

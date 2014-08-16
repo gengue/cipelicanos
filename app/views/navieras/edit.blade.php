@@ -1,21 +1,23 @@
 <div class="container-fluid">
-
-    <nav class="navbar navbar-inverse">
-        <div class="navbar-header">
-            <a class="navbar-brand" href="{{ URL::to('naviera') }}">Nerd Alert</a>
+    <div class="row">
+        <div class="col-lg-12">
+            <h1 class="page-header">
+                <i class="fa fa-fw fa-anchor"></i> Navieras <small>Editar producto</small>
+            </h1>
+            <ol class="breadcrumb">
+                <li class="active">
+                    <i class="fa fa-dashboard"></i> &Uacute;ltima sesi&oacute;n:
+                </li>
+            </ol>
         </div>
-        <ul class="nav navbar-nav">
-            <li><a href="{{ URL::to('navieras') }}">View All Nerds</a></li>
-            <li><a href="{{ URL::to('navieras/create') }}">Create a Nerd</a>
-        </ul>
-    </nav>
+    </div>
+    <a class="btn btn-small btn-info" href="javascript:abrirNavieras();"><i class="fa fa-list"></i> Listar todos</a>
+    <br><br>
 
-    <h1>Edit {{ $naviera->name }}</h1>
-
-    <!-- if there are creation errors, they will show here -->
-    {{ HTML::ul($errors->all()) }}
-
-    {{ Form::model($naviera, array('route' => array('navieras.update', $naviera->id), 'method' => 'PUT')) }}
+    {{ Form::model($naviera, array('route' => array('navieras.update', $naviera->id),
+                    'id' => 'formEditarNaviera', 
+                    'method' => 'PUT')) 
+    }}
 
     <div class="form-group">
         {{ Form::label('nombre', 'Nombre') }}
@@ -34,8 +36,17 @@
         {{ Form::text('direccion', Input::old('direccion'), array('class' => 'form-control')) }}
     </div>
 
-    {{ Form::submit('Edit the Nerd!', array('class' => 'btn btn-primary')) }}
+    {{ Form::submit('Editar naviera!', array('class' => 'btn btn-primary')) }}
 
     {{ Form::close() }}
 
 </div>
+<script>
+
+    $("#formEditarNaviera").submit(function(e) {
+        e.preventDefault();       
+        var datos = $("#formEditarNaviera").serialize();
+        editarNaviera(datos, {{ $naviera->id }});
+    });
+
+</script>

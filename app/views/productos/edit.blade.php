@@ -14,9 +14,6 @@
     <a class="btn btn-small btn-info" href="javascript:abrirProductos();"><i class="fa fa-list"></i> Listar todos</a>
     <br><br>
 
-<!-- if there are creation errors, they will show here -->
-{{ HTML::ul($errors->all()) }}
-
 {{ Form::model($producto, array('route' => array('productos.update', $producto->id), 
             'id' => 'formEditarProducto', 
             'method' => 'PUT')) 

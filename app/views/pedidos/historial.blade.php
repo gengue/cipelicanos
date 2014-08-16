@@ -3,7 +3,7 @@
     <div class="row">
         <div class="col-lg-12">
             <h1 class="page-header">
-                <i class="fa fa-fw fa-shopping-cart"></i> Pedidos <small>Todos los pedidos</small>
+                <i class="fa fa-fw fa-calendar"></i> Historial Pedidos <small>Todos los pedidos realizados</small>
             </h1>
             <ol class="breadcrumb">
                 <li class="active">
@@ -13,14 +13,30 @@
         </div>
     </div>
 
-    <a class="btn btn-small btn-info" href="javascript:abrirPedidos();"><i class="fa fa-list"></i> Listar todos</a>
-    <a class="btn btn-small btn-info" href="javascript:mostrarCrearPedido();"><i class="fa fa-plus"></i> Agregar Pedido</a>
+    <a class="btn btn-small btn-info" href="javascript:abrirPedidos();"><i class="fa fa-list"></i> Mostrar pedidos activos</a>
     <br><br>
+    <!-- BUSQUEDA -->
+    <div class="row">
+        <div class="col-lg-8">
+            <div class="input-group">
+                <span class="input-group-addon"><i class="fa fa-search"></i></span>            
+                <input type="text" class="form-control" placeholder="Ingrese su busqueda">
+            </div>
 
-    <!-- will be used to show any messages -->
-    <div class="table-responsive">
+        </div>
+        <div class="col-lg-4">
+            <select class="form-control">
+                <option>Numero de guia</option>
+                <option>Producto</option>
+                <option>Cliente</option>
+            </select>
+        </div>
+    </div><!--FIN DE BUSQUEDA -->
 
-        <table class="table table-striped table-hover table-bordered table-condensed">
+    <br
+        <div class="table-responsive">
+
+        <table class="table table-striped table-bordered table-condensed">
             <thead>
                 <tr>
                     <td>Producto</td>
@@ -60,8 +76,6 @@
 
                     <td>  
                         <a class="btn btn-small btn-success" href="javascript:mostrarDetallePedido({{ $value->id }});"><i class="fa fa-search"></i></a>
-                    <a class="btn btn-small btn-info" href="javascript:mostrarEditarPedido({{ $value->id }});"><i class="fa fa-pencil"></i></a>
-                    <a class="btn btn-small btn-danger" href="javascript:eliminarPedido({{ $value->id }});"><i class="fa fa-trash-o"></i></a>
                     </td>
                 </tr>
                 @endforeach
@@ -71,5 +85,5 @@
 </div>
 <script>
     $('#menu-vertical li').removeClass();
-    $('#menu-vertical').find('a:contains("Pedidos")').parent().addClass("active");
+    $('#menu-vertical').find('a:contains("Historial")').parent().addClass("active");
 </script>

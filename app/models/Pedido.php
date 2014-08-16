@@ -6,8 +6,8 @@ class Pedido extends Eloquent{
     use SoftDeletingTrait;
 
     protected $dates = ['deleted_at'];
-    
-    public function obtenerPedidos(){
+    //Devuelve los pedidos activos o inactivos
+    public function obtenerPedidos($estado){
         $containerdb = new PedidosContainer();
         
         $pedidos = DB::table('pedidos')
@@ -16,6 +16,7 @@ class Pedido extends Eloquent{
                         ->join('navieras', 'navieras.id', '=', 'pedidos.naviera_id')
                         ->join('guias', 'guias.id', '=', 'pedidos.guia_id')
                         ->whereNull('pedidos.deleted_at')
+                        ->where('pedidos.estado','=',$estado)
                         ->select('pedidos.*', 'productos.nombre as nombre_producto', 'proveedores.nombre as nombre_proveedor', 'navieras.nombre as nombre_naviera', 'guias.numero_guia as nombre_guia')->get();
         //Agregamos los containers por medio de una consulta
         foreach ($pedidos as $key => $value) {
@@ -25,6 +26,8 @@ class Pedido extends Eloquent{
         
         return $pedidos;
     }
+    
+    
     
     public function obtenerPedido($id){
         $containerdb = new PedidosContainer();

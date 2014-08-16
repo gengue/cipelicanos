@@ -16,7 +16,7 @@
 
     {{ HTML::ul($errors->all()) }}
 
-    {{ Form::open(array('url' => 'navieras')) }}
+    {{ Form::open(array('url' => 'navieras', 'id' => 'formNaviera')) }}
 
     <div class="form-group">
         {{ Form::label('nombre', 'Nombre') }}
@@ -40,3 +40,13 @@
     {{ Form::close() }}
 
 </div>
+<script>
+
+    $("#formNaviera").submit(function(e) {
+        e.preventDefault();
+        
+        var datos =  $("#formNaviera").serialize();
+        crearNaviera(datos);
+    });
+
+</script>
