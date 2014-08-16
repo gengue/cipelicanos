@@ -54,21 +54,11 @@
                 <!-- we will also add show, edit, and delete buttons -->
                 <td>                            
                     <!-- show the nerd (uses the show method found at GET /nerds/{id} -->
-<<<<<<< HEAD
+
                     <a class="btn btn-small btn-success" href= "javascript:mostrarDetalleUsuarios({{$value->id}});" title="Ver Detalles"><i class="fa fa-search" ></i></a>
                     <a class="btn btn-small btn-info" href="javascript:mostrarEditarUsuarios({{ $value->id}});" title="Modificar" ><i class="fa fa-pencil" ></i></a>
                     <a class="btn btn-small btn-danger" href="javascript:eliminarUsuarios({{ $value->id }});" title="Eliminar"><i class="fa fa-trash-o" ></i></a>
-=======
-                    <a class="btn btn-small btn-success" href="{{ URL::to('usuarios/' . $value->id) }}">Detalle</a>
 
-                    <!-- edit this nerd (uses the edit method found at GET /nerds/{id}/edit -->
-                    <a class="btn btn-small btn-info" href="{{ URL::to('usuarios/' . $value->id . '/edit') }}">Editar</a>
-                  
-                    {{ Form::open(array('url' => 'usuarios/' . $value->id, 'class' => 'pull-right')) }}
-                    {{ Form::hidden('_method', 'DELETE') }}
-                    {{ Form::submit('Eliminar', array('class' => 'btn btn-warning')) }}
-                    {{ Form::close() }}
->>>>>>> 19fe4703a942918e026c954f1c83e7af2d85d76e
                 </td>
             </tr>
             @endforeach

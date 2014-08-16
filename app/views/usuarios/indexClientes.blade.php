@@ -93,13 +93,9 @@
                     <td>{{ $value->ciudad }}</td>
 
                     <td>                            
-<<<<<<< HEAD
                         <a class="btn btn-small btn-success" href="javascript:mostrarDetalleClientes({{ $value->id }});"><i class="fa fa-search"></i></a>
                         <a class="btn btn-small btn-danger" href="javascript:eliminarClientes({{ $value->id }});"><i class="fa fa-trash-o"></i></a>
-=======
-                        <a class="btn btn-small btn-success" href="javascript:msg_noimplementado();"><i class="fa fa-search"></i></a>
-                        <a class="btn btn-small btn-danger" href="javascript:msg_noimplementado();"><i class="fa fa-trash-o"></i></a>
->>>>>>> 19fe4703a942918e026c954f1c83e7af2d85d76e
+
                     </td>
                 </tr>
                 @endforeach
