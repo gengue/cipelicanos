@@ -22,22 +22,22 @@ class PedidosController extends BaseController {
         $productos = Producto::lists('nombre', 'id');
         $proveedores = Proveedore::lists('nombre', 'id');
         $navieras = Naviera::lists('nombre', 'id');
-        $container = Container::lists('numero_container', 'id');
-        $guias = Guia::lists('numero_guia', 'id');
+        //$container = Container::lists('numero_container', 'id');
+        //$guias = Guia::lists('numero_guia', 'id');
 
         return View::make('pedidos.create', array('productos' => $productos,
                     'proveedores' => $proveedores,
                     'navieras' => $navieras,
-                    'container' => $container,
-                    'guias' => $guias));
+            ));
     }
 
     public function store() {
         $rules = array(
             'containers'=> 'required',
-            'numero_reserva'=> 'required',
-            'buque'=> 'required',
-            'importe_facturado'=> 'required',
+            'guia'=> 'required',
+//            'numero_reserva'=> 'required',
+//            'buque'=> 'required',
+//            'importe_facturado'=> 'required',
         );
         $validator = Validator::make(Input::all(), $rules);
 
@@ -50,7 +50,7 @@ class PedidosController extends BaseController {
             $pedido->producto_id = Input::get('producto_id');
             $pedido->proveedor_id = Input::get('proveedor_id');
             $pedido->naviera_id = Input::get('naviera_id');
-            $pedido->guia_id = Input::get('guia_id');
+            
             $pedido->numero_reserva = Input::get('numero_reserva');
             $pedido->buque = Input::get('buque');
             $pedido->fecha_carga = Input::get('fecha_carga');
@@ -58,18 +58,24 @@ class PedidosController extends BaseController {
             $pedido->fecha_entrega = Input::get('fecha_entrega');
             $pedido->fecha_vencimiento = Input::get('fecha_vencimiento');
             $pedido->importe_facturado = Input::get('importe_facturado');
-            $pedido->save();
+            //$pedido->save();
 
+            $guia = Input::get('guia');
+            
             $containers = Input::get('containers');
+            log::info('----Containers---'.$containers);
+            log::info('----Guias---'.$guia);
+            PC::debug($guia);
             //Guardamos los containers asociados al pedido guardado
-            foreach ($containers as $key => $value) {
-                $relacion = new PedidosContainer;
-                $relacion->pedido_id = $pedido->id;
-                $relacion->container_id = $containers[$key];
-                $relacion->save();
-            }
+            //foreach ($guia as $key => $value) {
+//                $relacion = new PedidosContainer;
+//                $relacion->pedido_id = $pedido->id;
+//                $relacion->container_id = $containers[$key];
+                //$relacion->save();
+           //}
             return Response::json(array(
-                        'msg' => 'ok'
+                        'msg' => 'ok',
+                    
             ));
         }
     }

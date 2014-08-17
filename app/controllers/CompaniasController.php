@@ -31,9 +31,9 @@ class CompaniasController extends BaseController {
 
         // process the login
         if ($validator->fails()) {
-            return Redirect::to('companias/create')
-                            ->withErrors($validator)
-                            ->withInput(Input::except('password'));
+            return Response::json(array(
+                            'msg' => 'error'
+                ));
         } else {
             // store
             $companias = new Compania;
@@ -46,8 +46,9 @@ class CompaniasController extends BaseController {
 
             $companias->save();
             // redirect
-            Session::flash('message', 'Successfully created!');
-            return Redirect::to('companias');
+            return Response::json(array(
+                            'msg' => 'ok'
+                ));
         }
     }
 
