@@ -189,7 +189,7 @@ function crearPedido(datos) {
                     if (data.msg === 'error') {
                         msg_guadadoerror();
                     } else {
-                        //abrirPedidos();
+                        abrirPedidos();
                         msg_guadadocorreto();
                     }
 

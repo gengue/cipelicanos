@@ -17,7 +17,8 @@
     <!-- if there are creation errors, they will show here -->
     {{ HTML::ul($errors->all()) }}
 
-    {{ Form::open(array('', 'id' => 'formPedidos')) }}
+    {{ Form::open(array('id' => 'formPedidos',
+                'files' => true)) }}
 
     <div class="form-group">
         {{ Form::label('producto_id', 'Producto') }}
@@ -37,7 +38,7 @@
             <div class="panel-heading">
                 <h3 class="panel-title">Containers</h3>
             </div>
-            <!--            <div class="alert alert-info alert-dismissible" role="alert">
+            <!-- <div class="alert alert-info alert-dismissible" role="alert">
                             <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
                             <strong>ey!</strong> Aca puedes agregar, editar o eliminar los containers correspondientes a este pedido!.
                         </div>-->
@@ -55,19 +56,22 @@
             <div class="panel-heading">
                 <h3 class="panel-title">Guia</h3>
             </div>
-            <!--            <div class="alert alert-info alert-dismissible" role="alert">
-                            <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-                            <strong>ey!</strong> Aca puedes agregar, editar o eliminar la Guia de este pedido!
-                        </div>-->
-            <ul id="ulGuia" class="list-group">
-            </ul>
-
-            <div class="panel-footer">
-                <a id="aGuia" href="javascript:agregarGuia();" class="btn btn-primary btn-sm" role="button">Agregar la Guia</a>
+            <div class="panel-body">
+                <div class="form-group">
+                    {{ Form::label('numero_guia', 'Numero de guia') }}
+                    {{ Form::text('numero_guia', Input::old('numero de guia'), array('class' => 'form-control')) }}
+                </div>
+                <div class="form-group">
+                    {{ Form::label('empresa_envio', 'Empresa de envio') }}
+                    {{ Form::text('empresa_envio', Input::old('ejemplo: Fedex'), array('class' => 'form-control')) }}
+                </div>
+                <div class="form-group">
+                    {{ Form::label('url_archivo', 'Documento adjunto') }}
+                    {{ Form::file('url_archivo') }}
+                </div>
             </div>
         </div>
     </div>
-    {{ Form::hidden('guia', '', array('id' => 'id_guia')) }}
 
     <div class="form-group">
         {{ Form::label('numero_reserva', 'Numero de Reserva') }}
@@ -140,57 +144,14 @@
     </div>
 </div>
 <!-- FIN Modal-->
-
-<!-- Modal de Guia -->
-<div class="modal fade" id="modalGuia" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-                <h4 class="modal-title" id="myModalLabel">Crear una guia</h4>
-            </div>
-            <div class="modal-body">
-
-                <!-- if there are creation errors, they will show here -->
-                {{ HTML::ul($errors->all()) }}
-
-                {{ Form::open(array(
-                        'files' => true, 
-                        'id' => 'formGuia'
-                        )) 
-                }}
-
-                <div class="form-group">
-                    {{ Form::label('numero_guia', 'Numero de guia') }}
-                    {{ Form::text('numero_guia', Input::old('numero de guia'), array('class' => 'form-control')) }}
-                </div>
-                <div class="form-group">
-                    {{ Form::label('empresa_envio', 'Empresa de envio') }}
-                    {{ Form::text('empresa_envio', Input::old('ejemplo: Fedex'), array('class' => 'form-control')) }}
-                </div>
-                <div class="form-group">
-                    {{ Form::label('url_archivo', 'Documento adjunto') }}
-                    {{ Form::file('url_archivo') }}
-                </div>
-
-                {{ Form::submit('Crear Guia!', array('class' => 'btn btn-primary')) }}
-
-                {{ Form::close() }}
-            </div>
-        </div>
-    </div>
-</div>
-<!-- Fin modal-->
 </body>
 </html>
 <script>
     var containers = [];
-    var guia;
 
     $("#formPedidos").submit(function(e) {
         e.preventDefault();
         $("#id_containers").val(containers);
-        $("#id_guia").val(guia);
         var datos = $("#formPedidos").serialize();
         console.log(datos);
         crearPedido(datos);
@@ -207,39 +168,14 @@
         actualizarContainers();
         //console.log(containers);
     });
-
-    $("#formGuia").submit(function(e) {
-        e.preventDefault();
-
-        guia = {
-            numero_guia: $('input:text[name=numero_guia]').val(),
-            empresa_envio: $('input:text[name=empresa_envio]').val(),
-            url_archivo: $('input:file[name=url_archivo]').val(),
-        }
-        
-        $("#ulGuia").append('<li class="list-group-item">' + guia.numero_guia + ' <a href="javascript:editarGuia();">Editar </a><a href="javascript:eliminarGuia();">Borrar</a></li>');
-        //crearGuia(datos);
-        $('#aGuia').addClass('disabled');
-        $('#modalGuia').modal('hide');
-        console.log(guia);
-    });
     function agregarContainer() {
         $('#modalContainer').modal();
-    }
-    function agregarGuia() {
-        $('#modalGuia').modal();
     }
     function editarContainer(id) {
         alert('Edita Container ' + id);
     }
     function eliminarContainer(id) {
         alert('Eliminar Container ' + id);
-    }
-    function editarGuia() {
-        alert('Edita guia');
-    }
-    function eliminarGuia(id) {
-        alert('Eliminar guia');
     }
     function actualizarContainers() {
         $("#ulContainers").html("");
