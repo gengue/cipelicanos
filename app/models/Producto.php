@@ -2,19 +2,24 @@
 
 use Illuminate\Database\Eloquent\SoftDeletingTrait;
 
-class Producto extends Eloquent{
+class Producto extends Eloquent {
+
     use SoftDeletingTrait;
 
     protected $dates = ['deleted_at'];
-    
-    public function obtenerProductos(){
-        $resultado = DB::table('productos')
-            ->join('proveedores_productos', 'productos.id', '=', 'proveedores_productos.productos_id')
-            ->join('proveedores', 'proveedores_productos.proveedores_id', '=', 'proveedores.id')
-            ->whereNull('productos.deleted_at')
-            ->select('productos.id','productos.nombre', 'productos.descripcion', 'proveedores.nombre as nombreprov')
-            ->get();
-  
-        return $resultado;        
+    //se crea una relacion entre el producto y los proveedores, esto sustituye la query comentada abajo
+    public function proveedor() {
+        return $this->belongsTo('Proveedor', 'proveedor_id');
     }
+
+//    public function obtenerProductos() {
+//        $resultado = DB::table('productos')
+//                ->join('proveedores', 'proveedor.id', '=', 'producto.proveedor_id')
+//                ->whereNull('productos.deleted_at')
+//                ->select('productos.id', 'productos.nombre', 'productos.descripcion', 'proveedores.nombre as nombreprov')
+//                ->get();
+//
+//        return $resultado;
+//    }
+
 }

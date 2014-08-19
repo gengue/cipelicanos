@@ -5,7 +5,7 @@ class ProveedoresController extends BaseController {
     public function index() {
 
       
-        $proveedores = Proveedore::all();
+        $proveedores = Proveedor::all();
       
         return View::make('proveedores.index')
                         ->with('proveedores', $proveedores);
@@ -36,7 +36,7 @@ class ProveedoresController extends BaseController {
                 ));
         } else {
             // store
-            $proveedor = new Proveedore;
+            $proveedor = new Proveedor;
             $proveedor->nombre = Input::get('nombre');
             $proveedor->nombre_contacto = Input::get('nombre_contacto');
             $proveedor->telefono = Input::get('telefono');
@@ -56,7 +56,7 @@ class ProveedoresController extends BaseController {
   
     public function show($id) {
         // get the nerd
-        $proveedor = Proveedore::find($id);
+        $proveedor = Proveedor::find($id);
 
         // show the view and pass the nerd to it
         return View::make('proveedores.show')
@@ -66,7 +66,7 @@ class ProveedoresController extends BaseController {
   
     public function edit($id) {
     
-        $proveedor = Proveedore::find($id);
+        $proveedor = Proveedor::find($id);
 
         return View::make('proveedores.edit')
                         ->with('proveedor', $proveedor);
@@ -108,7 +108,7 @@ class ProveedoresController extends BaseController {
   
     public function destroy($id) {
     
-        $proveedor = Proveedore::find($id);
+        $proveedor = Proveedor::find($id);
 
        
          if($proveedor->delete()){

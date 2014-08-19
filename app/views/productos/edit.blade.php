@@ -30,7 +30,7 @@
 	</div>
 	<div class="form-group">
                 {{ Form::label('proveedor', 'Proveedor') }}
-                {{ Form::select('proveedor', $proveedores, $proveedor->id, array('class' => 'form-control')) }}
+                {{ Form::select('proveedor', $proveedores, $producto->proveedor->id, array('class' => 'form-control')) }}
         </div>
 	
 	{{ Form::submit('Editar Producto!', array('class' => 'btn btn-primary')) }}

@@ -22,7 +22,7 @@ class BdCompleta extends Migration {
             $table->string('direccion');
             $table->string('pais');
             $table->string('ciudad');
-            $table->enum('estado', array('ACTIVO','INACTIVO'));
+            $table->enum('estado', array('ACTIVO', 'INACTIVO'));
             $table->timestamps();
             $table->softDeletes();
         });
@@ -73,19 +73,21 @@ class BdCompleta extends Migration {
         });
         Schema::create('productos', function($table) {
             $table->increments('id');
+            $table->integer('proveedor_id')->unsigned();
+            $table->foreign('proveedor_id')->references('id')->on('proveedores')->on_delete('set null');
             $table->string('nombre');
             $table->string('descripcion');
             $table->timestamps();
             $table->softDeletes();
         });
-        
+
         Schema::create('pedidos', function($table) {
             $table->increments('id');
             $table->integer('producto_id')->unsigned();
             $table->integer('proveedor_id')->unsigned();
             $table->integer('naviera_id')->unsigned();
             //$table->integer('container_id')->unsigned();
-            $table->enum('estado', array('ACTIVO','INACTIVO'));
+            $table->enum('estado', array('ACTIVO', 'INACTIVO'));
             $table->integer('guia_id')->unsigned();
             $table->string('numero_reserva');
             $table->string('buque');
@@ -103,7 +105,6 @@ class BdCompleta extends Migration {
             $table->softDeletes();
         });
 
-        
         Schema::create('pedidos_containers', function($table) {
             $table->increments('id');
             $table->integer('container_id')->unsigned();
@@ -113,16 +114,44 @@ class BdCompleta extends Migration {
             $table->timestamps();
             $table->softDeletes();
         });
-        
-        
-        Schema::create('proveedores_productos', function($table) {
-            $table->increments('id');
-            $table->integer('proveedores_id')->unsigned();
-            $table->integer('productos_id')->unsigned();
-            $table->foreign('proveedores_id')->references('id')->on('proveedores')->on_delete('set null');
-            $table->foreign('productos_id')->references('id')->on('productos')->on_delete('set null');
+
+        /*
+         * Para los paises y ciudades. Importar los datos de /world.sql 
+         */
+        Schema::create('Country', function($table) {
+            $table->engine = 'InnoDB';
+            $table->string('Code', 3)->primary();
+            $table->string('Name', 52);
+            $table->enum('Continent', array('Asia', 'Europe', 'North America', 'Africa', 'Oceania', 'Antarctica', 'South America'));
+            $table->string('Region', 26);
+            $table->decimal('SurfaceArea', 10, 2);
+            $table->integer('IndepYear');
+            $table->integer('Population');
+            $table->decimal('LifeExpectancy', 3, 1);
+            $table->decimal('GNP', 10, 2);
+            $table->decimal('GNPOld', 10, 2);
+            $table->string('LocalName', 45);
+            $table->string('GovermentForm', 45);
+            $table->string('HeadOfState', 60);
+            $table->integer('Capital');
+            $table->string('Code2', 2);
             $table->timestamps();
-            $table->softDeletes();
+        });
+        Schema::create('City', function($table) {
+            $table->increments('ID');
+            $table->string('Name', 35);
+            $table->string('CountryCode', 3)->references('Code')->on('Country');
+            $table->string('District', 20);
+            $table->integer('Population');
+            $table->timestamps();
+        });
+        Schema::create('CountryLanguage', function($table) {
+            $table->engine = 'InnoDB';
+            $table->string('CountryCode', 3)->references('Code')->on('Country');
+            $table->string('Language', 30);
+            $table->enum('IsOfficial', array('T', 'F'));
+            $table->decimal('Percentage', 4, 1);
+            $table->timestamps();
         });
     }
 
@@ -133,7 +162,6 @@ class BdCompleta extends Migration {
      */
     public function down() {
         Schema::drop('pedidos_containers');
-        Schema::drop('proveedores_productos');
         Schema::drop('pedidos');
         Schema::drop('companias');
         Schema::drop('usuarios');
@@ -142,6 +170,10 @@ class BdCompleta extends Migration {
         Schema::drop('guias');
         Schema::drop('proveedores');
         Schema::drop('productos');
+        Schema::drop('Country');
+        Schema::drop('CountryLanguage');
+        Schema::drop('City');
+        
     }
 
 }

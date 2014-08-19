@@ -34,7 +34,7 @@
                 <td>{{ $value->id }}</td>
                 <td>{{ $value->nombre }}</td>
                 <td>{{ $value->descripcion }}</td>
-                <td>{{ $value->nombreprov }}</td>
+                <td>{{ $value->proveedor->nombre }}</td>
 
                 <td>                            
                     <a class="btn btn-small btn-success" href="javascript:mostrarDetalleProducto({{ $value->id }});"><i class="fa fa-search"></i></a>
