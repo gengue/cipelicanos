@@ -18,16 +18,18 @@
     {{ HTML::ul($errors->all()) }}
 
     {{ Form::open(array('', 'id' => 'formPedidos')) }}
-
+    
+    <div class="form-group">
+        {{ Form::label('proveedor_id', 'Proveedor') }}
+        {{ Form::select('proveedor_id', $proveedores, null, array('class'=>'form-control','style'=>'' )) }}
+    </div>
+    
     <div class="form-group">
         {{ Form::label('producto_id', 'Producto') }}
         {{ Form::select('producto_id', $productos, null, array('class'=>'form-control','style'=>'' )) }}
     </div>
 
-    <div class="form-group">
-        {{ Form::label('proveedor_id', 'Proveedor') }}
-        {{ Form::select('proveedor_id', $proveedores, null, array('class'=>'form-control','style'=>'' )) }}
-    </div>
+
     <div class="form-group">
         {{ Form::label('naviera_id', 'Naviera') }}
         {{ Form::select('naviera_id', $navieras, null, array('class'=>'form-control','style'=>'' )) }}
@@ -110,8 +112,8 @@
 
     $("#formPedidos").submit(function(e) {
         e.preventDefault();
-        
-        var datos =  $("#formPedidos").serialize();
+
+        var datos = $("#formPedidos").serialize();
         crearPedido(datos);
     });
 

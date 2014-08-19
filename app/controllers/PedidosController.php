@@ -20,7 +20,7 @@ class PedidosController extends BaseController {
 
     public function create() {
         $productos = Producto::lists('nombre', 'id');
-        $proveedores = Proveedore::lists('nombre', 'id');
+        $proveedores = Proveedor::lists('nombre', 'id');
         $navieras = Naviera::lists('nombre', 'id');
         $container = Container::lists('numero_container', 'id');
         $guias = Guia::lists('numero_guia', 'id');
@@ -89,7 +89,7 @@ class PedidosController extends BaseController {
         $pedido->containers = $containerdb->obtenerListaContainer($id);
 
         $productos = Producto::lists('nombre', 'id');
-        $proveedores = Proveedore::lists('nombre', 'id');
+        $proveedores = Proveedor::lists('nombre', 'id');
         $navieras = Naviera::lists('nombre', 'id');
         $container = Container::lists('numero_container', 'id');
         $guias = Guia::lists('numero_guia', 'id');
