@@ -118,6 +118,14 @@ class BdCompleta extends Migration {
         /*
          * Para los paises y ciudades. Importar los datos de /world.sql 
          */
+        Schema::create('City', function($table) {
+            $table->increments('id');
+            $table->string('nombre', 35);
+            $table->string('CountryCode', 3)->references('Code')->on('Country');
+            $table->string('District', 20);
+            $table->integer('Population');
+            $table->timestamps();
+        });
         Schema::create('Country', function($table) {
             $table->engine = 'InnoDB';
             $table->string('Code', 3)->primary();
@@ -136,15 +144,7 @@ class BdCompleta extends Migration {
             $table->integer('Capital');
             $table->string('Code2', 2);
             $table->timestamps();
-        });
-        Schema::create('City', function($table) {
-            $table->increments('ID');
-            $table->string('Name', 35);
-            $table->string('CountryCode', 3)->references('Code')->on('Country');
-            $table->string('District', 20);
-            $table->integer('Population');
-            $table->timestamps();
-        });
+        });        
         Schema::create('CountryLanguage', function($table) {
             $table->engine = 'InnoDB';
             $table->string('CountryCode', 3)->references('Code')->on('Country');
@@ -168,8 +168,8 @@ class BdCompleta extends Migration {
         Schema::drop('containers');
         Schema::drop('navieras');
         Schema::drop('guias');
-        Schema::drop('proveedores');
         Schema::drop('productos');
+        Schema::drop('proveedores');        
         Schema::drop('Country');
         Schema::drop('CountryLanguage');
         Schema::drop('City');

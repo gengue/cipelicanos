@@ -6,6 +6,7 @@ Route::get('usuarios/clientes', 'UsuarioController@clientes');
 Route::get('usuarios/clientes/aprobar/{id}', 'UsuarioController@aprobarCliente');
 Route::resource('usuarios', 'UsuarioController');
 Route::resource('proveedores', 'ProveedoresController');
+Route::get('proveedores/api/productos/{id}', 'ProveedoresController@productos');
 Route::resource('guias', 'GuiasController');
 Route::resource('container', 'ContainerController');
 Route::resource('companias', 'CompaniasController');
@@ -30,9 +31,15 @@ Route::get('/download/{id}', function($id){
     
     return Response::download($guia->url_archivo);
 });
+Route::get('/api/paises/{id}', function($id){
+    $ciudades = Country::find($id)->ciudades;
+    return Response::json($ciudades);
+});
+
 Route::get('/registro', function()
 {
-    return View::make('registro');
+    $paises = Country::lists('Name','Code');
+    return View::make('registro')->with('paises', $paises);
 });
 
 Route::get('/login', function()

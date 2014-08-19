@@ -635,3 +635,38 @@ function mostrarDetalleCliente(id) {
                 }
             });
 }
+
+/* 
+ * CARGA DE LISTAS ASINCRONAS
+ * 
+ * */
+function cargarProductos(id_proveedor){
+    $.ajax(
+            {
+                url: '/proveedores/api/productos/' + id_proveedor,
+                type: 'GET',
+                success: function(data) {
+                    cargarLista(data, 'producto_id');
+                }
+            });
+}
+function cargarCiudades(id_pais){
+    $.ajax(
+            {
+                url: '/api/paises/' + id_pais,
+                type: 'GET',
+                success: function(data) {
+                    cargarLista(data, 'ciudad');
+                }
+            });
+}
+//funcion semi-generica para cargar listas asincronas
+//recibe el array de datos y el selector donde se cargara
+function cargarLista(datos, sel){
+    var cad = "";
+    $.each(datos, function(pos, item){
+        cad += '<option value='+item.id+'>'+item.nombre+'</option>';
+    });
+    
+    $("#"+sel).html(cad);
+}

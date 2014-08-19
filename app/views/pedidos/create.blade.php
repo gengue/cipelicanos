@@ -116,5 +116,9 @@
         var datos = $("#formPedidos").serialize();
         crearPedido(datos);
     });
+    
+    $("#proveedor_id").on('change', function(ev){
+        cargarProductos($(this).val());
+    });
 
 </script>

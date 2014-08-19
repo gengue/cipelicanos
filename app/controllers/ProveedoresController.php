@@ -121,5 +121,10 @@ class ProveedoresController extends BaseController {
                 ));
         }
     }
+    
+    public function productos($id){
+       $productos = Proveedor::find($id)->productos;
+       return Response::json($productos);
+    }
 
 }
