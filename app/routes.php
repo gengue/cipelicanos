@@ -38,7 +38,7 @@ Route::get('/api/paises/{id}', function($id){
 
 Route::get('/registro', function()
 {
-    $paises = Country::lists('Name','Code');
+    $paises = Country::lists('nombre','Code');
     return View::make('registro')->with('paises', $paises);
 });
 

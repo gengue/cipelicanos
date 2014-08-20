@@ -10,7 +10,6 @@ class UsuarioController extends BaseController {
         $usuarios = Usuario::all();
         return View::make('usuarios.index')
                         ->with('usuarios', $usuarios);
-
     
     }
 
@@ -32,18 +31,18 @@ class UsuarioController extends BaseController {
     }
 
     public function create() {
-        return View::make('usuarios.create');
+        $paises = Country::lists('nombre', 'Code');
+        $ciudades = City::lists('nombre', 'id');
+        return View::make('usuarios.create', array('paises'=> $paises,
+                                                   'ciudades' => $ciudades
+                ));
     }
  
     public function store() {
-        // validate
-        // read more on validation at http://laravel.com/docs/validation
-
        if (Request::ajax()) {
             $rules = array(
             );
         $validator = Validator::make(Input::all(), $rules);
-        // process the login
         if ($validator->fails()) {
             return Response::json(array(
                             'msg' => 'error'
@@ -58,13 +57,11 @@ class UsuarioController extends BaseController {
             $usuario->telefono = Input::get('telefono');
             $usuario->correo = Input::get('correo');
             $usuario->direccion = Input::get('direccion');
-            $usuario->pais = Input::get('pais');
-            $usuario->ciudad = Input::get('ciudad');
+            $usuario->pais_id = Input::get('pais');
+            $usuario->ciudad_id = Input::get('ciudad');
             $usuario->tipo_usuario = Input::get('tipo_usuario');
             $usuario->save();    
                 
-            // redirect
-
             return Response::json(array(
                             'msg' => 'ok'
                 ));
@@ -73,10 +70,8 @@ class UsuarioController extends BaseController {
 
   
     public function show($id) {
-        // get the nerd
         $usuario = Usuario::find($id);
 
-        // show the view and pass the nerd to it
         return View::make('usuarios.show')
                         ->with('usuarios', $usuario);
     }
@@ -85,9 +80,13 @@ class UsuarioController extends BaseController {
     public function edit($id) {
     
         $usuario = Usuario::find($id);
-
-        return View::make('usuarios.edit')
-                        ->with('usuario', $usuario);
+        $paises = Country::lists('nombre', 'Code');
+        $ciudades = Country::find($usuario->pais_id)->ciudades->lists('nombre', 'id');
+        return View::make('usuarios.edit', array('usuario' => $usuario,
+                                                   'paises'=> $paises,
+                                                   'ciudades' => $ciudades
+            ));
+                        
     }
 
     public function aprobarCliente($id){
@@ -127,8 +126,8 @@ class UsuarioController extends BaseController {
             $usuario->telefono = Input::get('telefono');
             $usuario->correo = Input::get('correo');
             $usuario->direccion = Input::get('direccion');
-            $usuario->pais = Input::get('pais');
-            $usuario->ciudad = Input::get('ciudad');
+            $usuario->pais_id = Input::get('pais');
+            $usuario->ciudad_id = Input::get('ciudad');
             
             if(Input::get('tipo_usuario')){
                 $usuario->tipo_usuario = Input::get('tipo_usuario');

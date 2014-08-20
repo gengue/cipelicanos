@@ -87,22 +87,22 @@ class ProveedoresController extends BaseController {
                             'msg' => 'error'
                 ));
             } else {
-                 $proveedor = Proveedore::find($id);
+                
+                $proveedor = Proveedor::find($id);
 
-            $proveedor->nombre = Input::get('nombre');
-            $proveedor->nombre_contacto = Input::get('nombre_contacto');
-            $proveedor->telefono = Input::get('telefono');
-            $proveedor->direccion = Input::get('direccion');
-            $proveedor->correo = Input::get('correo');
-            $proveedor->save();
+                $proveedor->nombre = Input::get('nombre');
+                $proveedor->nombre_contacto = Input::get('nombre_contacto');
+                $proveedor->telefono = Input::get('telefono');
+                $proveedor->direccion = Input::get('direccion');
+                $proveedor->correo = Input::get('correo');
+                $proveedor->save();
 
                 return Response::json(array(
                             'msg' => 'ok'
                 ));
             }
         }
-        // read more on validation at http://laravel.com/docs/validatio
-
+       
             
     }
   

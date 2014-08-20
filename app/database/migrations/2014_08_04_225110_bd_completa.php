@@ -11,6 +11,46 @@ class BdCompleta extends Migration {
      * @return void
      */
     public function up() {
+        /*
+         * Para los paises y ciudades. Importar los datos de /world.sql 
+         */
+        Schema::create('City', function($table) {
+            $table->increments('id');
+            $table->string('nombre', 35);
+            $table->string('CountryCode', 3)->references('Code')->on('Country');
+            $table->string('District', 20);
+            $table->integer('Population')->nullable();
+        });
+        Schema::create('Country', function($table) {
+            $table->engine = 'InnoDB';
+            $table->string('Code', 3)->primary();
+            $table->string('nombre', 52);
+            $table->enum('Continent', array('Asia', 'Europe', 'North America', 'Africa', 'Oceania', 'Antarctica', 'South America'));
+            $table->string('Region', 26);
+            $table->decimal('SurfaceArea', 10, 2);
+            $table->tinyInteger('IndepYear')->nullable();
+            $table->integer('Population')->nullable();
+            $table->decimal('LifeExpectancy', 3, 1)->nullable();
+            $table->decimal('GNP', 10, 2)->nullable();
+            $table->decimal('GNPOld', 10, 2)->nullable();
+            $table->string('LocalName', 45)->nullable();
+            $table->string('GovermentForm', 45)->nullable();
+            $table->string('HeadOfState', 60)->nullable();
+            $table->integer('Capital')->nullable();
+            $table->string('Code2', 2);
+        });
+        Schema::create('CountryLanguage', function($table) {
+            $table->engine = 'InnoDB';
+            $table->string('CountryCode', 3)->references('Code')->on('Country');
+            $table->string('Language', 30);
+            $table->enum('IsOfficial', array('T', 'F'));
+            $table->decimal('Percentage', 4, 1);
+        });
+        /* 
+         * CORE DEL SISTEMA
+         * 
+         *  */
+        
         Schema::create('usuarios', function($table) {
             $table->increments('id');
             $table->enum('tipo_usuario', array('ADMINISTRADOR', 'DIGITADOR', 'CLIENTE'));
@@ -20,8 +60,10 @@ class BdCompleta extends Migration {
             $table->string('telefono');
             $table->string('correo');
             $table->string('direccion');
-            $table->string('pais');
-            $table->string('ciudad');
+            $table->string('pais_id');
+            $table->foreign('pais_id')->references('Code')->on('Country');
+            $table->integer('ciudad_id')->unsigned();
+            $table->foreign('ciudad_id')->references('id')->on('City');
             $table->enum('estado', array('ACTIVO', 'INACTIVO'));
             $table->timestamps();
             $table->softDeletes();
@@ -114,45 +156,6 @@ class BdCompleta extends Migration {
             $table->timestamps();
             $table->softDeletes();
         });
-
-        /*
-         * Para los paises y ciudades. Importar los datos de /world.sql 
-         */
-        Schema::create('City', function($table) {
-            $table->increments('id');
-            $table->string('nombre', 35);
-            $table->string('CountryCode', 3)->references('Code')->on('Country');
-            $table->string('District', 20);
-            $table->integer('Population');
-            $table->timestamps();
-        });
-        Schema::create('Country', function($table) {
-            $table->engine = 'InnoDB';
-            $table->string('Code', 3)->primary();
-            $table->string('Name', 52);
-            $table->enum('Continent', array('Asia', 'Europe', 'North America', 'Africa', 'Oceania', 'Antarctica', 'South America'));
-            $table->string('Region', 26);
-            $table->decimal('SurfaceArea', 10, 2);
-            $table->integer('IndepYear');
-            $table->integer('Population');
-            $table->decimal('LifeExpectancy', 3, 1);
-            $table->decimal('GNP', 10, 2);
-            $table->decimal('GNPOld', 10, 2);
-            $table->string('LocalName', 45);
-            $table->string('GovermentForm', 45);
-            $table->string('HeadOfState', 60);
-            $table->integer('Capital');
-            $table->string('Code2', 2);
-            $table->timestamps();
-        });        
-        Schema::create('CountryLanguage', function($table) {
-            $table->engine = 'InnoDB';
-            $table->string('CountryCode', 3)->references('Code')->on('Country');
-            $table->string('Language', 30);
-            $table->enum('IsOfficial', array('T', 'F'));
-            $table->decimal('Percentage', 4, 1);
-            $table->timestamps();
-        });
     }
 
     /**
@@ -169,11 +172,10 @@ class BdCompleta extends Migration {
         Schema::drop('navieras');
         Schema::drop('guias');
         Schema::drop('productos');
-        Schema::drop('proveedores');        
+        Schema::drop('proveedores');
+        Schema::drop('City');
         Schema::drop('Country');
         Schema::drop('CountryLanguage');
-        Schema::drop('City');
-        
     }
 
 }
