@@ -16,10 +16,10 @@
 
                 <div class="login-box1 clearfix animated flipInX">
                     <div class="page-icon animated bounceInDown">
-                        <img src="{{ asset('img/login-user-icon.png')}}" alt="User icon">
+                        <img src="{{ asset('images/login-user-icon.png')}}" alt="User icon">
                     </div>
                     <div class="login-logo">
-                        <a href="sign-up.html#"><img src="{{asset('img/login-logo.png')}}" alt="Company Logo"></a>
+                        <a href="sign-up.html#"><img src="{{asset('images/login-logo.png')}}" alt="Company Logo"></a>
                     </div> 
                     <hr>
                     <div class="login-form panel-body">

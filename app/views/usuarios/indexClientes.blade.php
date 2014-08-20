@@ -68,7 +68,7 @@
             <i class="fa fa-check"></i> Clientes activos:</li>
     </ol>
     <div class='table-responsive'>
-        <table class="table table-striped table-condensed table-bordered table-hover">
+        <table id="clientesTbl" class="table table-striped table-condensed table-bordered table-hover">
             <thead>
                 <tr>
                     <td>Nombre</td>
@@ -104,6 +104,7 @@
     </div>
 </div>
 <script>
+    $('#clientesTbl').dataTable();
     $('#menu-vertical li').removeClass();
     $('#menu-vertical').find('a:contains("Clientes")').parent().addClass("active");
 </script>

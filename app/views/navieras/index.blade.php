@@ -19,7 +19,7 @@
     <div class="alert alert-info">{{ Session::get('message') }}</div>
     @endif
 
-    <table class="table table-striped table-bordered">
+    <table id="navierasTbl" class="table table-striped table-bordered">
         <thead>
             <tr>
                 <td>ID</td>
@@ -53,6 +53,7 @@
 
 </div>
 <script>
+    $('#navierasTbl').dataTable();
     $('#menu-vertical li').removeClass();
     $('#menu-vertical').find('a:contains("Navieras")').parent().addClass("active");
 </script>
