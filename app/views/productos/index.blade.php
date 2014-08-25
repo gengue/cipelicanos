@@ -18,7 +18,7 @@
     <div class="alert alert-info">{{ Session::get('message') }}</div>
     @endif
     
-        <table id="productosTbl" class="table table-striped table-bordered" cellspacing="0" width="100%">
+        <table id="productosTbl" class="table table-striped table-bordered table-condensed" cellspacing="0" width="100%">
             <thead>
                 <tr>
                     <td data-hide="phone">ID</td>

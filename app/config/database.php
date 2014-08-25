@@ -79,6 +79,7 @@ return array(
 			'prefix'    => '',
 		),
                'cipelicanos2_mySQL' => array(
+                        'engine'    => 'MYISAM',
 			'driver'    => 'mysql',
 			'host'      => 'localhost',
 			'database'  => 'cipelicanos',
