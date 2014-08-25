@@ -16,11 +16,11 @@
     <a class="btn btn-small btn-info" href="javascript:mostrarCrearUsuario();"><i class="fa fa-plus"></i> Agregar usuario</a>
     <br><br>
    
-    <table id="usuariosTbl" class="table table-striped table-bordered">
+    <table id="usuariosTbl" class="table condensed table-striped table-bordered">
         <thead>
             <tr>
                 <td>ID</td>
-                <td>Tipo Usuario</td>
+                <td>Tipo</td>
                 <td>Nombre</td>
                 <td>Apellidos</td>
                 <td>Telefono</td>

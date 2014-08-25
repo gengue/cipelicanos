@@ -36,8 +36,8 @@
                        <td class="danger">{{ $value->telefono }}</td>
                        <td class="danger">{{ $value->correo }}</td>
                        <td class="danger">{{ $value->direccion }}</td>
-                       <td class="danger">{{ $value->pais }}</td>
-                       <td class="danger">{{ $value->ciudad }}</td>
+                       <td class="danger">{{ $value->pais->nombre }}</td>
+                       <td class="danger">{{ $value->ciudad->nombre }}</td>
                        <td class="danger">{{ $value->estado }}</td>
 
                        <td class="danger">                            
@@ -89,8 +89,8 @@
                     <td>{{ $value->telefono }}</td>
                     <td>{{ $value->correo }}</td>
                     <td>{{ $value->direccion }}</td>
-                    <td>{{ $value->pais }}</td>
-                    <td>{{ $value->ciudad }}</td>
+                    <td>{{ $value->pais->nombre }}</td>
+                    <td>{{ $value->ciudad->nombre }}</td>
 
                     <td>                            
                         <a class="btn btn-small btn-success" href="javascript:mostrarDetalleCliente({{ $value->id }});"><i class="fa fa-search"></i></a>
