@@ -22,18 +22,16 @@
     <table id="navierasTbl" class="table table-striped table-bordered">
         <thead>
             <tr>
-                <td>ID</td>
-                <td>Nombre</td>
+                <td data-class="expand">Nombre</td>
                 <td>Nombre de Contacto</td>
-                <td>Telefono</td>
-                <td>Direccion</td>
-                <td>Opciones</td>
+                <td data-hide="phone">Telefono</td>
+                <td data-hide="phone,tablet">Direccion</td>
+                <td data-hide="phone">Opciones</td>
             </tr>
         </thead>
         <tbody>
             @foreach($navieras as $key => $value)
             <tr>
-                <td>{{ $value->id }}</td>
                 <td>{{ $value->nombre }}</td>
                 <td>{{ $value->nombre_contacto }}</td>
                 <td>{{ $value->telefono }}</td>
@@ -53,7 +51,29 @@
 
 </div>
 <script>
-    $('#navierasTbl').dataTable();
+    "use strict";
+    var responsiveHelper = undefined;
+    var breakpointDefinition = {
+        tablet: 1024,
+        phone: 480
+    };
+    var tableElement = $('#navierasTbl');
+    tableElement.dataTable({
+        autoWidth: false,
+        preDrawCallback: function() {
+            // Initialize the responsive datatables helper once.
+            if (!responsiveHelper) {
+                responsiveHelper = new ResponsiveDatatablesHelper(tableElement, breakpointDefinition);
+            }
+        },
+        rowCallback: function(nRow) {
+            responsiveHelper.createExpandIcon(nRow);
+        },
+        drawCallback: function(oSettings) {
+            responsiveHelper.respond();
+        }
+    });
+    
     $('#menu-vertical li').removeClass();
     $('#menu-vertical').find('a:contains("Navieras")').parent().addClass("active");
 </script>

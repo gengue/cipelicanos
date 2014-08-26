@@ -183,10 +183,11 @@
 
         </div>
         <!-- /#wrapper -->
+        
         <script src="js/plugins/jquery-1.11.0.js"></script>
         <script src="js/plugins/jquery.dataTables.min.js"></script>
         <script src="js/plugins/dataTables.bootstrap.js"></script>
-        <script stc="js/plugins/datatables.responsive.js"></script>
+        <script src="js/plugins/datatables.responsive.js"></script>
         <script src="js/plugins/bootstrap.min.js"></script>
         <script src="js/plugins/morris/raphael.min.js"></script>
 <!--        <script src="js/plugins/morris/morris.min.js"></script>

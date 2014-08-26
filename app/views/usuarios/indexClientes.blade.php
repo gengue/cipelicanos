@@ -71,21 +71,19 @@
         <table id="clientesTbl" class="table table-striped table-condensed table-bordered table-hover">
             <thead>
                 <tr>
-                    <td>Nombre</td>
-                    <td>Apellidos</td>
-                    <td>Telefono</td>
+                    <td data-class="expand">Nombre</td>
+                    <td data-hide="phone, tablet">Telefono</td>
                     <td>Correo</td>
-                    <td>Direccion</td>
-                    <td>Pais</td>
-                    <td>Ciudad</td>
-                    <td>Opciones</td>
+                    <td data-hide="phone,tablet">Direccion</td>
+                    <td data-hide="phone,tablet">Pais</td>
+                    <td data-hide="phone">Ciudad</td>
+                    <td data-hide="phone">Opciones</td>
                 </tr>
             </thead>
             <tbody>
                 @foreach($usuarios as $key => $value)
                 <tr>
-                    <td>{{ $value->nombre }}</td>
-                    <td>{{ $value->apellido }}</td>
+                    <td>{{ $value->nombre }} {{ $value->apellido }}</td>
                     <td>{{ $value->telefono }}</td>
                     <td>{{ $value->correo }}</td>
                     <td>{{ $value->direccion }}</td>
@@ -104,7 +102,29 @@
     </div>
 </div>
 <script>
-    $('#clientesTbl').dataTable();
+    "use strict";
+    var responsiveHelper = undefined;
+    var breakpointDefinition = {
+        tablet: 1024,
+        phone : 480
+    };
+    var tableElement = $('#clientesTbl');
+    tableElement.dataTable({
+        autoWidth        : false,
+        preDrawCallback: function () {
+            // Initialize the responsive datatables helper once.
+            if (!responsiveHelper) {
+                responsiveHelper = new ResponsiveDatatablesHelper(tableElement, breakpointDefinition);
+            }
+        },
+        rowCallback    : function (nRow) {
+            responsiveHelper.createExpandIcon(nRow);
+        },
+        drawCallback   : function (oSettings) {
+            responsiveHelper.respond();
+        }
+    });
+    
     $('#menu-vertical li').removeClass();
     $('#menu-vertical').find('a:contains("Clientes")').parent().addClass("active");
 </script>

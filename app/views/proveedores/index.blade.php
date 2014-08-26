@@ -23,23 +23,21 @@
     @if (Session::has('message'))
     <div class="alert alert-info">{{ Session::get('message') }}</div>
     @endif
-
+ <div class="table-responsive">
     <table id="proveedoresTbl" class="table display table-striped table-bordered" cellspacing="0" width="100%">
         <thead>
-            <tr>
-                <td>ID</td>
-                <td>Nombre</td>
+            <tr>                
+                <td data-class="expand">Nombre</td>
                 <td>Nombre de Contacto</td>
-                <td>Telefono</td>
-                <td>Direccion</td>
-                <td>Correo</td>
-                <td>Opciones</td>
+                <td data-hide="phone">Telefono</td>
+                <td data-hide="phone,tablet">Direccion</td>
+                <td data-hide="phone,tablet">Correo</td>
+                <td data-hide="phone">Opciones</td>
             </tr>
         </thead>
         <tbody>
             @foreach($proveedores as $key => $value)
             <tr>
-                <td>{{ $value->id }}</td>
                 <td>{{ $value->nombre }}</td>
                 <td>{{ $value->nombre_contacto }}</td>
                 <td>{{ $value->telefono }}</td>
@@ -57,11 +55,32 @@
             @endforeach
         </tbody>
     </table>
-
+ </div>
 </div>
 <script>
-
-    $('#proveedoresTbl').dataTable();
+    "use strict";
+    var responsiveHelper = undefined;
+    var breakpointDefinition = {
+        tablet: 1024,
+        phone: 480
+    };
+    var tableElement = $('#proveedoresTbl');
+    tableElement.dataTable({
+        autoWidth: false,
+        preDrawCallback: function() {
+            // Initialize the responsive datatables helper once.
+            if (!responsiveHelper) {
+                responsiveHelper = new ResponsiveDatatablesHelper(tableElement, breakpointDefinition);
+            }
+        },
+        rowCallback: function(nRow) {
+            responsiveHelper.createExpandIcon(nRow);
+        },
+        drawCallback: function(oSettings) {
+            responsiveHelper.respond();
+        }
+    });
+    
     $('#menu-vertical li').removeClass();
     $('#menu-vertical').find('a:contains("Proveedores")').parent().addClass("active");
 </script>

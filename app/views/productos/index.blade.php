@@ -21,13 +21,22 @@
         <table id="productosTbl" class="table table-striped table-bordered table-condensed" cellspacing="0" width="100%">
             <thead>
                 <tr>
-                    <td data-hide="phone">ID</td>
-                    <td data-class="expand">Nombre</td>
-                    <td>Descripcion</td>
-                    <td data-hide="phone, tablet">Proveedor</td>
-                    <td data-hide="phone, tablet">Opciones</td>
+                    <th data-hide="phone,tablet">ID</th>
+                    <th data-class="expand">Nombre</th>
+                    <th data-hide="phone,tablet">Descripcion</th>
+                    <th>Proveedor</th>
+                    <th data-hide="phone">Opciones</th>
                 </tr>
             </thead>
+            <tfoot>
+                <tr>
+                    <th>ID</th>
+                    <th>Nombre</th>
+                    <th>Descripcion</th>
+                    <th>Proveedor</th>
+                    <th>Opciones</th>
+                </tr>
+            </tfoot>
             <tbody>
                 @foreach($productos as $key => $value)
                 <tr>
@@ -49,8 +58,29 @@
     
 </div>
 <script>
-    
-    $('#productosTbl').dataTable();
+    "use strict";
+    var responsiveHelper = undefined;
+    var breakpointDefinition = {
+        tablet: 1024,
+        phone : 480
+    };
+    var tableElement = $('#productosTbl');
+    tableElement.dataTable({
+        autoWidth        : false,
+        preDrawCallback: function () {
+            // Initialize the responsive datatables helper once.
+            if (!responsiveHelper) {
+                responsiveHelper = new ResponsiveDatatablesHelper(tableElement, breakpointDefinition);
+            }
+        },
+        rowCallback    : function (nRow) {
+            responsiveHelper.createExpandIcon(nRow);
+        },
+        drawCallback   : function (oSettings) {
+            responsiveHelper.respond();
+        }
+    });
+   // $('#productosTbl').dataTable();
     $('#menu-vertical li').removeClass();
     $('#menu-vertical').find('a:contains("Productos")').parent().addClass("active");
 </script>
