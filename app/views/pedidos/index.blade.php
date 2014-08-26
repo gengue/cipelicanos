@@ -22,19 +22,19 @@
         <table id="pedidosTbl" class="table table-striped table-hover table-bordered table-condensed">
             <thead>
                 <tr>
-                    <td>Producto</td>
-                    <td>Proveedor</td>
-                    <td>Naviera</td>
-                    <td>Containers</td>
-                    <td>Guia</td>
-                    <td>Numero de reserva</td>
-                    <td>Buque</td>
-                    <td>Fecha carga</td>
-                    <td>Fecha Abordaje</td>
-                    <td>Fecha Entrega</td>
-                    <td>Fecha Vencimiento</td>
-                    <td>Importe Facturado</td>
-                    <td>Opciones</td>
+                    <td data-class="expand">Producto</td>
+                    <td data-hide="phone,tablet">Proveedor</td>
+                    <td data-hide="phone,tablet">Naviera</td>
+                    <td data-hide="phone,tablet">Containers</td>
+                    <td data-hide="phone">Guia</td>
+                    <td data-hide="phone,tablet">Numero de reserva</td>
+                    <td data-hide="phone,tablet">Buque</td>
+                    <td data-hide="phone">carga</td>
+                    <td>Abordaje</td>
+                    <td data-hide="phone,tablet">Entrega</td>
+                    <td data-hide="phone,tablet">Vencimiento</td>
+                    <td data-hide="phone">Importe Facturado</td>
+                    <td data-hide="phone,tablet">Opciones</td>
                 </tr>
             </thead>
             <tbody>
@@ -69,7 +69,29 @@
     </div>
 </div>
 <script>
-    $('#pedidosTbl').dataTable();
+    "use strict";
+    var responsiveHelper = undefined;
+    var breakpointDefinition = {
+        tablet: 1024,
+        phone: 480
+    };
+    var tableElement =  $('#pedidosTbl');
+    tableElement.dataTable({
+        autoWidth: false,
+        preDrawCallback: function() {
+            // Initialize the responsive datatables helper once.
+            if (!responsiveHelper) {
+                responsiveHelper = new ResponsiveDatatablesHelper(tableElement, breakpointDefinition);
+            }
+        },
+        rowCallback: function(nRow) {
+            responsiveHelper.createExpandIcon(nRow);
+        },
+        drawCallback: function(oSettings) {
+            responsiveHelper.respond();
+        }
+    });
+  
     $('#menu-vertical li').removeClass();
     $('#menu-vertical').find('a:contains("Pedidos")').parent().addClass("active");
 </script>
