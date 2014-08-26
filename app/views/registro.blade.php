@@ -16,10 +16,10 @@
 
                 <div class="login-box1 clearfix animated flipInX">
                     <div class="page-icon animated bounceInDown">
-                        <img src="{{ asset('img/login-user-icon.png')}}" alt="User icon">
+                        <img src="{{ asset('images/login-user-icon.png')}}" alt="User icon">
                     </div>
                     <div class="login-logo">
-                        <a href="sign-up.html#"><img src="{{asset('img/login-logo.png')}}" alt="Company Logo"></a>
+                        <a href="sign-up.html#"><img src="{{asset('images/login-logo.png')}}" alt="Company Logo"></a>
                     </div> 
                     <hr>
                     <div class="login-form panel-body">
@@ -63,21 +63,24 @@
                                     {{ Form::text('direccion', Input::old('direccion'), array('class' => 'form-control', 'placeholder'=> 'Direccion')); }}
                                 </div>
                             </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    {{ Form::label('pais', 'Pais') }}
-                                    {{ Form::select('pais', array('COL' => 'Colombia'), null, array('class'=>'form-control','style'=>'' )) }}
+
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        {{ Form::label('pais', 'Pais') }}
+                                        {{ Form::select('pais', $paises, null, array('class'=>'form-control','style'=>'' )) }}
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        {{ Form::label('ciudad', 'Ciudad') }}
+                                        {{ Form::select('ciudad', array(), null, array('class'=>'form-control','style'=>'' )) }}
+                                    </div>
                                 </div>
                             </div>
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    {{ Form::label('ciudad', 'Ciudad') }}
-                                    {{ Form::select('ciudad', array('CHV' => 'Chivolo'), null, array('class'=>'form-control','style'=>'' )) }}
-                                </div>
-                            </div>
+
                         </div>
+
                         {{ Form::submit('Enviar', array('class' => 'btn btn-primary btn-login')) }}
                         {{ Form::close() }}
 
@@ -96,10 +99,24 @@
         <footer class="container">
             <p id="footer-text"><small> Copyright © 2014 <a href="#">The3BallSoft</a></small></p>
         </footer>
+        {{ HTML::script('js/plugins/jquery-1.11.0.js'); }}
+        {{ HTML::script('js/plugins/bootstrap.min.js'); }}
+        {{ HTML::script('js/plugins/placeholder-shim.min.js'); }}
+        {{ HTML::script('js/plugins/custom.js'); }}
+        {{ HTML::script('js/app.js'); }}
+        <script>
 
+//            $("#formPedidos").submit(function(e) {
+//                e.preventDefault();
+//
+//                var datos = $("#formPedidos").serialize();
+//                crearPedido(datos);
+//            });
+
+            $("#pais").on('change', function(ev) {
+                cargarCiudades($(this).val());
+            });
+
+        </script>
     </body>
 </html>
-{{ HTML::script('js/plugins/jquery-1.11.0.js'); }}
-{{ HTML::script('js/plugins/bootstrap.min.js'); }}
-{{ HTML::script('js/plugins/placeholder-shim.min.js'); }}
-{{ HTML::script('js/plugins/custom.js'); }}

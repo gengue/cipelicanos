@@ -18,7 +18,7 @@
     <div class="alert alert-info">{{ Session::get('message') }}</div>
     @endif
 
-    <table class="table table-striped table-bordered">
+    <table id="productosTbl" class="table table-striped table-bordered">
         <thead>
             <tr>
                 <td>ID</td>
@@ -34,7 +34,7 @@
                 <td>{{ $value->id }}</td>
                 <td>{{ $value->nombre }}</td>
                 <td>{{ $value->descripcion }}</td>
-                <td>{{ $value->nombreprov }}</td>
+                <td>{{ $value->proveedor->nombre }}</td>
 
                 <td>                            
                     <a class="btn btn-small btn-success" href="javascript:mostrarDetalleProducto({{ $value->id }});"><i class="fa fa-search"></i></a>
@@ -49,6 +49,7 @@
 
 </div>
 <script>
+    $('#productosTbl').dataTable();
     $('#menu-vertical li').removeClass();
     $('#menu-vertical').find('a:contains("Productos")').parent().addClass("active");
 </script>

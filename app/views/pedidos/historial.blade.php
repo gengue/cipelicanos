@@ -14,8 +14,9 @@
     </div>
 
     <a class="btn btn-small btn-info" href="javascript:abrirPedidos();"><i class="fa fa-list"></i> Mostrar pedidos activos</a>
-    <br><br>
+    <br>
     <!-- BUSQUEDA -->
+    <!--
     <div class="row">
         <div class="col-lg-8">
             <div class="input-group">
@@ -36,7 +37,7 @@
     <br
         <div class="table-responsive">
 
-        <table class="table table-striped table-bordered table-condensed">
+        <table id="historialTbl" class="table table-striped table-bordered table-condensed">
             <thead>
                 <tr>
                     <td>Producto</td>
@@ -84,6 +85,7 @@
     </div>
 </div>
 <script>
+    $('#historialTbl').dataTable();
     $('#menu-vertical li').removeClass();
     $('#menu-vertical').find('a:contains("Historial")').parent().addClass("active");
 </script>

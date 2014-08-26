@@ -5,6 +5,7 @@
         {{ HTML::style('css/bootstrap.min.css') }}
         {{ HTML::style('css/pnotify.custom.min.css') }}
         {{ HTML::style('css/sb-admin.css') }}
+        {{ HTML::style('css/dataTables.bootstrap.css') }}
         {{ HTML::style('css/plugins/morris.css') }}
         {{ HTML::style('font-awesome-4.1.0/css/font-awesome.min.css') }}
         <meta name="_token" content="{{ csrf_token() }}"/>
@@ -182,6 +183,8 @@
         <!-- /#wrapper -->
         <script src="js/plugins/jquery-1.11.0.js"></script>
         <script src="js/plugins/bootstrap.min.js"></script>
+        <script src="js/plugins/jquery.dataTables.min.js"></script>
+        <script src="js/plugins/dataTables.bootstrap.js"></script>
         <script src="js/plugins/morris/raphael.min.js"></script>
         <script src="js/plugins/morris/morris.min.js"></script>
         <script src="js/plugins/morris/morris-data.js"></script>

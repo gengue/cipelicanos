@@ -3,8 +3,10 @@
 class ProveedoresController extends BaseController {
 
     public function index() {
-        
-        $proveedores = Proveedore::all();
+
+      
+        $proveedores = Proveedor::all();
+      
         return View::make('proveedores.index')
                         ->with('proveedores', $proveedores);
     }
@@ -16,19 +18,25 @@ class ProveedoresController extends BaseController {
     public function store() {
         // validate
         // read more on validation at http://laravel.com/docs/validation
-        $rules = array(
-            'nombre' => 'required'
-        );
+
+         if (Request::ajax()) {
+            $rules = array(
+                'nombre' => 'required',
+              
+            );
+        
+
         $validator = Validator::make(Input::all(), $rules);
 
         // process the login
         if ($validator->fails()) {
-            return Redirect::to('proveedores/create')
-                            ->withErrors($validator)
-                            ->withInput(Input::except('password'));
+
+            return Response::json(array(
+                            'msg' => 'error'
+                ));
         } else {
             // store
-            $proveedor = new Proveedore;
+            $proveedor = new Proveedor;
             $proveedor->nombre = Input::get('nombre');
             $proveedor->nombre_contacto = Input::get('nombre_contacto');
             $proveedor->telefono = Input::get('telefono');
@@ -37,15 +45,18 @@ class ProveedoresController extends BaseController {
             $proveedor->save();
 
             // redirect
-            Session::flash('message', 'Proveedor guardado correctamente!');
-            return Redirect::to('proveedores');
+
+            return Response::json(array(
+                            'msg' => 'ok'
+                ));
+            
         }
     }
-
+    }
   
     public function show($id) {
         // get the nerd
-        $proveedor = Proveedore::find($id);
+        $proveedor = Proveedor::find($id);
 
         // show the view and pass the nerd to it
         return View::make('proveedores.show')
@@ -55,7 +66,7 @@ class ProveedoresController extends BaseController {
   
     public function edit($id) {
     
-        $proveedor = Proveedore::find($id);
+        $proveedor = Proveedor::find($id);
 
         return View::make('proveedores.edit')
                         ->with('proveedor', $proveedor);
@@ -63,41 +74,57 @@ class ProveedoresController extends BaseController {
 
    
     public function update($id) {
-       
-        // read more on validation at http://laravel.com/docs/validation
-        $rules = array(
-            'nombre' => 'required',
-        );
-        $validator = Validator::make(Input::all(), $rules);
 
-        
-        if ($validator->fails()) {
-            return Redirect::to('proveedores/' . $id . '/edit')
-                            ->withErrors($validator)
-                            ->withInput(Input::except('password'));
-        } else {
-            // store
-            $proveedor = Proveedore::find($id);
-            $proveedor->nombre = Input::get('nombre');
-            $proveedor->nombre_contacto = Input::get('nombre_contacto');
-            $proveedor->telefono = Input::get('telefono');
-            $proveedor->direccion = Input::get('direccion');
-            $proveedor->correo = Input::get('correo');
-            $proveedor->save();
+          if (Request::ajax()) {
+            $rules = array(
+                'nombre' => 'required',
+                
+            );
+            $validator = Validator::make(Input::all(), $rules);
 
-            // redirect
-            Session::flash('message', 'Proveedor actualizado correctamente!');
-            return Redirect::to('proveedores');
+            if ($validator->fails()) {
+                return Response::json(array(
+                            'msg' => 'error'
+                ));
+            } else {
+                
+                $proveedor = Proveedor::find($id);
+
+                $proveedor->nombre = Input::get('nombre');
+                $proveedor->nombre_contacto = Input::get('nombre_contacto');
+                $proveedor->telefono = Input::get('telefono');
+                $proveedor->direccion = Input::get('direccion');
+                $proveedor->correo = Input::get('correo');
+                $proveedor->save();
+
+                return Response::json(array(
+                            'msg' => 'ok'
+                ));
+            }
         }
+       
+            
     }
   
     public function destroy($id) {
     
-        $proveedor = Proveedore::find($id);
-        $proveedor->delete();
-        
-        Session::flash('message', 'Proveedor eliminado correctamente!');
-        return Redirect::to('proveedores.index');
+        $proveedor = Proveedor::find($id);
+
+       
+         if($proveedor->delete()){
+            return Response::json(array(
+                            'msg' => 'ok'
+                ));
+        }else{
+            return Response::json(array(
+                            'msg' => 'error'
+                ));
+        }
+    }
+    
+    public function productos($id){
+       $productos = Proveedor::find($id)->productos;
+       return Response::json($productos);
     }
 
 }

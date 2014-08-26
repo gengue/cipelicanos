@@ -1,19 +1,25 @@
 <div class="container-fluid">
 
-    <nav class="navbar navbar-inverse">
-
-        <ul class="nav navbar-nav">
-            <li><a href="javascript:abrirProveedores();">Ver todos los proveedores</a></li>
-            <li><a href="javascript:mostrarCrearProveedor();">Crear un proveedor</a>
-        </ul>
-    </nav>
-
-    <h1>Editar {{ $proveedor->nombre }}</h1>
+    <div class="row">
+        <div class="col-lg-12">
+            <h1 class="page-header">
+                <!--i></i-->Proveedores <small>Editar proveedores</small>
+            </h1>
+            <ol class="breadcrumb">
+                <li class="active">
+                    <i class="fa fa-dashboard"></i> &Uacute;ltima sesi&oacute;n:
+                </li>
+            </ol>
+        </div>
+    </div>
+    <a class="btn btn-small btn-info" href="javascript:abrirProveedores();"><i class="fa fa-list"></i> Listar todos</a>
+    <br><br>
 
     <!-- if there are creation errors, they will show here -->
     {{ HTML::ul($errors->all()) }}
 
-    {{ Form::model($proveedor, array('route' => array('proveedores.update', $proveedor->id), 'method' => 'PUT')) }}
+
+    {{ Form::model($proveedor, array('route' => array('proveedores.update', $proveedor->id),'id' => 'formEditarProveedor', 'method' => 'PUT')) }}
 
     <div class="form-group">
         {{ Form::label('nombre', 'Nombre') }}
@@ -40,4 +46,14 @@
 
     {{ Form::close() }}
 
+
 </div>
+<script>
+
+    $("#formEditarProveedor").submit(function(e) {
+        e.preventDefault();       
+        var datos = $("#formEditarProveedor").serialize();
+        editarProveedores(datos, {{ $proveedor->id }});
+    });
+
+</script>

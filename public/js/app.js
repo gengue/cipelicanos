@@ -204,6 +204,12 @@ function mostrarEditarPedido(id) {
                 type: 'GET',
                 success: function(data) {
                     $('#page-wrapper').html(data);
+                    var select = document.getElementById("id_containers");
+                    var length = select.length;
+                    for(var i=0;i<length;i++){
+                        containers.push(select.options[i].text);
+                    }
+                    actualizarContainers();
                 }
             });
 }
@@ -254,13 +260,13 @@ function eliminarPedido(id) {
  * HISTORIAL DE PEDIDOS
  * 
  */
-function abrirHistorialPedidos(){
+function abrirHistorialPedidos() {
     $.ajax(
             {
-                url: '/pedidos/historial', 
+                url: '/pedidos/historial',
                 type: 'GET',
                 success: function(data) {
-                        $('#page-wrapper').html(data);        
+                    $('#page-wrapper').html(data);
                 }
             });
 }
@@ -300,9 +306,9 @@ function crearNaviera(datos) {
                 type: 'POST',
                 data: datos,
                 success: function(data) {
-                    if(data.msg ===  'error'){
+                    if (data.msg === 'error') {
                         msg_guadadoerror();
-                    }else{
+                    } else {
                         abrirNavieras();
                         msg_guadadocorreto();
                     }
@@ -394,6 +400,79 @@ function mostrarCrearProveedores() {
             });
 
 }
+
+function mostrarEditarProveedores(id) {
+
+    $.ajax(
+            {
+                url: '/proveedores/' + id + '/edit',
+                type: 'GET',
+                success: function(data) {
+                    $('#page-wrapper').html(data);
+                }
+            });
+}
+function editarProveedores(datos, id) {
+    $.ajax(
+            {
+                url: '/proveedores/' + id,
+                type: 'PUT',
+                data: datos,
+                success: function(data) {
+                    if (data.msg === 'error') {
+                        msg_guadadoerror();
+                    } else {
+                        abrirProveedores();
+                        msg_guadadocorreto();
+                    }
+
+                }
+            });
+}
+function mostrarDetalleProveedores(id) {
+    $.ajax(
+            {
+                url: '/proveedores/' + id,
+                type: 'GET',
+                success: function(data) {
+                    $('#page-wrapper').html(data);
+                }
+            });
+}
+function eliminarProveedores(id) {
+    $.ajax(
+            {
+                url: '/proveedores/' + id,
+                type: 'DELETE',
+                success: function(data) {
+                    if (data.msg === 'error') {
+                        msg_borradoerror();
+                    } else {
+                        abrirProveedores();
+                        msg_borradocorrecto();
+                    }
+
+                }
+            });
+}
+function crearProveedor(datos) {
+
+    $.ajax(
+            {
+                url: '/proveedores',
+                type: 'POST',
+                data: datos,
+                success: function(data) {
+                    if (data.msg === 'error') {
+                        msg_guadadoerror();
+                    } else {
+                        abrirProveedores();
+                        msg_guadadocorreto();
+                    }
+                }
+            });
+}
+
 /*
  *
  *  USUARIOS 
@@ -423,6 +502,80 @@ function mostrarCrearUsuario() {
             });
 
 }
+
+function mostrarEditarUsuarios(id) {
+
+    $.ajax(
+            {
+                url: '/usuarios/' + id + '/edit',
+                type: 'GET',
+                success: function(data) {
+                    $('#page-wrapper').html(data);
+                }
+            });
+}
+function editarUsuarios(datos, id) {
+    $.ajax(
+            {
+                url: '/usuarios/' + id,
+                type: 'PUT',
+                data: datos,
+                success: function(data) {
+                    if (data.msg === 'error') {
+                        msg_guadadoerror();
+                    } else {
+                        abrirUsuarios();
+                        msg_guadadocorreto();
+                    }
+
+                }
+            });
+}
+function mostrarDetalleUsuarios(id) {
+    $.ajax(
+            {
+                url: '/usuarios/' + id,
+                type: 'GET',
+                success: function(data) {
+                    $('#page-wrapper').html(data);
+                }
+            });
+}
+function eliminarUsuarios(id) {
+    $.ajax(
+            {
+                url: '/usuarios/' + id,
+                type: 'DELETE',
+                success: function(data) {
+                    if (data.msg === 'error') {
+                        msg_borradoerror();
+                    } else {
+                        abrirUsuarios();
+                        msg_borradocorrecto();
+                    }
+
+                }
+            });
+}
+function crearUsuarios(datos) {
+
+    $.ajax(
+            {
+                url: '/usuarios',
+                type: 'POST',
+                data: datos,
+                success: function(data) {
+                    if (data.msg === 'error') {
+                        msg_guadadoerror();
+                    } else {
+                        abrirUsuarios();
+                        msg_guadadocorreto();
+                    }
+                }
+            });
+}
+
+
 /*
  *
  *  CLIENTES 
@@ -439,30 +592,30 @@ function abrirClientes() {
                 }
             });
 }
-function aprobarCliente(aprobado, id){
-   
-    if(aprobado){        
-        $.ajax(
-            {
-                url: '/usuarios/clientes/aprobar/' + id,
-                type: 'GET',
-                data: {estado: "ACTIVO"},
-                success: function(data) {
-                    if (data.msg === 'error') {
-                        msg_guadadoerror();
-                    } else {
-                        abrirClientes();
-                        msg_guadadocorreto();
-                    }
+function aprobarCliente(aprobado, id) {
 
-                }
-            });
-    }else{
+    if (aprobado) {
+        $.ajax(
+                {
+                    url: '/usuarios/clientes/aprobar/' + id,
+                    type: 'GET',
+                    data: {estado: "ACTIVO"},
+                    success: function(data) {
+                        if (data.msg === 'error') {
+                            msg_guadadoerror();
+                        } else {
+                            abrirClientes();
+                            msg_guadadocorreto();
+                        }
+
+                    }
+                });
+    } else {
         eliminarCliente(id);
     }
 }
- function eliminarCliente(id){
-     $.ajax(
+function eliminarCliente(id) {
+    $.ajax(
             {
                 url: '/usuarios/' + id,
                 type: 'DELETE',
@@ -477,3 +630,50 @@ function aprobarCliente(aprobado, id){
                 }
             });
  }
+
+
+function mostrarDetalleCliente(id) {
+    $.ajax(
+            {
+                url: '/usuarios/' + id,
+                type: 'GET',
+                success: function(data) {
+                    $('#page-wrapper').html(data);
+                }
+            });
+}
+
+/* 
+ * CARGA DE LISTAS ASINCRONAS
+ * 
+ * */
+function cargarProductos(id_proveedor){
+    $.ajax(
+            {
+                url: '/proveedores/api/productos/' + id_proveedor,
+                type: 'GET',
+                success: function(data) {
+                    cargarLista(data, 'producto_id');
+                }
+            });
+}
+function cargarCiudades(id_pais){
+    $.ajax(
+            {
+                url: '/api/paises/' + id_pais,
+                type: 'GET',
+                success: function(data) {
+                    cargarLista(data, 'ciudad');
+                }
+            });
+}
+//funcion semi-generica para cargar listas asincronas
+//recibe el array de datos y el selector donde se cargara
+function cargarLista(datos, sel){
+    var cad = "";
+    $.each(datos, function(pos, item){
+        cad += '<option value='+item.id+'>'+item.nombre+'</option>';
+    });
+    
+    $("#"+sel).html(cad);
+}

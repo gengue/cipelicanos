@@ -21,14 +21,16 @@
                 'files' => true)) }}
 
     <div class="form-group">
+        {{ Form::label('proveedor_id', 'Proveedor') }}
+        {{ Form::select('proveedor_id', $proveedores, null, array('class'=>'form-control','style'=>'' )) }}
+    </div>
+
+    <div class="form-group">
         {{ Form::label('producto_id', 'Producto') }}
         {{ Form::select('producto_id', $productos, null, array('class'=>'form-control','style'=>'' )) }}
     </div>
 
-    <div class="form-group">
-        {{ Form::label('proveedor_id', 'Proveedor') }}
-        {{ Form::select('proveedor_id', $proveedores, null, array('class'=>'form-control','style'=>'' )) }}
-    </div>
+
     <div class="form-group">
         {{ Form::label('naviera_id', 'Naviera') }}
         {{ Form::select('naviera_id', $navieras, null, array('class'=>'form-control','style'=>'' )) }}
@@ -126,17 +128,17 @@
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-                <h4 class="modal-title" id="myModalLabel">Crar Container</h4>
+                <h4 class="modal-title" id="myModalLabel">Crear Container</h4>
             </div>
             <div class="modal-body">
 
                 {{ Form::open(array('id' => 'formContainer')) }}
-
+                {{Form::hidden('id','',array('id'=>'id'))}}
                 <div class="form-group">
                     {{ Form::label('numero_container', 'Numero de Container') }}
                     {{ Form::text('numero_container', Input::old('nombre'), array('class' => 'form-control')) }}
                 </div>
-                {{ Form::submit('Crear container!', array('class' => 'btn btn-primary')) }}
+                {{ Form::submit('Crear container!', array('class' => 'btn btn-primary', 'id'=>'btnsubmit')) }}
 
                 {{ Form::close() }}
             </div>
@@ -148,7 +150,7 @@
 </html>
 <script>
     var containers = [];
-
+    
     $("#formPedidos").submit(function(e) {
         e.preventDefault();
         $("#id_containers").val(containers);
@@ -157,25 +159,44 @@
         crearPedido(datos);
     });
 
+    $("#proveedor_id").on('change', function(ev) {
+        cargarProductos($(this).val());
+    });
+
     $("#formContainer").submit(function(e) {
         e.preventDefault();
-
-        var datos = $('input:text[name=numero_container]').val();
-        $('input:text[name=numero_container]').val('');
-        //crearContainer(datos);
-        containers.push(datos);
-        $('#modalContainer').modal('hide');
-        actualizarContainers();
-        //console.log(containers);
+        var id = $('#id').val();
+        if (id) {
+            var datos = $('input:text[name=numero_container]').val();
+            $('input:text[name=numero_container]').val('');
+            containers[id] = datos;
+            $('#id').val('');
+            $('#modalContainer').modal('hide');
+            actualizarContainers();
+            alert('Editado!');
+        } else {
+            var datos = $('input:text[name=numero_container]').val();
+            $('input:text[name=numero_container]').val('');
+            containers.push(datos);
+            $('#modalContainer').modal('hide');
+            actualizarContainers();
+            alert('Agregado!');
+        }
     });
     function agregarContainer() {
+        $('#btnsubmit').val('Crear container!');
         $('#modalContainer').modal();
     }
     function editarContainer(id) {
-        alert('Edita Container ' + id);
+        $('#id').val(id);
+        $('#btnsubmit').val('Editar');
+        $('input:text[name=numero_container]').val(containers[id]);
+        $('#modalContainer').modal();
     }
     function eliminarContainer(id) {
-        alert('Eliminar Container ' + id);
+        containers.splice(id, 1);
+        actualizarContainers();
+
     }
     function actualizarContainers() {
         $("#ulContainers").html("");

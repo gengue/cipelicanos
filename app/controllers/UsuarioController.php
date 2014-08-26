@@ -2,13 +2,18 @@
 
 class UsuarioController extends BaseController {
 
+
+  
     public function index() {
-        
+
+
         $usuarios = Usuario::all();
         return View::make('usuarios.index')
                         ->with('usuarios', $usuarios);
-    }
     
+    }
+
+
     public function clientes() {
         
         $usuarios = Usuario::where('tipo_usuario','=','cliente')->get();
@@ -26,22 +31,23 @@ class UsuarioController extends BaseController {
     }
 
     public function create() {
-        return View::make('usuarios.create');
+        $paises = Country::lists('nombre', 'Code');
+        $ciudades = City::lists('nombre', 'id');
+        return View::make('usuarios.create', array('paises'=> $paises,
+                                                   'ciudades' => $ciudades
+                ));
     }
  
     public function store() {
-        // validate
-        // read more on validation at http://laravel.com/docs/validation
-        $rules = array(
-            
-        );
+       if (Request::ajax()) {
+            $rules = array(
+            );
         $validator = Validator::make(Input::all(), $rules);
-
-        // process the login
         if ($validator->fails()) {
-            return Redirect::to('usuarios/create')
-                            ->withErrors($validator)
-                            ->withInput(Input::except('password'));
+            return Response::json(array(
+                            'msg' => 'error'
+        ));
+
         } else {
             // store
             $usuario = new Usuario;
@@ -51,23 +57,21 @@ class UsuarioController extends BaseController {
             $usuario->telefono = Input::get('telefono');
             $usuario->correo = Input::get('correo');
             $usuario->direccion = Input::get('direccion');
-            $usuario->pais = Input::get('pais');
-            $usuario->ciudad = Input::get('ciudad');
+            $usuario->pais_id = Input::get('pais');
+            $usuario->ciudad_id = Input::get('ciudad');
             $usuario->tipo_usuario = Input::get('tipo_usuario');
             $usuario->save();    
                 
-            // redirect
-            Session::flash('message', 'Usuario guardado correctamente!');
-            return Redirect::to('usuarios');
+            return Response::json(array(
+                            'msg' => 'ok'
+                ));
         }
-    }
+    }}
 
   
     public function show($id) {
-        // get the nerd
         $usuario = Usuario::find($id);
 
-        // show the view and pass the nerd to it
         return View::make('usuarios.show')
                         ->with('usuarios', $usuario);
     }
@@ -76,9 +80,13 @@ class UsuarioController extends BaseController {
     public function edit($id) {
     
         $usuario = Usuario::find($id);
-
-        return View::make('usuarios.edit')
-                        ->with('usuarios', $usuario);
+        $paises = Country::lists('nombre', 'Code');
+        $ciudades = Country::find($usuario->pais_id)->ciudades->lists('nombre', 'id');
+        return View::make('usuarios.edit', array('usuario' => $usuario,
+                                                   'paises'=> $paises,
+                                                   'ciudades' => $ciudades
+            ));
+                        
     }
 
     public function aprobarCliente($id){
@@ -97,15 +105,18 @@ class UsuarioController extends BaseController {
     public function update($id) {
        
         // read more on validation at http://laravel.com/docs/validation
-        $rules = array(
-        );
-        $validator = Validator::make(Input::all(), $rules);
 
-        
-        if ($validator->fails()) {
-            return Redirect::to('usuarios/' . $id . '/edit')
-                            ->withErrors($validator)
-                            ->withInput(Input::except('password'));
+         if (Request::ajax()) {
+            $rules = array(
+               
+                
+            );
+            $validator = Validator::make(Input::all(), $rules);
+
+            if ($validator->fails()) {
+                return Response::json(array(
+                            'msg' => 'error'
+                ));
         } else {
             // store
             $usuario = Usuario::find($id);
@@ -115,8 +126,8 @@ class UsuarioController extends BaseController {
             $usuario->telefono = Input::get('telefono');
             $usuario->correo = Input::get('correo');
             $usuario->direccion = Input::get('direccion');
-            $usuario->pais = Input::get('pais');
-            $usuario->ciudad = Input::get('ciudad');
+            $usuario->pais_id = Input::get('pais');
+            $usuario->ciudad_id = Input::get('ciudad');
             
             if(Input::get('tipo_usuario')){
                 $usuario->tipo_usuario = Input::get('tipo_usuario');
@@ -126,13 +137,12 @@ class UsuarioController extends BaseController {
             }
             $usuario->save();
 
+             return Response::json(array(
+                            'msg' => 'ok'
+                ));}
+    }}
 
-            // redirect
-            Session::flash('message', 'Usuario actualizado correctamente!');
-            return Redirect::to('usuarios');
-        }
-    }
-  
+            
     public function destroy($id) {
     
         $usuario = Usuario::find($id);

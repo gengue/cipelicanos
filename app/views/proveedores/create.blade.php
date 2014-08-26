@@ -18,7 +18,9 @@
     <!-- if there are creation errors, they will show here -->
     {{ HTML::ul($errors->all()) }}
 
-    {{ Form::open(array('url' => 'proveedores')) }}
+
+    {{ Form::open(array('url' => 'proveedores', 'id' => 'formProveedores')) }}
+
 
     <div class="form-group">
         {{ Form::label('nombre', 'Nombre') }}
@@ -45,4 +47,16 @@
 
     {{ Form::close() }}
 
+
 </div>
+
+<script>
+
+    $("#formProveedores").submit(function(e) {
+        e.preventDefault();
+        
+        var datos =  $("#formProveedores").serialize();
+        crearProveedor(datos);
+    });
+
+</script>

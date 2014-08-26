@@ -12,7 +12,7 @@
             </ol>
         </div>
     </div>
-    
+
     <a class="btn btn-small btn-info" href="javascript:abrirProveedores();"><i class="fa fa-list"></i> Listar todos</a>
     <a class="btn btn-small btn-info" href="javascript:mostrarCrearProveedores();"><i class="fa fa-plus"></i> Agregar Proveedor</a>
     <br><br>
@@ -24,7 +24,7 @@
     <div class="alert alert-info">{{ Session::get('message') }}</div>
     @endif
 
-    <table class="table table-striped table-bordered">
+    <table id="proveedoresTbl" class="table display table-striped table-bordered" cellspacing="0" width="100%">
         <thead>
             <tr>
                 <td>ID</td>
@@ -46,20 +46,12 @@
                 <td>{{ $value->direccion }}</td>
                 <td>{{ $value->correo }}</td>
 
-                <!-- we will also add show, edit, and delete buttons -->
                 <td>                            
-                    <!-- show the nerd (uses the show method found at GET /nerds/{id} -->
-                    <a class="btn btn-small btn-success" href="{{ URL::to('proveedores/' . $value->id) }}">Detalle</a>
+                    
+                    <a class="btn btn-small btn-success" href= "javascript:mostrarDetalleProveedores({{$value->id}});" title="Ver Detalles"><i class="fa fa-search" ></i></a>
+                    <a class="btn btn-small btn-info" href="javascript:mostrarEditarProveedores({{ $value->id}});" title="Modificar" ><i class="fa fa-pencil" ></i></a>
+                    <a class="btn btn-small btn-danger" href="javascript:eliminarProveedores({{ $value->id }});" title="Eliminar"><i class="fa fa-trash-o" ></i></a>
 
-                    <!-- edit this nerd (uses the edit method found at GET /nerds/{id}/edit -->
-                    <a class="btn btn-small btn-info" href="{{ URL::to('proveedores/' . $value->id . '/edit') }}">Editar</a>
-                    <!-- delete the nerd (uses the destroy method DESTROY /nerds/{id} -->
-                    <!-- we will add this later since its a little more complicated than the other two buttons -->
-
-                    {{ Form::open(array('url' => 'proveedores/' . $value->id, 'class' => 'pull-right')) }}
-                    {{ Form::hidden('_method', 'DELETE') }}
-                    {{ Form::submit('Eliminar', array('class' => 'btn btn-warning')) }}
-                    {{ Form::close() }}
                 </td>
             </tr>
             @endforeach
@@ -68,6 +60,8 @@
 
 </div>
 <script>
+
+    $('#proveedoresTbl').dataTable();
     $('#menu-vertical li').removeClass();
     $('#menu-vertical').find('a:contains("Proveedores")').parent().addClass("active");
 </script>

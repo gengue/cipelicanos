@@ -14,7 +14,8 @@
     <a class="btn btn-small btn-info" href="javascript:abrirProductos();"><i class="fa fa-list"></i> Listar todos</a>
     <br><br>
 
-{{ Form::model($producto, array('route' => array('productos.update', $producto->id), 
+
+{{ Form::model($producto, array('route' => array('productos.update', $producto->id),
             'id' => 'formEditarProducto', 
             'method' => 'PUT')) 
 }}
@@ -29,14 +30,12 @@
 	</div>
 	<div class="form-group">
                 {{ Form::label('proveedor', 'Proveedor') }}
-                {{ Form::select('proveedor', $proveedores, $proveedor->id, array('class' => 'form-control')) }}
+                {{ Form::select('proveedor', $proveedores, $producto->proveedor->id, array('class' => 'form-control')) }}
         </div>
 	
-
 	{{ Form::submit('Editar Producto!', array('class' => 'btn btn-primary')) }}
 
 {{ Form::close() }}
-
 </div>
 <script>
 

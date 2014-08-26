@@ -17,10 +17,9 @@
     <a class="btn btn-small btn-info" href="javascript:mostrarCrearPedido();"><i class="fa fa-plus"></i> Agregar Pedido</a>
     <br><br>
 
-    <!-- will be used to show any messages -->
     <div class="table-responsive">
 
-        <table class="table table-striped table-hover table-bordered table-condensed">
+        <table id="pedidosTbl" class="table table-striped table-hover table-bordered table-condensed">
             <thead>
                 <tr>
                     <td>Producto</td>
@@ -60,8 +59,8 @@
 
                     <td>  
                         <a class="btn btn-small btn-success" href="javascript:mostrarDetallePedido({{ $value->id }});"><i class="fa fa-search"></i></a>
-                    <a class="btn btn-small btn-info" href="javascript:mostrarEditarPedido({{ $value->id }});"><i class="fa fa-pencil"></i></a>
-                    <a class="btn btn-small btn-danger" href="javascript:eliminarPedido({{ $value->id }});"><i class="fa fa-trash-o"></i></a>
+                        <a class="btn btn-small btn-info" href="javascript:mostrarEditarPedido({{ $value->id }});"><i class="fa fa-pencil"></i></a>
+                        <a class="btn btn-small btn-danger" href="javascript:eliminarPedido({{ $value->id }});"><i class="fa fa-trash-o"></i></a>
                     </td>
                 </tr>
                 @endforeach
@@ -70,6 +69,7 @@
     </div>
 </div>
 <script>
+    $('#pedidosTbl').dataTable();
     $('#menu-vertical li').removeClass();
     $('#menu-vertical').find('a:contains("Pedidos")').parent().addClass("active");
 </script>

@@ -15,10 +15,9 @@
 
     <a class="btn btn-small btn-info" href="javascript:abrirUsuarios();"><i class="fa fa-list"></i> Listar todos</a>
    <br><br>
-            <!-- if there are creation errors, they will show here -->
-            {{ HTML::ul($errors->all()) }}
+          
+            {{ Form::open(array('url' => 'usuarios','id' => 'formUsuarios')) }}
 
-            {{ Form::open(array('url' => 'usuarios')) }}
 
             <div class="form-group">
                 {{ Form::label('tipo_usuario', 'Tipo de Usuario') }}
@@ -51,14 +50,29 @@
 
             <div class="form-group">
                 {{ Form::label('pais', 'Pais') }}
-                {{ Form::select('pais', array('COL' => 'Colombia'), null, array('class'=>'form-control','style'=>'' )) }}
+                {{ Form::select('pais', $paises, null, array('class'=>'form-control','style'=>'' )) }}
             </div>
             <div class="form-group">
                 {{ Form::label('ciudad', 'Ciudad') }}
-                {{ Form::select('ciudad', array('CHV' => 'Chivolo'), null, array('class'=>'form-control','style'=>'' )) }}
+                {{ Form::select('ciudad', array(), null, array('class'=>'form-control','style'=>'' )) }}
             </div>
             {{ Form::submit('Crear Usuario!', array('class' => 'btn btn-primary')) }}
 
             {{ Form::close() }}
 
+
         </div>
+<script>
+
+    $("#formUsuarios").submit(function(e) {
+        e.preventDefault();
+        
+        var datos =  $("#formUsuarios").serialize();
+        crearUsuarios(datos);
+    });
+    
+    $("#pais").on('change', function(ev) {
+        cargarCiudades($(this).val());
+     });
+
+</script>

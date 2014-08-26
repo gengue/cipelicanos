@@ -79,8 +79,10 @@ return array(
 			'host'      => 'localhost',
 			'database'  => 'cipelicanos',
                         'unix_socket'   => '/Applications/MAMP/tmp/mysql/mysql.sock',   
-			'username'  => 'root',
+
+			'username'  => 'root',		
 			'password'  => 'root',
+
 			'charset'   => 'utf8',
 			'collation' => 'utf8_unicode_ci',
 			'prefix'    => '',

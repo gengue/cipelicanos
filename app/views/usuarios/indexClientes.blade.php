@@ -68,7 +68,7 @@
             <i class="fa fa-check"></i> Clientes activos:</li>
     </ol>
     <div class='table-responsive'>
-        <table class="table table-striped table-condensed table-bordered table-hover">
+        <table id="clientesTbl" class="table table-striped table-condensed table-bordered table-hover">
             <thead>
                 <tr>
                     <td>Nombre</td>
@@ -93,8 +93,9 @@
                     <td>{{ $value->ciudad }}</td>
 
                     <td>                            
-                        <a class="btn btn-small btn-success" href="javascript:msg_noimplementado();"><i class="fa fa-search"></i></a>
-                        <a class="btn btn-small btn-danger" href="javascript:msg_noimplementado();"><i class="fa fa-trash-o"></i></a>
+                        <a class="btn btn-small btn-success" href="javascript:mostrarDetalleCliente({{ $value->id }});"><i class="fa fa-search"></i></a>
+                        <a class="btn btn-small btn-danger" href="javascript:eliminarCliente({{ $value->id }});"><i class="fa fa-trash-o"></i></a>
+
                     </td>
                 </tr>
                 @endforeach
@@ -103,6 +104,7 @@
     </div>
 </div>
 <script>
+    $('#clientesTbl').dataTable();
     $('#menu-vertical li').removeClass();
     $('#menu-vertical').find('a:contains("Clientes")').parent().addClass("active");
 </script>
