@@ -18,7 +18,7 @@ class PedidosContainer extends Eloquent{
         $containerlist = DB::table('pedidos_containers')
                         ->join('containers', 'containers.id', '=', 'pedidos_containers.container_id')
                         ->where('pedidos_containers.pedido_id', '=', $id)
-                        ->select('containers.id', 'containers.numero_container')->lists('id');
+                        ->select('containers.id', 'containers.numero_container')->lists('numero_container','id');
         return $containerlist;
     }
 }

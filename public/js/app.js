@@ -204,6 +204,12 @@ function mostrarEditarPedido(id) {
                 type: 'GET',
                 success: function(data) {
                     $('#page-wrapper').html(data);
+                    var select = document.getElementById("id_containers");
+                    var length = select.length;
+                    for(var i=0;i<length;i++){
+                        containers.push(select.options[i].text);
+                    }
+                    actualizarContainers();
                 }
             });
 }
@@ -623,7 +629,8 @@ function eliminarCliente(id) {
 
                 }
             });
-}
+ }
+
 
 function mostrarDetalleCliente(id) {
     $.ajax(

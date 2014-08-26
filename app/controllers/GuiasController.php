@@ -21,9 +21,9 @@ class GuiasController extends BaseController {
         $validator = Validator::make(Input::all(), $rules);
 
         if ($validator->fails()) {
-            return Redirect::to('guias/create')
-                            ->withErrors($validator)
-                            ->withInput(Input::except('password'));
+            return Response::json(array(
+                            'msg' => 'error'
+                ));
         } else {
             $dir = 'public/archivos/';
             $nombreArchivo = Input::get('numero_guia') . '.pdf';
@@ -39,8 +39,9 @@ class GuiasController extends BaseController {
            
             $guia->save();
             // redirect
-            Session::flash('message', 'Guia creada correctamente!');
-            return Redirect::to('guias');
+            return Response::json(array(
+                            'msg' => 'ok'
+                ));
         }
     }
 

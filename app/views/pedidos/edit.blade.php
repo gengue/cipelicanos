@@ -19,28 +19,62 @@
 
     {{ Form::model($pedido, array('route' => array('pedidos.update', $pedido->id),  
             'id' => 'formEditarPedido', 
-            'method' => 'PUT')) }}
-
+            'method' => 'PUT',
+            'files' => true)) }}
+    <div class="form-group">
+        {{ Form::label('proveedor_id', 'Proveedor') }}
+        {{ Form::select('proveedor_id', $proveedores, $pedido->proveedor_id, array('class'=>'form-control','style'=>'' )) }}
+    </div>
+            
     <div class="form-group">
         {{ Form::label('producto_id', 'Producto') }}
         {{ Form::select('producto_id', $productos, $pedido->producto_id, array('class'=>'form-control','style'=>'' )) }}
     </div>
 
-    <div class="form-group">
-        {{ Form::label('proveedor_id', 'Proveedor') }}
-        {{ Form::select('proveedor_id', $proveedores, $pedido->proveedor_id, array('class'=>'form-control','style'=>'' )) }}
-    </div>
+
     <div class="form-group">
         {{ Form::label('naviera_id', 'Naviera') }}
         {{ Form::select('naviera_id', $navieras, $pedido->naviera_id, array('class'=>'form-control','style'=>'' )) }}
     </div>
     <div class="form-group">
-        {{ Form::label('container_id', 'Containers') }}
-        {{ Form::select('containers[]', $container, (array)$pedido->containers, array('multiple' => true,  'class'=>'form-control')); }}
+        <div class="panel panel-success">
+            <div class="panel-heading">
+                <h3 class="panel-title">Containers</h3>
+            </div>
+            <!-- <div class="alert alert-info alert-dismissible" role="alert">
+                            <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                            <strong>ey!</strong> Aca puedes agregar, editar o eliminar los containers correspondientes a este pedido!.
+                        </div>-->
+            <ul id="ulContainers" class="list-group">
+            </ul>
+            <div class="panel-footer">
+                <a id="aContainers" href="javascript:agregarContainer();" class="btn btn-primary btn-sm" role="button">Agregar Container</a>
+            </div>
+        </div>
     </div>
+    {{ Form::hidden('containers', '', array('id' => 'ih_containers')) }}
+    {{ Form::select('slct-containers', $pedido->containers, '', array('class'=>'form-control','style'=>'display:none;', 'id'=>'id_containers' )) }}
+    
     <div class="form-group">
-        {{ Form::label('guia_id', 'Guia') }}
-        {{ Form::select('guia_id', $guias, $pedido->guia_id, array('class'=>'form-control','style'=>'' )) }}
+        <div class="panel panel-success">
+            <div class="panel-heading">
+                <h3 class="panel-title">Guia</h3>
+            </div>
+            <div class="panel-body">
+                <div class="form-group">
+                    {{ Form::label('numero_guia', 'Numero de guia') }}
+                    {{ Form::text('numero_guia', $guia->numero_guia, array('class' => 'form-control')) }}
+                </div>
+                <div class="form-group">
+                    {{ Form::label('empresa_envio', 'Empresa de envio') }}
+                    {{ Form::text('empresa_envio', $guia->empresa_envio, array('class' => 'form-control')) }}
+                </div>
+                <div class="form-group">
+                    {{ Form::label('url_archivo', 'Documento adjunto') }}
+                    {{ Form::file('url_archivo') }}
+                </div>
+            </div>
+        </div>
     </div>
 
     <div class="form-group">
@@ -89,12 +123,85 @@
     {{ Form::close() }}
 
 </div>
+<!-- Modal de containers -->
+<div class="modal fade" id="modalContainer" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                <h4 class="modal-title" id="myModalLabel">Crear Container</h4>
+            </div>
+            <div class="modal-body">
+
+                {{ Form::open(array('id' => 'formContainer')) }}
+                {{Form::hidden('id','',array('id'=>'id'))}}
+                <div class="form-group">
+                    {{ Form::label('numero_container', 'Numero de Container') }}
+                    {{ Form::text('numero_container', Input::old('nombre'), array('class' => 'form-control')) }}
+                </div>
+                {{ Form::submit('Crear container!', array('class' => 'btn btn-primary', 'id'=>'btnsubmit')) }}
+
+                {{ Form::close() }}
+            </div>
+        </div>
+    </div>
+</div>
+<!-- FIN Modal-->
 <script>
+    var containers = [];
+    
 
     $("#formEditarPedido").submit(function(e) {
-        e.preventDefault();       
+        e.preventDefault();
+        $("#ih_containers").val(containers);
         var datos = $("#formEditarPedido").serialize();
+        console.log(datos);
+        
         editarPedido(datos, {{ $pedido->id }});
     });
 
+    $("#proveedor_id").on('change', function(ev) {
+        cargarProductos($(this).val());
+    });
+
+    $("#formContainer").submit(function(e) {
+        e.preventDefault();
+        var id = $('#id').val();
+        if (id) {
+            var datos = $('input:text[name=numero_container]').val();
+            $('input:text[name=numero_container]').val('');
+            containers[id] = datos;
+            $('#id').val('');
+            $('#modalContainer').modal('hide');
+            actualizarContainers();
+            alert('Editado!');
+        } else {
+            var datos = $('input:text[name=numero_container]').val();
+            $('input:text[name=numero_container]').val('');
+            containers.push(datos);
+            $('#modalContainer').modal('hide');
+            actualizarContainers();
+            alert('Agregado!');
+        }
+    });
+    function agregarContainer() {
+        $('#btnsubmit').val('Crear container!');
+        $('#modalContainer').modal();
+    }
+    function editarContainer(id) {
+        $('#id').val(id);
+        $('#btnsubmit').val('Editar');
+        $('input:text[name=numero_container]').val(containers[id]);
+        $('#modalContainer').modal();
+    }
+    function eliminarContainer(id) {
+        containers.splice(id, 1);
+        actualizarContainers();
+    }
+    function actualizarContainers() {
+        $("#ulContainers").html("");
+        for (var i = 0; i < containers.length; i++) {
+            $("#ulContainers").append('<li class="list-group-item">' + containers[i] + ' <a href="javascript:editarContainer(' + i + ')">Editar </a><a href="javascript:eliminarContainer(' + i + ')">Borrar</a></li>');
+        }
+    }
 </script>

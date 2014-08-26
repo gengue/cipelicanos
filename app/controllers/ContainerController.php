@@ -40,9 +40,9 @@ class ContainerController extends BaseController {
 
         // process the login
         if ($validator->fails()) {
-            return Redirect::to('container/create')
-                            ->withErrors($validator)
-                            ->withInput(Input::except('password'));
+            return Response::json(array(
+                            'msg' => 'error'
+                ));
         } else {
             // store
             $container = new Container;
@@ -50,8 +50,9 @@ class ContainerController extends BaseController {
             $container->save();
 
             // redirect
-            Session::flash('message', 'Successfully created!');
-            return Redirect::to('container');
+            return Response::json(array(
+                            'msg' => 'ok'
+                ));
         }
     }
 

@@ -6,15 +6,15 @@ class PedidosController extends BaseController {
 
         $pedidosdb = new Pedido();
         $pedidos = $pedidosdb->obtenerPedidos('ACTIVO');
-        
+
         return View::make('pedidos.index')->with('pedidos', $pedidos);
     }
-    
+
     public function historial() {
 
         $pedidosdb = new Pedido();
         $pedidos = $pedidosdb->obtenerPedidos('INACTIVO');
-        
+
         return View::make('pedidos.historial')->with('pedidos', $pedidos);
     }
 
@@ -22,22 +22,23 @@ class PedidosController extends BaseController {
         $productos = Producto::lists('nombre', 'id');
         $proveedores = Proveedor::lists('nombre', 'id');
         $navieras = Naviera::lists('nombre', 'id');
-        $container = Container::lists('numero_container', 'id');
-        $guias = Guia::lists('numero_guia', 'id');
+        //$container = Container::lists('numero_container', 'id');
+        //$guias = Guia::lists('numero_guia', 'id');
 
         return View::make('pedidos.create', array('productos' => $productos,
                     'proveedores' => $proveedores,
                     'navieras' => $navieras,
-                    'container' => $container,
-                    'guias' => $guias));
+        ));
     }
 
     public function store() {
         $rules = array(
-            'containers'=> 'required',
-            'numero_reserva'=> 'required',
-            'buque'=> 'required',
-            'importe_facturado'=> 'required',
+            'containers' => 'required',
+            'numero_guia' => 'required',
+            'empresa_envio' => 'required',
+            'numero_reserva' => 'required',
+            'buque' => 'required',
+            'importe_facturado' => 'required',
         );
         $validator = Validator::make(Input::all(), $rules);
 
@@ -46,11 +47,27 @@ class PedidosController extends BaseController {
                         'msg' => 'error'
             ));
         } else {
+            //Primero guadamos la guia
+            $dir = 'public/archivos/';
+            $nombreArchivo = Input::get('numero_guia') . '.pdf';
+            // store            
+            $guia = new Guia;
+            $guia->numero_guia = Input::get('numero_guia');
+            $guia->empresa_envio = Input::get('empresa_envio');
+
+            if (Input::hasFile('url_archivo')) {
+                $archivo = Input::file('url_archivo');
+                $guia->url_archivo = $dir . $nombreArchivo;
+                $archivo->move($dir, $nombreArchivo);
+            }
+
+            $guia->save();
+
             $pedido = new Pedido; //creamos un pedido
             $pedido->producto_id = Input::get('producto_id');
             $pedido->proveedor_id = Input::get('proveedor_id');
             $pedido->naviera_id = Input::get('naviera_id');
-            $pedido->guia_id = Input::get('guia_id');
+            $pedido->guia_id = $guia->id;
             $pedido->numero_reserva = Input::get('numero_reserva');
             $pedido->buque = Input::get('buque');
             $pedido->fecha_carga = Input::get('fecha_carga');
@@ -61,15 +78,21 @@ class PedidosController extends BaseController {
             $pedido->save();
 
             $containers = Input::get('containers');
+            $Array_containers = preg_split("/[\s,]+/", $containers);
+
             //Guardamos los containers asociados al pedido guardado
-            foreach ($containers as $key => $value) {
+            foreach ($Array_containers as $key => $value) {
+                $container = new Container;
+                $container->numero_container = $Array_containers[$key];
+                $container->save();
                 $relacion = new PedidosContainer;
                 $relacion->pedido_id = $pedido->id;
-                $relacion->container_id = $containers[$key];
+                $relacion->container_id = $container->id;
                 $relacion->save();
             }
+
             return Response::json(array(
-                        'msg' => 'ok'
+                        'msg' => 'ok',
             ));
         }
     }
@@ -91,38 +114,55 @@ class PedidosController extends BaseController {
         $productos = Producto::lists('nombre', 'id');
         $proveedores = Proveedor::lists('nombre', 'id');
         $navieras = Naviera::lists('nombre', 'id');
-        $container = Container::lists('numero_container', 'id');
-        $guias = Guia::lists('numero_guia', 'id');
+
+        $guia = Guia::find($pedido->guia_id);
 
         return View::make('pedidos.edit', array('pedido' => $pedido,
                     'productos' => $productos,
                     'proveedores' => $proveedores,
                     'navieras' => $navieras,
-                    'container' => $container,
-                    'guias' => $guias));
+                    'guia' => $guia));
     }
 
     public function update($id) {
 
-        // read more on validation at http://laravel.com/docs/validation
         $rules = array(
-            'containers'=> 'required',
-            'numero_reserva'=> 'required',
-            'buque'=> 'required',
-            'importe_facturado'=> 'required',
+            'containers' => 'required',
+            'numero_guia' => 'required',
+            'empresa_envio' => 'required',
+            'numero_reserva' => 'required',
+            'buque' => 'required',
+            'importe_facturado' => 'required',
         );
         $validator = Validator::make(Input::all(), $rules);
+
         if ($validator->fails()) {
             return Response::json(array(
                         'msg' => 'error'
             ));
         } else {
-            // Update
             $pedido = Pedido::find($id);
+
+            //Primero guadamos la guia
+            $dir = 'public/archivos/';
+            $nombreArchivo = Input::get('numero_guia') . '.pdf';
+            // store            
+            $guia = Guia::find($pedido->guia_id);
+            $guia->numero_guia = Input::get('numero_guia');
+            $guia->empresa_envio = Input::get('empresa_envio');
+
+            if (Input::hasFile('url_archivo')) {
+                $archivo = Input::file('url_archivo');
+                $guia->url_archivo = $dir . $nombreArchivo;
+                $archivo->move($dir, $nombreArchivo);
+            }
+
+            $guia->save();
+
             $pedido->producto_id = Input::get('producto_id');
             $pedido->proveedor_id = Input::get('proveedor_id');
             $pedido->naviera_id = Input::get('naviera_id');
-            $pedido->guia_id = Input::get('guia_id');
+            $pedido->guia_id = $guia->id;
             $pedido->numero_reserva = Input::get('numero_reserva');
             $pedido->buque = Input::get('buque');
             $pedido->fecha_carga = Input::get('fecha_carga');
@@ -132,19 +172,30 @@ class PedidosController extends BaseController {
             $pedido->importe_facturado = Input::get('importe_facturado');
             $pedido->save();
 
-            PedidosContainer::where('pedido_id', '=', $id)->forceDelete();
-
+            $borrados = PedidosContainer::where('pedido_id', $id)->get();
+            PedidosContainer::where('pedido_id', $id)->forceDelete();
+            
+            foreach ($borrados as $bor) {
+                Container::find($bor->container_id)->forceDelete();
+            }
             $containers = Input::get('containers');
+
+
+            $Array_containers = preg_split("/[\s,]+/", $containers);
+
             //Guardamos los containers asociados al pedido guardado
-            foreach ($containers as $key => $value) {
+            foreach ($Array_containers as $key => $value) {
+                $container = new Container;
+                $container->numero_container = $Array_containers[$key];
+                $container->save();
                 $relacion = new PedidosContainer;
                 $relacion->pedido_id = $pedido->id;
-                $relacion->container_id = $containers[$key];
+                $relacion->container_id = $container->id;
                 $relacion->save();
             }
-            // redirect
+
             return Response::json(array(
-                        'msg' => 'ok'
+                        'msg' => 'ok',
             ));
         }
     }
