@@ -5,6 +5,7 @@
         <title>Registro</title>
         {{ HTML::style('css/bootstrap.min.css'); }}
         {{ HTML::style('css/plugins/login.css'); }}
+        {{ HTML::style('css/pnotify.custom.min.css') }}
         {{ HTML::style('css/plugins/animate-custom.css'); }}
 
     </head>
@@ -27,7 +28,16 @@
                         @if(Session::has('mensaje_error'))
                         <div class="alert alert-danger">{{ Session::get('mensaje_error') }}</div>
                         @endif
-                        {{ Form::open(array('url' => '/login')) }}
+                        @if(Session::has('mensaje'))
+                        <div class="alert alert-success">{{ Session::get('mensaje') }}</div>
+                        @endif
+                        <ul>
+                            @foreach($errors->all() as $error)
+                            <li>{{ $error }}</li>
+                            @endforeach
+                        </ul>
+
+                        {{ Form::open(array('url' => 'registro')) }}
                         <div class="row">
                             <div class="col-md-6">
                                 <div class="form-group">
@@ -36,7 +46,8 @@
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    {{ Form::text('contraseña', Input::old('contraseña'), array('class' => 'form-control', 'placeholder'=> 'Contraseña')); }}
+                                    {{ Form::password('password', array('class'=>'input-block-level', 'placeholder'=>'Contraseña')) }}
+                                    {{ Form::password('password_confirmation', array('class'=>'input-block-level', 'placeholder'=>'Confirme contraseña')) }}
                                 </div>
                             </div>
                         </div>
@@ -86,7 +97,7 @@
 
                         <div class="login-links"> 
                             <br>
-                            <a href="login.html">
+                            <a href="{{url('login')}}">
                                 Ya eres miembro? <strong>Entra</strong>
                             </a>
                         </div>      		
@@ -103,6 +114,7 @@
         {{ HTML::script('js/plugins/bootstrap.min.js'); }}
         {{ HTML::script('js/plugins/placeholder-shim.min.js'); }}
         {{ HTML::script('js/plugins/custom.js'); }}
+        <script src="js/plugins/pnotify.custom.min.js"></script>
         {{ HTML::script('js/app.js'); }}
         <script>
 
@@ -113,9 +125,9 @@
 //                crearPedido(datos);
 //            });
 
-            $("#pais").on('change', function(ev) {
-                cargarCiudades($(this).val());
-            });
+$("#pais").on('change', function(ev) {
+    cargarCiudades($(this).val());
+});
 
         </script>
     </body>

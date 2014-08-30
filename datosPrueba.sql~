@@ -5398,7 +5398,7 @@ INSERT INTO `productos` (`id`, `proveedor_id`, `nombre`, `descripcion`, `created
 
 INSERT INTO `usuarios` (`id`, `tipo_usuario`, `password`, `nombre`, `apellido`, `telefono`, `correo`, `direccion`, `pais_id`, `ciudad_id`, `estado`, `created_at`, `updated_at`, `deleted_at`) VALUES
 (1, 'DIGITADOR', '$2y$10$rPI8WuH6zwcwuY.MN11w..rh2OhM0wj0j9Xg3phrgs3QcJpSVkgka', 'Ads', 'asddd', '2324', 'asd', 'ddasd', 'COL', 2260, 'ACTIVO', '2014-08-20 06:28:17', '2014-08-20 08:16:32', '2014-08-20 08:16:32'),
-(2, 'ADMINISTRADOR', '$2y$10$rPI8WuH6zwcwuY.MN11w..rh2OhM0wj0j9Xg3phrgs3QcJpSVkgka', 'the3ballsoft', 'Developers', '-', 'the3ballsoft@gmail.com', 't', 'ALB', 34, 'ACTIVO', '2014-08-20 06:50:09', '2014-08-20 06:50:13', 'NULL'),
+(2, 'ADMINISTRADOR', '$2y$10$rPI8WuH6zwcwuY.MN11w..rh2OhM0wj0j9Xg3phrgs3QcJpSVkgka', 'the3ballsoft', 'Developers', '-', 'the3ballsoft@gmail.com', 't', 'ALB', 34, 'ACTIVO', '2014-08-20 06:50:09', '2014-08-20 06:50:13', '2014-08-20 06:50:13'),
 (3, 'CLIENTE', '$2y$10$rPI8WuH6zwcwuY.MN11w..rh2OhM0wj0j9Xg3phrgs3QcJpSVkgka', 'Ricardo', 'Sandoval', '4394589', 'rsandoval@gmaiil.com', 'Cra 23 #65A', 'COL', 2260, 'ACTIVO', '2014-08-20 08:18:27', '2014-08-20 08:18:27', NULL),
 (4, 'DIGITADOR', '$2y$10$rPI8WuH6zwcwuY.MN11w..rh2OhM0wj0j9Xg3phrgs3QcJpSVkgka', 'Maria Jose', 'Arrieta', '29579', 'marijo12@hotmail.com', 'Mz 4 C 12, Los pinos', 'COL', 2270, 'ACTIVO', '2014-08-20 08:19:28', '2014-08-20 08:19:28', NULL),
 (5, 'DIGITADOR', '$2y$10$rPI8WuH6zwcwuY.MN11w..rh2OhM0wj0j9Xg3phrgs3QcJpSVkgka', 'Ana J.', 'Curvelo Medina', '301497976', 'anacurvelo@gmail.com', 'Mz F, C3, Urb. Santa Clara', 'COL', 2261, 'ACTIVO', '2014-08-26 22:35:49', '2014-08-26 22:35:49', NULL),

@@ -14,10 +14,20 @@ Route::resource('productos', 'ProductosController');
 Route::get('pedidos/historial', 'PedidosController@historial');
 Route::resource('pedidos', 'PedidosController');
 
-Route::get('/', function()
+Route::get('login','AuthController@getLogin');
+Route::get('registro','AuthController@getRegistro');
+Route::post('login','AuthController@postLogin');
+Route::post('registro','AuthController@postRegistro');
+
+Route::group(array('before' => 'auth'), function()
 {
-    //return View::make('login');
-    return View::make('index');
+    // Esta será nuestra ruta de bienvenida.
+    Route::get('/', function()
+    {
+        return View::make('index');
+    });
+    // Esta ruta nos servirá para cerrar sesión.
+    Route::get('logout','AuthController@getLogout');
 });
 
 Route::get('/dashboard', function()
@@ -36,14 +46,14 @@ Route::get('/api/paises/{id}', function($id){
     return Response::json($ciudades);
 });
 
-Route::get('/registro', function()
-{
-    $paises = Country::lists('nombre','Code');
-    return View::make('registro')->with('paises', $paises);
-});
-
-Route::get('/login', function()
-{
-    return View::make('login');
-});
+//Route::get('/registro', function()
+//{
+//    $paises = Country::lists('nombre','Code');
+//    return View::make('registro')->with('paises', $paises);
+//});
+//
+//Route::get('/login', function()
+//{
+//    return View::make('login');
+//});
 
