@@ -15,14 +15,16 @@ class BdCompleta extends Migration {
          * Para los paises y ciudades. Importar los datos de /world.sql 
          */
         Schema::create('City', function($table) {
+            $table->engine = 'MyISAM';
             $table->increments('id');
             $table->string('nombre', 35);
             $table->string('CountryCode', 3)->references('Code')->on('Country');
             $table->string('District', 20);
             $table->integer('Population')->nullable();
+            
         });
         Schema::create('Country', function($table) {
-            $table->engine = 'InnoDB';
+            $table->engine = 'MyISAM';
             $table->string('Code', 3)->primary();
             $table->string('nombre', 52);
             $table->enum('Continent', array('Asia', 'Europe', 'North America', 'Africa', 'Oceania', 'Antarctica', 'South America'));
@@ -40,7 +42,7 @@ class BdCompleta extends Migration {
             $table->string('Code2', 2);
         });
         Schema::create('CountryLanguage', function($table) {
-            $table->engine = 'InnoDB';
+            $table->engine = 'MyISAM';
             $table->string('CountryCode', 3)->references('Code')->on('Country');
             $table->string('Language', 30);
             $table->enum('IsOfficial', array('T', 'F'));
@@ -52,6 +54,7 @@ class BdCompleta extends Migration {
          *  */
         
         Schema::create('usuarios', function($table) {
+            $table->engine = 'MyISAM';
             $table->increments('id');
             $table->enum('tipo_usuario', array('ADMINISTRADOR', 'DIGITADOR', 'CLIENTE'));
             $table->string('password');
@@ -67,9 +70,11 @@ class BdCompleta extends Migration {
             $table->enum('estado', array('ACTIVO', 'INACTIVO'));
             $table->timestamps();
             $table->softDeletes();
+            $table->rememberToken();
         });
 
         Schema::create('companias', function($table) {
+            $table->engine = 'MyISAM';
             $table->increments('id');
             $table->string('nombre');
             $table->integer('nit');
@@ -81,12 +86,14 @@ class BdCompleta extends Migration {
             $table->softDeletes();
         });
         Schema::create('containers', function($table) {
+            $table->engine = 'MyISAM';
             $table->increments('id');
             $table->string('numero_container');
             $table->timestamps();
             $table->softDeletes();
         });
         Schema::create('navieras', function($table) {
+            $table->engine = 'MyISAM';
             $table->increments('id');
             $table->string('nombre');
             $table->string('nombre_contacto');
@@ -96,6 +103,7 @@ class BdCompleta extends Migration {
             $table->softDeletes();
         });
         Schema::create('guias', function($table) {
+            $table->engine = 'MyISAM';
             $table->increments('id');
             $table->string('numero_guia');
             $table->string('empresa_envio');
@@ -104,6 +112,7 @@ class BdCompleta extends Migration {
             $table->softDeletes();
         });
         Schema::create('proveedores', function($table) {
+            $table->engine = 'MyISAM';
             $table->increments('id');
             $table->string('nombre');
             $table->string('nombre_contacto');
@@ -114,6 +123,7 @@ class BdCompleta extends Migration {
             $table->softDeletes();
         });
         Schema::create('productos', function($table) {
+            $table->engine = 'MyISAM';
             $table->increments('id');
             $table->integer('proveedor_id')->unsigned();
             $table->foreign('proveedor_id')->references('id')->on('proveedores')->on_delete('set null');
@@ -124,6 +134,7 @@ class BdCompleta extends Migration {
         });
 
         Schema::create('pedidos', function($table) {
+            $table->engine = 'MyISAM';
             $table->increments('id');
             $table->integer('producto_id')->unsigned();
             $table->integer('proveedor_id')->unsigned();
@@ -148,6 +159,7 @@ class BdCompleta extends Migration {
         });
 
         Schema::create('pedidos_containers', function($table) {
+            $table->engine = 'MyISAM';
             $table->increments('id');
             $table->integer('container_id')->unsigned();
             $table->integer('pedido_id')->unsigned();
