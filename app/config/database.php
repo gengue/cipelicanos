@@ -26,8 +26,8 @@ return array(
 	|
 	*/
 
-	'default' => 'cipelicanos_mySQL',
-        //'default' => 'cipelicanos2_mySQL',
+	//'default' => 'cipelicanos_mySQL',
+        'default' => 'cipelicanos2_mySQL',
 
 	/*
 	|--------------------------------------------------------------------------
@@ -65,6 +65,7 @@ return array(
 		),
 
 		'cipelicanos_mySQL' => array(
+                        'engine'    => 'MYISAM',
 			'driver'    => 'mysql',
 			'host'      => 'localhost',
 			'database'  => 'cipelicanos',
