@@ -21,6 +21,7 @@
             <strong>Nombre de Contacto:</strong> {{ $naviera->nombre_contacto }}<br>
             <strong>Telefono:</strong> {{ $naviera->telefono }}<br>
             <strong>Direccion:</strong> {{ $naviera->direccion }}<br>
+            <strong>URL de seguimiento:</strong> {{ $naviera->url_seguimiento}}
         </p>
     </div>
 

@@ -5357,9 +5357,10 @@ INSERT INTO `migrations` (`migration`, `batch`) VALUES
 -- Dumping data for table `navieras`
 --
 
-INSERT INTO `navieras` (`id`, `nombre`, `nombre_contacto`, `telefono`, `direccion`, `created_at`, `updated_at`, `deleted_at`) VALUES
-(1, 'Marea Roja', 'Peter Albeiro Franco', '309479479', 'Av. transición calle 4, puerto Rojo - Mexico D.C', '2014-08-20 08:30:26', '2014-08-20 08:30:26', NULL),
-(2, 'La puerta Oro', 'Jesus Manrrique Sosa', '300458249', 'Muelle #3. Clalle 2 #4. Bquilla, Colombia', '2014-08-26 22:30:39', '2014-08-26 22:30:39', NULL);
+INSERT INTO `navieras` (`id`, `nombre`, `nombre_contacto`, `telefono`, `direccion`, `url_seguimiento`, `created_at`, `updated_at`, `deleted_at`) VALUES
+(1, 'Marea Roja', 'Peter Albeiro Franco', '309479479', 'Av. transición calle 4, puerto Rojo - Mexico D.C', 'www.example.com', '2014-08-20 08:30:26', '2014-09-02 22:58:05', NULL),
+(2, 'La puerta Oro', 'Jesus Manrrique Sosa', '300458249', 'Muelle #3. Clalle 2 #4. Bquilla, Colombia', 'www.puertadeoro.com', '2014-08-26 22:30:39', '2014-09-02 22:58:18', NULL),
+(3, 'CMA CGM Group', 'Steven Paccini', '+3901059671 ', 'Via Silvio Pellico 1 16128 Genova - Italy', 'http://www.cma-cgm.com/ebusiness/tracking/search?SearchBy=Container&Reference=', '2014-09-02 22:04:41', '2014-09-02 23:01:34', NULL);
 
 --
 -- Dumping data for table `proveedores`
@@ -5410,9 +5411,10 @@ INSERT INTO `usuarios` (`id`, `tipo_usuario`, `password`, `nombre`, `apellido`, 
 -- Dumping data for table `pedidos`
 --
 
-INSERT INTO `pedidos` (`id`, `producto_id`, `proveedor_id`, `naviera_id`, `estado`, `guia_id`, `numero_reserva`, `buque`, `fecha_carga`, `fecha_abordaje`, `fecha_entrega`, `fecha_vencimiento`, `importe_facturado`, `created_at`, `updated_at`, `deleted_at`) VALUES
-(1, 5, 4, 1, 'ACTIVO', 1, '1123124', 'ferkuli', '2014-08-27', '2014-08-26', '2014-08-29', '2014-08-31', 4567300090.00, '2014-08-26 22:19:59', '2014-08-26 22:19:59', NULL),
-(2, 7, 3, 2, 'ACTIVO', 2, '782455073', 'Malzo Negro #2', '2014-08-11', '2014-08-11', '2014-08-15', '2014-08-16', 234000245.00, '2014-08-26 22:43:19', '2014-08-26 22:43:19', NULL);
+INSERT INTO `pedidos` (`id`, `producto_id`, `proveedor_id`, `naviera_id`, `compania_id`, `estado`, `guia_id`, `numero_reserva`, `buque`, `fecha_carga`, `fecha_abordaje`, `fecha_entrega`, `fecha_vencimiento`, `importe_facturado`, `created_at`, `updated_at`, `deleted_at`) VALUES
+(1, 5, 4, 1, 0, 'ACTIVO', 1, '1123124', 'ferkuli', '2014-08-27', '2014-08-26', '2014-08-29', '2014-08-31', 4567300090.00, '2014-08-26 22:19:59', '2014-08-26 22:19:59', NULL),
+(2, 7, 3, 2, 0, 'ACTIVO', 2, '782455073', 'Malzo Negro #2', '2014-08-11', '2014-08-11', '2014-08-15', '2014-08-16', 234000245.00, '2014-08-26 22:43:19', '2014-08-26 22:43:19', NULL),
+(3, 10, 4, 3, 0, 'ACTIVO', 3, '123124', 'prueba', '2014-09-03', '2014-09-03', '2014-09-20', '2014-09-20', 12345.00, '2014-09-02 23:17:22', '2014-09-02 23:17:22', NULL);
 
 --
 -- Dumping data for table `pedidos_containers`
