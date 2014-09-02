@@ -82,20 +82,22 @@
             </thead>
             <tbody>
                 @foreach($usuarios as $key => $value)
-                <tr>
-                    <td>{{ $value->nombre }} {{ $value->apellido }}</td>
-                    <td>{{ $value->telefono }}</td>
-                    <td>{{ $value->correo }}</td>
-                    <td>{{ $value->direccion }}</td>
-                    <td>{{ $value->pais->nombre }}</td>
-                    <td>{{ $value->ciudad->nombre }}</td>
-
-                    <td>                            
-                        <a class="btn btn-small btn-success" href="javascript:mostrarDetalleCliente({{ $value->id }});"><i class="fa fa-search"></i></a>
-                        <a class="btn btn-small btn-danger" href="javascript:eliminarCliente({{ $value->id }});"><i class="fa fa-trash-o"></i></a>
-
-                    </td>
-                </tr>
+                 @if($value->estado == 'ACTIVO')
+	                <tr>
+	                    <td>{{ $value->nombre }} {{ $value->apellido }}</td>
+	                    <td>{{ $value->telefono }}</td>
+	                    <td>{{ $value->correo }}</td>
+	                    <td>{{ $value->direccion }}</td>
+	                    <td>{{ $value->pais->nombre }}</td>
+	                    <td>{{ $value->ciudad->nombre }}</td>
+	
+	                    <td>                            
+	                        <a class="btn btn-small btn-success" href="javascript:mostrarDetalleCliente({{ $value->id }});"><i class="fa fa-search"></i></a>
+	                        <a class="btn btn-small btn-danger" href="javascript:eliminarCliente({{ $value->id }});"><i class="fa fa-trash-o"></i></a>
+	
+	                    </td>
+	                </tr>
+	               @endif
                 @endforeach
             </tbody>
         </table>
