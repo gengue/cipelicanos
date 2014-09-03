@@ -99,7 +99,7 @@ class BdCompleta extends Migration {
 			$table -> string('nombre_contacto');
 			$table -> string('telefono');
 			$table -> string('direccion');
-			$table -> string('url_seguimiento');
+			$table -> string('url_seguimiento', 500);
 			$table -> timestamps();
 			$table -> softDeletes();
 		});

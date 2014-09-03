@@ -25,9 +25,8 @@
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-                    <a class="navbar-brand" href="index.html">C.I. PELICANOS</a>
-
-<!-- <img  height="50" width="100" src="{{ asset('img/logo.png')}}">  -->
+                    
+ <a href="http://www.cipelicanos.biz/" target="_blank"><img id="logo" height="45" width="100" src="{{ asset('images/logo_pelicanos_nuevo.png')}}"></a> 
                 </div>
                 <!-- Top Menu Items -->
                 <ul class="nav navbar-right top-nav">
