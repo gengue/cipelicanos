@@ -28,7 +28,7 @@ class Pedido extends Eloquent{
     }
     
     
-    
+    //devuelve un pedido especifico
     public function obtenerPedido($id){
         $containerdb = new PedidosContainer();
         
@@ -44,4 +44,21 @@ class Pedido extends Eloquent{
         
         return $pedido;
     }
+//relaciones
+    public function compania(){
+        return $this->belongsTo('Compania', 'compania_id');
+    }
+    public function producto(){
+        return $this->belongsTo('Producto', 'producto_id');
+    }
+    public function naviera(){
+        return $this->belongsTo('Naviera', 'naviera_id');
+    }
+    public function guias(){
+        return $this->hasMany('Guia');
+    }
+    public function containers(){
+        return $this->belongsToMany('Container', 'pedidos_containers');
+    }
+    
 }

@@ -13,12 +13,7 @@
     <a class="btn btn-small btn-info" href="javascript:mostrarCrearNaviera();"><i class="fa fa-plus"></i> Agregar naviera</a>
     <br>
     <br>
-    <!-- will be used to show any messages -->
-    @if (Session::has('message'))
-    <div class="alert alert-info">
-        {{ Session::get('message') }}
-    </div>
-    @endif
+    
     <div class="table-responsive">
         <table id="navierasTbl" class="table table-condensed table-hover table-striped table-bordered">
             <thead>
@@ -40,7 +35,11 @@
                     <td>{{ $value->direccion }}</td>
                     <td valign="top"> {{ $value->url_seguimiento }}</td>
 
-                    <td><a class="btn btn-small btn-success" href="javascript:mostrarDetalleNaviera({{ $value->id }});"><i class="fa fa-search"></i></a><a class="btn btn-small btn-info" href="javascript:mostrarEditarNaviera({{ $value->id }});"><i class="fa fa-pencil"></i></a><a class="btn btn-small btn-danger" href="javascript:eliminarNaviera({{ $value->id }});"><i class="fa fa-trash-o"></i></a></td>
+                    <td>
+                        <a class="btn btn-small btn-success" href="javascript:mostrarDetalleNaviera({{ $value->id }});"><i class="fa fa-search"></i></a>
+                        <a class="btn btn-small btn-info" href="javascript:mostrarEditarNaviera({{ $value->id }});"><i class="fa fa-pencil"></i>
+                        </a><a class="btn btn-small btn-danger" href="javascript:eliminarNaviera({{ $value->id }});"><i class="fa fa-trash-o"></i></a>
+                    </td>
                 </tr>
                 @endforeach
             </tbody>

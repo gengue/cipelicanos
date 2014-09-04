@@ -32,10 +32,7 @@
         {{ Form::label('correo', 'Correo') }}
         {{ Form::text('correo', Input::old('correo'), array('class' => 'form-control')) }}
     </div>
-    <div class="form-group">
-        {{ Form::label('usuario_id', 'Usuario') }}
-        {{ Form::select('usuario_id', $usuarios, null, array('class'=>'form-control','style'=>'' )) }}
-    </div>
+   
 
     {{ Form::submit('Crear compania!', array('class' => 'btn btn-primary')) }}
 

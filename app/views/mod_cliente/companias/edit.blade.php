@@ -2,7 +2,7 @@
     <div class="row">
         <div class="col-lg-12">
             <h1 class="page-header">
-                <i class="fa fa-fw fa-university"></i> Compa&ntilde;ias <small>Agregar una compa&ntilde;ia</small></h1>
+                <i class="fa fa-fw fa-university"></i> Compa&ntilde;ias <small>Editar una compa&ntilde;ia</small></h1>
             </h1>
             <ol class="breadcrumb">
                 <li class="active">
@@ -14,7 +14,11 @@
     <a class="btn btn-small btn-info" href="javascript:abrirCompanias();"><i class="fa fa-list"></i> Listar todos</a>
     <br><br>
 
-    {{ Form::open(array('url' => 'companias', 'id' => 'formCompania')) }}
+    {{ Form::model($compania, array('route' => array('companias.update',
+            $compania->id), 
+            'id' => 'formEditarCompania',
+            'method' => 'PUT'))
+    }}
 
     <div class="form-group">
         {{ Form::label('nombre', 'Nombre') }}
@@ -32,23 +36,19 @@
         {{ Form::label('correo', 'Correo') }}
         {{ Form::text('correo', Input::old('correo'), array('class' => 'form-control')) }}
     </div>
-    <div class="form-group">
-        {{ Form::label('usuario_id', 'Usuario') }}
-        {{ Form::select('usuario_id', $usuarios, null, array('class'=>'form-control','style'=>'' )) }}
-    </div>
+    
+    {{ Form::submit('Editar!', array('class' => 'btn btn-primary')) }}
 
-    {{ Form::submit('Crear compania!', array('class' => 'btn btn-primary')) }}
-
-    {{ Form::close() }}
+{{ Form::close() }}
 
 </div>
+
 <script>
 
-    $("#formCompania").submit(function(e) {
-        e.preventDefault();
-        
-        var datos =  $("#formCompania").serialize();
-        crearCompania(datos);
+    $("#formEditarCompania").submit(function(e) {
+        e.preventDefault();       
+        var datos = $("#formEditarCompania").serialize();
+        editarCompania(datos, {{ $compania->id }});
     });
 
 </script>

@@ -20,7 +20,6 @@
             <strong>Nit:</strong> {{ $companias->nit }}<br>
             <strong>Telefono:</strong> {{ $companias->telefono }}
             <strong>Correo:</strong> {{ $companias->correo }}
-            <strong>Usuario:</strong> {{ $companias->usuario_id }}
         </p>
     </div>
 

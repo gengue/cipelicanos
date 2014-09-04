@@ -4,16 +4,15 @@ class PedidosController extends BaseController {
 
     public function index() {
 
-        $pedidosdb = new Pedido();
-        $pedidos = $pedidosdb->obtenerPedidos('ACTIVO');
+        
+        $pedidos = Pedido::where('estado', '=', 'ACTIVO')->get();
 
         return View::make('pedidos.index')->with('pedidos', $pedidos);
     }
 
     public function historial() {
 
-        $pedidosdb = new Pedido();
-        $pedidos = $pedidosdb->obtenerPedidos('INACTIVO');
+        $pedidos = Pedido::where('estado', '=', 'INACTIVO')->get();
 
         return View::make('pedidos.historial')->with('pedidos', $pedidos);
     }
@@ -22,12 +21,14 @@ class PedidosController extends BaseController {
         $productos = Producto::lists('nombre', 'id');
         $proveedores = Proveedor::lists('nombre', 'id');
         $navieras = Naviera::lists('nombre', 'id');
+        $companias = Compania::lists('nombre', 'id');
         //$container = Container::lists('numero_container', 'id');
         //$guias = Guia::lists('numero_guia', 'id');
 
         return View::make('pedidos.create', array('productos' => $productos,
                     'proveedores' => $proveedores,
                     'navieras' => $navieras,
+                    'companias'=> $companias
         ));
     }
 

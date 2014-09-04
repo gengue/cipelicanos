@@ -26,7 +26,9 @@
                         <span class="icon-bar"></span>
                     </button>
                     
- <a href="http://www.cipelicanos.biz/" target="_blank"><img id="logo" height="45" width="100" src="{{ asset('images/logo_pelicanos_nuevo.png')}}"></a> 
+                    <a href="http://www.cipelicanos.biz/" target="_blank">
+                        <img id="logo" height="45" width="100" src="{{ asset('images/logo_pelicanos_nuevo.png')}}">
+                    </a> 
                 </div>
                 <!-- Top Menu Items -->
                 <ul class="nav navbar-right top-nav">
@@ -133,35 +135,21 @@
                 <div class="collapse navbar-collapse navbar-ex1-collapse">
                     <ul class="nav navbar-nav side-nav" id="menu-vertical">
                         <li class="active">
-                            <a href="javascript:abrirDashboard();"><i class="fa fa-fw fa-home"></i> Inicio</a>
+                            <a href="javascript:abrirDashboard();"><i class="fa fa-fw fa-home fa-4x"></i> Inicio</a>
                         </li>
                         <li>
 
-                            <a href="javascript:abrirPedidos();"><i class="fa fa-fw fa-shopping-cart"></i> Pedidos</a>
+                            <a href="javascript:abrirPedidos();"><i class="fa fa-fw fa-shopping-cart fa-4x"></i> Pedidos</a>
 
                         </li>
                         <li>
-                            <a href="javascript:abrirClientes();"><i class="fa fa-fw fa-money"></i> Clientes</a>
+                            <a href="javascript:abrirCompanias();"><i class="fa fa-fw fa-suitcase fa-4x"></i> Compa&ntilde;ias</a>
                         </li>
+                       
                         <li>
-                            <a href="javascript:abrirCompanias();"><i class="fa fa-fw fa-university"></i> Compa&ntilde;ias</a>
+                            <a href="javascript:abrirHistorialPedidos();"><i class="fa fa-fw fa-calendar fa-4x"></i> Historial</a>
                         </li>
-                        <li>
-                            <a href="javascript:abrirProductos();"><i class="fa fa-fw fa-gift"></i> Productos</a>
-                        </li>
-                        <li>
-                            <a href="javascript:abrirNavieras();"><i class="fa fa-fw fa-anchor"></i> Navieras</a>
-
-                        </li>
-                        <li>
-                            <a href="javascript:abrirProveedores();"><i class="fa fa-fw fa-suitcase"></i> Proveedores</a>
-                        </li>
-                        <li>
-                            <a href="javascript:abrirHistorialPedidos();"><i class="fa fa-fw fa-calendar"></i> Historial pedidos</a>
-                        </li>
-                        <li>
-                            <a href="javascript:abrirUsuarios();"><i class="fa fa-fw fa-users"></i> Usuarios</a>
-                        </li>
+                        
                         <!--li>
                             <a href="javascript:;" data-toggle="collapse" data-target="#demo"><i class="fa fa-fw fa-arrows-v"></i> Dropdown <i class="fa fa-fw fa-caret-down"></i></a>
                             <ul id="demo" class="collapse">
@@ -179,7 +167,7 @@
             </nav>
 
             <div id="page-wrapper">
-
+                    YEAH!
             </div>
             <!-- /#page-wrapper -->
 
@@ -195,7 +183,7 @@
 <!--        <script src="js/plugins/morris/morris.min.js"></script>
         <script src="js/plugins/morris/morris-data.js"></script>-->
         <script src="js/plugins/pnotify.custom.min.js"></script>
-        <script src="js/app.js"></script>
+        <script src="js/client.js"></script>
         <script> abrirDashboard();</script>
     </body>
 </html>

@@ -14,7 +14,8 @@
     <a class="btn btn-small btn-info" href="javascript:abrirNavieras();"><i class="fa fa-list"></i> Listar todos</a>
     <br><br>
 
-    {{ Form::model($naviera, array('route' => array('navieras.update', $naviera->id),
+    {{ Form::model($naviera, array('route' => array('navieras.update', 
+                    $naviera->id),
                     'id' => 'formEditarNaviera', 
                     'method' => 'PUT')) 
     }}

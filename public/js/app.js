@@ -847,6 +847,144 @@ function mostrarDetalleCliente(id) {
             });
 }
 
+/*
+ *
+ *  COMPAÑIAS 
+ *
+ */
+function abrirCompanias() {
+
+    $.ajax(
+            {
+                url: '/companias',
+                type: 'GET',
+                beforeSend: function(){
+                    $('#page-wrapper').css('padding-top', '20%');
+                    $('#page-wrapper').html('<div class="center"><i class="fa fa-spinner fa-spin fa-5x"></i></div>');
+                },
+                success: function(data) {
+                    $('#page-wrapper').css('padding-top', '0');
+                    $('#page-wrapper').html(data);
+                }
+            });
+}
+function mostrarCrearCompanias() {
+
+    $.ajax(
+            {
+                url: '/companias/create',
+                type: 'GET',
+                beforeSend: function(){
+                    $('#page-wrapper').css('padding-top', '20%');
+                    $('#page-wrapper').html('<div class="center"><i class="fa fa-spinner fa-spin fa-5x"></i></div>');
+                },
+                success: function(data) {
+                    $('#page-wrapper').css('padding-top', '0');
+                    $('#page-wrapper').html(data);
+                }
+            });
+
+}
+
+function crearCompania(datos) {
+
+    $.ajax(
+            {
+                url: '/companias',
+                type: 'POST',
+                data: datos,
+                beforeSend: function(){
+                    $('#page-wrapper').css('padding-top', '20%');
+                    $('#page-wrapper').html('<div class="center"><i class="fa fa-spinner fa-spin fa-5x"></i></div>');
+                },
+                success: function(data) {
+                    $('#page-wrapper').css('padding-top', '0');
+                    if (data.msg === 'error') {
+                        msg_guadadoerror();
+                    } else {
+                        abrirCompanias();
+                        msg_guadadocorreto();
+                    }
+                }
+            });
+}
+
+function mostrarEditarCompania(id) {
+
+    $.ajax(
+            {
+                url: '/companias/' + id + '/edit',
+                type: 'GET',
+                beforeSend: function(){
+                    $('#page-wrapper').css('padding-top', '20%');
+                    $('#page-wrapper').html('<div class="center"><i class="fa fa-spinner fa-spin fa-5x"></i></div>');
+                },
+                success: function(data) {
+                    $('#page-wrapper').css('padding-top', '0');
+                    $('#page-wrapper').html(data);
+                }
+            });
+}
+function editarCompania(datos, id) {
+    $.ajax(
+            {
+                url: '/companias/' + id,
+                type: 'PUT',
+                data: datos,
+                beforeSend: function(){
+                    $('#page-wrapper').css('padding-top', '20%');
+                    $('#page-wrapper').html('<div class="center"><i class="fa fa-spinner fa-spin fa-5x"></i></div>');
+                },
+                success: function(data) {
+                    $('#page-wrapper').css('padding-top', '0');
+                    if (data.msg === 'error') {
+                        msg_guadadoerror();
+                    } else {
+                        abrirCompanias();
+                        msg_guadadocorreto();
+                    }
+
+                }
+            });
+}
+function eliminarCompania(id) {
+    $.ajax(
+            {
+                url: '/companias/' + id,
+                type: 'DELETE',
+                beforeSend: function(){
+                    $('#page-wrapper').css('padding-top', '20%');
+                    $('#page-wrapper').html('<div class="center"><i class="fa fa-spinner fa-spin fa-5x"></i></div>');
+                },
+                success: function(data) {
+                    $('#page-wrapper').css('padding-top', '0');
+                    if (data.msg === 'error') {
+                        msg_borradoerror();
+                    } else {
+                        abrirCompanias();
+                        msg_borradocorrecto();
+                    }
+
+                }
+            });
+ }
+
+
+function mostrarDetalleCompania(id) {
+    $.ajax(
+            {
+                url: '/companias/' + id,
+                type: 'GET',
+                beforeSend: function(){
+                    $('#page-wrapper').css('padding-top', '20%');
+                    $('#page-wrapper').html('<div class="center"><i class="fa fa-spinner fa-spin fa-5x"></i></div>');
+                },
+                success: function(data) {
+                    $('#page-wrapper').css('padding-top', '0');
+                    $('#page-wrapper').html(data);
+                }
+            });
+}
 /* 
  * CARGA DE LISTAS ASINCRONAS
  * 
@@ -856,12 +994,7 @@ function cargarProductos(id_proveedor){
             {
                 url: '/proveedores/api/productos/' + id_proveedor,
                 type: 'GET',
-                beforeSend: function(){
-                	$('#page-wrapper').css('padding-top', '20%');
-                	$('#page-wrapper').html('<div class="center"><i class="fa fa-spinner fa-spin fa-5x"></i></div>');
-                },
                 success: function(data) {
-                	$('#page-wrapper').css('padding-top', '0');
                     cargarLista(data, 'producto_id');
                 }
             });
@@ -871,12 +1004,7 @@ function cargarCiudades(id_pais){
             {
                 url: '/api/paises/' + id_pais,
                 type: 'GET',
-                beforeSend: function(){
-                	$('#page-wrapper').css('padding-top', '20%');
-                	$('#page-wrapper').html('<div class="center"><i class="fa fa-spinner fa-spin fa-5x"></i></div>');
-                },
                 success: function(data) {
-                	$('#page-wrapper').css('padding-top', '0');
                     cargarLista(data, 'ciudad');
                 }
             });

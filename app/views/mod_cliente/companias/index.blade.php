@@ -21,8 +21,7 @@
                     <td data-class="expand">Nombre</td>
                     <td data-hide="phone,tablet">NIT</td>
                     <td data-hide="phone, tablet">Telefono</td>
-                    <td data-hide="phone">Correo</td>
-                    <td>Usuario</td>
+                    <td>Correo</td>
                     <td data-hide="phone">Opciones</td>
                 </tr>
             </thead>
@@ -34,12 +33,11 @@
                     <td>{{ $value->nit }}</td>
                     <td>{{ $value->telefono }}</td>
                     <td>{{ $value->correo}}</td>
-                    <td>{{ $value->cliente->nombre." ".$value->cliente->apellido}}</td>
 
                     <td>
                         <a class="btn btn-small btn-success" href="javascript:mostrarDetalleCompania({{ $value->id }});"><i class="fa fa-search"></i></a>
-                        <a class="btn btn-small btn-info" href="javascript:mostrarEditarCompania({{ $value->id }});"><i class="fa fa-pencil"></i>
-                        </a><a class="btn btn-small btn-danger" href="javascript:eliminarCompania({{ $value->id }});"><i class="fa fa-trash-o"></i></a>
+                        <a class="btn btn-small btn-info" href="javascript:mostrarEditarCompania({{ $value->id }});"><i class="fa fa-pencil"></i></a>
+                        <a class="btn btn-small btn-danger" href="javascript:eliminarCompania({{ $value->id }});"><i class="fa fa-trash-o"></i></a>
                     </td>
                 </tr>
                 @endforeach

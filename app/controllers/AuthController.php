@@ -32,8 +32,7 @@ class AuthController extends BaseController {
             );
             // Validamos los datos y además mandamos como un segundo parámetro la opción de recordar el usuario.
             if (Auth::attempt($userdata)) {
-                // De ser datos válidos nos mandara a la bienvenida
-                return Redirect::to('/');
+                return Redirect::to('/'); 
             }
             // En caso de que la autenticación haya fallado manda un mensaje al formulario de login y también regresamos los valores enviados con withInput().
             return Redirect::to('login')

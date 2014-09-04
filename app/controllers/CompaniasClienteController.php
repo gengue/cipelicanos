@@ -1,21 +1,19 @@
 <?php
 
-class CompaniasController extends BaseController {
+class CompaniasClienteController extends BaseController {
 
 
     public function index() {
 
-        $companias = Compania::all();
+        $companias = Compania::where('usuario_id', Auth::id())->get();
 
-        return View::make('companias.index')
+        return View::make('mod_cliente.companias.index')
                         ->with('companias', $companias);
     }
 
 
-    public function create() {
-        $usuarios = Usuario::lists('nombre','id');
-        
-        return View::make('companias.create')->with('usuarios', $usuarios);
+    public function create() { 
+        return View::make('mod_cliente.companias.create');
     }
 
 
@@ -37,7 +35,7 @@ class CompaniasController extends BaseController {
             $companias->telefono = Input::get('telefono');
             $companias->correo = Input::get('correo');
 
-            $companias->usuario_id = Input::get('usuario_id');
+            $companias->usuario_id = Auth::id();
 
             $companias->save();
             // redirect
@@ -51,7 +49,7 @@ class CompaniasController extends BaseController {
     public function show($id) {
         $companias = Compania::find($id);
 
-        return View::make('companias.show')
+        return View::make('mod_cliente.companias.show')
                         ->with('companias', $companias);
     }
 
@@ -59,9 +57,7 @@ class CompaniasController extends BaseController {
      
         $companias = Compania::find($id);
 
-        $usuarios = Usuario::lists('nombre','id');
-
-        return View::make('companias.edit', array('compania' => $companias, 'usuarios'=>$usuarios ));
+        return View::make('mod_cliente.companias.edit', array('compania' => $companias));
     }
 
     public function update($id) {
@@ -82,7 +78,7 @@ class CompaniasController extends BaseController {
             $companias->nit = Input::get('nit');
             $companias->telefono = Input::get('telefono');
             $companias->correo = Input::get('correo');
-            $companias->usuario_id = Input::get('usuario_id');
+            $companias->usuario_id = Auth::id();
             $companias->save();
           
             return Response::json(array(
