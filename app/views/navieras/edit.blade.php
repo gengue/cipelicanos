@@ -35,10 +35,6 @@
         {{ Form::label('direccion', 'Direccion') }}
         {{ Form::text('direccion', Input::old('direccion'), array('class' => 'form-control')) }}
     </div>
-    <div class="form-group">
-        {{ Form::label('url_seguimiento', 'URL de tracking') }}
-        {{ Form::text('url_seguimiento', Input::old('url de seguimiento'), array('class' => 'form-control')) }}
-    </div>
 
     {{ Form::submit('Editar naviera!', array('class' => 'btn btn-primary')) }}
 

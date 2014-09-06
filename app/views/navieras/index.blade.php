@@ -26,7 +26,6 @@
                 <td>Nombre de Contacto</td>
                 <td data-hide="phone">Telefono</td>
                 <td data-hide="phone,tablet">Direccion</td>
-                <td data-hide="phone,tablet">URL Tracking</td>
                 <td data-hide="phone">Opciones</td>
             </tr>
         </thead>
@@ -37,7 +36,7 @@
                 <td>{{ $value->nombre_contacto }}</td>
                 <td>{{ $value->telefono }}</td>
                 <td>{{ $value->direccion }}</td>
-				<td> {{ $value->url_seguimiento }}</td>
+
 
                 <td>                            
                     <a class="btn btn-small btn-success" href="javascript:mostrarDetalleNaviera({{ $value->id }});"><i class="fa fa-search"></i></a>

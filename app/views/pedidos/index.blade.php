@@ -45,9 +45,7 @@
                     <td>{{ $value->nombre_naviera }}</td>
                     <td> 
                         @foreach($value->containers as $llave => $container) 
-                        <a href="{{ $value->url_seguimiento . $container->numero_container }}" target="_blank">
-                        	{{ $container->numero_container }}
-                        </a> 
+                        {{ $container->numero_container }}
                         @endforeach
                     </td>
                     <td>{{ $value->nombre_guia}}</td>

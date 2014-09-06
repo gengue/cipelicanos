@@ -32,8 +32,15 @@ class PedidosController extends BaseController {
     }
 
     public function store() {
-
-        $validator = Validator::make(Input::all(), Pedido::$rules);
+        $rules = array(
+            'containers' => 'required',
+            'numero_guia' => 'required',
+            'empresa_envio' => 'required',
+            'numero_reserva' => 'required',
+            'buque' => 'required',
+            'importe_facturado' => 'required',
+        );
+        $validator = Validator::make(Input::all(), $rules);
 
         if ($validator->fails()) {
             return Response::json(array(
@@ -75,22 +82,13 @@ class PedidosController extends BaseController {
 
             //Guardamos los containers asociados al pedido guardado
             foreach ($Array_containers as $key => $value) {
-                //Verificamos que el container no exista en la base de datos 
-                $respuesta = Container::where('numero_container', $Array_containers[$key])->first();
-                if ($respuesta) { //Si Existe solo obtenemos la id para hacer la ralacion con el pedido
-                    $relacion = new PedidosContainer;
-                    $relacion->pedido_id = $pedido->id;
-                    $relacion->container_id = $respuesta->id;
-                    $relacion->save();
-                } else { //Si no se encontró el container se crea y se asocia
-                    $container = new Container;
-                    $container->numero_container = $Array_containers[$key];
-                    $container->save();
-                    $relacion = new PedidosContainer;
-                    $relacion->pedido_id = $pedido->id;
-                    $relacion->container_id = $container->id;
-                    $relacion->save();
-                }
+                $container = new Container;
+                $container->numero_container = $Array_containers[$key];
+                $container->save();
+                $relacion = new PedidosContainer;
+                $relacion->pedido_id = $pedido->id;
+                $relacion->container_id = $container->id;
+                $relacion->save();
             }
 
             return Response::json(array(
@@ -176,7 +174,7 @@ class PedidosController extends BaseController {
 
             $borrados = PedidosContainer::where('pedido_id', $id)->get();
             PedidosContainer::where('pedido_id', $id)->forceDelete();
-
+            
             foreach ($borrados as $bor) {
                 Container::find($bor->container_id)->forceDelete();
             }
