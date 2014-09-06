@@ -3,6 +3,7 @@
     <head>
         <title>CRUDS</title>
         {{ HTML::style('css/bootstrap.css') }}
+        {{ HTML::style('dropzone/downloads/css/dropzone.css') }}
     </head>
     <body>
         <div class="container">
@@ -25,6 +26,18 @@
                 <li><a href="{{ URL::to('productos') }}">Productos</a></li>
                 <li><a href="{{ URL::to('pedidos') }}">Pedidos</a></li>
             </ul>
+            
+                {{Form::open(array(
+                'url'=>'upload',
+                'files'=>true,
+                'class'=>'dropzone',
+                'id'=>'my-dropzone',
+                'method'=>'post',
+                
+                ))}}
+              {{Form::close()}}
         </div>
     </body>
 </html>
+<script src="js/plugins/jquery-1.11.0.js"></script>
+<script src="dropzone/downloads/dropzone.js"></script>

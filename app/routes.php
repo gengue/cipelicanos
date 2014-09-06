@@ -19,6 +19,12 @@ Route::get('registro','AuthController@getRegistro');
 Route::post('login','AuthController@postLogin');
 Route::post('registro','AuthController@postRegistro');
 
+Route::post('upload', 'DocumentosController@postDropzone');
+
+Route::get('cruds', function(){
+ return View::make('cruds');   
+});
+
 Route::group(array('before' => 'auth'), function()
 {
     // Esta será nuestra ruta de bienvenida.

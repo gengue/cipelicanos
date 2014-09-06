@@ -1,7 +1,8 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>CI Pelicanos</title>
+        <title>CI Pelicanos</title>    
+        {{ HTML::style('dropzone/downloads/css/dropzone.css') }}
         {{ HTML::style('css/bootstrap.min.css') }}
         {{ HTML::style('css/sb-admin.css') }}
         {{ HTML::style('css/pnotify.custom.min.css') }}
@@ -9,6 +10,7 @@
         {{ HTML::style('css/datatables.responsive.css') }}
         {{ HTML::style('css/plugins/morris.css') }}
         {{ HTML::style('font-awesome-4.1.0/css/font-awesome.min.css') }}
+    
         <meta name="_token" content="{{ csrf_token() }}"/>
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
     </head>
@@ -192,8 +194,11 @@
         <script src="js/plugins/morris/raphael.min.js"></script>
 <!--        <script src="js/plugins/morris/morris.min.js"></script>
         <script src="js/plugins/morris/morris-data.js"></script>-->
+
         <script src="js/plugins/pnotify.custom.min.js"></script>
         <script src="js/app.js"></script>
+
         <script> abrirDashboard();</script>
     </body>
 </html>
+        
