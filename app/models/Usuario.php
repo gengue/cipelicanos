@@ -14,6 +14,10 @@ class Usuario extends Eloquent implements UserInterface, RemindableInterface {
 
     protected $dates = ['deleted_at'];
 
+    public function companias(){
+        return $this->hasMany('Compania');
+    }
+
     public function ciudad() {
         return $this->belongsTo('City', 'ciudad_id');
     }

@@ -37,9 +37,13 @@ function abrirDashboard() {
             {
                 url: '/dashboard',
                 type: 'GET',
+                beforeSend: function(){
+                	$('#page-wrapper').css('padding-top', '20%');
+                	$('#page-wrapper').html('<div class="center"><i class="fa fa-spinner fa-spin fa-5x"></i></div>');
+                },
                 success: function(data) {
-                    $('#page-wrapper').html(data);
-
+                	$('#page-wrapper').css('padding-top', '0');
+                	$('#page-wrapper').html(data);
                 }
             });
 
@@ -57,7 +61,12 @@ function abrirProductos() {
             {
                 url: '/productos',
                 type: 'GET',
+                beforeSend: function(){
+                	$('#page-wrapper').css('padding-top', '20%');
+                	$('#page-wrapper').html('<div class="center"><i class="fa fa-spinner fa-spin fa-5x"></i></div>');
+                },
                 success: function(data) {
+                	$('#page-wrapper').css('padding-top', '0');
                     $('#page-wrapper').html(data);
                 }
             });
@@ -70,7 +79,12 @@ function mostrarCrearProducto() {
             {
                 url: '/productos/create',
                 type: 'GET',
+                beforeSend: function(){
+                	$('#page-wrapper').css('padding-top', '20%');
+                	$('#page-wrapper').html('<div class="center"><i class="fa fa-spinner fa-spin fa-5x"></i></div>');
+                },
                 success: function(data) {
+                	$('#page-wrapper').css('padding-top', '0');
                     $('#page-wrapper').html(data);
                 }
             });
@@ -83,7 +97,12 @@ function crearProducto(datos) {
                 url: '/productos',
                 type: 'POST',
                 data: datos,
+                beforeSend: function(){
+                	$('#page-wrapper').css('padding-top', '20%');
+                	$('#page-wrapper').html('<div class="center"><i class="fa fa-spinner fa-spin fa-5x"></i></div>');
+                },
                 success: function(data) {
+                	$('#page-wrapper').css('padding-top', '0');
                     if (data.msg === 'error') {
                         msg_guadadoerror();
                     } else {
@@ -101,7 +120,12 @@ function mostrarEditarProducto(id) {
             {
                 url: '/productos/' + id + '/edit',
                 type: 'GET',
+                beforeSend: function(){
+                	$('#page-wrapper').css('padding-top', '20%');
+                	$('#page-wrapper').html('<div class="center"><i class="fa fa-spinner fa-spin fa-5x"></i></div>');
+                },
                 success: function(data) {
+                	$('#page-wrapper').css('padding-top', '0');
                     $('#page-wrapper').html(data);
                 }
             });
@@ -112,7 +136,12 @@ function editarProducto(datos, id) {
                 url: '/productos/' + id,
                 type: 'PUT',
                 data: datos,
+                beforeSend: function(){
+                	$('#page-wrapper').css('padding-top', '20%');
+                	$('#page-wrapper').html('<div class="center"><i class="fa fa-spinner fa-spin fa-5x"></i></div>');
+                },
                 success: function(data) {
+                	$('#page-wrapper').css('padding-top', '0');
                     if (data.msg === 'error') {
                         msg_guadadoerror();
                     } else {
@@ -128,7 +157,12 @@ function mostrarDetalleProducto(id) {
             {
                 url: '/productos/' + id,
                 type: 'GET',
+                beforeSend: function(){
+                	$('#page-wrapper').css('padding-top', '20%');
+                	$('#page-wrapper').html('<div class="center"><i class="fa fa-spinner fa-spin fa-5x"></i></div>');
+                },
                 success: function(data) {
+                	$('#page-wrapper').css('padding-top', '0');
                     $('#page-wrapper').html(data);
                 }
             });
@@ -138,7 +172,12 @@ function eliminarProducto(id) {
             {
                 url: '/productos/' + id,
                 type: 'DELETE',
+                beforeSend: function(){
+                	$('#page-wrapper').css('padding-top', '20%');
+                	$('#page-wrapper').html('<div class="center"><i class="fa fa-spinner fa-spin fa-5x"></i></div>');
+                },
                 success: function(data) {
+                	$('#page-wrapper').css('padding-top', '0');
                     if (data.msg === 'error') {
                         msg_borradoerror();
                     } else {
@@ -160,7 +199,12 @@ function abrirPedidos() {
             {
                 url: '/pedidos',
                 type: 'GET',
+                beforeSend: function(){
+                	$('#page-wrapper').css('padding-top', '20%');
+                	$('#page-wrapper').html('<div class="center"><i class="fa fa-spinner fa-spin fa-5x"></i></div>');
+                },
                 success: function(data) {
+                	$('#page-wrapper').css('padding-top', '0');
                     $('#page-wrapper').html(data);
                 }
             });
@@ -172,7 +216,12 @@ function mostrarCrearPedido() {
             {
                 url: '/pedidos/create',
                 type: 'GET',
+                beforeSend: function(){
+                	$('#page-wrapper').css('padding-top', '20%');
+                	$('#page-wrapper').html('<div class="center"><i class="fa fa-spinner fa-spin fa-5x"></i></div>');
+                },
                 success: function(data) {
+                	$('#page-wrapper').css('padding-top', '0');
                     $('#page-wrapper').html(data);
                 }
             });
@@ -185,7 +234,12 @@ function crearPedido(datos) {
                 url: '/pedidos',
                 type: 'POST',
                 data: datos,
+                beforeSend: function(){
+                	$('#page-wrapper').css('padding-top', '20%');
+                	$('#page-wrapper').html('<div class="center"><i class="fa fa-spinner fa-spin fa-5x"></i></div>');
+                },
                 success: function(data) {
+                	$('#page-wrapper').css('padding-top', '0');
                     if (data.msg === 'error') {
                         msg_guadadoerror();
                     } else {
@@ -202,7 +256,12 @@ function mostrarEditarPedido(id) {
             {
                 url: '/pedidos/' + id + '/edit',
                 type: 'GET',
+                beforeSend: function(){
+                	$('#page-wrapper').css('padding-top', '20%');
+                	$('#page-wrapper').html('<div class="center"><i class="fa fa-spinner fa-spin fa-5x"></i></div>');
+                },
                 success: function(data) {
+                	$('#page-wrapper').css('padding-top', '0');
                     $('#page-wrapper').html(data);
                     var select = document.getElementById("id_containers");
                     var length = select.length;
@@ -219,7 +278,12 @@ function editarPedido(datos, id) {
                 url: '/pedidos/' + id,
                 type: 'PUT',
                 data: datos,
+                beforeSend: function(){
+                	$('#page-wrapper').css('padding-top', '20%');
+                	$('#page-wrapper').html('<div class="center"><i class="fa fa-spinner fa-spin fa-5x"></i></div>');
+                },
                 success: function(data) {
+                	$('#page-wrapper').css('padding-top', '0');
                     if (data.msg === 'error') {
                         msg_guadadoerror();
                     } else {
@@ -235,7 +299,12 @@ function mostrarDetallePedido(id) {
             {
                 url: '/pedidos/' + id,
                 type: 'GET',
+                beforeSend: function(){
+                	$('#page-wrapper').css('padding-top', '20%');
+                	$('#page-wrapper').html('<div class="center"><i class="fa fa-spinner fa-spin fa-5x"></i></div>');
+                },
                 success: function(data) {
+                	$('#page-wrapper').css('padding-top', '0');
                     $('#page-wrapper').html(data);
                 }
             });
@@ -245,7 +314,12 @@ function eliminarPedido(id) {
             {
                 url: '/pedidos/' + id,
                 type: 'DELETE',
+                beforeSend: function(){
+                	$('#page-wrapper').css('padding-top', '20%');
+                	$('#page-wrapper').html('<div class="center"><i class="fa fa-spinner fa-spin fa-5x"></i></div>');
+                },
                 success: function(data) {
+                	$('#page-wrapper').css('padding-top', '0');
                     if (data.msg === 'error') {
                         msg_borradoerror();
                     } else {
@@ -265,7 +339,12 @@ function abrirHistorialPedidos() {
             {
                 url: '/pedidos/historial',
                 type: 'GET',
+                beforeSend: function(){
+                	$('#page-wrapper').css('padding-top', '20%');
+                	$('#page-wrapper').html('<div class="center"><i class="fa fa-spinner fa-spin fa-5x"></i></div>');
+                },
                 success: function(data) {
+                	$('#page-wrapper').css('padding-top', '0');
                     $('#page-wrapper').html(data);
                 }
             });
@@ -281,7 +360,12 @@ function abrirNavieras() {
             {
                 url: '/navieras',
                 type: 'GET',
+                beforeSend: function(){
+                	$('#page-wrapper').css('padding-top', '20%');
+                	$('#page-wrapper').html('<div class="center"><i class="fa fa-spinner fa-spin fa-5x"></i></div>');
+                },
                 success: function(data) {
+                	$('#page-wrapper').css('padding-top', '0');
                     $('#page-wrapper').html(data);
                 }
             });
@@ -293,7 +377,12 @@ function mostrarCrearNaviera() {
             {
                 url: '/navieras/create',
                 type: 'GET',
+                beforeSend: function(){
+                	$('#page-wrapper').css('padding-top', '20%');
+                	$('#page-wrapper').html('<div class="center"><i class="fa fa-spinner fa-spin fa-5x"></i></div>');
+                },
                 success: function(data) {
+                	$('#page-wrapper').css('padding-top', '0');
                     $('#page-wrapper').html(data);
                 }
             });
@@ -305,7 +394,12 @@ function crearNaviera(datos) {
                 url: '/navieras',
                 type: 'POST',
                 data: datos,
+                beforeSend: function(){
+                	$('#page-wrapper').css('padding-top', '20%');
+                	$('#page-wrapper').html('<div class="center"><i class="fa fa-spinner fa-spin fa-5x"></i></div>');
+                },
                 success: function(data) {
+                	$('#page-wrapper').css('padding-top', '0');
                     if (data.msg === 'error') {
                         msg_guadadoerror();
                     } else {
@@ -322,7 +416,12 @@ function mostrarEditarNaviera(id) {
             {
                 url: '/navieras/' + id + '/edit',
                 type: 'GET',
+                beforeSend: function(){
+                	$('#page-wrapper').css('padding-top', '20%');
+                	$('#page-wrapper').html('<div class="center"><i class="fa fa-spinner fa-spin fa-5x"></i></div>');
+                },
                 success: function(data) {
+                	$('#page-wrapper').css('padding-top', '0');
                     $('#page-wrapper').html(data);
                 }
             });
@@ -333,7 +432,12 @@ function editarNaviera(datos, id) {
                 url: '/navieras/' + id,
                 type: 'PUT',
                 data: datos,
+                beforeSend: function(){
+                	$('#page-wrapper').css('padding-top', '20%');
+                	$('#page-wrapper').html('<div class="center"><i class="fa fa-spinner fa-spin fa-5x"></i></div>');
+                },
                 success: function(data) {
+                	$('#page-wrapper').css('padding-top', '0');
                     if (data.msg === 'error') {
                         msg_guadadoerror();
                     } else {
@@ -349,7 +453,12 @@ function mostrarDetalleNaviera(id) {
             {
                 url: '/navieras/' + id,
                 type: 'GET',
+                beforeSend: function(){
+                	$('#page-wrapper').css('padding-top', '20%');
+                	$('#page-wrapper').html('<div class="center"><i class="fa fa-spinner fa-spin fa-5x"></i></div>');
+                },
                 success: function(data) {
+                	$('#page-wrapper').css('padding-top', '0');
                     $('#page-wrapper').html(data);
                 }
             });
@@ -359,7 +468,12 @@ function eliminarNaviera(id) {
             {
                 url: '/navieras/' + id,
                 type: 'DELETE',
+                beforeSend: function(){
+                	$('#page-wrapper').css('padding-top', '20%');
+                	$('#page-wrapper').html('<div class="center"><i class="fa fa-spinner fa-spin fa-5x"></i></div>');
+                },
                 success: function(data) {
+                	$('#page-wrapper').css('padding-top', '0');
                     if (data.msg === 'error') {
                         msg_borradoerror();
                     } else {
@@ -382,7 +496,12 @@ function abrirProveedores() {
             {
                 url: '/proveedores',
                 type: 'GET',
+                beforeSend: function(){
+                	$('#page-wrapper').css('padding-top', '20%');
+                	$('#page-wrapper').html('<div class="center"><i class="fa fa-spinner fa-spin fa-5x"></i></div>');
+                },
                 success: function(data) {
+                	$('#page-wrapper').css('padding-top', '0');
                     $('#page-wrapper').html(data);
                 }
             });
@@ -394,7 +513,12 @@ function mostrarCrearProveedores() {
             {
                 url: '/proveedores/create',
                 type: 'GET',
+                beforeSend: function(){
+                	$('#page-wrapper').css('padding-top', '20%');
+                	$('#page-wrapper').html('<div class="center"><i class="fa fa-spinner fa-spin fa-5x"></i></div>');
+                },
                 success: function(data) {
+                	$('#page-wrapper').css('padding-top', '0');
                     $('#page-wrapper').html(data);
                 }
             });
@@ -407,7 +531,12 @@ function mostrarEditarProveedores(id) {
             {
                 url: '/proveedores/' + id + '/edit',
                 type: 'GET',
+                beforeSend: function(){
+                	$('#page-wrapper').css('padding-top', '20%');
+                	$('#page-wrapper').html('<div class="center"><i class="fa fa-spinner fa-spin fa-5x"></i></div>');
+                },
                 success: function(data) {
+                	$('#page-wrapper').css('padding-top', '0');
                     $('#page-wrapper').html(data);
                 }
             });
@@ -418,7 +547,12 @@ function editarProveedores(datos, id) {
                 url: '/proveedores/' + id,
                 type: 'PUT',
                 data: datos,
+                beforeSend: function(){
+                	$('#page-wrapper').css('padding-top', '20%');
+                	$('#page-wrapper').html('<div class="center"><i class="fa fa-spinner fa-spin fa-5x"></i></div>');
+                },
                 success: function(data) {
+                	$('#page-wrapper').css('padding-top', '0');
                     if (data.msg === 'error') {
                         msg_guadadoerror();
                     } else {
@@ -434,7 +568,12 @@ function mostrarDetalleProveedores(id) {
             {
                 url: '/proveedores/' + id,
                 type: 'GET',
+                beforeSend: function(){
+                	$('#page-wrapper').css('padding-top', '20%');
+                	$('#page-wrapper').html('<div class="center"><i class="fa fa-spinner fa-spin fa-5x"></i></div>');
+                },
                 success: function(data) {
+                	$('#page-wrapper').css('padding-top', '0');
                     $('#page-wrapper').html(data);
                 }
             });
@@ -444,7 +583,12 @@ function eliminarProveedores(id) {
             {
                 url: '/proveedores/' + id,
                 type: 'DELETE',
+                beforeSend: function(){
+                	$('#page-wrapper').css('padding-top', '20%');
+                	$('#page-wrapper').html('<div class="center"><i class="fa fa-spinner fa-spin fa-5x"></i></div>');
+                },
                 success: function(data) {
+                	$('#page-wrapper').css('padding-top', '0');
                     if (data.msg === 'error') {
                         msg_borradoerror();
                     } else {
@@ -462,7 +606,12 @@ function crearProveedor(datos) {
                 url: '/proveedores',
                 type: 'POST',
                 data: datos,
+                beforeSend: function(){
+                	$('#page-wrapper').css('padding-top', '20%');
+                	$('#page-wrapper').html('<div class="center"><i class="fa fa-spinner fa-spin fa-5x"></i></div>');
+                },
                 success: function(data) {
+                	$('#page-wrapper').css('padding-top', '0');
                     if (data.msg === 'error') {
                         msg_guadadoerror();
                     } else {
@@ -484,7 +633,12 @@ function abrirUsuarios() {
             {
                 url: '/usuarios',
                 type: 'GET',
+                beforeSend: function(){
+                	$('#page-wrapper').css('padding-top', '20%');
+                	$('#page-wrapper').html('<div class="center"><i class="fa fa-spinner fa-spin fa-5x"></i></div>');
+                },
                 success: function(data) {
+                	$('#page-wrapper').css('padding-top', '0');
                     $('#page-wrapper').html(data);
                 }
             });
@@ -496,7 +650,12 @@ function mostrarCrearUsuario() {
             {
                 url: '/usuarios/create',
                 type: 'GET',
+                beforeSend: function(){
+                	$('#page-wrapper').css('padding-top', '20%');
+                	$('#page-wrapper').html('<div class="center"><i class="fa fa-spinner fa-spin fa-5x"></i></div>');
+                },
                 success: function(data) {
+                	$('#page-wrapper').css('padding-top', '0');
                     $('#page-wrapper').html(data);
                 }
             });
@@ -509,7 +668,12 @@ function mostrarEditarUsuarios(id) {
             {
                 url: '/usuarios/' + id + '/edit',
                 type: 'GET',
+                beforeSend: function(){
+                	$('#page-wrapper').css('padding-top', '20%');
+                	$('#page-wrapper').html('<div class="center"><i class="fa fa-spinner fa-spin fa-5x"></i></div>');
+                },
                 success: function(data) {
+                	$('#page-wrapper').css('padding-top', '0');
                     $('#page-wrapper').html(data);
                 }
             });
@@ -520,7 +684,12 @@ function editarUsuarios(datos, id) {
                 url: '/usuarios/' + id,
                 type: 'PUT',
                 data: datos,
+                beforeSend: function(){
+                	$('#page-wrapper').css('padding-top', '20%');
+                	$('#page-wrapper').html('<div class="center"><i class="fa fa-spinner fa-spin fa-5x"></i></div>');
+                },
                 success: function(data) {
+                	$('#page-wrapper').css('padding-top', '0');
                     if (data.msg === 'error') {
                         msg_guadadoerror();
                     } else {
@@ -536,7 +705,12 @@ function mostrarDetalleUsuarios(id) {
             {
                 url: '/usuarios/' + id,
                 type: 'GET',
+                beforeSend: function(){
+                	$('#page-wrapper').css('padding-top', '20%');
+                	$('#page-wrapper').html('<div class="center"><i class="fa fa-spinner fa-spin fa-5x"></i></div>');
+                },
                 success: function(data) {
+                	$('#page-wrapper').css('padding-top', '0');
                     $('#page-wrapper').html(data);
                 }
             });
@@ -546,7 +720,12 @@ function eliminarUsuarios(id) {
             {
                 url: '/usuarios/' + id,
                 type: 'DELETE',
+                beforeSend: function(){
+                	$('#page-wrapper').css('padding-top', '20%');
+                	$('#page-wrapper').html('<div class="center"><i class="fa fa-spinner fa-spin fa-5x"></i></div>');
+                },
                 success: function(data) {
+                	$('#page-wrapper').css('padding-top', '0');
                     if (data.msg === 'error') {
                         msg_borradoerror();
                     } else {
@@ -564,7 +743,12 @@ function crearUsuarios(datos) {
                 url: '/usuarios',
                 type: 'POST',
                 data: datos,
+                beforeSend: function(){
+                	$('#page-wrapper').css('padding-top', '20%');
+                	$('#page-wrapper').html('<div class="center"><i class="fa fa-spinner fa-spin fa-5x"></i></div>');
+                },
                 success: function(data) {
+                	$('#page-wrapper').css('padding-top', '0');
                     if (data.msg === 'error') {
                         msg_guadadoerror();
                     } else {
@@ -587,7 +771,12 @@ function abrirClientes() {
             {
                 url: '/usuarios/clientes',
                 type: 'GET',
+                beforeSend: function(){
+                	$('#page-wrapper').css('padding-top', '20%');
+                	$('#page-wrapper').html('<div class="center"><i class="fa fa-spinner fa-spin fa-5x"></i></div>');
+                },
                 success: function(data) {
+                	$('#page-wrapper').css('padding-top', '0');
                     $('#page-wrapper').html(data);
                 }
             });
@@ -599,8 +788,13 @@ function aprobarCliente(aprobado, id) {
                 {
                     url: '/usuarios/clientes/aprobar/' + id,
                     type: 'GET',
+                    beforeSend: function(){
+                	$('#page-wrapper').css('padding-top', '20%');
+                	$('#page-wrapper').html('<div class="center"><i class="fa fa-spinner fa-spin fa-5x"></i></div>');
+                },
                     data: {estado: "ACTIVO"},
                     success: function(data) {
+                	$('#page-wrapper').css('padding-top', '0');
                         if (data.msg === 'error') {
                             msg_guadadoerror();
                         } else {
@@ -619,7 +813,12 @@ function eliminarCliente(id) {
             {
                 url: '/usuarios/' + id,
                 type: 'DELETE',
+                beforeSend: function(){
+                	$('#page-wrapper').css('padding-top', '20%');
+                	$('#page-wrapper').html('<div class="center"><i class="fa fa-spinner fa-spin fa-5x"></i></div>');
+                },
                 success: function(data) {
+                	$('#page-wrapper').css('padding-top', '0');
                     if (data.msg === 'error') {
                         msg_borradoerror();
                     } else {
@@ -637,12 +836,155 @@ function mostrarDetalleCliente(id) {
             {
                 url: '/usuarios/' + id,
                 type: 'GET',
+                beforeSend: function(){
+                	$('#page-wrapper').css('padding-top', '20%');
+                	$('#page-wrapper').html('<div class="center"><i class="fa fa-spinner fa-spin fa-5x"></i></div>');
+                },
                 success: function(data) {
+                	$('#page-wrapper').css('padding-top', '0');
                     $('#page-wrapper').html(data);
                 }
             });
 }
 
+/*
+ *
+ *  COMPAÑIAS 
+ *
+ */
+function abrirCompanias() {
+
+    $.ajax(
+            {
+                url: '/companias',
+                type: 'GET',
+                beforeSend: function(){
+                    $('#page-wrapper').css('padding-top', '20%');
+                    $('#page-wrapper').html('<div class="center"><i class="fa fa-spinner fa-spin fa-5x"></i></div>');
+                },
+                success: function(data) {
+                    $('#page-wrapper').css('padding-top', '0');
+                    $('#page-wrapper').html(data);
+                }
+            });
+}
+function mostrarCrearCompanias() {
+
+    $.ajax(
+            {
+                url: '/companias/create',
+                type: 'GET',
+                beforeSend: function(){
+                    $('#page-wrapper').css('padding-top', '20%');
+                    $('#page-wrapper').html('<div class="center"><i class="fa fa-spinner fa-spin fa-5x"></i></div>');
+                },
+                success: function(data) {
+                    $('#page-wrapper').css('padding-top', '0');
+                    $('#page-wrapper').html(data);
+                }
+            });
+
+}
+
+function crearCompania(datos) {
+
+    $.ajax(
+            {
+                url: '/companias',
+                type: 'POST',
+                data: datos,
+                beforeSend: function(){
+                    $('#page-wrapper').css('padding-top', '20%');
+                    $('#page-wrapper').html('<div class="center"><i class="fa fa-spinner fa-spin fa-5x"></i></div>');
+                },
+                success: function(data) {
+                    $('#page-wrapper').css('padding-top', '0');
+                    if (data.msg === 'error') {
+                        msg_guadadoerror();
+                    } else {
+                        abrirCompanias();
+                        msg_guadadocorreto();
+                    }
+                }
+            });
+}
+
+function mostrarEditarCompania(id) {
+
+    $.ajax(
+            {
+                url: '/companias/' + id + '/edit',
+                type: 'GET',
+                beforeSend: function(){
+                    $('#page-wrapper').css('padding-top', '20%');
+                    $('#page-wrapper').html('<div class="center"><i class="fa fa-spinner fa-spin fa-5x"></i></div>');
+                },
+                success: function(data) {
+                    $('#page-wrapper').css('padding-top', '0');
+                    $('#page-wrapper').html(data);
+                }
+            });
+}
+function editarCompania(datos, id) {
+    $.ajax(
+            {
+                url: '/companias/' + id,
+                type: 'PUT',
+                data: datos,
+                beforeSend: function(){
+                    $('#page-wrapper').css('padding-top', '20%');
+                    $('#page-wrapper').html('<div class="center"><i class="fa fa-spinner fa-spin fa-5x"></i></div>');
+                },
+                success: function(data) {
+                    $('#page-wrapper').css('padding-top', '0');
+                    if (data.msg === 'error') {
+                        msg_guadadoerror();
+                    } else {
+                        abrirCompanias();
+                        msg_guadadocorreto();
+                    }
+
+                }
+            });
+}
+function eliminarCompania(id) {
+    $.ajax(
+            {
+                url: '/companias/' + id,
+                type: 'DELETE',
+                beforeSend: function(){
+                    $('#page-wrapper').css('padding-top', '20%');
+                    $('#page-wrapper').html('<div class="center"><i class="fa fa-spinner fa-spin fa-5x"></i></div>');
+                },
+                success: function(data) {
+                    $('#page-wrapper').css('padding-top', '0');
+                    if (data.msg === 'error') {
+                        msg_borradoerror();
+                    } else {
+                        abrirCompanias();
+                        msg_borradocorrecto();
+                    }
+
+                }
+            });
+ }
+
+
+function mostrarDetalleCompania(id) {
+    $.ajax(
+            {
+                url: '/companias/' + id,
+                type: 'GET',
+                beforeSend: function(){
+                    $('#page-wrapper').css('padding-top', '20%');
+                    $('#page-wrapper').html('<div class="center"><i class="fa fa-spinner fa-spin fa-5x"></i></div>');
+                },
+                success: function(data) {
+                    $('#page-wrapper').css('padding-top', '0');
+                    $('#page-wrapper').html(data);
+                }
+            });
+}
 /* 
  * CARGA DE LISTAS ASINCRONAS
  * 

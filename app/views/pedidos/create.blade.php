@@ -21,6 +21,11 @@
                 'files' => true)) }}
 
     <div class="form-group">
+        {{ Form::label('compania', 'Compañia') }}
+        {{ Form::select('compania_id', $companias, null, array('class'=>'form-control','style'=>'' )) }}
+    </div>
+
+    <div class="form-group">
         {{ Form::label('proveedor_id', 'Proveedor') }}
         {{ Form::select('proveedor_id', $proveedores, null, array('class'=>'form-control','style'=>'' )) }}
     </div>
@@ -29,7 +34,6 @@
         {{ Form::label('producto_id', 'Producto') }}
         {{ Form::select('producto_id', $productos, null, array('class'=>'form-control','style'=>'' )) }}
     </div>
-
 
     <div class="form-group">
         {{ Form::label('naviera_id', 'Naviera') }}

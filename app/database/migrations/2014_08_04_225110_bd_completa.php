@@ -99,19 +99,11 @@ class BdCompleta extends Migration {
 			$table -> string('nombre_contacto');
 			$table -> string('telefono');
 			$table -> string('direccion');
-			$table -> string('url_seguimiento');
+			$table -> string('url_seguimiento', 500);
 			$table -> timestamps();
 			$table -> softDeletes();
 		});
-		Schema::create('guias', function($table) {
-			$table -> engine = 'MyISAM';
-			$table -> increments('id');
-			$table -> string('numero_guia');
-			$table -> string('empresa_envio');
-			$table -> string('url_archivo');
-			$table -> timestamps();
-			$table -> softDeletes();
-		});
+		
 		Schema::create('proveedores', function($table) {
 			$table -> engine = 'MyISAM';
 			$table -> increments('id');
@@ -138,11 +130,9 @@ class BdCompleta extends Migration {
 			$table -> engine = 'MyISAM';
 			$table -> increments('id');
 			$table -> integer('producto_id') -> unsigned();
-			$table -> integer('proveedor_id') -> unsigned();
 			$table -> integer('naviera_id') -> unsigned();
 			$table -> integer('compania_id') -> unsigned();
 			$table -> enum('estado', array('ACTIVO', 'INACTIVO'));
-			$table -> integer('guia_id') -> unsigned();
 			$table -> string('numero_reserva');
 			$table -> string('buque');
 			$table -> date('fecha_carga');
@@ -151,14 +141,24 @@ class BdCompleta extends Migration {
 			$table -> date('fecha_vencimiento');
 			$table -> decimal('importe_facturado', 12, 2);
 			$table -> foreign('producto_id') -> references('id') -> on('productos') -> on_delete('set null');
-			$table -> foreign('proveedor_id') -> references('id') -> on('proveedores') -> on_delete('set null');
-			$table -> foreign('naviera_id') -> references('id') -> on('navieras') -> on_delete('set null');
-			$table -> foreign('guia_id') -> references('id') -> on('guias') -> on_delete('set null');
+		    $table -> foreign('naviera_id') -> references('id') -> on('navieras') -> on_delete('set null');
 			$table -> foreign('compania_id') -> references('id') -> on('companias') -> on_delete('set null');
 			$table -> timestamps();
 			$table -> softDeletes();
 		});
-		
+
+		Schema::create('guias', function($table) {
+			$table -> engine = 'MyISAM';
+			$table -> increments('id');
+			$table -> integer('pedido_id') -> unsigned();
+			$table -> string('numero_guia');
+			$table -> string('empresa_envio');
+			$table -> string('url_archivo');
+			$table -> timestamps();
+			$table -> softDeletes();
+			$table -> foreign('pedido_id') -> references('id') -> on('pedidos') -> on_delete('set null');
+		});
+
 		Schema::create('documentos', function($table) {
 			$table -> engine = 'MyISAM';
 			$table -> increments('id');
@@ -188,13 +188,13 @@ class BdCompleta extends Migration {
 	 */
 	public function down() {
 		Schema::drop('pedidos_containers');
+		Schema::drop('guias');
 		Schema::drop('documentos');
 		Schema::drop('pedidos');
 		Schema::drop('companias');
 		Schema::drop('usuarios');
 		Schema::drop('containers');
 		Schema::drop('navieras');
-		Schema::drop('guias');
 		Schema::drop('productos');
 		Schema::drop('proveedores');
 		Schema::drop('City');

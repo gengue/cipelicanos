@@ -1,21 +1,20 @@
 <div class="container-fluid">
-
-    <nav class="navbar navbar-inverse">
-        <div class="navbar-header">
-            <a class="navbar-brand" href="{{ URL::to('companias') }}">Nerd Alert</a>
+    <div class="row">
+        <div class="col-lg-12">
+            <h1 class="page-header">
+                <i class="fa fa-fw fa-university"></i> Compa&ntilde;ias <small>Agregar una compa&ntilde;ia</small></h1>
+            </h1>
+            <ol class="breadcrumb">
+                <li class="active">
+                    <i class="fa fa-dashboard"></i> &Uacute;ltima sesi&oacute;n:
+                </li>
+            </ol>
         </div>
-        <ul class="nav navbar-nav">
-            <li><a href="{{ URL::to('companias') }}">View All</a></li>
-            <li><a href="{{ URL::to('companias/create') }}">Create</a>
-        </ul>
-    </nav>
+    </div>
+    <a class="btn btn-small btn-info" href="javascript:abrirCompanias();"><i class="fa fa-list"></i> Listar todos</a>
+    <br><br>
 
-    <h1>Create</h1>
-
-    <!-- if there are creation errors, they will show here -->
-    {{ HTML::ul($errors->all()) }}
-
-    {{ Form::open(array('url' => 'companias')) }}
+    {{ Form::open(array('url' => 'companias', 'id' => 'formCompania')) }}
 
     <div class="form-group">
         {{ Form::label('nombre', 'Nombre') }}
@@ -38,8 +37,18 @@
         {{ Form::select('usuario_id', $usuarios, null, array('class'=>'form-control','style'=>'' )) }}
     </div>
 
-    {{ Form::submit('Crear companias!', array('class' => 'btn btn-primary')) }}
+    {{ Form::submit('Crear compania!', array('class' => 'btn btn-primary')) }}
 
     {{ Form::close() }}
 
 </div>
+<script>
+
+    $("#formCompania").submit(function(e) {
+        e.preventDefault();
+        
+        var datos =  $("#formCompania").serialize();
+        crearCompania(datos);
+    });
+
+</script>

@@ -1,63 +1,76 @@
 <div class="container-fluid">
-        <div class="container">
-
-            <nav class="navbar navbar-inverse">
-                <div class="navbar-header">
-                    <a class="navbar-brand" href="{{ URL::to('companias') }}">Alert</a>
-                </div>
-                <ul class="nav navbar-nav">
-                    <li><a href="{{ URL::to('companias') }}">Ver todas las companias</a></li>
-                    <li><a href="{{ URL::to('companias/create') }}">Crear compania</a>
-                </ul>
-            </nav>
-
-            <h1>Todas las Comapañias</h1>
-
-            <!-- will be used to show any messages -->
-            @if (Session::has('message'))
-            <div class="alert alert-info">{{ Session::get('message') }}</div>
-            @endif
-
-            <table class="table table-striped table-bordered">
-                <thead>
-                    <tr>
-                        <td>ID</td>
-                        <td>Nombre</td>
-                        <td>NIT</td>
-                        <td>Telefono</td>
-                        <td>Correo</td>
-                        <td>Usuario</td>
-                    </tr>
-                </thead>
-                <tbody>
-                    @foreach($companias as $key => $value)
-                    <tr>
-                        <td>{{ $value->id }}</td>
-                        <td>{{ $value->nombre }}</td>
-                        <td>{{ $value->nit }}</td>
-                        <td>{{ $value->telefono }}</td>
-                        <td>{{ $value->correo}}</td>
-                        <td>{{ $value->nombre_usuario}}</td>
-
-                        <!-- we will also add show, edit, and delete buttons -->
-                        <td>                            
-                            <!-- show the nerd (uses the show method found at GET /nerds/{id} -->
-                            <a class="btn btn-small btn-success" href="{{ URL::to('companias/' . $value->id) }}">Detalle</a>
-
-                            <!-- edit this nerd (uses the edit method found at GET /nerds/{id}/edit -->
-                            <a class="btn btn-small btn-info" href="{{ URL::to('companias/' . $value->id . '/edit') }}">Editar</a>
-                            <!-- delete the nerd (uses the destroy method DESTROY /nerds/{id} -->
-                            <!-- we will add this later since its a little more complicated than the other two buttons -->
-
-                            {{ Form::open(array('url' => 'companias/' . $value->id, 'class' => 'pull-right')) }}
-                            {{ Form::hidden('_method', 'DELETE') }}
-                            {{ Form::submit('Eliminar', array('class' => 'btn btn-warning')) }}
-                            {{ Form::close() }}
-                        </td>
-                    </tr>
-                    @endforeach
-                </tbody>
-            </table>
-
+    <div class="row">
+        <div class="col-lg-12">
+            <h1 class="page-header"><i class="fa fa-fw fa-university"></i> Compa&ntilde;ias <small>Todas las compa&ntilde;ias</small></h1>
+            <ol class="breadcrumb">
+                <li class="active">
+                    <i class="fa fa-dashboard"></i> &Uacute;ltima sesi&oacute;n:
+                </li>
+            </ol>
         </div>
+    </div>
+    <a class="btn btn-small btn-info" href="javascript:abrirCompanias();"><i class="fa fa-list"></i> Listar todos</a>
+    <a class="btn btn-small btn-info" href="javascript:mostrarCrearCompanias();"><i class="fa fa-plus"></i> Agregar compa&ntilde;ia</a>
+    <br>
+    <br>
+    <div class="table-responsive">
+        <table id="companiasTbl" class="table table-striped table-bordered">
+            <thead>
+                <tr>
+
+                    <td data-class="expand">Nombre</td>
+                    <td data-hide="phone,tablet">NIT</td>
+                    <td data-hide="phone, tablet">Telefono</td>
+                    <td data-hide="phone">Correo</td>
+                    <td>Usuario</td>
+                    <td data-hide="phone">Opciones</td>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach($companias as $key => $value)
+                <tr>
+
+                    <td>{{ $value->nombre }}</td>
+                    <td>{{ $value->nit }}</td>
+                    <td>{{ $value->telefono }}</td>
+                    <td>{{ $value->correo}}</td>
+                    <td>{{ $value->cliente->nombre." ".$value->cliente->apellido}}</td>
+
+                    <td>
+                        <a class="btn btn-small btn-success" href="javascript:mostrarDetalleCompania({{ $value->id }});"><i class="fa fa-search"></i></a>
+                        <a class="btn btn-small btn-info" href="javascript:mostrarEditarCompania({{ $value->id }});"><i class="fa fa-pencil"></i>
+                        </a><a class="btn btn-small btn-danger" href="javascript:eliminarCompania({{ $value->id }});"><i class="fa fa-trash-o"></i></a>
+                    </td>
+                </tr>
+                @endforeach
+            </tbody>
+        </table>
+    </div>
 </div>
+<script>
+    "use strict";
+    var responsiveHelper = undefined;
+    var breakpointDefinition = {
+        tablet : 1024,
+        phone : 480
+    };
+    var tableElement = $('#companiasTbl');
+    tableElement.dataTable({
+        autoWidth : false,
+        preDrawCallback : function() {
+            // Initialize the responsive datatables helper once.
+            if (!responsiveHelper) {
+                responsiveHelper = new ResponsiveDatatablesHelper(tableElement, breakpointDefinition);
+            }
+        },
+        rowCallback : function(nRow) {
+            responsiveHelper.createExpandIcon(nRow);
+        },
+        drawCallback : function(oSettings) {
+            responsiveHelper.respond();
+        }
+    });
+
+    $('#menu-vertical li').removeClass();
+    $('#menu-vertical').find('a:contains("Compañias")').parent().addClass("active"); 
+</script>

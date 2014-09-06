@@ -7,11 +7,6 @@ class CompaniasController extends BaseController {
 
         $companias = Compania::all();
 
-        $companias = DB::table('companias')
-            ->join('usuarios', 'companias.usuario_id', '=', 'usuarios.id')
-            ->select('companias.*','usuarios.nombre as nombre_usuario')
-            ->get();
-    //print_r($companias);
         return View::make('companias.index')
                         ->with('companias', $companias);
     }
@@ -29,7 +24,7 @@ class CompaniasController extends BaseController {
         );
         $validator = Validator::make(Input::all(), $rules);
 
-        // process the login
+      
         if ($validator->fails()) {
             return Response::json(array(
                             'msg' => 'error'
@@ -61,12 +56,12 @@ class CompaniasController extends BaseController {
     }
 
     public function edit($id) {
-        // get the nerd
+     
         $companias = Compania::find($id);
 
         $usuarios = Usuario::lists('nombre','id');
 
-        return View::make('companias.edit', array('companias' => $companias, 'usuarios'=>$usuarios ));
+        return View::make('companias.edit', array('compania' => $companias, 'usuarios'=>$usuarios ));
     }
 
     public function update($id) {
@@ -77,9 +72,9 @@ class CompaniasController extends BaseController {
 
         // process the login
         if ($validator->fails()) {
-            return Redirect::to('companias/' . $id . '/edit')
-                            ->withErrors($validator)
-                            ->withInput(Input::except('password'));
+            return Response::json(array(
+                            'msg' => 'error'
+                ));
         } else {
             // store
             $companias = Compania::find($id);
@@ -89,9 +84,10 @@ class CompaniasController extends BaseController {
             $companias->correo = Input::get('correo');
             $companias->usuario_id = Input::get('usuario_id');
             $companias->save();
-            // redirect
-            Session::flash('message', 'Successfully updated!');
-            return Redirect::to('companias');
+          
+            return Response::json(array(
+                            'msg' => 'ok'
+                ));
         }
     }
 
@@ -99,11 +95,17 @@ class CompaniasController extends BaseController {
     public function destroy($id) {
         // delete
         $companias = Compania::find($id);
-        $companias->delete();
 
-        // redirect
-        Session::flash('message', 'Successfully deleted!');
-        return Redirect::to('companias');
+        if($companias->delete()){
+            return Response::json(array(
+                'msg' => 'ok'
+                ));
+        }else{
+            return Response::json(array(
+                'msg' => 'error'
+                ));
+        }
+        
     }
 
 }

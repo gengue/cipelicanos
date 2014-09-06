@@ -14,8 +14,6 @@
     <a class="btn btn-small btn-info" href="javascript:abrirNavieras();"><i class="fa fa-list"></i> Listar todos</a>
     <br><br>
 
-    {{ HTML::ul($errors->all()) }}
-
     {{ Form::open(array('url' => 'navieras', 'id' => 'formNaviera')) }}
 
     <div class="form-group">

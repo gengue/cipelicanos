@@ -28,15 +28,7 @@
                     <th data-hide="phone">Opciones</th>
                 </tr>
             </thead>
-            <tfoot>
-                <tr>
-                    <th>ID</th>
-                    <th>Nombre</th>
-                    <th>Descripcion</th>
-                    <th>Proveedor</th>
-                    <th>Opciones</th>
-                </tr>
-            </tfoot>
+           
             <tbody>
                 @foreach($productos as $key => $value)
                 <tr>

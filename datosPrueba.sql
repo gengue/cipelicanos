@@ -4100,8 +4100,8 @@ INSERT INTO `City` (`id`, `nombre`, `CountryCode`, `District`, `Population`) VAL
 --
 
 INSERT INTO `containers` (`id`, `numero_container`, `created_at`, `updated_at`, `deleted_at`) VALUES
-(1, 'nojodas', '2014-08-26 22:19:59', '2014-08-26 22:19:59', NULL),
-(2, 'a353f235ddd1', '2014-08-26 22:43:19', '2014-08-26 22:43:19', NULL);
+(5, 'MWCU6905012', '2014-09-03 09:51:27', '2014-09-03 09:51:27', NULL),
+(6, 'SEGU9054054', '2014-09-03 09:54:44', '2014-09-03 09:54:44', NULL);
 
 --
 -- Dumping data for table `Country`
@@ -5358,9 +5358,10 @@ INSERT INTO `migrations` (`migration`, `batch`) VALUES
 --
 
 INSERT INTO `navieras` (`id`, `nombre`, `nombre_contacto`, `telefono`, `direccion`, `url_seguimiento`, `created_at`, `updated_at`, `deleted_at`) VALUES
-(1, 'Marea Roja', 'Peter Albeiro Franco', '309479479', 'Av. transición calle 4, puerto Rojo - Mexico D.C', 'www.example.com', '2014-08-20 08:30:26', '2014-09-02 22:58:05', NULL),
-(2, 'La puerta Oro', 'Jesus Manrrique Sosa', '300458249', 'Muelle #3. Clalle 2 #4. Bquilla, Colombia', 'www.puertadeoro.com', '2014-08-26 22:30:39', '2014-09-02 22:58:18', NULL),
-(3, 'CMA CGM Group', 'Steven Paccini', '+3901059671 ', 'Via Silvio Pellico 1 16128 Genova - Italy', 'http://www.cma-cgm.com/ebusiness/tracking/search?SearchBy=Container&Reference=', '2014-09-02 22:04:41', '2014-09-02 23:01:34', NULL);
+(1, 'Hamburg Süd', 'Peter Albeiro Franco', '309479479', 'Av. transición calle 4-#12 - Mexico D.C', 'http://www.ecom.hamburgsud.com/ecom/en/ecommerce_portal/track_trace/track__trace/ep_tracktrace_results.xhtml?searchReference=', '2014-08-20 08:30:26', '2014-09-03 09:28:54', NULL),
+(2, 'ZIM', 'Jesus Manrrique Sosa', '300458249', 'Elm Street H-23, London', 'http://www.zim.com/pages/findcontainer.aspx?searchtype=3&searchvalue1=', '2014-08-26 22:30:39', '2014-09-03 09:23:32', NULL),
+(3, 'CMA CGM Group', 'Steven Paccini', '+3901059671 ', 'Via Silvio Pellico 1 16128 Genova - Italy', 'http://www.cma-cgm.com/ebusiness/tracking/search?SearchBy=Container&Reference=', '2014-09-02 22:04:41', '2014-09-02 23:01:34', NULL),
+(4, 'Maersk Line', 'Pedro Rivas Orozco', '+57 1 4065000', 'Cra 33, #45-12, Bogota', 'http://my.maerskline.com/appmanager/maerskline/public?_nfpb=true&_windowLabel=portlet_trackSimple_1&portlet_trackSimple_1_actionOverride=%2Fportlets%2Ftracking3%2Ftrack%2FTrackingOverview%2FgetContainerInfo&portlet_trackSimple_1uid=0&portlet_trackSimple_1shipmentNo=BEYP2XP8GXP6B&portlet_trackSimple_1containerNo=', '2014-09-03 09:45:47', '2014-09-03 12:27:37', NULL);
 
 --
 -- Dumping data for table `proveedores`
@@ -5412,8 +5413,8 @@ INSERT INTO `usuarios` (`id`, `tipo_usuario`, `password`, `nombre`, `apellido`, 
 --
 
 INSERT INTO `pedidos` (`id`, `producto_id`, `proveedor_id`, `naviera_id`, `compania_id`, `estado`, `guia_id`, `numero_reserva`, `buque`, `fecha_carga`, `fecha_abordaje`, `fecha_entrega`, `fecha_vencimiento`, `importe_facturado`, `created_at`, `updated_at`, `deleted_at`) VALUES
-(1, 5, 4, 1, 0, 'ACTIVO', 1, '1123124', 'ferkuli', '2014-08-27', '2014-08-26', '2014-08-29', '2014-08-31', 4567300090.00, '2014-08-26 22:19:59', '2014-08-26 22:19:59', NULL),
-(2, 7, 3, 2, 0, 'ACTIVO', 2, '782455073', 'Malzo Negro #2', '2014-08-11', '2014-08-11', '2014-08-15', '2014-08-16', 234000245.00, '2014-08-26 22:43:19', '2014-08-26 22:43:19', NULL),
+(1, 5, 4, 4, 0, 'ACTIVO', 1, '1123124', 'ferkuli', '2014-08-27', '2014-08-26', '2014-08-29', '2014-08-31', 4567300090.00, '2014-08-26 22:19:59', '2014-09-03 09:51:27', NULL),
+(2, 7, 3, 3, 0, 'ACTIVO', 2, '782455073', 'Malzo Negro #2', '2014-08-11', '2014-08-11', '2014-08-15', '2014-08-16', 234000245.00, '2014-08-26 22:43:19', '2014-09-03 09:27:18', NULL),
 (3, 10, 4, 3, 0, 'ACTIVO', 3, '123124', 'prueba', '2014-09-03', '2014-09-03', '2014-09-20', '2014-09-20', 12345.00, '2014-09-02 23:17:22', '2014-09-02 23:17:22', NULL);
 
 --
@@ -5421,7 +5422,7 @@ INSERT INTO `pedidos` (`id`, `producto_id`, `proveedor_id`, `naviera_id`, `compa
 --
 
 INSERT INTO `pedidos_containers` (`id`, `container_id`, `pedido_id`, `created_at`, `updated_at`, `deleted_at`) VALUES
-(1, 1, 1, '2014-08-26 22:19:59', '2014-08-26 22:19:59', NULL),
-(2, 2, 2, '2014-08-26 22:43:19', '2014-08-26 22:43:19', NULL);
+(5, 5, 1, '2014-09-03 09:51:27', '2014-09-03 09:51:27', NULL),
+(6, 6, 2, '2014-09-03 09:54:44', '2014-09-03 09:54:44', NULL);
 
 

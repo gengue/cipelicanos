@@ -27,9 +27,8 @@
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-                    <a class="navbar-brand" href="index.html">C.I. PELICANOS</a>
-
-<!-- <img  height="50" width="100" src="{{ asset('img/logo.png')}}">  -->
+                    
+ <a href="http://www.cipelicanos.biz/" target="_blank"><img id="logo" height="45" width="100" src="{{ asset('images/logo_pelicanos_nuevo.png')}}"></a> 
                 </div>
                 <!-- Top Menu Items -->
                 <ul class="nav navbar-right top-nav">
@@ -136,7 +135,7 @@
                 <div class="collapse navbar-collapse navbar-ex1-collapse">
                     <ul class="nav navbar-nav side-nav" id="menu-vertical">
                         <li class="active">
-                            <a href="javascript:abrirDashboard();"><i class="fa fa-fw fa-dashboard"></i> Inicio</a>
+                            <a href="javascript:abrirDashboard();"><i class="fa fa-fw fa-home"></i> Inicio</a>
                         </li>
                         <li>
 
@@ -145,6 +144,9 @@
                         </li>
                         <li>
                             <a href="javascript:abrirClientes();"><i class="fa fa-fw fa-money"></i> Clientes</a>
+                        </li>
+                        <li>
+                            <a href="javascript:abrirCompanias();"><i class="fa fa-fw fa-university"></i> Compa&ntilde;ias</a>
                         </li>
                         <li>
                             <a href="javascript:abrirProductos();"><i class="fa fa-fw fa-gift"></i> Productos</a>
