@@ -47,7 +47,7 @@
 
                         <a class="btn btn-small btn-success" href= "javascript:mostrarDetalleUsuarios({{$value->id}});" title="Ver Detalles"><i class="fa fa-search" ></i></a>
                         <a class="btn btn-small btn-info" href="javascript:mostrarEditarUsuarios({{ $value->id}});" title="Modificar" ><i class="fa fa-pencil" ></i></a>
-                        <a class="btn btn-small btn-danger" href="javascript:eliminarUsuarios({{ $value->id }});" title="Eliminar"><i class="fa fa-trash-o" ></i></a>
+                        <a class="btn btn-small btn-danger" data-toggle="confirmation" data-href="javascript:eliminarUsuarios({{ $value->id }});" href="javascript:eliminarUsuarios({{ $value->id }});" title="Eliminar"><i class="fa fa-trash-o" ></i></a>
 
                     </td>
                 </tr>
@@ -57,6 +57,8 @@
     </div>
 </div>
 <script>
+    $('[data-toggle="confirmation"]').confirmation();
+
     "use strict";
     var responsiveHelper = undefined;
     var breakpointDefinition = {

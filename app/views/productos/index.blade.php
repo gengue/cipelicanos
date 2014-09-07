@@ -40,7 +40,7 @@
                     <td>                            
                         <a class="btn btn-small btn-success" href="javascript:mostrarDetalleProducto({{ $value->id }});"><i class="fa fa-search"></i></a>
                         <a class="btn btn-small btn-info" href="javascript:mostrarEditarProducto({{ $value->id }});"><i class="fa fa-pencil"></i></a>
-                        <a class="btn btn-small btn-danger" href="javascript:eliminarProducto({{ $value->id }});"><i class="fa fa-trash-o"></i></a>
+                        <a class="btn btn-small btn-danger" data-toggle="confirmation"  data-href="javascript:eliminarProducto({{ $value->id }});" href="javascript:eliminarProducto({{ $value->id }});"><i class="fa fa-trash-o"></i></a>
 
                     </td>
                 </tr>
@@ -50,6 +50,7 @@
     
 </div>
 <script>
+    $('[data-toggle="confirmation"]').confirmation();
     "use strict";
     var responsiveHelper = undefined;
     var breakpointDefinition = {

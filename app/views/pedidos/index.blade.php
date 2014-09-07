@@ -45,9 +45,11 @@
                     <td>{{ $value->naviera->nombre }}</td>
                     <td> 
                         @foreach($value->containers as $llave => $container) 
+
                         <a href="{{ $value->url_seguimiento . $container->numero_container }}" target="_blank">
                             {{ $container->numero_container }}
                         </a> 
+
                         @endforeach
                     </td>
                     <td> 
@@ -66,7 +68,7 @@
                     <td>  
                         <a class="btn btn-small btn-success" href="javascript:mostrarDetallePedido({{ $value->id }});"><i class="fa fa-search"></i></a>
                         <a class="btn btn-small btn-info" href="javascript:mostrarEditarPedido({{ $value->id }});"><i class="fa fa-pencil"></i></a>
-                        <a class="btn btn-small btn-danger" href="javascript:eliminarPedido({{ $value->id }});"><i class="fa fa-trash-o"></i></a>
+                        <a class="btn btn-small btn-danger" data-toggle="confirmation"  data-href="javascript:eliminarPedido({{ $value->id }});" href="javascript:eliminarPedido({{ $value->id }});"><i class="fa fa-trash-o"></i></a>
                     </td>
                 </tr>
                 @endforeach
@@ -75,6 +77,7 @@
     </div>
 </div>
 <script>
+    $('[data-toggle="confirmation"]').confirmation();
     "use strict";
     var responsiveHelper = undefined;
     var breakpointDefinition = {

@@ -30,6 +30,7 @@ window.addEventListener('load', function() {
             icon: icon
         });
     };
+
 }, false);
 //INICIO
 function abrirDashboard() {
@@ -715,27 +716,29 @@ function mostrarDetalleUsuarios(id) {
                 }
             });
 }
-function eliminarUsuarios(id) {
-    $.ajax(
-            {
-                url: '/usuarios/' + id,
-                type: 'DELETE',
-                beforeSend: function(){
-                	$('#page-wrapper').css('padding-top', '20%');
-                	$('#page-wrapper').html('<div class="center"><i class="fa fa-spinner fa-spin fa-5x"></i></div>');
-                },
-                success: function(data) {
-                	$('#page-wrapper').css('padding-top', '0');
-                    if (data.msg === 'error') {
-                        msg_borradoerror();
-                    } else {
-                        abrirUsuarios();
-                        msg_borradocorrecto();
-                    }
+function eliminarUsuarios(id) { 
+     $.ajax(
+     {
+        url: '/usuarios/' + id,
+        type: 'DELETE',
+        beforeSend: function(){
+            $('#page-wrapper').css('padding-top', '20%');
+            $('#page-wrapper').html('<div class="center"><i class="fa fa-spinner fa-spin fa-5x"></i></div>');
+        },
+        success: function(data) {
+            $('#page-wrapper').css('padding-top', '0');
+            if (data.msg === 'error') {
+                msg_borradoerror();
+            } else {
+                abrirUsuarios();
+                msg_borradocorrecto();
+            }
 
-                }
-            });
+        }
+    }); 
+   
 }
+    
 function crearUsuarios(datos) {
 
     $.ajax(

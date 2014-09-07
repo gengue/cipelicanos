@@ -11,6 +11,7 @@
     </div>
     <a class="btn btn-small btn-info" href="javascript:abrirNavieras();"><i class="fa fa-list"></i> Listar todos</a>
     <a class="btn btn-small btn-info" href="javascript:mostrarCrearNaviera();"><i class="fa fa-plus"></i> Agregar naviera</a>
+
     <br>
     <br>
     
@@ -38,7 +39,7 @@
                     <td>
                         <a class="btn btn-small btn-success" href="javascript:mostrarDetalleNaviera({{ $value->id }});"><i class="fa fa-search"></i></a>
                         <a class="btn btn-small btn-info" href="javascript:mostrarEditarNaviera({{ $value->id }});"><i class="fa fa-pencil"></i>
-                        </a><a class="btn btn-small btn-danger" href="javascript:eliminarNaviera({{ $value->id }});"><i class="fa fa-trash-o"></i></a>
+                        </a><a class="btn btn-small btn-danger" data-toggle="confirmation" data-href="javascript:eliminarNaviera({{ $value->id }});" href="javascript:eliminarNaviera({{ $value->id }});"><i class="fa fa-trash-o"></i></a>
                     </td>
                 </tr>
                 @endforeach
@@ -47,6 +48,7 @@
     </div>
 </div>
 <script>
+    $('[data-toggle="confirmation"]').confirmation();
 	"use strict";
 	var responsiveHelper = undefined;
 	var breakpointDefinition = {

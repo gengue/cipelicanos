@@ -27,7 +27,7 @@ return array(
 	*/
 
 	//'default' => 'cipelicanos_mySQL',
-        'default' => 'cipelicanos2_mySQL',
+    'default' => 'cipelicanos2_mySQL',
 
 	/*
 	|--------------------------------------------------------------------------
@@ -65,11 +65,10 @@ return array(
 		),
 
 		'cipelicanos_mySQL' => array(
-                        'engine'    => 'MYISAM',
 			'driver'    => 'mysql',
 			'host'      => 'localhost',
 			'database'  => 'cipelicanos',
-			'username'  => 'root',
+			'username'  => 'cipelicanos',
 			'password'  => '1234',
 			'charset'   => 'latin1',
 			'collation' => 'latin1_spanish_ci',

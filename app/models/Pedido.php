@@ -17,7 +17,7 @@ class Pedido extends Eloquent{
                         ->join('guias', 'guias.id', '=', 'pedidos.guia_id')
                         ->whereNull('pedidos.deleted_at')
                         ->where('pedidos.estado','=',$estado)
-                        ->select('pedidos.*', 'productos.nombre as nombre_producto', 'proveedores.nombre as nombre_proveedor', 'navieras.nombre as nombre_naviera', 'navieras.url_seguimiento as url_seguimiento','guias.numero_guia as nombre_guia')->get();
+                        ->select('pedidos.*', 'productos.nombre as nombre_producto', 'proveedores.nombre as nombre_proveedor', 'navieras.nombre as nombre_naviera', 'guias.numero_guia as nombre_guia')->get();
         //Agregamos los containers por medio de una consulta
         foreach ($pedidos as $key => $value) {
             //containers para el CADA pedido
@@ -38,7 +38,7 @@ class Pedido extends Eloquent{
                         ->join('navieras', 'navieras.id', '=', 'pedidos.naviera_id')
                         ->join('guias', 'guias.id', '=', 'pedidos.guia_id')
                         ->where('pedidos.id', '=', $id)
-                        ->select('pedidos.*', 'productos.nombre as nombre_producto', 'proveedores.nombre as nombre_proveedor', 'navieras.nombre as nombre_naviera', 'navieras.url_seguimiento as url_seguimiento', 'guias.numero_guia as nombre_guia')->first();
+                        ->select('pedidos.*', 'productos.nombre as nombre_producto', 'proveedores.nombre as nombre_proveedor', 'navieras.nombre as nombre_naviera', 'guias.numero_guia as nombre_guia')->first();
 
         $pedido->containers = $containerdb->obtenerContainer($id);
         

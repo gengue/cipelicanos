@@ -93,7 +93,7 @@
 	
 	                    <td>                            
 	                        <a class="btn btn-small btn-success" href="javascript:mostrarDetalleCliente({{ $value->id }});"><i class="fa fa-search"></i></a>
-	                        <a class="btn btn-small btn-danger" href="javascript:eliminarCliente({{ $value->id }});"><i class="fa fa-trash-o"></i></a>
+	                        <a class="btn btn-small btn-danger" data-toggle="confirmation" data-href="javascript:eliminarCliente({{ $value->id }});" href="javascript:eliminarCliente({{ $value->id }});"><i class="fa fa-trash-o"></i></a>
 	
 	                    </td>
 	                </tr>
@@ -104,6 +104,7 @@
     </div>
 </div>
 <script>
+    $('[data-toggle="confirmation"]').confirmation();
     "use strict";
     var responsiveHelper = undefined;
     var breakpointDefinition = {

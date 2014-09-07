@@ -39,7 +39,7 @@
                     <td>
                         <a class="btn btn-small btn-success" href="javascript:mostrarDetalleCompania({{ $value->id }});"><i class="fa fa-search"></i></a>
                         <a class="btn btn-small btn-info" href="javascript:mostrarEditarCompania({{ $value->id }});"><i class="fa fa-pencil"></i>
-                        </a><a class="btn btn-small btn-danger" href="javascript:eliminarCompania({{ $value->id }});"><i class="fa fa-trash-o"></i></a>
+                        </a><a class="btn btn-small btn-danger" data-toggle="confirmation" data-href="javascript:eliminarCompania({{ $value->id }});" href="javascript:eliminarCompania({{ $value->id }});"><i class="fa fa-trash-o"></i></a>
                     </td>
                 </tr>
                 @endforeach
@@ -48,6 +48,8 @@
     </div>
 </div>
 <script>
+    $('[data-toggle="confirmation"]').confirmation();
+
     "use strict";
     var responsiveHelper = undefined;
     var breakpointDefinition = {
