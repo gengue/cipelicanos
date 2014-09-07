@@ -4,52 +4,28 @@ class PedidosClienteController extends BaseController {
 
     public function pedidos() {
 
-        $cliente = Usuario::find(Auth::id());
-        
-        foreach ($cliente->companias as $compania) {
-             foreach ($compania->pedidos as $key => $value) {
-                 if($value->estado == 'INACTIVO'){
-                    unset($compania->pedidos[$key]);
-                 }
-             }
-         }
+         $pedidos = Pedido::with(array('compania' => function($query)
+         {
+            $query->where('usuario_id', Auth::id())->orderBy('created_at', 'desc');
+
+         }))->where('estado', 'ACTIVO')->get();
 
         return View::make('mod_cliente.pedidos')
-                    ->with('cliente',$cliente);
+                    ->with('pedidos',$pedidos);
     }
 
     public function historial() {
 
-         $cliente = Usuario::find(Auth::id());
+         $pedidos = Pedido::with(array('compania' => function($query)
+         {
+            $query->where('usuario_id', Auth::id())->orderBy('created_at', 'desc');
 
-         foreach ($cliente->companias as $compania) {
-             foreach ($compania->pedidos as $key => $value) {
-                 if($value->estado == 'ACTIVO'){
-                    unset($compania->pedidos[$key]);
-                 }
-             }
-         }
+         }))->where('estado', 'INACTIVO')->get();
 
-         return View::make('mod_cliente.historial')
-                    ->with('cliente',$cliente);
+        return View::make('mod_cliente.pedidos')
+                    ->with('pedidos',$pedidos);
     }
 
 
-    // public function show($id) {
-
-    //     $pedidosdb = new Pedido();
-    //     $pedido = $pedidosdb->obtenerPedido($id);
-    //     return View::make('pedidos.show', array('pedido' => $pedido));
-    // }
-
 
 }
-// $postsFilter = Comments::with('Posts')->where('published', 1)->first();
-// $posts= $postsFilter ->posts;
-
-// $posts = Post::with(array('user' => function($query)
-// {
-//     $query->where('region_id', 'like', '6');
-// }), 'lookingfors', 'playstyles', 'postcomments')->orderBy('id', 'DESC')->paginate(10);
-
-// User::find(1)->posts()->where('category', '=', 'Eloquent')->get();

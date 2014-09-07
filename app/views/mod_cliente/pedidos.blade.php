@@ -35,8 +35,8 @@
             <tbody>
 
     
-               @foreach($cliente->companias as $compania)
-                    @foreach($compania->pedidos as $pedido)
+               
+                @foreach($pedidos as $pedido)
                 <tr>
                     <td>{{ $pedido->producto->nombre}}</td>
                     <td>{{ $pedido->producto->proveedor->nombre }}</td>
@@ -64,8 +64,8 @@
 
                     
                 </tr>
-                 @endforeach
                 @endforeach
+               
             </tbody>
         </table>
     </div>

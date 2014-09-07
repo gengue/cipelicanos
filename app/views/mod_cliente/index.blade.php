@@ -27,7 +27,7 @@
                     </button>
                     
                     <a href="http://www.cipelicanos.biz/" target="_blank">
-                        <img id="logo" height="45" width="100" src="{{ asset('images/logo_pelicanos_nuevo.png')}}">
+                        <img id="logo" height="45" width="100" src="{{ asset('images/logoGRIS.png')}}">
                     </a> 
                 </div>
                 <!-- Top Menu Items -->
@@ -179,6 +179,8 @@
         <script src="js/plugins/dataTables.bootstrap.js"></script>
         <script src="js/plugins/datatables.responsive.js"></script>
         <script src="js/plugins/bootstrap.min.js"></script>
+        <script src="js/plugins/bootstrap-tooltip.js"></script>
+        <script src="js/plugins/bootstrap-confirmation.js"></script>
         <script src="js/plugins/morris/raphael.min.js"></script>
 <!--        <script src="js/plugins/morris/morris.min.js"></script>
         <script src="js/plugins/morris/morris-data.js"></script>-->

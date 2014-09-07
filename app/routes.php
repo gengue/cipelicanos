@@ -42,7 +42,7 @@ Route::get('/dashboard', function()
     $numPedidos = Pedido::where('estado','=','ACTIVO')->count();
     $numHistorial = Pedido::where('estado','=','INACTIVO')->count();
     $numClientes = Usuario::where('estado', '=', 'INACTIVO')->count();
-    $pedidos = Pedido::where('estado','=','ACTIVO')->take(5)->get();
+    $pedidos = Pedido::all()->take(5);
 
     return View::make('dashboard')
         ->with('numpedidos', $numPedidos)
@@ -53,7 +53,23 @@ Route::get('/dashboard', function()
 
 
 Route::get('/mod_cliente/dashboard', function(){
-    return View::make('mod_cliente.dashboard');
+    
+    $numPedidos = Pedido::with(array('compania' => function($query)
+    {
+        $query->where('usuario_id', Auth::id());
+
+    }))->where('estado', 'ACTIVO')->count();
+   
+
+    $pedidos = Pedido::with(array('compania' => function($query)
+    {
+        $query->where('usuario_id', Auth::id())->take(5)->orderBy('created_at', 'desc');
+
+    }))->get();
+
+    return View::make('mod_cliente.dashboard')
+        ->with('pedidos', $pedidos)
+        ->with('numpedidos', $numPedidos);
 });
 Route::resource('/mod_cliente/companias', 'CompaniasClienteController');
 Route::get('/mod_cliente/pedidos', 'PedidosClienteController@pedidos');

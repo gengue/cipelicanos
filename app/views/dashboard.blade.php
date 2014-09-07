@@ -109,7 +109,7 @@
                             <thead>
                                 <tr>
                                     <th>Compania</th>
-                                    <th>Usuario</th>
+                                    <th>Producto</th>
                                     <th>Monto</th>
                                     <th>Fecha Carga</th>
                                 </tr>
@@ -127,7 +127,7 @@
                         </table>
                     </div>
                     <div class="text-right">
-                        <a href="#">Ver todos los pedidos <i class="fa fa-arrow-circle-right"></i></a>
+                        <a href="javascript:abrirPedidos();">Ver todos los pedidos <i class="fa fa-arrow-circle-right"></i></a>
                     </div>
                 </div>
             </div>

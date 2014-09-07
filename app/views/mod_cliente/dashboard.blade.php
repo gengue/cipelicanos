@@ -26,12 +26,12 @@
                             <i class="fa fa-shopping-cart fa-5x"></i>
                         </div>
                         <div class="col-xs-9 text-right">
-                            <div class="huge">12</div>
+                            <div class="huge">{{ $numpedidos }}</div>
                             <div>Pedidos activos</div>
                         </div>
                     </div>
                 </div>
-                <a href="#">
+                <a href="javascript:abrirPedidos();">
                     <div class="panel-footer">
                         <span class="pull-left">Ver detalles</span>
                         <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
@@ -64,43 +64,28 @@
                         <table class="table table-hover">
                             <thead>
                                 <tr>
-                                    <th>N°</th>
-                                    <th>Producto</th>
-                                    <th>Naviera</th>
-                                    <th>Fecha</th>
+                                    <th>Compania</th>
+                                    <th>Usuario</th>
+                                    <th>Monto</th>
+                                    <th>Fecha Carga</th>
                                 </tr>
-                            </thead>
+                            </thead>    
                             <tbody>
-                                <tr>
-                                    <td>12</td>
-                                    <td>Madera</td>
-                                    <td>Maerks Line</td>
-                                    <td>21/07/2014</td>
-                                </tr>
-                                <tr>
-                                    <td>12</td>
-                                    <td>Madera</td>
-                                    <td>Maerks Line</td>
-                                    <td>21/07/2014</td>
-                                </tr>
-                                <tr>
-                                    <td>12</td>
-                                    <td>Madera</td>
-                                    <td>Maerks Line</td>
-                                    <td>21/07/2014</td>
-                                </tr>
-                                <tr>
-                                    <td>12</td>
-                                    <td>Madera</td>
-                                    <td>Maerks Line</td>
-                                    <td>21/07/2014</td>
-                                </tr>
+                                @foreach($pedidos as $pedido)
+                                    <tr>
+                                        <td>{{ $pedido->compania->nombre }}</td>
+                                        <td>{{ $pedido->producto->nombre }}</td>
+                                        <td>{{ $pedido->importe_facturado }}</td>
+                                        <td>{{ $pedido->fecha_carga }}</td>
+                                    </tr>
+                                @endforeach
                             </tbody>
                         </table>
                     </div>
                     <div class="text-right">
                         <a href="javascript:abrirPedidos();">Ver todos los pedidos <i class="fa fa-arrow-circle-right"></i></a>
                     </div>
+                
                 </div>
             </div>
         </div>
