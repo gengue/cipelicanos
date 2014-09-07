@@ -89,27 +89,35 @@
     </div>
     <div class="row">
         <div class="col-md-6">
-            <div class="form-group">
-                {{ Form::label('fecha_carga', 'Fecha de Carga') }}
-
-                {{ Form::date('fecha_carga', null, array('class'=>'form-control')) }}
+             {{ Form::label('fecha_carga', 'Fecha de Carga') }}
+             <div class="input-group date" id="datepicker1">  
+              {{ Form::text('fecha_carga', null, array('class'=>'form-control')) }}
+                <span class="input-group-addon">
+                        <span class="fa fa-calendar"></span>
+                </span>
             </div>
-            <div class="form-group">
-                {{ Form::label('fecha_abordaje', 'Fecha de Abordaje') }}
-
-                {{ Form::date('fecha_abordaje', null, array('class'=>'form-control')) }}
+            {{ Form::label('fecha_abordaje', 'Fecha de Abordaje') }}
+            <div class="input-group date" id="datepicker2">
+                 {{ Form::text('fecha_abordaje', null, array('class'=>'form-control')) }}
+                <span class="input-group-addon">
+                        <span class="fa fa-calendar"></span>
+                </span>
             </div>
         </div>
         <div class="col-md-6">
-            <div class="form-group">
-                {{ Form::label('fecha_entrega', 'Fecha de Entrega') }}
-
-                {{ Form::date('fecha_entrega', null, array('class'=>'form-control')) }}
+            {{ Form::label('fecha_entrega', 'Fecha de Entrega') }}
+            <div class="input-group date" id="datepicker3">
+                 {{ Form::text('fecha_entrega', null, array('class'=>'form-control')) }}
+                <span class="input-group-addon">
+                        <span class="fa fa-calendar"></span>
+                </span>
             </div>
-            <div class="form-group">
-                {{ Form::label('fecha_vencimiento', 'Fecha de Vencimiento') }}
-
-                {{ Form::date('fecha_vencimiento', null, array('class'=>'form-control')) }}
+            {{ Form::label('fecha_vencimiento', 'Fecha de Vencimiento') }}
+            <div class="input-group date" id="datepicker4">
+                {{ Form::text('fecha_vencimiento', null, array('class'=>'form-control')) }}
+                <span class="input-group-addon">
+                        <span class="fa fa-calendar"></span>
+                </span>
             </div>
         </div>
     </div>
@@ -153,6 +161,11 @@
 </body>
 </html>
 <script>
+    $('#datepicker1').datetimepicker({ pickTime: false });
+    $('#datepicker2').datetimepicker({ pickTime: false });
+    $('#datepicker3').datetimepicker({ pickTime: false });
+    $('#datepicker4').datetimepicker({ pickTime: false });
+
     var containers = [];
     
     $("#formPedidos").submit(function(e) {

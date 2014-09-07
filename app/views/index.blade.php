@@ -7,8 +7,10 @@
         {{ HTML::style('css/pnotify.custom.min.css') }}
         {{ HTML::style('css/dataTables.bootstrap.css') }}
         {{ HTML::style('css/datatables.responsive.css') }}
+        {{ HTML::style('css/bootstrap-datetimepicker.min.css') }}
         {{ HTML::style('css/plugins/morris.css') }}
         {{ HTML::style('font-awesome-4.1.0/css/font-awesome.min.css') }}
+        
         <meta name="_token" content="{{ csrf_token() }}"/>
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
     </head>
@@ -195,6 +197,8 @@
         <script src="js/plugins/bootstrap.min.js"></script>
         <script src="js/plugins/bootstrap-tooltip.js"></script>
         <script src="js/plugins/bootstrap-confirmation.js"></script>
+        <script src="js/plugins/moment.min.js"></script>
+        <script src="js/plugins/bootstrap-datetimepicker.js"></script>
         <script src="js/plugins/morris/raphael.min.js"></script>
 <!--        <script src="js/plugins/morris/morris.min.js"></script>
         <script src="js/plugins/morris/morris-data.js"></script>-->
