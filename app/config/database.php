@@ -74,12 +74,12 @@ return array(
 			'collation' => 'latin1_spanish_ci',
 			'prefix'    => '',
 		),
-               'cipelicanos2_mySQL' => array(
-                        'engine'    => 'MYISAM',
+        'cipelicanos2_mySQL' => array(
+            'engine'    => 'MYISAM',
 			'driver'    => 'mysql',
 			'host'      => 'localhost',
 			'database'  => 'cipelicanos',
-                        'unix_socket'   => '/Applications/MAMP/tmp/mysql/mysql.sock',   
+            'unix_socket'   => '/Applications/MAMP/tmp/mysql/mysql.sock',   
 
 			'username'  => 'root',		
 			'password'  => 'root',
@@ -89,12 +89,12 @@ return array(
 			'prefix'    => '',
 		),
 
-		'pgsql' => array(
+		'cipelicanos_posgresql' => array(
 			'driver'   => 'pgsql',
-			'host'     => 'localhost',
-			'database' => 'forge',
-			'username' => 'forge',
-			'password' => '',
+			'host'     => 'ec2-23-21-94-137.compute-1.amazonaws.com',
+			'database' => 'd3bof4t1taqahj',
+			'username' => 'zguvehohftkcvk',
+			'password' => 's8VwCwlGzIg3NByJFNwv2VDJg7',
 			'charset'  => 'utf8',
 			'prefix'   => '',
 			'schema'   => 'public',
