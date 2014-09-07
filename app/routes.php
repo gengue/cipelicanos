@@ -39,7 +39,16 @@ Route::group(array('before' => 'auth'), function()
 
 Route::get('/dashboard', function()
 {
-    return View::make('dashboard');
+    $numPedidos = Pedido::where('estado','=','ACTIVO')->count();
+    $numHistorial = Pedido::where('estado','=','INACTIVO')->count();
+    $numClientes = Usuario::where('estado', '=', 'INACTIVO')->count();
+    $pedidos = Pedido::where('estado','=','ACTIVO')->take(5)->get();
+
+    return View::make('dashboard')
+        ->with('numpedidos', $numPedidos)
+        ->with('numhistorial', $numHistorial)
+        ->with('numclientes', $numClientes)
+        ->with('pedidos', $pedidos);
 });
 
 

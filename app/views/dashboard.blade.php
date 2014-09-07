@@ -27,7 +27,7 @@
     <!-- /.row -->
 
     <div class="row">
-        <div class="col-lg-3 col-md-6">
+        <div class="col-lg-4 col-md-6">
             <div class="panel panel-primary">
                 <div class="panel-heading">
                     <div class="row">
@@ -35,12 +35,12 @@
                             <i class="fa fa-shopping-cart fa-5x"></i>
                         </div>
                         <div class="col-xs-9 text-right">
-                            <div class="huge">26</div>
-                            <div>Nuevos pedidos</div>
+                            <div class="huge">{{ $numpedidos }}</div>
+                            <div>Pedidos activos</div>
                         </div>
                     </div>
                 </div>
-                <a href="#">
+                <a href="javascript:abrirPedidos();">
                     <div class="panel-footer">
                         <span class="pull-left">Ver detalles</span>
                         <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
@@ -49,7 +49,7 @@
                 </a>
             </div>
         </div>
-        <div class="col-lg-3 col-md-6">
+        <div class="col-lg-4 col-md-6">
             <div class="panel panel-green">
                 <div class="panel-heading">
                     <div class="row">
@@ -57,12 +57,12 @@
                             <i class="fa fa-calendar fa-5x"></i>
                         </div>
                         <div class="col-xs-9 text-right">
-                            <div class="huge">12</div>
-                            <div>historial pedidos</div>
+                            <div class="huge">{{ $numhistorial }}</div>
+                            <div>Historial pedidos</div>
                         </div>
                     </div>
                 </div>
-                <a href="#">
+                <a href="javascript:abrirHistorialPedidos();">
                     <div class="panel-footer">
                         <span class="pull-left">Ver detalles</span>
                         <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
@@ -71,7 +71,7 @@
                 </a>
             </div>
         </div>
-        <div class="col-lg-3 col-md-6">
+        <div class="col-lg-4 col-md-6">
             <div class="panel panel-yellow">
                 <div class="panel-heading">
                     <div class="row">
@@ -79,12 +79,12 @@
                             <i class="fa fa-user fa-5x"></i>
                         </div>
                         <div class="col-xs-9 text-right">
-                            <div class="huge">124</div>
+                            <div class="huge">{{ $numclientes }}</div>
                             <div>Nuevos clientes</div>
                         </div>
                     </div>
                 </div>
-                <a href="#">
+                <a href="javascript:abrirClientes();">
                     <div class="panel-footer">
                         <span class="pull-left">Ver detalles    </span>
                         <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
@@ -93,28 +93,7 @@
                 </a>
             </div>
         </div>
-        <div class="col-lg-3 col-md-6">
-            <div class="panel panel-red">
-                <div class="panel-heading">
-                    <div class="row">
-                        <div class="col-xs-3">
-                            <i class="fa fa-support fa-5x"></i>
-                        </div>
-                        <div class="col-xs-9 text-right">
-                            <div class="huge">13</div>
-                            <div>Support Tickets!</div>
-                        </div>
-                    </div>
-                </div>
-                <a href="#">
-                    <div class="panel-footer">
-                        <span class="pull-left">View Details</span>
-                        <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
-                        <div class="clearfix"></div>
-                    </div>
-                </a>
-            </div>
-        </div>
+        
     </div>
     <!-- /.row -->
 
@@ -129,37 +108,21 @@
                         <table class="table table-hover">
                             <thead>
                                 <tr>
-                                    <th>N°</th>
+                                    <th>Compania</th>
                                     <th>Usuario</th>
-                                    <th>Pedido realizado</th>
-                                    <th>Fecha</th>
+                                    <th>Monto</th>
+                                    <th>Fecha Carga</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr>
-                                    <td>3326</td>
-                                    <td>10/21/2013</td>
-                                    <td>3:29 PM</td>
-                                    <td>$321.33</td>
-                                </tr>
-                                <tr>
-                                    <td>3325</td>
-                                    <td>10/21/2013</td>
-                                    <td>3:20 PM</td>
-                                    <td>$234.34</td>
-                                </tr>
-                                <tr>
-                                    <td>3324</td>
-                                    <td>10/21/2013</td>
-                                    <td>3:03 PM</td>
-                                    <td>$724.17</td>
-                                </tr>
-                                <tr>
-                                    <td>3323</td>
-                                    <td>10/21/2013</td>
-                                    <td>3:00 PM</td>
-                                    <td>$23.71</td>
-                                </tr>
+                                @foreach($pedidos as $pedido)
+                                    <tr>
+                                        <td>{{ $pedido->compania->nombre }}</td>
+                                        <td>{{ $pedido->producto->nombre }}</td>
+                                        <td>{{ $pedido->importe_facturado }}</td>
+                                        <td>{{ $pedido->fecha_carga }}</td>
+                                    </tr>
+                                @endforeach
                             </tbody>
                         </table>
                     </div>
@@ -173,18 +136,7 @@
     <!-- /.row -->
 
     <div class="row">
-        <div class="col-lg-6">
-            <div class="panel panel-default">
-                <div class="panel-heading">
-                    <h3 class="panel-title"><i class="fa fa-long-arrow-right fa-fw"></i> Donut Chart</h3>
-                </div>
-                <div class="panel-body">
-                    <div id="morris-area-chart"></div>
-                    <div id="morris-donut-chart"></div>
-                </div>
-            </div>
-        </div>
-        <div class="col-lg-6">
+        <div class="col-lg-12">
             <div class="panel panel-default">
                 <div class="panel-heading">
                     <h3 class="panel-title"><i class="fa fa-clock-o fa-fw"></i> &Uacute;ltimas acciones</h3>
