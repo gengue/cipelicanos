@@ -21,7 +21,7 @@
         <table id="productosTbl" class="table table-striped table-bordered table-condensed" cellspacing="0" width="100%">
             <thead>
                 <tr>
-                    <th data-hide="phone,tablet">ID</th>
+                
                     <th data-class="expand">Nombre</th>
                     <th data-hide="phone,tablet">Descripcion</th>
                     <th>Proveedor</th>
@@ -32,7 +32,7 @@
             <tbody>
                 @foreach($productos as $key => $value)
                 <tr>
-                    <td>{{ $value->id }}</td>
+                    
                     <td>{{ $value->nombre }}</td>
                     <td>{{ $value->descripcion }}</td>
                     <td>{{ $value->proveedor->nombre }}</td>

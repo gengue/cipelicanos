@@ -52,7 +52,7 @@ class UsuarioController extends BaseController {
             // store
             $usuario = new Usuario;
             $usuario->nombre = Input::get('nombre');
-            $usuario->password = Input::get('password');
+            $usuario->password = Hash::make(Input::get('password'));
             $usuario->apellido = Input::get('apellido');
             $usuario->telefono = Input::get('telefono');
             $usuario->correo = Input::get('correo');
@@ -121,7 +121,7 @@ class UsuarioController extends BaseController {
             // store
             $usuario = Usuario::find($id);
             $usuario->nombre = Input::get('nombre');
-            $usuario->password = Input::get('password');
+            $usuario->password = Hash::make(Input::get('password'));
             $usuario->apellido = Input::get('apellido');
             $usuario->telefono = Input::get('telefono');
             $usuario->correo = Input::get('correo');

@@ -18,7 +18,7 @@
     {{ HTML::ul($errors->all()) }}
 
     {{ Form::open(array('id' => 'formPedidos',
-                'files' => true)) }}
+                'files' => true, 'url'=> '/pedidos')) }}
 
     <div class="form-group">
         {{ Form::label('compania', 'Compañia') }}
@@ -60,22 +60,25 @@
     <div class="form-group">
         <div class="panel panel-success">
             <div class="panel-heading">
-                <h3 class="panel-title">Guia</h3>
+                <h3 class="panel-title">Guias</h3>
             </div>
-            <div class="panel-body">
-                <div class="form-group">
-                    {{ Form::label('numero_guia', 'Numero de guia') }}
-                    {{ Form::text('numero_guia', Input::old('numero de guia'), array('class' => 'form-control')) }}
-                </div>
-                <div class="form-group">
-                    {{ Form::label('empresa_envio', 'Empresa de envio') }}
-                    {{ Form::text('empresa_envio', Input::old('ejemplo: Fedex'), array('class' => 'form-control')) }}
-                </div>
-                <div class="form-group">
-                    {{ Form::label('url_archivo', 'Documento adjunto') }}
-                    {{ Form::file('url_archivo') }}
-                </div>
+            <!-- <div class="alert alert-info alert-dismissible" role="alert">
+                            <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                            <strong>ey!</strong> Aca puedes agregar, editar o eliminar los containers correspondientes a este pedido!.
+                        </div>-->
+            <ul id="ulGuias" class="list-group">
+            </ul>
+            <div class="panel-footer">
+                <a id="aGuias" href="javascript:agregarGuia();" class="btn btn-primary btn-sm" role="button">Agregar Guia</a>
             </div>
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="panel panel-success">
+            <div class="panel-heading">
+                <h3 class="panel-title">Otros Documetos</h3>
+            </div>
+            <div id="dropzone" class="dropzone"></div>
         </div>
     </div>
 
@@ -91,14 +94,14 @@
         <div class="col-md-6">
              {{ Form::label('fecha_carga', 'Fecha de Carga') }}
              <div class="input-group date" id="datepicker1">  
-              {{ Form::text('fecha_carga', null, array('class'=>'form-control')) }}
+              {{ Form::date('fecha_carga', null, array('class'=>'form-control')) }}
                 <span class="input-group-addon">
                         <span class="fa fa-calendar"></span>
                 </span>
             </div>
             {{ Form::label('fecha_abordaje', 'Fecha de Abordaje') }}
             <div class="input-group date" id="datepicker2">
-                 {{ Form::text('fecha_abordaje', null, array('class'=>'form-control')) }}
+                 {{ Form::date('fecha_abordaje', null, array('class'=>'form-control')) }}
                 <span class="input-group-addon">
                         <span class="fa fa-calendar"></span>
                 </span>
@@ -107,14 +110,14 @@
         <div class="col-md-6">
             {{ Form::label('fecha_entrega', 'Fecha de Entrega') }}
             <div class="input-group date" id="datepicker3">
-                 {{ Form::text('fecha_entrega', null, array('class'=>'form-control')) }}
+                 {{ Form::date('fecha_entrega', null, array('class'=>'form-control')) }}
                 <span class="input-group-addon">
                         <span class="fa fa-calendar"></span>
                 </span>
             </div>
             {{ Form::label('fecha_vencimiento', 'Fecha de Vencimiento') }}
             <div class="input-group date" id="datepicker4">
-                {{ Form::text('fecha_vencimiento', null, array('class'=>'form-control')) }}
+                {{ Form::date('fecha_vencimiento', null, array('class'=>'form-control')) }}
                 <span class="input-group-addon">
                         <span class="fa fa-calendar"></span>
                 </span>
@@ -158,67 +161,47 @@
     </div>
 </div>
 <!-- FIN Modal-->
+<!-- Modal de guia -->
+<div class="modal fade" id="modalGuia" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                <h4 class="modal-title" id="myModalLabel">Crear Guia</h4>
+            </div>
+            <div class="modal-body">
+
+                {{ Form::open(array('id' => 'formGuia', 'files' => true, 'url'=>'/guias')) }}
+                {{Form::hidden('id','',array('id'=>'idGuia'))}}
+                <div class="form-group">
+                    {{ Form::label('numero_guia', 'Numero de guia') }}
+                    {{ Form::text('numero_guia', Input::old('numero de guia'), array('class' => 'form-control')) }}
+                </div>
+                <div class="form-group">
+                    {{ Form::label('empresa_envio', 'Empresa de envio') }}
+                    {{ Form::text('empresa_envio', Input::old('ejemplo: Fedex'), array('class' => 'form-control')) }}
+                </div>
+                <div class="form-group">
+                    {{ Form::label('url_archivo', 'Documento adjunto') }}
+                    {{ Form::file('url_archivo') }}
+                </div>
+                {{ Form::submit('Crear Guia!', array('class' => 'btn btn-primary', 'id'=>'btnsubmit')) }}
+
+                {{ Form::close() }}
+            </div>
+        </div>
+    </div>
+</div>
+<!-- FIN Modal-->
 </body>
 </html>
+
 <script>
     $('#datepicker1').datetimepicker({ pickTime: false });
     $('#datepicker2').datetimepicker({ pickTime: false });
     $('#datepicker3').datetimepicker({ pickTime: false });
     $('#datepicker4').datetimepicker({ pickTime: false });
-
-    var containers = [];
-    
-    $("#formPedidos").submit(function(e) {
-        e.preventDefault();
-        $("#id_containers").val(containers);
-        var datos = $("#formPedidos").serialize();
-        console.log(datos);
-        crearPedido(datos);
-    });
-
-    $("#proveedor_id").on('change', function(ev) {
-        cargarProductos($(this).val());
-    });
-
-    $("#formContainer").submit(function(e) {
-        e.preventDefault();
-        var id = $('#id').val();
-        if (id) {
-            var datos = $('input:text[name=numero_container]').val();
-            $('input:text[name=numero_container]').val('');
-            containers[id] = datos;
-            $('#id').val('');
-            $('#modalContainer').modal('hide');
-            actualizarContainers();
-            alert('Editado!');
-        } else {
-            var datos = $('input:text[name=numero_container]').val();
-            $('input:text[name=numero_container]').val('');
-            containers.push(datos);
-            $('#modalContainer').modal('hide');
-            actualizarContainers();
-            alert('Agregado!');
-        }
-    });
-    function agregarContainer() {
-        $('#btnsubmit').val('Crear container!');
-        $('#modalContainer').modal();
-    }
-    function editarContainer(id) {
-        $('#id').val(id);
-        $('#btnsubmit').val('Editar');
-        $('input:text[name=numero_container]').val(containers[id]);
-        $('#modalContainer').modal();
-    }
-    function eliminarContainer(id) {
-        containers.splice(id, 1);
-        actualizarContainers();
-
-    }
-    function actualizarContainers() {
-        $("#ulContainers").html("");
-        for (var i = 0; i < containers.length; i++) {
-            $("#ulContainers").append('<li class="list-group-item">' + containers[i] + ' <a href="javascript:editarContainer(' + i + ')">Editar </a><a href="javascript:eliminarContainer(' + i + ')">Borrar</a></li>');
-        }
-    }
 </script>
+
+<script src="js/pedidos.js"></script>
+
