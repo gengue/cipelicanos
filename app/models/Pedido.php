@@ -49,10 +49,11 @@ class Pedido extends Eloquent {
 
     public static $rules = array(
         'containers' => 'required',
-        'numero_guia' => 'required',
-        'empresa_envio' => 'required',
+//        'numero_guia' => 'required',
+//        'empresa_envio' => 'required',
         'numero_reserva' => 'required',
         'buque' => 'required',
+        'compania_id' => 'required',
         'importe_facturado' => 'required',
     );
 

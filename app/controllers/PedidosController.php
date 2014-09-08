@@ -33,35 +33,17 @@ class PedidosController extends BaseController {
     }
 
     public function store() {
-
         $validator = Validator::make(Input::all(), Pedido::$rules);
-
         if ($validator->fails()) {
             return Response::json(array(
                         'msg' => 'error'
             ));
         } else {
-            //Primero guadamos la guia
-            $dir = 'public/archivos/';
-            $nombreArchivo = Input::get('numero_guia') . '.pdf';
-            // store            
-            $guia = new Guia;
-            $guia->numero_guia = Input::get('numero_guia');
-            $guia->empresa_envio = Input::get('empresa_envio');
-
-            if (Input::hasFile('url_archivo')) {
-                $archivo = Input::file('url_archivo');
-                $guia->url_archivo = $dir . $nombreArchivo;
-                $archivo->move($dir, $nombreArchivo);
-            }
-
-            $guia->save();
-
+            
             $pedido = new Pedido; //creamos un pedido
             $pedido->producto_id = Input::get('producto_id');
-            $pedido->proveedor_id = Input::get('proveedor_id');
             $pedido->naviera_id = Input::get('naviera_id');
-            $pedido->guia_id = $guia->id;
+            $pedido->compania_id = Input::get('compania_id');
             $pedido->numero_reserva = Input::get('numero_reserva');
             $pedido->buque = Input::get('buque');
             $pedido->fecha_carga = Input::get('fecha_carga');
@@ -96,6 +78,8 @@ class PedidosController extends BaseController {
 
             return Response::json(array(
                         'msg' => 'ok',
+                        'id_pedido'=> $pedido->id
+                        //'id' => $pedido->id
             ));
         }
     }

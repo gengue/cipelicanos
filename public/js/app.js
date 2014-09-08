@@ -18,6 +18,29 @@ function msg_borradocorrecto() {
 function msg_borradoerror() {
     alert('No se pudo borrar', 'Error', 'error', 'glyphicon glyphicon-warning-sign');
 }
+function bloquear() {
+    $('#carga').block({message: '<div class="center"><i class="fa fa-spinner fa-spin fa-5x"></i></div>', css: {
+            border: 'none',
+            padding: '15px',
+            backgroundColor: '#000',
+            '-webkit-border-radius': '10px',
+            '-moz-border-radius': '10px',
+            opacity: .5,
+            color: '#fff'
+        }});
+}
+function desbloquear() {
+    $('#carga').unblock();
+}
+//$(document).ajaxStart($.blockUI({ message: 'Cargando...',   css: { 
+//            border: 'none', 
+//            padding: '15px', 
+//            backgroundColor: '#000', 
+//            '-webkit-border-radius': '10px', 
+//            '-moz-border-radius': '10px', 
+//            opacity: .5, 
+//            color: '#fff' 
+//        } })).ajaxStop($.unblockUI);
 
 window.addEventListener('load', function() {
 
@@ -27,7 +50,11 @@ window.addEventListener('load', function() {
             title: title,
             text: message,
             type: type,
-            icon: icon
+            icon: icon,
+            nonblock: {
+                nonblock: true,
+                nonblock_opacity: .2
+            }
         });
     };
 }, false);
@@ -37,13 +64,12 @@ function abrirDashboard() {
             {
                 url: '/dashboard',
                 type: 'GET',
-                beforeSend: function(){
-                	$('#page-wrapper').css('padding-top', '20%');
-                	$('#page-wrapper').html('<div class="center"><i class="fa fa-spinner fa-spin fa-5x"></i></div>');
+                beforeSend: function() {
+                    bloquear();
                 },
                 success: function(data) {
-                	$('#page-wrapper').css('padding-top', '0');
-                	$('#page-wrapper').html(data);
+                    desbloquear();
+                    $('#page-wrapper').html(data);
                 }
             });
 
@@ -61,12 +87,11 @@ function abrirProductos() {
             {
                 url: '/productos',
                 type: 'GET',
-                beforeSend: function(){
-                	$('#page-wrapper').css('padding-top', '20%');
-                	$('#page-wrapper').html('<div class="center"><i class="fa fa-spinner fa-spin fa-5x"></i></div>');
+                beforeSend: function() {
+                    bloquear();
                 },
                 success: function(data) {
-                	$('#page-wrapper').css('padding-top', '0');
+                    desbloquear();
                     $('#page-wrapper').html(data);
                 }
             });
@@ -79,12 +104,11 @@ function mostrarCrearProducto() {
             {
                 url: '/productos/create',
                 type: 'GET',
-                beforeSend: function(){
-                	$('#page-wrapper').css('padding-top', '20%');
-                	$('#page-wrapper').html('<div class="center"><i class="fa fa-spinner fa-spin fa-5x"></i></div>');
+                beforeSend: function() {
+                    bloquear();
                 },
                 success: function(data) {
-                	$('#page-wrapper').css('padding-top', '0');
+                    desbloquear();
                     $('#page-wrapper').html(data);
                 }
             });
@@ -97,17 +121,17 @@ function crearProducto(datos) {
                 url: '/productos',
                 type: 'POST',
                 data: datos,
-                beforeSend: function(){
-                	$('#page-wrapper').css('padding-top', '20%');
-                	$('#page-wrapper').html('<div class="center"><i class="fa fa-spinner fa-spin fa-5x"></i></div>');
+                beforeSend: function() {
+                    bloquear();
                 },
                 success: function(data) {
-                	$('#page-wrapper').css('padding-top', '0');
+                    desbloquear();
                     if (data.msg === 'error') {
                         msg_guadadoerror();
                     } else {
-                        abrirProductos();
                         msg_guadadocorreto()
+                        abrirProductos();
+
                     }
 
 
@@ -120,12 +144,11 @@ function mostrarEditarProducto(id) {
             {
                 url: '/productos/' + id + '/edit',
                 type: 'GET',
-                beforeSend: function(){
-                	$('#page-wrapper').css('padding-top', '20%');
-                	$('#page-wrapper').html('<div class="center"><i class="fa fa-spinner fa-spin fa-5x"></i></div>');
+                beforeSend: function() {
+                    bloquear();
                 },
                 success: function(data) {
-                	$('#page-wrapper').css('padding-top', '0');
+                    desbloquear();
                     $('#page-wrapper').html(data);
                 }
             });
@@ -136,12 +159,11 @@ function editarProducto(datos, id) {
                 url: '/productos/' + id,
                 type: 'PUT',
                 data: datos,
-                beforeSend: function(){
-                	$('#page-wrapper').css('padding-top', '20%');
-                	$('#page-wrapper').html('<div class="center"><i class="fa fa-spinner fa-spin fa-5x"></i></div>');
+                beforeSend: function() {
+                    bloquear();
                 },
                 success: function(data) {
-                	$('#page-wrapper').css('padding-top', '0');
+                    desbloquear();
                     if (data.msg === 'error') {
                         msg_guadadoerror();
                     } else {
@@ -157,12 +179,12 @@ function mostrarDetalleProducto(id) {
             {
                 url: '/productos/' + id,
                 type: 'GET',
-                beforeSend: function(){
-                	$('#page-wrapper').css('padding-top', '20%');
-                	$('#page-wrapper').html('<div class="center"><i class="fa fa-spinner fa-spin fa-5x"></i></div>');
+                beforeSend: function() {
+                    bloquear();
+
                 },
                 success: function(data) {
-                	$('#page-wrapper').css('padding-top', '0');
+                    desbloquear();
                     $('#page-wrapper').html(data);
                 }
             });
@@ -172,12 +194,12 @@ function eliminarProducto(id) {
             {
                 url: '/productos/' + id,
                 type: 'DELETE',
-                beforeSend: function(){
-                	$('#page-wrapper').css('padding-top', '20%');
-                	$('#page-wrapper').html('<div class="center"><i class="fa fa-spinner fa-spin fa-5x"></i></div>');
+                beforeSend: function() {
+                    bloquear();
+
                 },
                 success: function(data) {
-                	$('#page-wrapper').css('padding-top', '0');
+                    desbloquear();
                     if (data.msg === 'error') {
                         msg_borradoerror();
                     } else {
@@ -199,12 +221,12 @@ function abrirPedidos() {
             {
                 url: '/pedidos',
                 type: 'GET',
-                beforeSend: function(){
-                	$('#page-wrapper').css('padding-top', '20%');
-                	$('#page-wrapper').html('<div class="center"><i class="fa fa-spinner fa-spin fa-5x"></i></div>');
+                beforeSend: function() {
+                    bloquear();
+
                 },
                 success: function(data) {
-                	$('#page-wrapper').css('padding-top', '0');
+                    desbloquear();
                     $('#page-wrapper').html(data);
                 }
             });
@@ -216,39 +238,74 @@ function mostrarCrearPedido() {
             {
                 url: '/pedidos/create',
                 type: 'GET',
-                beforeSend: function(){
-                	$('#page-wrapper').css('padding-top', '20%');
-                	$('#page-wrapper').html('<div class="center"><i class="fa fa-spinner fa-spin fa-5x"></i></div>');
+                beforeSend: function() {
+                    bloquear();
+
                 },
                 success: function(data) {
-                	$('#page-wrapper').css('padding-top', '0');
+                    desbloquear();
                     $('#page-wrapper').html(data);
                 }
             });
 
 }
+function insertarGuiasAjax(i, id) {
+    if (i === DFormGuias.length)
+        return;
+
+    DFormGuias[i].append('pedido_id', id)
+    $.ajax({
+        url: '/guias',
+        type: 'POST',
+        data: DFormGuias[i],
+        cache: false,
+        mimeType: "multipart/form-data",
+        contentType: false,
+        processData: false,
+        success: function(data, textStatus, jqXHR)
+        {
+            //alert(data);
+            insertarGuiasAjax(i + 1, id);
+        },
+        error: function(jqXHR, textStatus, errorThrown)
+        {
+            //alert(textStatus);
+        }
+    });
+}
+
 function crearPedido(datos) {
+    $.ajax({
+        url: '/pedidos',
+        type: 'POST',
+        data: datos,
+        beforeSend: function() {
+            bloquear();
+        },
+        success: function(data) {
+            desbloquear();
+            if (data.msg === 'error') {
+                msg_guadadoerror();
+            } else {
+                if (data.id_pedido) {
+                    //alert(data.id_pedido);
+                    insertarGuiasAjax(0, data.id_pedido);
+                    //Insertamos los archivos
+                    thisDropzone.on('sending', function(file, xhr, formData) {
+                        formData.append('pedido_id', data.id_pedido);
+                    });
 
-    $.ajax(
-            {
-                url: '/pedidos',
-                type: 'POST',
-                data: datos,
-                beforeSend: function(){
-                	$('#page-wrapper').css('padding-top', '20%');
-                	$('#page-wrapper').html('<div class="center"><i class="fa fa-spinner fa-spin fa-5x"></i></div>');
-                },
-                success: function(data) {
-                	$('#page-wrapper').css('padding-top', '0');
-                    if (data.msg === 'error') {
-                        msg_guadadoerror();
-                    } else {
-                        abrirPedidos();
-                        msg_guadadocorreto();
-                    }
-
+                    thisDropzone.processQueue();
                 }
-            });
+                thisDropzone.on('queuecomplete', function(){
+                     abrirPedidos();
+                    msg_guadadocorreto();
+                });
+               
+            }
+
+        }
+    });
 }
 function mostrarEditarPedido(id) {
 
@@ -256,16 +313,15 @@ function mostrarEditarPedido(id) {
             {
                 url: '/pedidos/' + id + '/edit',
                 type: 'GET',
-                beforeSend: function(){
-                	$('#page-wrapper').css('padding-top', '20%');
-                	$('#page-wrapper').html('<div class="center"><i class="fa fa-spinner fa-spin fa-5x"></i></div>');
+                beforeSend: function() {
+                    bloquear();
+
                 },
                 success: function(data) {
-                	$('#page-wrapper').css('padding-top', '0');
+                    desbloquear();
                     $('#page-wrapper').html(data);
                     var select = document.getElementById("id_containers");
-                    var length = select.length;
-                    for(var i=0;i<length;i++){
+                    for (var i = 0; i < select.length; i++) {
                         containers.push(select.options[i].text);
                     }
                     actualizarContainers();
@@ -278,12 +334,12 @@ function editarPedido(datos, id) {
                 url: '/pedidos/' + id,
                 type: 'PUT',
                 data: datos,
-                beforeSend: function(){
-                	$('#page-wrapper').css('padding-top', '20%');
-                	$('#page-wrapper').html('<div class="center"><i class="fa fa-spinner fa-spin fa-5x"></i></div>');
+                beforeSend: function() {
+                    bloquear();
+
                 },
                 success: function(data) {
-                	$('#page-wrapper').css('padding-top', '0');
+                    desbloquear();
                     if (data.msg === 'error') {
                         msg_guadadoerror();
                     } else {
@@ -299,12 +355,12 @@ function mostrarDetallePedido(id) {
             {
                 url: '/pedidos/' + id,
                 type: 'GET',
-                beforeSend: function(){
-                	$('#page-wrapper').css('padding-top', '20%');
-                	$('#page-wrapper').html('<div class="center"><i class="fa fa-spinner fa-spin fa-5x"></i></div>');
+                beforeSend: function() {
+                    bloquear();
+
                 },
                 success: function(data) {
-                	$('#page-wrapper').css('padding-top', '0');
+                    desbloquear();
                     $('#page-wrapper').html(data);
                 }
             });
@@ -314,12 +370,12 @@ function eliminarPedido(id) {
             {
                 url: '/pedidos/' + id,
                 type: 'DELETE',
-                beforeSend: function(){
-                	$('#page-wrapper').css('padding-top', '20%');
-                	$('#page-wrapper').html('<div class="center"><i class="fa fa-spinner fa-spin fa-5x"></i></div>');
+                beforeSend: function() {
+                    bloquear();
+
                 },
                 success: function(data) {
-                	$('#page-wrapper').css('padding-top', '0');
+                    desbloquear();
                     if (data.msg === 'error') {
                         msg_borradoerror();
                     } else {
@@ -339,12 +395,12 @@ function abrirHistorialPedidos() {
             {
                 url: '/pedidos/historial',
                 type: 'GET',
-                beforeSend: function(){
-                	$('#page-wrapper').css('padding-top', '20%');
-                	$('#page-wrapper').html('<div class="center"><i class="fa fa-spinner fa-spin fa-5x"></i></div>');
+                beforeSend: function() {
+                    bloquear();
+
                 },
                 success: function(data) {
-                	$('#page-wrapper').css('padding-top', '0');
+                    desbloquear();
                     $('#page-wrapper').html(data);
                 }
             });
@@ -360,12 +416,12 @@ function abrirNavieras() {
             {
                 url: '/navieras',
                 type: 'GET',
-                beforeSend: function(){
-                	$('#page-wrapper').css('padding-top', '20%');
-                	$('#page-wrapper').html('<div class="center"><i class="fa fa-spinner fa-spin fa-5x"></i></div>');
+                beforeSend: function() {
+                    bloquear();
+
                 },
                 success: function(data) {
-                	$('#page-wrapper').css('padding-top', '0');
+                    desbloquear();
                     $('#page-wrapper').html(data);
                 }
             });
@@ -377,12 +433,12 @@ function mostrarCrearNaviera() {
             {
                 url: '/navieras/create',
                 type: 'GET',
-                beforeSend: function(){
-                	$('#page-wrapper').css('padding-top', '20%');
-                	$('#page-wrapper').html('<div class="center"><i class="fa fa-spinner fa-spin fa-5x"></i></div>');
+                beforeSend: function() {
+                    bloquear();
+
                 },
                 success: function(data) {
-                	$('#page-wrapper').css('padding-top', '0');
+                    desbloquear();
                     $('#page-wrapper').html(data);
                 }
             });
@@ -394,12 +450,12 @@ function crearNaviera(datos) {
                 url: '/navieras',
                 type: 'POST',
                 data: datos,
-                beforeSend: function(){
-                	$('#page-wrapper').css('padding-top', '20%');
-                	$('#page-wrapper').html('<div class="center"><i class="fa fa-spinner fa-spin fa-5x"></i></div>');
+                beforeSend: function() {
+                    bloquear();
+
                 },
                 success: function(data) {
-                	$('#page-wrapper').css('padding-top', '0');
+                    desbloquear();
                     if (data.msg === 'error') {
                         msg_guadadoerror();
                     } else {
@@ -416,12 +472,12 @@ function mostrarEditarNaviera(id) {
             {
                 url: '/navieras/' + id + '/edit',
                 type: 'GET',
-                beforeSend: function(){
-                	$('#page-wrapper').css('padding-top', '20%');
-                	$('#page-wrapper').html('<div class="center"><i class="fa fa-spinner fa-spin fa-5x"></i></div>');
+                beforeSend: function() {
+                    bloquear();
+
                 },
                 success: function(data) {
-                	$('#page-wrapper').css('padding-top', '0');
+                    desbloquear();
                     $('#page-wrapper').html(data);
                 }
             });
@@ -432,12 +488,12 @@ function editarNaviera(datos, id) {
                 url: '/navieras/' + id,
                 type: 'PUT',
                 data: datos,
-                beforeSend: function(){
-                	$('#page-wrapper').css('padding-top', '20%');
-                	$('#page-wrapper').html('<div class="center"><i class="fa fa-spinner fa-spin fa-5x"></i></div>');
+                beforeSend: function() {
+                    bloquear();
+
                 },
                 success: function(data) {
-                	$('#page-wrapper').css('padding-top', '0');
+                    desbloquear();
                     if (data.msg === 'error') {
                         msg_guadadoerror();
                     } else {
@@ -453,12 +509,12 @@ function mostrarDetalleNaviera(id) {
             {
                 url: '/navieras/' + id,
                 type: 'GET',
-                beforeSend: function(){
-                	$('#page-wrapper').css('padding-top', '20%');
-                	$('#page-wrapper').html('<div class="center"><i class="fa fa-spinner fa-spin fa-5x"></i></div>');
+                beforeSend: function() {
+                    bloquear();
+
                 },
                 success: function(data) {
-                	$('#page-wrapper').css('padding-top', '0');
+                    desbloquear();
                     $('#page-wrapper').html(data);
                 }
             });
@@ -468,12 +524,12 @@ function eliminarNaviera(id) {
             {
                 url: '/navieras/' + id,
                 type: 'DELETE',
-                beforeSend: function(){
-                	$('#page-wrapper').css('padding-top', '20%');
-                	$('#page-wrapper').html('<div class="center"><i class="fa fa-spinner fa-spin fa-5x"></i></div>');
+                beforeSend: function() {
+                    bloquear();
+
                 },
                 success: function(data) {
-                	$('#page-wrapper').css('padding-top', '0');
+                    desbloquear();
                     if (data.msg === 'error') {
                         msg_borradoerror();
                     } else {
@@ -496,12 +552,12 @@ function abrirProveedores() {
             {
                 url: '/proveedores',
                 type: 'GET',
-                beforeSend: function(){
-                	$('#page-wrapper').css('padding-top', '20%');
-                	$('#page-wrapper').html('<div class="center"><i class="fa fa-spinner fa-spin fa-5x"></i></div>');
+                beforeSend: function() {
+                    bloquear();
+
                 },
                 success: function(data) {
-                	$('#page-wrapper').css('padding-top', '0');
+                    desbloquear();
                     $('#page-wrapper').html(data);
                 }
             });
@@ -513,12 +569,12 @@ function mostrarCrearProveedores() {
             {
                 url: '/proveedores/create',
                 type: 'GET',
-                beforeSend: function(){
-                	$('#page-wrapper').css('padding-top', '20%');
-                	$('#page-wrapper').html('<div class="center"><i class="fa fa-spinner fa-spin fa-5x"></i></div>');
+                beforeSend: function() {
+                    bloquear();
+
                 },
                 success: function(data) {
-                	$('#page-wrapper').css('padding-top', '0');
+                    desbloquear();
                     $('#page-wrapper').html(data);
                 }
             });
@@ -531,12 +587,12 @@ function mostrarEditarProveedores(id) {
             {
                 url: '/proveedores/' + id + '/edit',
                 type: 'GET',
-                beforeSend: function(){
-                	$('#page-wrapper').css('padding-top', '20%');
-                	$('#page-wrapper').html('<div class="center"><i class="fa fa-spinner fa-spin fa-5x"></i></div>');
+                beforeSend: function() {
+                    bloquear();
+
                 },
                 success: function(data) {
-                	$('#page-wrapper').css('padding-top', '0');
+                    desbloquear();
                     $('#page-wrapper').html(data);
                 }
             });
@@ -547,12 +603,12 @@ function editarProveedores(datos, id) {
                 url: '/proveedores/' + id,
                 type: 'PUT',
                 data: datos,
-                beforeSend: function(){
-                	$('#page-wrapper').css('padding-top', '20%');
-                	$('#page-wrapper').html('<div class="center"><i class="fa fa-spinner fa-spin fa-5x"></i></div>');
+                beforeSend: function() {
+                    bloquear();
+
                 },
                 success: function(data) {
-                	$('#page-wrapper').css('padding-top', '0');
+                    desbloquear();
                     if (data.msg === 'error') {
                         msg_guadadoerror();
                     } else {
@@ -568,12 +624,12 @@ function mostrarDetalleProveedores(id) {
             {
                 url: '/proveedores/' + id,
                 type: 'GET',
-                beforeSend: function(){
-                	$('#page-wrapper').css('padding-top', '20%');
-                	$('#page-wrapper').html('<div class="center"><i class="fa fa-spinner fa-spin fa-5x"></i></div>');
+                beforeSend: function() {
+                    bloquear();
+
                 },
                 success: function(data) {
-                	$('#page-wrapper').css('padding-top', '0');
+                    desbloquear();
                     $('#page-wrapper').html(data);
                 }
             });
@@ -583,12 +639,12 @@ function eliminarProveedores(id) {
             {
                 url: '/proveedores/' + id,
                 type: 'DELETE',
-                beforeSend: function(){
-                	$('#page-wrapper').css('padding-top', '20%');
-                	$('#page-wrapper').html('<div class="center"><i class="fa fa-spinner fa-spin fa-5x"></i></div>');
+                beforeSend: function() {
+                    bloquear();
+
                 },
                 success: function(data) {
-                	$('#page-wrapper').css('padding-top', '0');
+                    desbloquear();
                     if (data.msg === 'error') {
                         msg_borradoerror();
                     } else {
@@ -606,12 +662,12 @@ function crearProveedor(datos) {
                 url: '/proveedores',
                 type: 'POST',
                 data: datos,
-                beforeSend: function(){
-                	$('#page-wrapper').css('padding-top', '20%');
-                	$('#page-wrapper').html('<div class="center"><i class="fa fa-spinner fa-spin fa-5x"></i></div>');
+                beforeSend: function() {
+                    bloquear();
+
                 },
                 success: function(data) {
-                	$('#page-wrapper').css('padding-top', '0');
+                    desbloquear();
                     if (data.msg === 'error') {
                         msg_guadadoerror();
                     } else {
@@ -633,12 +689,12 @@ function abrirUsuarios() {
             {
                 url: '/usuarios',
                 type: 'GET',
-                beforeSend: function(){
-                	$('#page-wrapper').css('padding-top', '20%');
-                	$('#page-wrapper').html('<div class="center"><i class="fa fa-spinner fa-spin fa-5x"></i></div>');
+                beforeSend: function() {
+                    bloquear();
+
                 },
                 success: function(data) {
-                	$('#page-wrapper').css('padding-top', '0');
+                    desbloquear();
                     $('#page-wrapper').html(data);
                 }
             });
@@ -650,12 +706,12 @@ function mostrarCrearUsuario() {
             {
                 url: '/usuarios/create',
                 type: 'GET',
-                beforeSend: function(){
-                	$('#page-wrapper').css('padding-top', '20%');
-                	$('#page-wrapper').html('<div class="center"><i class="fa fa-spinner fa-spin fa-5x"></i></div>');
+                beforeSend: function() {
+                    bloquear();
+
                 },
                 success: function(data) {
-                	$('#page-wrapper').css('padding-top', '0');
+                    desbloquear();
                     $('#page-wrapper').html(data);
                 }
             });
@@ -668,12 +724,12 @@ function mostrarEditarUsuarios(id) {
             {
                 url: '/usuarios/' + id + '/edit',
                 type: 'GET',
-                beforeSend: function(){
-                	$('#page-wrapper').css('padding-top', '20%');
-                	$('#page-wrapper').html('<div class="center"><i class="fa fa-spinner fa-spin fa-5x"></i></div>');
+                beforeSend: function() {
+                    bloquear();
+
                 },
                 success: function(data) {
-                	$('#page-wrapper').css('padding-top', '0');
+                    desbloquear();
                     $('#page-wrapper').html(data);
                 }
             });
@@ -684,12 +740,12 @@ function editarUsuarios(datos, id) {
                 url: '/usuarios/' + id,
                 type: 'PUT',
                 data: datos,
-                beforeSend: function(){
-                	$('#page-wrapper').css('padding-top', '20%');
-                	$('#page-wrapper').html('<div class="center"><i class="fa fa-spinner fa-spin fa-5x"></i></div>');
+                beforeSend: function() {
+                    bloquear();
+
                 },
                 success: function(data) {
-                	$('#page-wrapper').css('padding-top', '0');
+                    desbloquear();
                     if (data.msg === 'error') {
                         msg_guadadoerror();
                     } else {
@@ -705,12 +761,12 @@ function mostrarDetalleUsuarios(id) {
             {
                 url: '/usuarios/' + id,
                 type: 'GET',
-                beforeSend: function(){
-                	$('#page-wrapper').css('padding-top', '20%');
-                	$('#page-wrapper').html('<div class="center"><i class="fa fa-spinner fa-spin fa-5x"></i></div>');
+                beforeSend: function() {
+                    bloquear();
+
                 },
                 success: function(data) {
-                	$('#page-wrapper').css('padding-top', '0');
+                    desbloquear();
                     $('#page-wrapper').html(data);
                 }
             });
@@ -720,12 +776,12 @@ function eliminarUsuarios(id) {
             {
                 url: '/usuarios/' + id,
                 type: 'DELETE',
-                beforeSend: function(){
-                	$('#page-wrapper').css('padding-top', '20%');
-                	$('#page-wrapper').html('<div class="center"><i class="fa fa-spinner fa-spin fa-5x"></i></div>');
+                beforeSend: function() {
+                    bloquear();
+
                 },
                 success: function(data) {
-                	$('#page-wrapper').css('padding-top', '0');
+                    desbloquear();
                     if (data.msg === 'error') {
                         msg_borradoerror();
                     } else {
@@ -743,12 +799,12 @@ function crearUsuarios(datos) {
                 url: '/usuarios',
                 type: 'POST',
                 data: datos,
-                beforeSend: function(){
-                	$('#page-wrapper').css('padding-top', '20%');
-                	$('#page-wrapper').html('<div class="center"><i class="fa fa-spinner fa-spin fa-5x"></i></div>');
+                beforeSend: function() {
+                    bloquear();
+
                 },
                 success: function(data) {
-                	$('#page-wrapper').css('padding-top', '0');
+                    desbloquear();
                     if (data.msg === 'error') {
                         msg_guadadoerror();
                     } else {
@@ -771,12 +827,12 @@ function abrirClientes() {
             {
                 url: '/usuarios/clientes',
                 type: 'GET',
-                beforeSend: function(){
-                	$('#page-wrapper').css('padding-top', '20%');
-                	$('#page-wrapper').html('<div class="center"><i class="fa fa-spinner fa-spin fa-5x"></i></div>');
+                beforeSend: function() {
+                    bloquear();
+
                 },
                 success: function(data) {
-                	$('#page-wrapper').css('padding-top', '0');
+                    desbloquear();
                     $('#page-wrapper').html(data);
                 }
             });
@@ -788,13 +844,13 @@ function aprobarCliente(aprobado, id) {
                 {
                     url: '/usuarios/clientes/aprobar/' + id,
                     type: 'GET',
-                    beforeSend: function(){
-                	$('#page-wrapper').css('padding-top', '20%');
-                	$('#page-wrapper').html('<div class="center"><i class="fa fa-spinner fa-spin fa-5x"></i></div>');
-                },
+                    beforeSend: function() {
+                        bloquear();
+
+                    },
                     data: {estado: "ACTIVO"},
                     success: function(data) {
-                	$('#page-wrapper').css('padding-top', '0');
+                        desbloquear();
                         if (data.msg === 'error') {
                             msg_guadadoerror();
                         } else {
@@ -813,12 +869,12 @@ function eliminarCliente(id) {
             {
                 url: '/usuarios/' + id,
                 type: 'DELETE',
-                beforeSend: function(){
-                	$('#page-wrapper').css('padding-top', '20%');
-                	$('#page-wrapper').html('<div class="center"><i class="fa fa-spinner fa-spin fa-5x"></i></div>');
+                beforeSend: function() {
+                    bloquear();
+
                 },
                 success: function(data) {
-                	$('#page-wrapper').css('padding-top', '0');
+                    desbloquear();
                     if (data.msg === 'error') {
                         msg_borradoerror();
                     } else {
@@ -828,7 +884,7 @@ function eliminarCliente(id) {
 
                 }
             });
- }
+}
 
 
 function mostrarDetalleCliente(id) {
@@ -836,12 +892,12 @@ function mostrarDetalleCliente(id) {
             {
                 url: '/usuarios/' + id,
                 type: 'GET',
-                beforeSend: function(){
-                	$('#page-wrapper').css('padding-top', '20%');
-                	$('#page-wrapper').html('<div class="center"><i class="fa fa-spinner fa-spin fa-5x"></i></div>');
+                beforeSend: function() {
+                    bloquear();
+
                 },
                 success: function(data) {
-                	$('#page-wrapper').css('padding-top', '0');
+                    desbloquear();
                     $('#page-wrapper').html(data);
                 }
             });
@@ -858,12 +914,12 @@ function abrirCompanias() {
             {
                 url: '/companias',
                 type: 'GET',
-                beforeSend: function(){
-                    $('#page-wrapper').css('padding-top', '20%');
-                    $('#page-wrapper').html('<div class="center"><i class="fa fa-spinner fa-spin fa-5x"></i></div>');
+                beforeSend: function() {
+                    bloquear();
+
                 },
                 success: function(data) {
-                    $('#page-wrapper').css('padding-top', '0');
+                    desbloquear();
                     $('#page-wrapper').html(data);
                 }
             });
@@ -874,12 +930,12 @@ function mostrarCrearCompanias() {
             {
                 url: '/companias/create',
                 type: 'GET',
-                beforeSend: function(){
-                    $('#page-wrapper').css('padding-top', '20%');
-                    $('#page-wrapper').html('<div class="center"><i class="fa fa-spinner fa-spin fa-5x"></i></div>');
+                beforeSend: function() {
+                    bloquear();
+
                 },
                 success: function(data) {
-                    $('#page-wrapper').css('padding-top', '0');
+                    desbloquear();
                     $('#page-wrapper').html(data);
                 }
             });
@@ -893,12 +949,12 @@ function crearCompania(datos) {
                 url: '/companias',
                 type: 'POST',
                 data: datos,
-                beforeSend: function(){
-                    $('#page-wrapper').css('padding-top', '20%');
-                    $('#page-wrapper').html('<div class="center"><i class="fa fa-spinner fa-spin fa-5x"></i></div>');
+                beforeSend: function() {
+                    bloquear();
+
                 },
                 success: function(data) {
-                    $('#page-wrapper').css('padding-top', '0');
+                    desbloquear();
                     if (data.msg === 'error') {
                         msg_guadadoerror();
                     } else {
@@ -915,12 +971,12 @@ function mostrarEditarCompania(id) {
             {
                 url: '/companias/' + id + '/edit',
                 type: 'GET',
-                beforeSend: function(){
-                    $('#page-wrapper').css('padding-top', '20%');
-                    $('#page-wrapper').html('<div class="center"><i class="fa fa-spinner fa-spin fa-5x"></i></div>');
+                beforeSend: function() {
+                    bloquear();
+
                 },
                 success: function(data) {
-                    $('#page-wrapper').css('padding-top', '0');
+                    desbloquear();
                     $('#page-wrapper').html(data);
                 }
             });
@@ -931,12 +987,12 @@ function editarCompania(datos, id) {
                 url: '/companias/' + id,
                 type: 'PUT',
                 data: datos,
-                beforeSend: function(){
-                    $('#page-wrapper').css('padding-top', '20%');
-                    $('#page-wrapper').html('<div class="center"><i class="fa fa-spinner fa-spin fa-5x"></i></div>');
+                beforeSend: function() {
+                    bloquear();
+
                 },
                 success: function(data) {
-                    $('#page-wrapper').css('padding-top', '0');
+                    desbloquear();
                     if (data.msg === 'error') {
                         msg_guadadoerror();
                     } else {
@@ -952,12 +1008,12 @@ function eliminarCompania(id) {
             {
                 url: '/companias/' + id,
                 type: 'DELETE',
-                beforeSend: function(){
-                    $('#page-wrapper').css('padding-top', '20%');
-                    $('#page-wrapper').html('<div class="center"><i class="fa fa-spinner fa-spin fa-5x"></i></div>');
+                beforeSend: function() {
+                    bloquear();
+
                 },
                 success: function(data) {
-                    $('#page-wrapper').css('padding-top', '0');
+                    desbloquear();
                     if (data.msg === 'error') {
                         msg_borradoerror();
                     } else {
@@ -967,7 +1023,7 @@ function eliminarCompania(id) {
 
                 }
             });
- }
+}
 
 
 function mostrarDetalleCompania(id) {
@@ -975,12 +1031,12 @@ function mostrarDetalleCompania(id) {
             {
                 url: '/companias/' + id,
                 type: 'GET',
-                beforeSend: function(){
-                    $('#page-wrapper').css('padding-top', '20%');
-                    $('#page-wrapper').html('<div class="center"><i class="fa fa-spinner fa-spin fa-5x"></i></div>');
+                beforeSend: function() {
+                    bloquear();
+
                 },
                 success: function(data) {
-                    $('#page-wrapper').css('padding-top', '0');
+                    desbloquear();
                     $('#page-wrapper').html(data);
                 }
             });
@@ -989,7 +1045,7 @@ function mostrarDetalleCompania(id) {
  * CARGA DE LISTAS ASINCRONAS
  * 
  * */
-function cargarProductos(id_proveedor){
+function cargarProductos(id_proveedor) {
     $.ajax(
             {
                 url: '/proveedores/api/productos/' + id_proveedor,
@@ -999,7 +1055,7 @@ function cargarProductos(id_proveedor){
                 }
             });
 }
-function cargarCiudades(id_pais){
+function cargarCiudades(id_pais) {
     $.ajax(
             {
                 url: '/api/paises/' + id_pais,
@@ -1011,11 +1067,11 @@ function cargarCiudades(id_pais){
 }
 //funcion semi-generica para cargar listas asincronas
 //recibe el array de datos y el selector donde se cargara
-function cargarLista(datos, sel){
+function cargarLista(datos, sel) {
     var cad = "";
-    $.each(datos, function(pos, item){
-        cad += '<option value='+item.id+'>'+item.nombre+'</option>';
+    $.each(datos, function(pos, item) {
+        cad += '<option value=' + item.id + '>' + item.nombre + '</option>';
     });
-    
-    $("#"+sel).html(cad);
+
+    $("#" + sel).html(cad);
 }

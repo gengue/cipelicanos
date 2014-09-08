@@ -9,8 +9,9 @@
         {{ HTML::style('css/dataTables.bootstrap.css') }}
         {{ HTML::style('css/datatables.responsive.css') }}
         {{ HTML::style('css/plugins/morris.css') }}
+        {{ HTML::style('dropzone/downloads/css/dropzone.css') }}
         {{ HTML::style('font-awesome-4.1.0/css/font-awesome.min.css') }}
-    
+
         <meta name="_token" content="{{ csrf_token() }}"/>
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
     </head>
@@ -27,8 +28,8 @@
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-                    
- <a href="http://www.cipelicanos.biz/" target="_blank"><img id="logo" height="45" width="100" src="{{ asset('images/logo_pelicanos_nuevo.png')}}"></a> 
+
+                    <a href="http://www.cipelicanos.biz/" target="_blank"><img id="logo" height="45" width="100" src="{{ asset('images/logo_pelicanos_nuevo.png')}}"></a> 
                 </div>
                 <!-- Top Menu Items -->
                 <ul class="nav navbar-right top-nav">
@@ -179,15 +180,16 @@
                 </div>
                 <!-- /.navbar-collapse -->
             </nav>
+            <div id="carga">
+                <div id="page-wrapper">
 
-            <div id="page-wrapper">
-
+                </div>
             </div>
             <!-- /#page-wrapper -->
 
         </div>
         <!-- /#wrapper -->
-        
+
         <script src="js/plugins/jquery-1.11.0.js"></script>
         <script src="js/plugins/jquery.dataTables.min.js"></script>
         <script src="js/plugins/dataTables.bootstrap.js"></script>
@@ -196,11 +198,13 @@
         <script src="js/plugins/morris/raphael.min.js"></script>
 <!--        <script src="js/plugins/morris/morris.min.js"></script>
         <script src="js/plugins/morris/morris-data.js"></script>-->
-
+        <script src="dropzone/downloads/dropzone.js"></script>
         <script src="js/plugins/pnotify.custom.min.js"></script>
+        <script src="js/plugins/jquery.blockUI.js"></script>
         <script src="js/app.js"></script>
 
         <script> abrirDashboard();</script>
     </body>
 </html>
-        
+
+

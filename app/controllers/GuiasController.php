@@ -1,5 +1,6 @@
 <?php
 
+//Aca estamos usando la de guardar las guias y traerlas con ajax
 class GuiasController extends BaseController {
 
     public function index() {
@@ -15,17 +16,19 @@ class GuiasController extends BaseController {
 
     public function store() {
 
+        Log::info(Input::all());
+        
         $rules = array(
-            'numero_guia' => 'required'
         );
+
         $validator = Validator::make(Input::all(), $rules);
 
         if ($validator->fails()) {
             return Response::json(array(
-                            'msg' => 'error'
-                ));
+                        'msg' => 'error'
+            ));
         } else {
-            $dir = 'public/archivos/';
+            $dir = 'public/archivos/'.Input::get('pedido_id');
             $nombreArchivo = Input::get('numero_guia') . '.pdf';
             // store            
             $guia = new Guia;
@@ -34,14 +37,14 @@ class GuiasController extends BaseController {
             if (Input::hasFile('url_archivo')) {
                 $archivo = Input::file('url_archivo');
                 $guia->url_archivo = $dir . $nombreArchivo;
-                $archivo->move($dir, $nombreArchivo);             
+                $archivo->move($dir, $nombreArchivo);
             }
-           
+
             $guia->save();
             // redirect
             return Response::json(array(
-                            'msg' => 'ok'
-                ));
+                        'msg' => 'ok'
+            ));
         }
     }
 
@@ -82,9 +85,9 @@ class GuiasController extends BaseController {
             if (Input::hasFile('url_archivo')) {
                 $archivo = Input::file('url_archivo');
                 $guia->url_archivo = $dir . $nombreArchivo;
-                $archivo->move($dir, $nombreArchivo);     
+                $archivo->move($dir, $nombreArchivo);
             }
-            $guia->save();  
+            $guia->save();
             // redirect
             Session::flash('message', 'Guia actualizada correctamente!');
             return Redirect::to('guias');
@@ -94,12 +97,11 @@ class GuiasController extends BaseController {
     public function destroy($id) {
         // delete
         $guia = Guia::find($id);
-        if($guia->delete()){  
-           Session::flash('message', 'Guia eliminada correctamente!');
-        }else{
-           Session::flash('message', 'Error al eliminar la guia!');
+        if ($guia->delete()) {
+            Session::flash('message', 'Guia eliminada correctamente!');
+        } else {
+            Session::flash('message', 'Error al eliminar la guia!');
         }
-        
     }
 
 }
