@@ -73,7 +73,7 @@
                             <tbody>
                                 @foreach($pedidos as $pedido)
                                     <tr>
-                                        <td>{{ $pedido->compania->nombre }}</td>
+                                        <td>{{ $pedido->compania->nombre}}</td>
                                         <td>{{ $pedido->producto->nombre }}</td>
                                         <td>{{ $pedido->importe_facturado }}</td>
                                         <td>{{ $pedido->fecha_carga }}</td>

@@ -4,26 +4,36 @@ class PedidosClienteController extends BaseController {
 
     public function pedidos() {
 
-         $pedidos = Pedido::with(array('compania' => function($query)
-         {
-            $query->where('usuario_id', Auth::id())->orderBy('created_at', 'desc');
+         $usuario = Usuario::find(Auth::id());
+         $objPedidos = array();
 
-         }))->where('estado', 'ACTIVO')->get();
-
+         foreach ($usuario->companias as $compania) {
+             foreach ($compania->pedidos as $pedido) {
+                if($pedido->estado == 'ACTIVO'){
+                    $objPedidos[] = $pedido;        
+                }
+             }
+         }
+         
         return View::make('mod_cliente.pedidos')
-                    ->with('pedidos',$pedidos);
+                    ->with('pedidos',$objPedidos);
     }
 
     public function historial() {
 
-         $pedidos = Pedido::with(array('compania' => function($query)
-         {
-            $query->where('usuario_id', Auth::id())->orderBy('created_at', 'desc');
+         $usuario = Usuario::find(Auth::id());
+         $objPedidos = array();
 
-         }))->where('estado', 'INACTIVO')->get();
-
+         foreach ($usuario->companias as $compania) {
+             foreach ($compania->pedidos as $pedido) {
+                if($pedido->estado == 'INACTIVO'){
+                    $objPedidos[] = $pedido;        
+                }
+             }
+         }
+         
         return View::make('mod_cliente.pedidos')
-                    ->with('pedidos',$pedidos);
+                    ->with('pedidos',$objPedidos);
     }
 
 

@@ -45,7 +45,7 @@
                         @foreach($pedido->containers as $container) 
                         <a href="{{ $pedido->naviera->url_seguimiento . $container->numero_container }}" target="_blank">
                         	{{ $container->numero_container }}
-                        </a> 
+                        </a> <br>
 
                         @endforeach
                     </td>

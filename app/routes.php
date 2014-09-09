@@ -61,22 +61,19 @@ Route::get('/dashboard', function()
 
 
 Route::get('/mod_cliente/dashboard', function(){
-    
-    $numPedidos = Pedido::with(array('compania' => function($query)
-    {
-        $query->where('usuario_id', Auth::id());
+    $numPedidos = 0;
+    $usuario = Usuario::find(Auth::id());
+         $objPedidos = array();
 
-    }))->where('estado', 'ACTIVO')->count();
-   
-
-    $pedidos = Pedido::with(array('compania' => function($query)
-    {
-        $query->where('usuario_id', Auth::id())->take(5)->orderBy('created_at', 'desc');
-
-    }))->get();
+         foreach ($usuario->companias as $compania) {
+             foreach ($compania->pedidos as $pedido) {
+                $numPedidos++;
+                $objPedidos[] = $pedido;
+             }
+         }
 
     return View::make('mod_cliente.dashboard')
-        ->with('pedidos', $pedidos)
+        ->with('pedidos', $objPedidos)
         ->with('numpedidos', $numPedidos);
 });
 Route::resource('/mod_cliente/companias', 'CompaniasClienteController');

@@ -298,11 +298,11 @@ function crearPedido(datos) {
 
                     thisDropzone.processQueue();
                 }
-                thisDropzone.on('queuecomplete', function(){
-                     abrirPedidos();
+                // thisDropzone.on('queuecomplete', function(){
+                    
+                // });
+                abrirPedidos();
                     msg_guadadocorreto();
-                });
-               
             }
 
         }
