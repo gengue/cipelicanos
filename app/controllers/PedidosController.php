@@ -71,7 +71,7 @@ class PedidosController extends BaseController {
                 $relacion->save();
             }
 
-            $this->enviarMail($pedido, Usuario::find(Auth::id()));
+            $this->enviarMail($pedido, $pedido->compania->cliente);
 
             return Response::json(array(
                         'msg' => 'ok',
