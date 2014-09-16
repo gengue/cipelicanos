@@ -69,16 +69,7 @@ class UsuarioController extends BaseController {
         $message->to($usuario->correo, $usuario->nombre." ".$usuario->apellido);
 });
     }
-    
-    private function enviarDatos($usuario){
-        
-         Mail::send('emails.recordarDatos', array('usuario' => $usuario), function ($message) use($usuario){
-        $message->subject('C.I Pelicanos - Recuperar Contraseña!');
-        $message->to($usuario->correo, $usuario->nombre." ".$usuario->apellido);
-});
-        
-    }
-    
+
     public function show($id) {
         $usuario = Usuario::find($id);
 

@@ -55,13 +55,13 @@ class Pedido extends Eloquent{
 
 //relaciones
     public function compania(){
-        return $this->belongsTo('Compania', 'compania_id');
+        return $this->belongsTo('Compania', 'compania_id')->withTrashed();
     }
-    public function producto(){
-        return $this->belongsTo('Producto', 'producto_id');
+    public function producto(){ 
+        return $this->belongsTo('Producto', 'producto_id')->withTrashed();
     }
     public function naviera(){
-        return $this->belongsTo('Naviera', 'naviera_id');
+        return $this->belongsTo('Naviera', 'naviera_id')->withTrashed();
     }
     public function guias(){
         return $this->hasMany('Guia');

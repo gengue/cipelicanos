@@ -8,7 +8,7 @@ class Compania extends Eloquent{
     protected $dates = ['deleted_at'];
     
     public function cliente(){
-    	return $this->belongsTo('Usuario', 'usuario_id');
+    	return $this->belongsTo('Usuario', 'usuario_id')->withTrashed();
     }
 
     public function pedidos(){

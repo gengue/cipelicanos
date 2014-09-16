@@ -79,9 +79,9 @@ Route::get('/mod_cliente/dashboard', function(){
     return View::make('mod_cliente.dashboard')
         ->with('pedidos', $objPedidos)
         ->with('numpedidos', $numPedidos)
+
         
         ->with('ultimoAcceso', $ultimoAcceso);
-
 });
 Route::resource('/mod_cliente/companias', 'CompaniasClienteController');
 Route::get('/mod_cliente/pedidos', 'PedidosClienteController@pedidos');

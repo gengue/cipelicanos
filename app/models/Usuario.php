@@ -25,7 +25,14 @@ class Usuario extends Eloquent implements UserInterface, RemindableInterface {
     public function pais() {
         return $this->belongsTo('Country', 'pais_id');
     }
-
+    public function delete(){
+        //eliminamos las compañias de este proveedor
+        foreach($this->companias as $compania)
+        {
+            $compania->delete();
+        }
+        return parent::delete();
+    }
     protected $hidden = array('password');
     protected $fillable = array('email', 'password');
     public static $rules = array(

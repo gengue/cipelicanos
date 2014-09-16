@@ -71,7 +71,11 @@ class PedidosController extends BaseController {
                 $relacion->save();
             }
 
+<<<<<<< HEAD
             $this->enviarMail($pedido, Usuario::find(Auth::id()));
+=======
+            $this->enviarMail($pedido, $pedido->compania->cliente);
+>>>>>>> d0da0a9f0e7db1ce30857a5502355f38d845a9f0
 
             return Response::json(array(
                         'msg' => 'ok',
@@ -83,7 +87,11 @@ class PedidosController extends BaseController {
 
     private function enviarMail($pedido, $usuario){
         Mail::send('emails.nuevoPedido', array('pedido' => $pedido, 'usuario' => $usuario), function ($message) use($usuario){
+<<<<<<< HEAD
             $message->subject('C.I Pelicanos - Se ha creado tu cuenta!');
+=======
+            $message->subject('Tienes un nuevo pedido!');
+>>>>>>> d0da0a9f0e7db1ce30857a5502355f38d845a9f0
             $message->to($usuario->correo, $usuario->nombre." ".$usuario->apellido);
         });
     }
