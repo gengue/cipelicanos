@@ -29,6 +29,10 @@
         {{ Form::text('correo', Input::old('correo'), array('class' => 'form-control')) }}
     </div>
     <div class="form-group">
+        {{ Form::label('direccion', 'Direccion') }}
+        {{ Form::text('direccion', Input::old('direccion'), array('class' => 'form-control')) }}
+    </div>
+    <div class="form-group">
         {{ Form::label('usuario_id', 'Usuario') }}
         {{ Form::select('usuario_id', $usuarios, null, array('class'=>'form-control','style'=>'' )) }}
     </div>

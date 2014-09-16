@@ -82,9 +82,18 @@
         {{ Form::label('numero_reserva', 'Numero de Reserva') }}
         {{ Form::text('numero_reserva', Input::old('eje: 129XC83'), array('class' => 'form-control')) }}
     </div>
+    <div class="row">
+        <div class="col-md-8">
     <div class="form-group">
         {{ Form::label('buque', 'Buque') }}
         {{ Form::text('buque', Input::old('eje: El condor Herido'), array('class' => 'form-control')) }}
+    </div>
+        </div>
+        
+        <div class="col-md-4">
+         {{ Form::label('numero_viaje', 'Numero de Viaje') }}
+        {{ Form::text('numero_viaje', Input::old('numero_viaje'), array('class' => 'form-control')) }}   
+        </div>
     </div>
     <div class="row">
         <div class="col-md-6">
@@ -111,19 +120,12 @@
                         <span class="fa fa-calendar"></span>
                 </span>
             </div>
-            {{ Form::label('fecha_vencimiento', 'Fecha de Vencimiento') }}
-            <div class="input-group date" id="datepicker4">
-                {{ Form::date('fecha_vencimiento', null, array('class'=>'form-control')) }}
-                <span class="input-group-addon">
-                        <span class="fa fa-calendar"></span>
-                </span>
-            </div>
+            
         </div>
     </div>
     <div class="form-group">
-        {{ Form::label('importe_facturado', 'Importe Facturado') }}
-
-        {{ Form::text('importe_facturado', null, array('class'=>'form-control')) }}
+        {{ Form::label('tipo', 'Tipo de Pedido') }}
+        {{ Form::select('tipo', array('EXPORTE'=>'Exportacion', 'IMPORTE'=>'Importacion'), null, array('class'=>'form-control','style'=>'' )) }}
     </div>
 
     <a class="btn btn-small btn-danger" href="javascript:abrirPedidos();">Cancelar</a>

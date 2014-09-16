@@ -78,7 +78,7 @@ class BdCompleta extends Migration {
             $table->engine = 'MyISAM';
             $table->increments('id');
             $table->string('nombre');
-            $table->integer('nit');
+            $table->string('nit');
             $table->string('telefono');
             $table->string('correo');
             $table->string('direccion');

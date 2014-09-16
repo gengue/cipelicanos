@@ -18,6 +18,7 @@
                     <td data-hide="phone,tablet">NIT</td>
                     <td data-hide="phone, tablet">Telefono</td>
                     <td data-hide="phone">Correo</td>
+                    <td data-hide="phone">Direccion</td>
                     <td>Usuario</td>
                     <td data-hide="phone">Opciones</td>
                 </tr>
@@ -30,6 +31,7 @@
                     <td>{{ $value->nit }}</td>
                     <td>{{ $value->telefono }}</td>
                     <td>{{ $value->correo}}</td>
+                    <td>{{ $value->direccion}}</td>
                     <td>{{ $value->cliente->nombre." ".$value->cliente->apellido}}</td>
 
                     <td>

@@ -210,7 +210,7 @@
         <script src="js/plugins/morris/raphael.min.js"></script>
 <!--        <script src="js/plugins/morris/morris.min.js"></script>
         <script src="js/plugins/morris/morris-data.js"></script>-->
-        <script src="dropzone/downloads/dropzone.min.js"></script>
+        <script src="dropzone/downloads/dropzone.js"></script>
         <script src="js/plugins/pnotify.custom.min.js"></script>
         <script src="js/plugins/jquery.blockUI.js"></script>
         <script src="js/app.js"></script>
