@@ -4,69 +4,10 @@
             <h1 class="page-header">
                 <i class="fa fa-fw fa-money"></i> Clientes <small>Todos los clientes</small>
             </h1>
-            
-      
-    
-    @if($usuarios->pendientes == 'SI')
-        <ol class="breadcrumb">
-                <li class="active">
-                    <i class="fa fa-times"></i> Clientes sin verificar:</li>
-        </ol>
-        <div class='table-responsive'>
-           <table class="table table-striped table-condensed table-hover">
-               <thead>
-                   <tr>
-                       <td>Nombre</td>
-                       <td>Apellidos</td>
-                       <td>Telefono</td>
-                       <td>Correo</td>
-                       <td>Direccion</td>
-                       <td>Pais</td>
-                       <td>Ciudad</td>
-                       <td>Estado</td>
-                       <td>Opciones</td>
-                   </tr>
-               </thead>
-               <tbody>
-                   @foreach($usuarios as $key => $value)
-                   @if($value->estado == 'INACTIVO')
-                   <tr>
-                       <td class="danger">{{ $value->nombre }}</td>
-                       <td class="danger">{{ $value->apellido }}</td>
-                       <td class="danger">{{ $value->telefono }}</td>
-                       <td class="danger">{{ $value->correo }}</td>
-                       <td class="danger">{{ $value->direccion }}</td>
-                       <td class="danger">{{ $value->pais->nombre }}</td>
-                       <td class="danger">{{ $value->ciudad->nombre }}</td>
-                       <td class="danger">{{ $value->estado }}</td>
-
-                       <td class="danger">                            
-                           <a class="btn btn-small btn-info" href="javascript:aprobarCliente(true, {{ $value->id }});"><i class="fa fa-thumbs-o-up"></i></a>
-                           <a class="btn btn-small btn-danger" href="javascript:aprobarCliente(false, {{ $value->id }});"><i class="fa fa-thumbs-o-down"></i></a>
-                     </td>
-                   </tr>
-                   @endif
-                   @endforeach
-
-               </tbody>
-           </table>
-       </div>
-    </div>
-    </div>
-    @else
-            <ol class="breadcrumb">
-                <li class="active">
-                    <i class="fa fa-times"></i> Clientes sin verificar: </li>
-                    No hay clientes pendientes de verificacion.
-            </ol>
-    @endif
+  
     </div>
     </div>
 
-    <ol class="breadcrumb">
-        <li class="active">
-            <i class="fa fa-check"></i> Clientes activos:</li>
-    </ol>
     <div class='table-responsive'>
         <table id="clientesTbl" class="table table-striped table-condensed table-bordered table-hover">
             <thead>

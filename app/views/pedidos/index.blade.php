@@ -5,11 +5,7 @@
             <h1 class="page-header">
                 <i class="fa fa-fw fa-shopping-cart"></i> Pedidos <small>Todos los pedidos</small>
             </h1>
-            <ol class="breadcrumb">
-                <li class="active">
-                    <i class="fa fa-dashboard"></i> &Uacute;ltima sesi&oacute;n:
-                </li>
-            </ol>
+            
         </div>
     </div>
 

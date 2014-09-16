@@ -4,14 +4,10 @@
             <h1 class="page-header">
                 <!--i></i-->Pedidos <small>Agregar pedido</small>
             </h1>
-            <ol class="breadcrumb">
-                <li class="active">
-                    <i class="fa fa-dashboard"></i> &Uacute;ltima sesi&oacute;n:
-                </li>
-            </ol>
+            
         </div>
     </div>
-    <a class="btn btn-small btn-info" href="javascript:abrirPedidos();"><i class="fa fa-plus"></i> Listar todos</a>
+    <a class="btn btn-small btn-info" href="javascript:abrirPedidos();"><i class="fa fa-arrow-left"></i> Atras</a>
     <br><br>
 
     <!-- if there are creation errors, they will show here -->
@@ -130,7 +126,7 @@
         {{ Form::text('importe_facturado', null, array('class'=>'form-control')) }}
     </div>
 
-
+    <a class="btn btn-small btn-danger" href="javascript:abrirPedidos();">Cancelar</a>
     {{ Form::submit('Crear Pedido!', array('class' => 'btn btn-primary')) }}
 
     {{ Form::close() }}

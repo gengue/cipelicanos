@@ -17,14 +17,6 @@ class UsuarioController extends BaseController {
     public function clientes() {
         
         $usuarios = Usuario::where('tipo_usuario','=','cliente')->get();
-        $usuarios->pendientes = 'NO';
-        
-        foreach ($usuarios as $usuario){
-            if($usuario->estado == 'INACTIVO'){
-                $usuarios->pendientes = 'SI';
-                break;
-            }
-        }
         
         return View::make('usuarios.indexClientes')
                         ->with('usuarios', $usuarios);

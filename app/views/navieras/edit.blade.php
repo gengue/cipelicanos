@@ -4,14 +4,10 @@
             <h1 class="page-header">
                 <i class="fa fa-fw fa-anchor"></i> Navieras <small>Editar producto</small>
             </h1>
-            <ol class="breadcrumb">
-                <li class="active">
-                    <i class="fa fa-dashboard"></i> &Uacute;ltima sesi&oacute;n:
-                </li>
-            </ol>
+           
         </div>
     </div>
-    <a class="btn btn-small btn-info" href="javascript:abrirNavieras();"><i class="fa fa-list"></i> Listar todos</a>
+    <a class="btn btn-small btn-info" href="javascript:abrirNavieras();"><i class="fa fa-arrow-left"></i> Atras</a>
     <br><br>
 
     {{ Form::model($naviera, array('route' => array('navieras.update', 
@@ -36,7 +32,7 @@
         {{ Form::label('direccion', 'Direccion') }}
         {{ Form::text('direccion', Input::old('direccion'), array('class' => 'form-control')) }}
     </div>
-
+    <a class="btn btn-small btn-danger" href="javascript:abrirNavieras();">Cancelar</a>
     {{ Form::submit('Editar naviera!', array('class' => 'btn btn-primary')) }}
 
     {{ Form::close() }}
