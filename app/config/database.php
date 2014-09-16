@@ -26,8 +26,8 @@ return array(
 	|
 	*/
 
-	'default' => 'cipelicanos_mySQL',
-        //'default' => 'cipelicanos2_mySQL',
+	//'default' => 'cipelicanos_mySQL',
+     'default' => 'cipelicanos2_mySQL',
 
 	/*
 	|--------------------------------------------------------------------------
