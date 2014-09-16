@@ -61,14 +61,21 @@ class UsuarioController extends BaseController {
             $usuario->ciudad_id = Input::get('ciudad');
             $usuario->tipo_usuario = Input::get('tipo_usuario');
             $usuario->save();    
-                
+            $usuario->normalPassword = Input::get('password');
+            $this->enviarMail($usuario);   
+
             return Response::json(array(
                             'msg' => 'ok'
                 ));
         }
     }}
 
-  
+    private function enviarMail($usuario){
+        Mail::send('emails.cuentaCreada', array('usuario' => $usuario), function ($message) use($usuario){
+        $message->subject('C.I Pelicanos - Se ha creado tu cuenta!');
+        $message->to($usuario->correo, $usuario->nombre." ".$usuario->apellido);
+});
+    }
     public function show($id) {
         $usuario = Usuario::find($id);
 
