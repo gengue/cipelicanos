@@ -26,13 +26,9 @@ return array(
 	|
 	*/
 
-<<<<<<< HEAD
+
 	'default' => 'cipelicanos_mySQL',
      //'default' => 'cipelicanos2_mySQL',
-=======
-	//'default' => 'cipelicanos_mySQL',
-     'default' => 'cipelicanos2_mySQL',
->>>>>>> d0da0a9f0e7db1ce30857a5502355f38d845a9f0
 
 	/*
 	|--------------------------------------------------------------------------
