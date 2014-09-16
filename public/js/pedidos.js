@@ -57,7 +57,7 @@ $("#formContainer").submit(function(e) {
     } else {
         var datos = $('input:text[name=numero_container]').val();
         $('input:text[name=numero_container]').val('');
-        containers.push(datos);
+        containers.push(datos.toUpperCase());
         $('#modalContainer').modal('hide');
         actualizarContainers();
         alert('Agregado!');

@@ -68,6 +68,7 @@ class BdCompleta extends Migration {
             $table->integer('ciudad_id')->unsigned();
             $table->foreign('ciudad_id')->references('id')->on('City');
             $table->enum('estado', array('ACTIVO', 'INACTIVO'));
+            $table->dateTime('ultimo_acceso');
             $table->timestamps();
             $table->softDeletes();
             $table->rememberToken();
@@ -77,7 +78,7 @@ class BdCompleta extends Migration {
             $table->engine = 'MyISAM';
             $table->increments('id');
             $table->string('nombre');
-            $table->integer('nit');
+            $table->string('nit');
             $table->string('telefono');
             $table->string('correo');
             $table->string('direccion');

@@ -37,8 +37,8 @@ Route::group(array('before' => 'auth'), function()
     {
         $tipo = Auth::user()->tipo_usuario;
 
-        if( $tipo == "ADMINISTRADOR"){
-            return View::make('index');    
+        if( $tipo == "ADMINISTRADOR" || $tipo == "DIGITADOR"){
+            return View::make('index')->with('tipoUsuario', $tipo);    
         }
         if($tipo == "CLIENTE"){
             return View::make('mod_cliente.index');   
@@ -52,21 +52,22 @@ Route::get('/dashboard', function()
 {
     $numPedidos = Pedido::where('estado','=','ACTIVO')->count();
     $numHistorial = Pedido::where('estado','=','INACTIVO')->count();
-    $numClientes = Usuario::where('estado', '=', 'INACTIVO')->count();
     $pedidos = Pedido::all()->take(5);
-
+    $ultimoAcceso = Auth::user()->ultimo_acceso;
+    
     return View::make('dashboard')
         ->with('numpedidos', $numPedidos)
         ->with('numhistorial', $numHistorial)
-        ->with('numclientes', $numClientes)
-        ->with('pedidos', $pedidos);
+        ->with('pedidos', $pedidos)
+        ->with('ultimoAcceso', $ultimoAcceso);
 });
 
 
 Route::get('/mod_cliente/dashboard', function(){
     $numPedidos = 0;
     $usuario = Usuario::find(Auth::id());
-         $objPedidos = array();
+    $objPedidos = array();
+    $ultimoAcceso = Auth::user()->ultimo_acceso;
 
          foreach ($usuario->companias as $compania) {
              foreach ($compania->pedidos as $pedido) {
@@ -78,7 +79,9 @@ Route::get('/mod_cliente/dashboard', function(){
     return View::make('mod_cliente.dashboard')
         ->with('pedidos', $objPedidos)
         ->with('numpedidos', $numPedidos)
-        ;
+        
+        ->with('ultimoAcceso', $ultimoAcceso);
+
 });
 Route::resource('/mod_cliente/companias', 'CompaniasClienteController');
 Route::get('/mod_cliente/pedidos', 'PedidosClienteController@pedidos');

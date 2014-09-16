@@ -4,14 +4,10 @@
             <h1 class="page-header">
                 <i class="fa fa-fw fa-university"></i> Compa&ntilde;ias <small>Editar una compa&ntilde;ia</small></h1>
             </h1>
-            <ol class="breadcrumb">
-                <li class="active">
-                    <i class="fa fa-dashboard"></i> &Uacute;ltima sesi&oacute;n:
-                </li>
-            </ol>
+            
         </div>
     </div>
-    <a class="btn btn-small btn-info" href="javascript:abrirCompanias();"><i class="fa fa-list"></i> Listar todos</a>
+    <a class="btn btn-small btn-info" href="javascript:abrirNavieras();"><i class="fa fa-arrow-left"></i> Atras</a>
     <br><br>
 
     {{ Form::model($compania, array('route' => array('companias.update',
@@ -37,21 +33,26 @@
         {{ Form::text('correo', Input::old('correo'), array('class' => 'form-control')) }}
     </div>
     <div class="form-group">
+        {{ Form::label('direccion', 'Direccion') }}
+        {{ Form::text('direccion', Input::old('direccion'), array('class' => 'form-control')) }}
+    </div>
+    <div class="form-group">
         {{ Form::label('usuario_id', 'Usuario') }}
         {{ Form::select('usuario_id', $usuarios, $compania->usuario_id, array('class'=>'form-control','style'=>'' )) }}
     </div>
+    <a class="btn btn-small btn-danger" href="javascript:abrirNavieras();">Cancelar</a>
     {{ Form::submit('Editar!', array('class' => 'btn btn-primary')) }}
 
-{{ Form::close() }}
+    {{ Form::close() }}
 
 </div>
 
 <script>
 
     $("#formEditarCompania").submit(function(e) {
-        e.preventDefault();       
+        e.preventDefault();
         var datos = $("#formEditarCompania").serialize();
-        editarCompania(datos, {{ $compania->id }});
+                editarCompania(datos, {{ $compania->id }});
     });
 
 </script>

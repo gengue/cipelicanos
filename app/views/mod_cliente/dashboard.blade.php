@@ -9,7 +9,7 @@
             </h1>
             <ol class="breadcrumb">
                 <li class="active">
-                    <i class="fa fa-dashboard"></i> &Uacute;ltima sesi&oacute;n:
+                    <i class="fa fa-dashboard"></i> &Uacute;ltima sesi&oacute;n: {{ $ultimoAcceso }}
                 </li>
             </ol>
         </div>
@@ -18,7 +18,7 @@
 
     <div class="row">
         
-        <div class="col-lg-3 col-md-6">
+        <div class="col-lg-6 col-md-6">
             <div class="panel panel-green">
                 <div class="panel-heading">
                     <div class="row">
@@ -40,8 +40,7 @@
                 </a>
             </div>
         </div>
-      
-    </div>
+
 
     <div class="row">
         <div class="col-lg-12">

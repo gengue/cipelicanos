@@ -35,6 +35,7 @@ class CompaniasController extends BaseController {
             $companias->nombre = Input::get('nombre');
             $companias->nit = Input::get('nit');
             $companias->telefono = Input::get('telefono');
+            $companias->direccion = Input::get('direccion');
             $companias->correo = Input::get('correo');
 
             $companias->usuario_id = Input::get('usuario_id');
@@ -82,6 +83,7 @@ class CompaniasController extends BaseController {
             $companias->nit = Input::get('nit');
             $companias->telefono = Input::get('telefono');
             $companias->correo = Input::get('correo');
+            $companias->direccion = Input::get('direccion');
             $companias->usuario_id = Input::get('usuario_id');
             $companias->save();
           

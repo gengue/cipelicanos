@@ -5,14 +5,10 @@
             <h1 class="page-header">
                 <!--i></i-->Productos <small>Agregar un producto</small>
             </h1>
-            <ol class="breadcrumb">
-                <li class="active">
-                    <i class="fa fa-dashboard"></i> &Uacute;ltima sesi&oacute;n:
-                </li>
-            </ol>
+            
         </div>
     </div>
-    <a class="btn btn-small btn-info" href="javascript:abrirProductos();"><i class="fa fa-list"></i> Listar todos</a>
+    <a class="btn btn-small btn-info" href="javascript:abrirProductos();"><i class="fa fa-arrow-left"></i> Atras</a>
     <br><br>
     <!-- if there are creation errors, they will show here -->
     {{ HTML::ul($errors->all()) }}
@@ -31,7 +27,7 @@
         {{ Form::label('proveedor', 'Proveedor') }}
         {{ Form::select('proveedor', $proveedores, Input::old('Selecciona uno'), array('class' => 'form-control')) }}
     </div>	
-
+    <a class="btn btn-small btn-danger" href="javascript:abrirProductos();">Cancelar</a>
     {{ Form::submit('Crear Producto!', array('class' => 'btn btn-primary')) }}
 
     {{ Form::close() }}

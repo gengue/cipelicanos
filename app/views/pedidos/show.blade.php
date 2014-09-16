@@ -5,15 +5,11 @@
             <h1 class="page-header">
                 <!--i></i-->Pedidos <small>Detalle pedido</small>
             </h1>
-            <ol class="breadcrumb">
-                <li class="active">
-                    <i class="fa fa-dashboard"></i> &Uacute;ltima sesi&oacute;n:
-                </li>
-            </ol>
+            
         </div>
     </div>
 
-    <a class="btn btn-small btn-info" href="javascript:abrirPedidos();"><i class="fa fa-list"></i> Listar todos</a>
+    <a class="btn btn-small btn-info" href="javascript:abrirPedidos();"><i class="fa fa-arrow-left"></i> Atras</a>
     <br><br>
 
 	<div class="jumbotron text-center">

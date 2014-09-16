@@ -5,11 +5,7 @@
             <h1 class="page-header">
                 <i class="fa fa-fw fa-shopping-cart"></i> Pedidos <small>Todos los pedidos</small>
             </h1>
-            <ol class="breadcrumb">
-                <li class="active">
-                    <i class="fa fa-dashboard"></i> &Uacute;ltima sesi&oacute;n:
-                </li>
-            </ol>
+            
         </div>
     </div>
 
@@ -28,8 +24,6 @@
                     <td data-hide="phone">carga</td>
                     <td>Abordaje</td>
                     <td data-hide="phone,tablet">Entrega</td>
-                    <td data-hide="phone,tablet">Vencimiento</td>
-                    <td data-hide="phone">Importe Facturado</td>
                 </tr>
             </thead>
             <tbody>
@@ -59,8 +53,6 @@
                     <td>{{ $pedido->fecha_carga}}</td>
                     <td>{{ $pedido->fecha_abordaje}}</td>
                     <td>{{ $pedido->fecha_entrega}}</td>
-                    <td>{{ $pedido->fecha_vencimiento}}</td>
-                    <td>{{ $pedido->importe_facturado}}</td>
 
                     
                 </tr>

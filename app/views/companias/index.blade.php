@@ -2,11 +2,7 @@
     <div class="row">
         <div class="col-lg-12">
             <h1 class="page-header"><i class="fa fa-fw fa-university"></i> Compa&ntilde;ias <small>Todas las compa&ntilde;ias</small></h1>
-            <ol class="breadcrumb">
-                <li class="active">
-                    <i class="fa fa-dashboard"></i> &Uacute;ltima sesi&oacute;n:
-                </li>
-            </ol>
+            
         </div>
     </div>
     <a class="btn btn-small btn-info" href="javascript:abrirCompanias();"><i class="fa fa-list"></i> Listar todos</a>
@@ -22,6 +18,7 @@
                     <td data-hide="phone,tablet">NIT</td>
                     <td data-hide="phone, tablet">Telefono</td>
                     <td data-hide="phone">Correo</td>
+                    <td data-hide="phone">Direccion</td>
                     <td>Usuario</td>
                     <td data-hide="phone">Opciones</td>
                 </tr>
@@ -34,6 +31,7 @@
                     <td>{{ $value->nit }}</td>
                     <td>{{ $value->telefono }}</td>
                     <td>{{ $value->correo}}</td>
+                    <td>{{ $value->direccion}}</td>
                     <td>{{ $value->cliente->nombre." ".$value->cliente->apellido}}</td>
 
                     <td>

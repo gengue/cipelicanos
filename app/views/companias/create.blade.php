@@ -4,14 +4,10 @@
             <h1 class="page-header">
                 <i class="fa fa-fw fa-university"></i> Compa&ntilde;ias <small>Agregar una compa&ntilde;ia</small></h1>
             </h1>
-            <ol class="breadcrumb">
-                <li class="active">
-                    <i class="fa fa-dashboard"></i> &Uacute;ltima sesi&oacute;n:
-                </li>
-            </ol>
+            
         </div>
     </div>
-    <a class="btn btn-small btn-info" href="javascript:abrirCompanias();"><i class="fa fa-list"></i> Listar todos</a>
+    <a class="btn btn-small btn-info" href="javascript:abrirNavieras();"><i class="fa fa-arrow-left"></i> Atras</a>
     <br><br>
 
     {{ Form::open(array('url' => 'companias', 'id' => 'formCompania')) }}
@@ -33,10 +29,14 @@
         {{ Form::text('correo', Input::old('correo'), array('class' => 'form-control')) }}
     </div>
     <div class="form-group">
+        {{ Form::label('direccion', 'Direccion') }}
+        {{ Form::text('direccion', Input::old('direccion'), array('class' => 'form-control')) }}
+    </div>
+    <div class="form-group">
         {{ Form::label('usuario_id', 'Usuario') }}
         {{ Form::select('usuario_id', $usuarios, null, array('class'=>'form-control','style'=>'' )) }}
     </div>
-
+    <a class="btn btn-small btn-danger" href="javascript:abrirNavieras();">Cancelar</a>
     {{ Form::submit('Crear compania!', array('class' => 'btn btn-primary')) }}
 
     {{ Form::close() }}

@@ -48,11 +48,13 @@ class PedidosController extends BaseController {
             $pedido->compania_id = Input::get('compania_id');
             $pedido->numero_reserva = Input::get('numero_reserva');
             $pedido->buque = Input::get('buque');
+            $pedido->numero_viaje = Input::get('numero_viaje');
             $pedido->fecha_carga = Input::get('fecha_carga');
             $pedido->fecha_abordaje = Input::get('fecha_abordaje');
             $pedido->fecha_entrega = Input::get('fecha_entrega');
-            $pedido->fecha_vencimiento = Input::get('fecha_vencimiento');
-            $pedido->importe_facturado = Input::get('importe_facturado');
+            $pedido->tipo = Input::get('tipo');
+            //$pedido->fecha_vencimiento = Input::get('fecha_vencimiento');
+            //$pedido->importe_facturado = Input::get('importe_facturado');
             $pedido->save();
 
             $containers = Str::upper(Input::get('containers'));
@@ -69,12 +71,21 @@ class PedidosController extends BaseController {
                 $relacion->save();
             }
 
+            $this->enviarMail($pedido, Usuario::find(Auth::id()));
+
             return Response::json(array(
                         'msg' => 'ok',
                         'id_pedido'=> $pedido->id
                         //'id' => $pedido->id
             ));
         }
+    }
+
+    private function enviarMail($pedido, $usuario){
+        Mail::send('emails.nuevoPedido', array('pedido' => $pedido, 'usuario' => $usuario), function ($message) use($usuario){
+            $message->subject('C.I Pelicanos - Se ha creado tu cuenta!');
+            $message->to($usuario->correo, $usuario->nombre." ".$usuario->apellido);
+        });
     }
 
     public function show($id) {

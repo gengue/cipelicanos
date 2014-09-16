@@ -17,14 +17,6 @@ class UsuarioController extends BaseController {
     public function clientes() {
         
         $usuarios = Usuario::where('tipo_usuario','=','cliente')->get();
-        $usuarios->pendientes = 'NO';
-        
-        foreach ($usuarios as $usuario){
-            if($usuario->estado == 'INACTIVO'){
-                $usuarios->pendientes = 'SI';
-                break;
-            }
-        }
         
         return View::make('usuarios.indexClientes')
                         ->with('usuarios', $usuarios);
@@ -60,15 +52,33 @@ class UsuarioController extends BaseController {
             $usuario->pais_id = Input::get('pais');
             $usuario->ciudad_id = Input::get('ciudad');
             $usuario->tipo_usuario = Input::get('tipo_usuario');
+            $usuario->ultimo_acceso = new DateTime();
             $usuario->save();    
-                
+            $usuario->normalPassword = Input::get('password');
+            $this->enviarMail($usuario);   
+
             return Response::json(array(
                             'msg' => 'ok'
                 ));
         }
     }}
 
-  
+    private function enviarMail($usuario){
+        Mail::send('emails.cuentaCreada', array('usuario' => $usuario), function ($message) use($usuario){
+        $message->subject('C.I Pelicanos - Se ha creado tu cuenta!');
+        $message->to($usuario->correo, $usuario->nombre." ".$usuario->apellido);
+});
+    }
+    
+    private function enviarDatos($usuario){
+        
+         Mail::send('emails.recordarDatos', array('usuario' => $usuario), function ($message) use($usuario){
+        $message->subject('C.I Pelicanos - Recuperar Contraseña!');
+        $message->to($usuario->correo, $usuario->nombre." ".$usuario->apellido);
+});
+        
+    }
+    
     public function show($id) {
         $usuario = Usuario::find($id);
 

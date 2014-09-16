@@ -5,14 +5,10 @@
             <h1 class="page-header">
                 <!--i></i-->Usuarios <small>Editar Usuario</small>
             </h1>
-            <ol class="breadcrumb">
-                <li class="active">
-                    <i class="fa fa-dashboard"></i> &Uacute;ltima sesi&oacute;n:
-                </li>
-            </ol>
+           
         </div>
     </div>
-    <a class="btn btn-small btn-info" href="javascript:abrirUsuarios();"><i class="fa fa-list"></i> Listar todos</a>
+    <a class="btn btn-small btn-info" href="javascript:abrirUsuarios();"><i class="fa fa-arrow-left"></i> Atras</a>
     <br><br>
 
     {{ Form::model($usuario, array('route' => array('usuarios.update', $usuario->id),'id' => 'formEditarUsuario', 'method' => 'PUT')) }}
@@ -55,7 +51,7 @@
         {{ Form::label('ciudad', 'Ciudad') }}
         {{ Form::select('ciudad',$ciudades, $usuario->ciudad_id, array('class'=>'form-control','style'=>'' )) }}
     </div>
-
+    <a class="btn btn-small btn-danger" href="javascript:abrirUsuarios();">Cancelar</a>
     {{ Form::submit('Editar!', array('class' => 'btn btn-primary')) }}
 
     {{ Form::close() }}

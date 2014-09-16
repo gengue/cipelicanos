@@ -2,11 +2,6 @@
     <div class="row">
         <div class="col-lg-12">
             <h1 class="page-header"><i class="fa fa-fw fa-anchor"></i> Navieras <small>Todas las navieras</small></h1>
-            <ol class="breadcrumb">
-                <li class="active">
-                    <i class="fa fa-dashboard"></i> &Uacute;ltima sesi&oacute;n:
-                </li>
-            </ol>
         </div>
     </div>
     <a class="btn btn-small btn-info" href="javascript:abrirNavieras();"><i class="fa fa-list"></i> Listar todos</a>
@@ -21,6 +16,7 @@
                 <tr>
                     <td data-class="expand">Nombre</td>
                     <td>Nombre de Contacto</td>
+                    <td data-hide="phone">Email</td>
                     <td data-hide="phone">Telefono</td>
                     <td data-hide="phone,tablet">Direccion</td>
                     <td data-hide="phone,tablet, pc">URL Tracking</td>
@@ -32,6 +28,7 @@
                 <tr>
                     <td>{{ $value->nombre }}</td>
                     <td>{{ $value->nombre_contacto }}</td>
+                    <td>{{ $value->email }}</td>
                     <td>{{ $value->telefono }}</td>
                     <td>{{ $value->direccion }}</td>
                     <td valign="top"> {{ $value->url_seguimiento }}</td>

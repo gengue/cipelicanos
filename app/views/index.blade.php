@@ -153,22 +153,26 @@
                         <li>
                             <a href="javascript:abrirCompanias();"><i class="fa fa-fw fa-university"></i> Compa&ntilde;ias</a>
                         </li>
-                        <li>
-                            <a href="javascript:abrirProductos();"><i class="fa fa-fw fa-gift"></i> Productos</a>
-                        </li>
-                        <li>
-                            <a href="javascript:abrirNavieras();"><i class="fa fa-fw fa-anchor"></i> Navieras</a>
+                        @if ($tipoUsuario == 'ADMINISTRADOR')
+                            <li>
+                                <a href="javascript:abrirProductos();"><i class="fa fa-fw fa-gift"></i> Productos</a>
+                            </li>
+                            <li>
+                                <a href="javascript:abrirNavieras();"><i class="fa fa-fw fa-anchor"></i> Navieras</a>
 
-                        </li>
-                        <li>
-                            <a href="javascript:abrirProveedores();"><i class="fa fa-fw fa-suitcase"></i> Proveedores</a>
-                        </li>
+                            </li>
+                            <li>
+                                <a href="javascript:abrirProveedores();"><i class="fa fa-fw fa-suitcase"></i> Proveedores</a>
+                            </li>
+                        @endif
                         <li>
                             <a href="javascript:abrirHistorialPedidos();"><i class="fa fa-fw fa-calendar"></i> Historial pedidos</a>
                         </li>
-                        <li>
-                            <a href="javascript:abrirUsuarios();"><i class="fa fa-fw fa-users"></i> Usuarios</a>
-                        </li>
+                        @if ($tipoUsuario == 'ADMINISTRADOR')
+                            <li>
+                                <a href="javascript:abrirUsuarios();"><i class="fa fa-fw fa-users"></i> Usuarios</a>
+                            </li>
+                        @endif
                         <!--li>
                             <a href="javascript:;" data-toggle="collapse" data-target="#demo"><i class="fa fa-fw fa-arrows-v"></i> Dropdown <i class="fa fa-fw fa-caret-down"></i></a>
                             <ul id="demo" class="collapse">
@@ -206,7 +210,7 @@
         <script src="js/plugins/morris/raphael.min.js"></script>
 <!--        <script src="js/plugins/morris/morris.min.js"></script>
         <script src="js/plugins/morris/morris-data.js"></script>-->
-        <script src="dropzone/downloads/dropzone.min.js"></script>
+        <script src="dropzone/downloads/dropzone.js"></script>
         <script src="js/plugins/pnotify.custom.min.js"></script>
         <script src="js/plugins/jquery.blockUI.js"></script>
         <script src="js/app.js"></script>

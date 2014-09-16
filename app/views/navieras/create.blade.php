@@ -4,14 +4,10 @@
             <h1 class="page-header">
                 <!--i></i-->Navieras <small>Agregar naviera</small>
             </h1>
-            <ol class="breadcrumb">
-                <li class="active">
-                    <i class="fa fa-dashboard"></i> &Uacute;ltima sesi&oacute;n:
-                </li>
-            </ol>
+            
         </div>
     </div>
-    <a class="btn btn-small btn-info" href="javascript:abrirNavieras();"><i class="fa fa-list"></i> Listar todos</a>
+    <a class="btn btn-small btn-info" href="javascript:abrirNavieras();"><i class="fa fa-arrow-left"></i> Atras</a>
     <br><br>
 
     {{ Form::open(array('url' => 'navieras', 'id' => 'formNaviera')) }}
@@ -23,6 +19,10 @@
     <div class="form-group">
         {{ Form::label('nombre_contacto', 'Nombre de Contacto') }}
         {{ Form::text('nombre_contacto', Input::old('nombre de contacto'), array('class' => 'form-control')) }}
+    </div>
+    <div class="form-group">
+        {{ Form::label('email', 'Email') }}
+        {{ Form::text('email', Input::old('email'), array('class' => 'form-control')) }}
     </div>
     <div class="form-group">
         {{ Form::label('telefono', 'Telefono') }}
@@ -38,6 +38,11 @@
         {{ Form::text('url_seguimiento', Input::old('url_seguimiento'), array('class' => 'form-control')) }}
     </div>
 
+    <div class="form-group">
+        {{ Form::label('url_seguimiento', 'Url Seguimiento') }}
+        {{ Form::text('url_seguimiento', Input::old('url_seguimiento'), array('class' => 'form-control')) }}
+    </div>
+    <a class="btn btn-small btn-danger" href="javascript:abrirNavieras();">Cancelar</a>
     {{ Form::submit('Crear naviera!', array('class' => 'btn btn-primary')) }}
 
     {{ Form::close() }}

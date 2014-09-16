@@ -3,13 +3,11 @@
     <div class="row">
         <div class="col-lg-12">
             <h1 class="page-header">
-                <i class="fa fa-fw fa-shopping-cart"></i>Historial de Pedidos <small>Todos los pedidos</small>
+
+                <i class="fa fa-fw fa-calendar"></i> Historial <small>Pedidos finalizados</small>
+
             </h1>
-            <ol class="breadcrumb">
-                <li class="active">
-                    <i class="fa fa-dashboard"></i> &Uacute;ltima sesi&oacute;n:
-                </li>
-            </ol>
+            
         </div>
     </div>
 
@@ -28,15 +26,13 @@
                     <td data-hide="phone">carga</td>
                     <td>Abordaje</td>
                     <td data-hide="phone,tablet">Entrega</td>
-                    <td data-hide="phone,tablet">Vencimiento</td>
-                    <td data-hide="phone">Importe Facturado</td>
                 </tr>
             </thead>
             <tbody>
 
     
-               @foreach($cliente->companias as $compania)
-                    @foreach($compania->pedidos as $pedido)
+               
+                @foreach($pedidos as $pedido)
                 <tr>
                     <td>{{ $pedido->producto->nombre}}</td>
                     <td>{{ $pedido->producto->proveedor->nombre }}</td>
@@ -44,8 +40,8 @@
                     <td> 
                         @foreach($pedido->containers as $container) 
                         <a href="{{ $pedido->naviera->url_seguimiento . $container->numero_container }}" target="_blank">
-                        	{{ $container->numero_container }}
-                        </a> 
+                            {{ $container->numero_container }}
+                        </a> <br>
 
                         @endforeach
                     </td>
@@ -59,13 +55,11 @@
                     <td>{{ $pedido->fecha_carga}}</td>
                     <td>{{ $pedido->fecha_abordaje}}</td>
                     <td>{{ $pedido->fecha_entrega}}</td>
-                    <td>{{ $pedido->fecha_vencimiento}}</td>
-                    <td>{{ $pedido->importe_facturado}}</td>
 
                     
                 </tr>
-                 @endforeach
                 @endforeach
+               
             </tbody>
         </table>
     </div>

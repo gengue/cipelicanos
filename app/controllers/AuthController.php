@@ -57,12 +57,37 @@ class AuthController extends BaseController {
         return View::make('auth.registro')->with('paises', $paises);
     }
     
-      public function postRecuperar() {
+      public function postRecuperar(){
         
-            return Redirect::to('login')->with('mensaje', 'Sus datos han sido enviados a su correo !');
+          $correo=Input::get('correo');
+          $usuario = Usuario::where('correo', '=', $correo)->first();
+          $str = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz1234567890";
+          $cad = "";
+           for($i=0;$i<12;$i++) {
+           $cad .= substr($str,rand(0,62),1);
+           }
+          $usuario->password = Hash::make($cad);
+          
+          $usuario->save();
+           $usuario->normalPassword = ($cad);
+           
+           $this->enviarDatos($usuario);
+                 
+
+           return Redirect::to('login')->with('mensaje', 'Sus datos fueron enviados por correo' );
+          }
+          
+         
+              
+    
+  private function enviarDatos($usuario){
+        
+         Mail::send('emails.recordarDatos', array('usuario' => $usuario), function ($message) use($usuario){
+        $message->subject('C.I Pelicanos - Recuperar Contraseña!');
+        $message->to($usuario->correo, $usuario->nombre." ".$usuario->apellido);
+});
         
     }
-
     public function postRegistro() {
         $validator = Validator::make(Input::all(), Usuario::$rules);
 
@@ -87,6 +112,10 @@ class AuthController extends BaseController {
     }
 
     public function getLogout() {
+        $usuario = Usuario::find(Auth::id());
+        $usuario->ultimo_acceso = new DateTime();
+        $usuario->save();
+        
         Auth::logout();
         return Redirect::to('login')->with('mensaje', 'Ha cerrado sesion!');
     }
