@@ -83,7 +83,7 @@ class PedidosController extends BaseController {
 
     private function enviarMail($pedido, $usuario){
         Mail::send('emails.nuevoPedido', array('pedido' => $pedido, 'usuario' => $usuario), function ($message) use($usuario){
-            $message->subject('C.I Pelicanos - Se ha creado tu cuenta!');
+            $message->subject('Tienes un nuevo pedido!');
             $message->to($usuario->correo, $usuario->nombre." ".$usuario->apellido);
         });
     }
