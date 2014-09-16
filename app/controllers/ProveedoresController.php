@@ -36,6 +36,7 @@ class ProveedoresController extends BaseController {
                 ));
         } else {
             // store
+           
             $proveedor = new Proveedor;
             $proveedor->nombre = Input::get('nombre');
             $proveedor->nombre_contacto = Input::get('nombre_contacto');

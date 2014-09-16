@@ -11,6 +11,7 @@ class AuthController extends BaseController {
         // Mostramos la vista login.blade.php (Recordemos que .blade.php se omite.)
         return View::make('auth.login');
     }
+    
 
     public function postLogin() {
         $rules = array(
@@ -40,10 +41,26 @@ class AuthController extends BaseController {
                             ->withInput(Input::except('password'));
         }
     }
-
+    
+ public function getRecuperar() {
+        // Verificamos que el usuario no esté autenticado
+        if (Auth::check()) {
+            // Si está autenticado lo mandamos a la raíz donde estara el mensaje de bienvenida.
+            return Redirect::to('/');
+        }
+        // Mostramos la vista login.blade.php (Recordemos que .blade.php se omite.)
+        return View::make('auth.recuperar');
+    }
+    
     public function getRegistro() {
         $paises = Country::lists('nombre', 'Code');
         return View::make('auth.registro')->with('paises', $paises);
+    }
+    
+      public function postRecuperar() {
+        
+            return Redirect::to('login')->with('mensaje', 'Sus datos han sido enviados a su correo !');
+        
     }
 
     public function postRegistro() {

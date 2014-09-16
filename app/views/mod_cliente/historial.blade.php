@@ -3,7 +3,7 @@
     <div class="row">
         <div class="col-lg-12">
             <h1 class="page-header">
-                <i class="fa fa-fw fa-shopping-cart"></i> Pedidos <small>Todos los pedidos</small>
+                <i class="fa fa-fw fa-shopping-cart"></i>Historial de Pedidos <small>Todos los pedidos</small>
             </h1>
             <ol class="breadcrumb">
                 <li class="active">

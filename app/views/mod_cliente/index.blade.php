@@ -167,7 +167,7 @@
             </nav>
 
             <div id="page-wrapper">
-                    YEAH!
+                 
             </div>
             <!-- /#page-wrapper -->
 

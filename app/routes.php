@@ -13,11 +13,14 @@ Route::resource('companias', 'CompaniasController');
 Route::resource('productos', 'ProductosController');
 Route::get('pedidos/historial', 'PedidosController@historial');
 Route::resource('pedidos', 'PedidosController');
-
+Route::get('recuperar','AuthController@getRecuperar');
 Route::get('login','AuthController@getLogin');
 Route::get('registro','AuthController@getRegistro');
 Route::post('login','AuthController@postLogin');
 Route::post('registro','AuthController@postRegistro');
+Route::post('recuperar','AuthController@postRecuperar');
+
+
 
 Route::post('documentos/upload', 'DocumentosController@postDropzone');
 Route::get('documentos/upload', 'DocumentosController@getDropzone');
@@ -74,11 +77,12 @@ Route::get('/mod_cliente/dashboard', function(){
 
     return View::make('mod_cliente.dashboard')
         ->with('pedidos', $objPedidos)
-        ->with('numpedidos', $numPedidos);
+        ->with('numpedidos', $numPedidos)
+        ;
 });
 Route::resource('/mod_cliente/companias', 'CompaniasClienteController');
 Route::get('/mod_cliente/pedidos', 'PedidosClienteController@pedidos');
-Route::get('/mod_cliente/historial', 'PedidosClienteController@historial');
+Route::get('/mod_cliente/historial','PedidosClienteController@historial');
 
 
 

@@ -55,7 +55,7 @@ class PedidosController extends BaseController {
             $pedido->importe_facturado = Input::get('importe_facturado');
             $pedido->save();
 
-            $containers = Input::get('containers');
+            $containers = Str::upper(Input::get('containers'));
             $Array_containers = preg_split("/[\s,]+/", $containers);
 
             //Guardamos los containers asociados al pedido guardado
@@ -158,7 +158,7 @@ class PedidosController extends BaseController {
             foreach ($borrados as $bor) {
                 Container::find($bor->container_id)->forceDelete();
             }
-            $containers = Input::get('containers');
+            $containers = Str::upper(Input::get('containers'));
 
 
             $Array_containers = preg_split("/[\s,]+/", $containers);

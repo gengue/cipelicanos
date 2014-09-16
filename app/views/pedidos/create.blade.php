@@ -55,7 +55,7 @@
             </div>
         </div>
     </div>
-    {{ Form::hidden('containers', '', array('id' => 'id_containers')) }}
+    {{ Form::hidden('containers', '', array('id' => 'id_containers')}}
 
     <div class="form-group">
         <div class="panel panel-success">

@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <!-- This file has been downloaded from Bootsnipp.com. Enjoy! -->
-    <title>Login | C.I Pelicanos</title>
+    <title>Recuperar  | C.I Pelicanos</title>
        <html lang="en">
 <head>
     <meta charset="utf-8">
@@ -22,7 +22,7 @@
 
 <div class="container">
        
-       {{ Form::open(array('url' => 'login')) }}
+       {{ Form::open(array('url' => 'recuperar')) }}
                             <div class="form-signin">
          
    
@@ -36,20 +36,21 @@
                             @endif
          
           {{ Form::text('correo', Input::old('email'), array('class' => 'form-control', 'placeholder'=> 'Correo Electronico')); }}
-          {{ Form::password('password', array('class' => 'form-control', 'placeholder'=> 'Contraseña')); }}
+           <br>
 
-          {{ Form::submit('Iniciar Sesion', array('class' => 'btn-lg btn-primary btn-block')) }}
+          {{ Form::submit('Recuperar Contraseña', array('class' => 'btn-lg btn-primary btn-block')) }}
           <div align="left">
-          <a style="color:#FFFFFF" href="{{url('recuperar')}}" >Recordar Contraseña ? </a></div>
+          <a style="color:#FFFFFF" href="{{url('login')}}" >Iniciar Sesion ? </a></div>
  
           {{ Form::close() }}
      
 </div><script type="text/javascript">
 </script>
 </body>
-<br><br>
-<br><br>
-<br><br>
+<br>
+<br><br><br>
+<br>
+<br>
 
 <footer class="container">
      <div align="center">
