@@ -49,14 +49,12 @@ Route::get('/dashboard', function()
 {
     $numPedidos = Pedido::where('estado','=','ACTIVO')->count();
     $numHistorial = Pedido::where('estado','=','INACTIVO')->count();
-    $numClientes = Usuario::where('estado', '=', 'INACTIVO')->count();
     $pedidos = Pedido::all()->take(5);
     $ultimoAcceso = Auth::user()->ultimo_acceso;
     
     return View::make('dashboard')
         ->with('numpedidos', $numPedidos)
         ->with('numhistorial', $numHistorial)
-        ->with('numclientes', $numClientes)
         ->with('pedidos', $pedidos)
         ->with('ultimoAcceso', $ultimoAcceso);
 });
