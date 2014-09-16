@@ -9,7 +9,7 @@ class Producto extends Eloquent {
     protected $dates = ['deleted_at'];
     //se crea una relacion entre el producto y los proveedores, esto sustituye la query comentada abajo
     public function proveedor() {
-        return $this->belongsTo('Proveedor', 'proveedor_id');
+        return $this->belongsTo('Proveedor', 'proveedor_id')->withTrashed();
     }
 
 //    public function obtenerProductos() {

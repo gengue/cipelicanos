@@ -79,7 +79,6 @@
                                 <tr>
                                     <th>Compania</th>
                                     <th>Producto</th>
-                                    <th>Monto</th>
                                     <th>Fecha Carga</th>
                                 </tr>
                             </thead>
@@ -88,7 +87,6 @@
                                     <tr>
                                         <td>{{ $pedido->compania->nombre }}</td>
                                         <td>{{ $pedido->producto->nombre }}</td>
-                                        <td>{{ $pedido->importe_facturado }}</td>
                                         <td>{{ $pedido->fecha_carga }}</td>
                                     </tr>
                                 @endforeach
