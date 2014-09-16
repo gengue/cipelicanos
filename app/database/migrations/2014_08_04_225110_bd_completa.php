@@ -68,6 +68,7 @@ class BdCompleta extends Migration {
             $table->integer('ciudad_id')->unsigned();
             $table->foreign('ciudad_id')->references('id')->on('City');
             $table->enum('estado', array('ACTIVO', 'INACTIVO'));
+            $table->dateTime('ultimo_acceso');
             $table->timestamps();
             $table->softDeletes();
             $table->rememberToken();

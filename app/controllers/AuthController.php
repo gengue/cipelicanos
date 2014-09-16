@@ -70,6 +70,10 @@ class AuthController extends BaseController {
     }
 
     public function getLogout() {
+        $usuario = Usuario::find(Auth::id());
+        $usuario->ultimo_acceso = new DateTime();
+        $usuario->save();
+        
         Auth::logout();
         return Redirect::to('login')->with('mensaje', 'Ha cerrado sesion!');
     }
