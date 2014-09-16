@@ -32,8 +32,6 @@
                     <td data-hide="phone">carga</td>
                     <td>Abordaje</td>
                     <td data-hide="phone,tablet">Entrega</td>
-                    <td data-hide="phone,tablet">Vencimiento</td>
-                    <td data-hide="phone">Importe Facturado</td>
                     <td data-hide="phone,tablet">Opciones</td>
                 </tr>
             </thead>
@@ -58,12 +56,10 @@
                         @endforeach
                     </td>
                     <td>{{ $value->numero_reserva}}</td>
-                    <td>{{ $value->buque}}</td>
+                    <td>{{ $value->buque."-".$value->numero_viaje}}</td>
                     <td>{{ $value->fecha_carga}}</td>
                     <td>{{ $value->fecha_abordaje}}</td>
                     <td>{{ $value->fecha_entrega}}</td>
-                    <td>{{ $value->fecha_vencimiento}}</td>
-                    <td>{{ $value->importe_facturado}}</td>
 
                     <td>  
                         <a class="btn btn-small btn-success" href="javascript:mostrarDetallePedido({{ $value->id }});"><i class="fa fa-search"></i></a>

@@ -48,11 +48,13 @@ class PedidosController extends BaseController {
             $pedido->compania_id = Input::get('compania_id');
             $pedido->numero_reserva = Input::get('numero_reserva');
             $pedido->buque = Input::get('buque');
+            $pedido->numero_viaje = Input::get('numero_viaje');
             $pedido->fecha_carga = Input::get('fecha_carga');
             $pedido->fecha_abordaje = Input::get('fecha_abordaje');
             $pedido->fecha_entrega = Input::get('fecha_entrega');
-            $pedido->fecha_vencimiento = Input::get('fecha_vencimiento');
-            $pedido->importe_facturado = Input::get('importe_facturado');
+            $pedido->tipo = Input::get('tipo');
+            //$pedido->fecha_vencimiento = Input::get('fecha_vencimiento');
+            //$pedido->importe_facturado = Input::get('importe_facturado');
             $pedido->save();
 
             $containers = Input::get('containers');

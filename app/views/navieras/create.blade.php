@@ -25,12 +25,20 @@
         {{ Form::text('nombre_contacto', Input::old('nombre de contacto'), array('class' => 'form-control')) }}
     </div>
     <div class="form-group">
+        {{ Form::label('email', 'Email') }}
+        {{ Form::text('email', Input::old('email'), array('class' => 'form-control')) }}
+    </div>
+    <div class="form-group">
         {{ Form::label('telefono', 'Telefono') }}
         {{ Form::text('telefono', Input::old('telefono'), array('class' => 'form-control')) }}
     </div>
     <div class="form-group">
         {{ Form::label('direccion', 'Direccion') }}
         {{ Form::text('direccion', Input::old('direccion'), array('class' => 'form-control')) }}
+    </div>
+    <div class="form-group">
+        {{ Form::label('url_seguimiento', 'Url Seguimiento') }}
+        {{ Form::text('url_seguimiento', Input::old('url_seguimiento'), array('class' => 'form-control')) }}
     </div>
 
     {{ Form::submit('Crear naviera!', array('class' => 'btn btn-primary')) }}

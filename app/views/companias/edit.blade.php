@@ -37,21 +37,25 @@
         {{ Form::text('correo', Input::old('correo'), array('class' => 'form-control')) }}
     </div>
     <div class="form-group">
+        {{ Form::label('direccion', 'Direccion') }}
+        {{ Form::text('direccion', Input::old('direccion'), array('class' => 'form-control')) }}
+    </div>
+    <div class="form-group">
         {{ Form::label('usuario_id', 'Usuario') }}
         {{ Form::select('usuario_id', $usuarios, $compania->usuario_id, array('class'=>'form-control','style'=>'' )) }}
     </div>
     {{ Form::submit('Editar!', array('class' => 'btn btn-primary')) }}
 
-{{ Form::close() }}
+    {{ Form::close() }}
 
 </div>
 
 <script>
 
     $("#formEditarCompania").submit(function(e) {
-        e.preventDefault();       
+        e.preventDefault();
         var datos = $("#formEditarCompania").serialize();
-        editarCompania(datos, {{ $compania->id }});
+                editarCompania(datos, {{ $compania->id }});
     });
 
 </script>

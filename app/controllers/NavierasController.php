@@ -31,8 +31,10 @@ class NavierasController extends BaseController {
             $naviera = new Naviera;
             $naviera->nombre = Input::get('nombre');
             $naviera->nombre_contacto = Input::get('nombre_contacto');
+            $naviera->email = Input::get('email');
             $naviera->telefono = Input::get('telefono');
             $naviera->direccion = Input::get('direccion');
+            $naviera->url_seguimiento = Input::get('url_seguimiento');
             $naviera->save();
 
             return Response::json(array(
@@ -72,8 +74,10 @@ class NavierasController extends BaseController {
             $naviera = Naviera::find($id);
             $naviera->nombre = Input::get('nombre');
             $naviera->nombre_contacto = Input::get('nombre_contacto');
+            $naviera->email = Input::get('email');
             $naviera->telefono = Input::get('telefono');
             $naviera->direccion = Input::get('direccion');
+            $naviera->url_seguimiento = Input::get('url_seguimiento');
             $naviera->save();
             // redirect
             return Response::json(array(
