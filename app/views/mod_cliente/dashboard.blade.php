@@ -9,7 +9,7 @@
             </h1>
             <ol class="breadcrumb">
                 <li class="active">
-                    <i class="fa fa-dashboard"></i> &Uacute;ltima sesi&oacute;n:
+                    <i class="fa fa-dashboard"></i> &Uacute;ltima sesi&oacute;n: {{ $ultimoAcceso }}
                 </li>
             </ol>
         </div>
@@ -18,7 +18,7 @@
 
     <div class="row">
         
-        <div class="col-lg-3 col-md-6">
+        <div class="col-lg-6 col-md-6">
             <div class="panel panel-green">
                 <div class="panel-heading">
                     <div class="row">
@@ -38,17 +38,6 @@
                         <div class="clearfix"></div>
                     </div>
                 </a>
-            </div>
-        </div>
-       <div class="col-lg-6">
-            <div class="panel panel-default">
-                <div class="panel-heading">
-                    <h3 class="panel-title"><i class="fa fa-long-arrow-right fa-fw"></i> Donut Chart</h3>
-                </div>
-                <div class="panel-body">
-                    <div id="morris-area-chart"></div>
-                    <div id="morris-donut-chart"></div>
-                </div>
             </div>
         </div>
     </div>

@@ -63,7 +63,8 @@ Route::get('/dashboard', function()
 Route::get('/mod_cliente/dashboard', function(){
     $numPedidos = 0;
     $usuario = Usuario::find(Auth::id());
-         $objPedidos = array();
+    $objPedidos = array();
+    $ultimoAcceso = Auth::user()->ultimo_acceso;
 
          foreach ($usuario->companias as $compania) {
              foreach ($compania->pedidos as $pedido) {
@@ -74,7 +75,8 @@ Route::get('/mod_cliente/dashboard', function(){
 
     return View::make('mod_cliente.dashboard')
         ->with('pedidos', $objPedidos)
-        ->with('numpedidos', $numPedidos);
+        ->with('numpedidos', $numPedidos)
+        ->with('ultimoAcceso', $ultimoAcceso);
 });
 Route::resource('/mod_cliente/companias', 'CompaniasClienteController');
 Route::get('/mod_cliente/pedidos', 'PedidosClienteController@pedidos');

@@ -32,7 +32,7 @@ class PedidosClienteController extends BaseController {
              }
          }
          
-        return View::make('mod_cliente.pedidos')
+        return View::make('mod_cliente.historial')
                     ->with('pedidos',$objPedidos);
     }
 
