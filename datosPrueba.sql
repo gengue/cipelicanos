@@ -4094,15 +4094,6 @@ INSERT INTO `City` (`id`, `nombre`, `CountryCode`, `District`, `Population`) VAL
 (4077, 'Jabaliya', 'PSE', 'North Gaza', 113901),
 (4078, 'Nablus', 'PSE', 'Nablus', 100231),
 (4079, 'Rafah', 'PSE', 'Rafah', 92020);
-
---
--- Dumping data for table `containers`
---
-
-INSERT INTO `containers` (`id`, `numero_container`, `created_at`, `updated_at`, `deleted_at`) VALUES
-(5, 'MWCU6905012', '2014-09-03 09:51:27', '2014-09-03 09:51:27', NULL),
-(6, 'SEGU9054054', '2014-09-03 09:54:44', '2014-09-03 09:54:44', NULL);
-
 --
 -- Dumping data for table `Country`
 --
@@ -5339,21 +5330,6 @@ INSERT INTO `CountryLanguage` (`CountryCode`, `Language`, `IsOfficial`, `Percent
 ('ZWE', 'Shona', 'F', 72.1);
 
 --
--- Dumping data for table `guias`
---
-
-INSERT INTO `guias` (`id`, `numero_guia`, `empresa_envio`, `url_archivo`, `created_at`, `updated_at`, `deleted_at`) VALUES
-(1, '123e', 'fedex', '', '2014-08-26 22:19:59', '2014-08-26 22:19:59', NULL),
-(2, '112538843', 'Fedex', '', '2014-08-26 22:43:19', '2014-08-26 22:43:19', NULL);
-
---
--- Dumping data for table `migrations`
---
-
-INSERT INTO `migrations` (`migration`, `batch`) VALUES
-('2014_08_04_225110_bd_completa', 1);
-
---
 -- Dumping data for table `navieras`
 --
 
@@ -5400,29 +5376,10 @@ INSERT INTO `productos` (`id`, `proveedor_id`, `nombre`, `descripcion`, `created
 
 INSERT INTO `usuarios` (`id`, `tipo_usuario`, `password`, `nombre`, `apellido`, `telefono`, `correo`, `direccion`, `pais_id`, `ciudad_id`, `estado`, `created_at`, `updated_at`, `deleted_at`) VALUES
 (1, 'DIGITADOR', '$2y$10$rPI8WuH6zwcwuY.MN11w..rh2OhM0wj0j9Xg3phrgs3QcJpSVkgka', 'Ads', 'asddd', '2324', 'asd', 'ddasd', 'COL', 2260, 'ACTIVO', '2014-08-20 06:28:17', '2014-08-20 08:16:32', '2014-08-20 08:16:32'),
-(2, 'ADMINISTRADOR', '$2y$10$rPI8WuH6zwcwuY.MN11w..rh2OhM0wj0j9Xg3phrgs3QcJpSVkgka', 'the3ballsoft', 'Developers', '-', 'the3ballsoft@gmail.com', 't', 'ALB', 34, 'ACTIVO', '2014-08-20 06:50:09', '2014-08-20 06:50:13', 'NULL'),
+(2, 'ADMINISTRADOR', '$2y$10$rPI8WuH6zwcwuY.MN11w..rh2OhM0wj0j9Xg3phrgs3QcJpSVkgka', 'the3ballsoft', 'Developers', '-', 'the3ballsoft@gmail.com', 't', 'ALB', 34, 'ACTIVO', '2014-08-20 06:50:09', '2014-08-20 06:50:13', NULL),
 (3, 'CLIENTE', '$2y$10$rPI8WuH6zwcwuY.MN11w..rh2OhM0wj0j9Xg3phrgs3QcJpSVkgka', 'Ricardo', 'Sandoval', '4394589', 'rsandoval@gmaiil.com', 'Cra 23 #65A', 'COL', 2260, 'ACTIVO', '2014-08-20 08:18:27', '2014-08-20 08:18:27', NULL),
 (4, 'DIGITADOR', '$2y$10$rPI8WuH6zwcwuY.MN11w..rh2OhM0wj0j9Xg3phrgs3QcJpSVkgka', 'Maria Jose', 'Arrieta', '29579', 'marijo12@hotmail.com', 'Mz 4 C 12, Los pinos', 'COL', 2270, 'ACTIVO', '2014-08-20 08:19:28', '2014-08-20 08:19:28', NULL),
 (5, 'DIGITADOR', '$2y$10$rPI8WuH6zwcwuY.MN11w..rh2OhM0wj0j9Xg3phrgs3QcJpSVkgka', 'Ana J.', 'Curvelo Medina', '301497976', 'anacurvelo@gmail.com', 'Mz F, C3, Urb. Santa Clara', 'COL', 2261, 'ACTIVO', '2014-08-26 22:35:49', '2014-08-26 22:35:49', NULL),
 (6, 'CLIENTE', '$2y$10$rPI8WuH6zwcwuY.MN11w..rh2OhM0wj0j9Xg3phrgs3QcJpSVkgka', 'William', 'Romero Polo', '3128497849', 'wromero@gmail.com', 'Cra 24, #24-C', 'BOL', 197, 'ACTIVO', '2014-08-26 22:36:43', '2014-08-26 22:36:43', NULL),
 (7, 'CLIENTE', '$2y$10$rPI8WuH6zwcwuY.MN11w..rh2OhM0wj0j9Xg3phrgs3QcJpSVkgka', 'Pedro Luis', 'Hernandez', '495820', 'ssdamier@gmail.com', 'Cra 12, Edificio Los palos, apto 6.', 'ARG', 76, 'INACTIVO', '2014-08-26 22:38:22', '2014-08-26 22:38:22', NULL),
 (8, 'CLIENTE', '$2y$10$rPI8WuH6zwcwuY.MN11w..rh2OhM0wj0j9Xg3phrgs3QcJpSVkgka', 'Jimena', 'Valencia Hurtado', '300249587', 'jimenita34@gmail.com', 'Cra 12, Calle 26 #12-1', 'COL', 2258, 'INACTIVO', '2014-08-26 22:40:37', '2014-08-26 22:40:37', NULL);
-
---
--- Dumping data for table `pedidos`
---
-
-INSERT INTO `pedidos` (`id`, `producto_id`, `proveedor_id`, `naviera_id`, `compania_id`, `estado`, `guia_id`, `numero_reserva`, `buque`, `fecha_carga`, `fecha_abordaje`, `fecha_entrega`, `fecha_vencimiento`, `importe_facturado`, `created_at`, `updated_at`, `deleted_at`) VALUES
-(1, 5, 4, 4, 0, 'ACTIVO', 1, '1123124', 'ferkuli', '2014-08-27', '2014-08-26', '2014-08-29', '2014-08-31', 4567300090.00, '2014-08-26 22:19:59', '2014-09-03 09:51:27', NULL),
-(2, 7, 3, 3, 0, 'ACTIVO', 2, '782455073', 'Malzo Negro #2', '2014-08-11', '2014-08-11', '2014-08-15', '2014-08-16', 234000245.00, '2014-08-26 22:43:19', '2014-09-03 09:27:18', NULL),
-(3, 10, 4, 3, 0, 'ACTIVO', 3, '123124', 'prueba', '2014-09-03', '2014-09-03', '2014-09-20', '2014-09-20', 12345.00, '2014-09-02 23:17:22', '2014-09-02 23:17:22', NULL);
-
---
--- Dumping data for table `pedidos_containers`
---
-
-INSERT INTO `pedidos_containers` (`id`, `container_id`, `pedido_id`, `created_at`, `updated_at`, `deleted_at`) VALUES
-(5, 5, 1, '2014-09-03 09:51:27', '2014-09-03 09:51:27', NULL),
-(6, 6, 2, '2014-09-03 09:54:44', '2014-09-03 09:54:44', NULL);
-
-
