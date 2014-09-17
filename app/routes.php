@@ -12,6 +12,7 @@ Route::resource('container', 'ContainerController');
 Route::resource('companias', 'CompaniasController');
 Route::resource('productos', 'ProductosController');
 Route::get('pedidos/historial', 'PedidosController@historial');
+Route::post('pedidos/finalizar/{id}', 'PedidosController@finalizar');
 Route::resource('pedidos', 'PedidosController');
 Route::get('recuperar','AuthController@getRecuperar');
 Route::get('login','AuthController@getLogin');
@@ -71,8 +72,10 @@ Route::get('/mod_cliente/dashboard', function(){
 
          foreach ($usuario->companias as $compania) {
              foreach ($compania->pedidos as $pedido) {
-                $numPedidos++;
-                $objPedidos[] = $pedido;
+                if($pedido->estado == 'ACTIVO'){
+                    $numPedidos++;
+                    $objPedidos[] = $pedido;    
+                }
              }
          }
 
