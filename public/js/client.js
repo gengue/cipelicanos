@@ -19,6 +19,20 @@ function msg_borradoerror() {
     alert('No se pudo borrar', 'Error', 'error', 'glyphicon glyphicon-warning-sign');
 }
 
+function bloquear() {
+    $('#carga').block({message: '<div class="center"><i class="fa fa-spinner fa-spin fa-5x"></i></div>', css: {
+            border: 'none',
+            padding: '15px',
+            backgroundColor: '#000',
+            '-webkit-border-radius': '10px',
+            '-moz-border-radius': '10px',
+            opacity: .5,
+            color: '#fff'
+        }});
+}
+function desbloquear() {
+    $('#carga').unblock();
+}
 window.addEventListener('load', function() {
 
     PNotify.prototype.options.delay = 1500;
@@ -27,9 +41,14 @@ window.addEventListener('load', function() {
             title: title,
             text: message,
             type: type,
-            icon: icon
+            icon: icon,
+            nonblock: {
+                nonblock: true,
+                nonblock_opacity: .2
+            }
         });
     };
+
 }, false);
 //INICIO
 
@@ -39,11 +58,10 @@ function abrirDashboard() {
                 url: '/mod_cliente/dashboard',
                 type: 'GET',
                 beforeSend: function(){
-                	$('#page-wrapper').css('padding-top', '20%');
-                	$('#page-wrapper').html('<div class="center"><i class="fa fa-spinner fa-spin fa-5x"></i></div>');
+                	bloquear();
                 },
                 success: function(data) {
-                	$('#page-wrapper').css('padding-top', '0');
+                	desbloquear();
                 	$('#page-wrapper').html(data);
                 }
             });
@@ -62,11 +80,10 @@ function abrirPedidos() {
                 url: '/mod_cliente/pedidos',
                 type: 'GET',
                 beforeSend: function(){
-                	$('#page-wrapper').css('padding-top', '20%');
-                	$('#page-wrapper').html('<div class="center"><i class="fa fa-spinner fa-spin fa-5x"></i></div>');
+                	bloquear();
                 },
                 success: function(data) {
-                	$('#page-wrapper').css('padding-top', '0');
+                	desbloquear();
                     $('#page-wrapper').html(data);
                 }
             });
@@ -83,11 +100,10 @@ function abrirHistorialPedidos() {
                 url: '/mod_cliente/historial',
                 type: 'GET',
                 beforeSend: function(){
-                	$('#page-wrapper').css('padding-top', '20%');
-                	$('#page-wrapper').html('<div class="center"><i class="fa fa-spinner fa-spin fa-5x"></i></div>');
+                	bloquear();
                 },
                 success: function(data) {
-                	$('#page-wrapper').css('padding-top', '0');
+                	desbloquear();
                     $('#page-wrapper').html(data);
                 }
             });
@@ -105,11 +121,10 @@ function abrirCompanias() {
                 url: '/mod_cliente/companias',
                 type: 'GET',
                 beforeSend: function(){
-                    $('#page-wrapper').css('padding-top', '20%');
-                    $('#page-wrapper').html('<div class="center"><i class="fa fa-spinner fa-spin fa-5x"></i></div>');
+                   bloquear();
                 },
                 success: function(data) {
-                    $('#page-wrapper').css('padding-top', '0');
+                    desbloquear();
                     $('#page-wrapper').html(data);
                 }
             });
@@ -122,11 +137,10 @@ function mostrarCrearCompanias() {
                 url: '/mod_cliente/companias/create',
                 type: 'GET',
                 beforeSend: function(){
-                    $('#page-wrapper').css('padding-top', '20%');
-                    $('#page-wrapper').html('<div class="center"><i class="fa fa-spinner fa-spin fa-5x"></i></div>');
+                    bloquear();
                 },
                 success: function(data) {
-                    $('#page-wrapper').css('padding-top', '0');
+                    desbloquear();
                     $('#page-wrapper').html(data);
                 }
             });
@@ -141,11 +155,10 @@ function crearCompania(datos) {
                 type: 'POST',
                 data: datos,
                 beforeSend: function(){
-                    $('#page-wrapper').css('padding-top', '20%');
-                    $('#page-wrapper').html('<div class="center"><i class="fa fa-spinner fa-spin fa-5x"></i></div>');
+                    bloquear();
                 },
                 success: function(data) {
-                    $('#page-wrapper').css('padding-top', '0');
+                    desbloquear();
                     if (data.msg === 'error') {
                         msg_guadadoerror();
                     } else {
@@ -163,11 +176,10 @@ function mostrarEditarCompania(id) {
                 url: '/mod_cliente/companias/'+id+'/edit',
                 type: 'GET',
                 beforeSend: function(){
-                    $('#page-wrapper').css('padding-top', '20%');
-                    $('#page-wrapper').html('<div class="center"><i class="fa fa-spinner fa-spin fa-5x"></i></div>');
+                  bloquear();
                 },
                 success: function(data) {
-                    $('#page-wrapper').css('padding-top', '0');
+                    desbloquear();
                     $('#page-wrapper').html(data);
                 }
             });
@@ -179,11 +191,10 @@ function editarCompania(datos, id) {
                 type: 'PUT',
                 data: datos,
                 beforeSend: function(){
-                    $('#page-wrapper').css('padding-top', '20%');
-                    $('#page-wrapper').html('<div class="center"><i class="fa fa-spinner fa-spin fa-5x"></i></div>');
+                    bloquear();
                 },
                 success: function(data) {
-                    $('#page-wrapper').css('padding-top', '0');
+                    desbloquear();
                     if (data.msg === 'error') {
                         msg_guadadoerror();
                     } else {
@@ -200,11 +211,10 @@ function eliminarCompania(id) {
                 url: '/mod_cliente/companias/' + id,
                 type: 'DELETE',
                 beforeSend: function(){
-                    $('#page-wrapper').css('padding-top', '20%');
-                    $('#page-wrapper').html('<div class="center"><i class="fa fa-spinner fa-spin fa-5x"></i></div>');
+                    bloquear();
                 },
                 success: function(data) {
-                    $('#page-wrapper').css('padding-top', '0');
+                    desbloquear();
                     if (data.msg === 'error') {
                         msg_borradoerror();
                     } else {
@@ -223,11 +233,10 @@ function mostrarDetalleCompania(id) {
                 url: '/mod_cliente/companias/' + id,
                 type: 'GET',
                 beforeSend: function(){
-                    $('#page-wrapper').css('padding-top', '20%');
-                    $('#page-wrapper').html('<div class="center"><i class="fa fa-spinner fa-spin fa-5x"></i></div>');
+                    bloquear();
                 },
                 success: function(data) {
-                    $('#page-wrapper').css('padding-top', '0');
+                    desbloquear();
                     $('#page-wrapper').html(data);
                 }
             });
@@ -243,11 +252,10 @@ function abrirPerfil() {
                 url: '/mod_cliente/perfil',
                 type: 'GET',
                 beforeSend: function(){
-                    $('#page-wrapper').css('padding-top', '20%');
-                    $('#page-wrapper').html('<div class="center"><i class="fa fa-spinner fa-spin fa-5x"></i></div>');
+                    bloquear();
                 },
                 success: function(data) {
-                    $('#page-wrapper').css('padding-top', '0');
+                    desbloquear();
                     $('#page-wrapper').html(data);
                 }
             });
@@ -261,11 +269,10 @@ function mostrarEditarPerfil(id) {
                 url: '/mod_cliente/perfil/'+id+'/edit',
                 type: 'GET',
                 beforeSend: function(){
-                    $('#page-wrapper').css('padding-top', '20%');
-                    $('#page-wrapper').html('<div class="center"><i class="fa fa-spinner fa-spin fa-5x"></i></div>');
+                    bloquear();
                 },
                 success: function(data) {
-                    $('#page-wrapper').css('padding-top', '0');
+                    desbloquear();
                     $('#page-wrapper').html(data);
                 }
             });
@@ -277,11 +284,10 @@ function editarPerfil(datos, id) {
                 type: 'PUT',
                 data: datos,
                 beforeSend: function(){
-                    $('#page-wrapper').css('padding-top', '20%');
-                    $('#page-wrapper').html('<div class="center"><i class="fa fa-spinner fa-spin fa-5x"></i></div>');
+                    bloquear();
                 },
                 success: function(data) {
-                    $('#page-wrapper').css('padding-top', '0');
+                    desbloquear();
                     if (data.msg === 'error') {
                         msg_guadadoerror();
                     } else {

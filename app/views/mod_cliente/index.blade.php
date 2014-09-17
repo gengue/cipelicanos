@@ -85,8 +85,10 @@
                 <!-- /.navbar-collapse -->
             </nav>
 
-            <div id="page-wrapper">
-                 
+            <div id="carga">
+                <div id="page-wrapper">
+
+                </div>
             </div>
             <!-- /#page-wrapper -->
 
@@ -101,8 +103,7 @@
         <script src="js/plugins/bootstrap-tooltip.js"></script>
         <script src="js/plugins/bootstrap-confirmation.js"></script>
         <script src="js/plugins/morris/raphael.min.js"></script>
-<!--        <script src="js/plugins/morris/morris.min.js"></script>
-        <script src="js/plugins/morris/morris-data.js"></script>-->
+        <script src="js/plugins/jquery.blockUI.js"></script>
         <script src="js/plugins/pnotify.custom.min.js"></script>
         <script src="js/client.js"></script>
        
