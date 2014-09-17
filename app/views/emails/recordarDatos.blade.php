@@ -4,8 +4,8 @@
       <meta charset="utf-8">
    </head>
    <body>
-      <h3>Hola {{ $usuario->nombre }},Tu contraseña ha sido reestablecida  </h3>
-      <h2>Puedes modificarla cuando quieras ingresando a tu perfil </h2>
+      <h2>Hola {{ $usuario->nombre }}, tu contraseña ha sido reestablecida  </h2>
+      <h3>Puedes modificarla cuando quieras ingresando a tu perfil </h3>
       <p>Usa las siguientes credenciales para acceder a http://localhost:8000 :</p>
       <p>
       	<strong>Usuario : </strong>{{ $usuario->correo }}<br>
