@@ -18,15 +18,15 @@
   
 </head>
 <body>
-<div id="fullscreen_bg" class="fullscreen_bg"/>
+<div id="fullscreen_bg" class="fullscreen_bg"><div/>
 
 <div class="container">
        
-       {{ Form::open(array('url' => 'recuperar')) }}
+       {{ Form::open(array('url' => 'recuperar', 'id' => 'recuperarForm')) }}
                             <div class="form-signin">
          
    
-         <h1 class="form-signin-heading text-muted"><a href="#"><img src="{{ asset('images/LOGO1.png')}}" alt="Company Logo"></a></a></h1>
+         <h1 class="form-signin-heading text-muted"><a href="http://cipelicanos.biz"><img class="rebotar zoomIt" src="{{ asset('images/LOGO1.png')}}" alt="Company Logo"></a></a></h1>
           {{-- Preguntamos si hay algÃºn mensaje de error y si hay lo mostramos  --}}
                             @if(Session::has('mensaje_error'))
                             <div class="alert alert-danger">{{ Session::get('mensaje_error') }}</div>
@@ -40,20 +40,22 @@
 
           {{ Form::submit('Recuperar Contraseña', array('class' => 'btn-lg btn-primary btn-block')) }}
           <div align="left">
-          <a style="color:#FFFFFF" href="{{url('login')}}" >Iniciar Sesion ? </a></div>
+          <a style="color:#FFFFFF;text-align: center" href="{{url('login')}}" class='btn-lg btn-primary btn-block'>Iniciar Sesion</a></div>
  
           {{ Form::close() }}
      
-</div><script type="text/javascript">
-</script>
-</body>
-<br>
-<br><br><br>
-<br>
-<br>
+</div>
+  <br>
+  <br><br><br>
+  <br>
+  <br>
 
-<footer class="container">
-     <div align="center">
-            <p id="footer-text"><small style="color:#FFFFFF">  Desarrollado por  <a style="color:#FFFFFF"  href="http://the3ballsoft.com/">The3BallSoft</a></small></p>
-       </div> </footer>
+  <footer class="container">
+       <div align="center">
+              <p id="footer-text"><small style="color:#FFFFFF">  Desarrollado por  <a style="color:#FFFFFF"  href="http://the3ballsoft.com/">The3BallSoft</a></small></p>
+         </div> 
+  </footer>
+  
+</body>
+
 </html>

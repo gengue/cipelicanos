@@ -42,14 +42,14 @@ class AuthController extends BaseController {
         }
     }
     
- public function getRecuperar() {
-        // Verificamos que el usuario no esté autenticado
-        if (Auth::check()) {
-            // Si está autenticado lo mandamos a la raíz donde estara el mensaje de bienvenida.
-            return Redirect::to('/');
-        }
-        // Mostramos la vista login.blade.php (Recordemos que .blade.php se omite.)
-        return View::make('auth.recuperar');
+     public function getRecuperar() {
+            // Verificamos que el usuario no esté autenticado
+            if (Auth::check()) {
+                // Si está autenticado lo mandamos a la raíz donde estara el mensaje de bienvenida.
+                return Redirect::to('/');
+            }
+            // Mostramos la vista login.blade.php (Recordemos que .blade.php se omite.)
+            return View::make('auth.recuperar');
     }
     
     public function getRegistro() {
@@ -57,25 +57,36 @@ class AuthController extends BaseController {
         return View::make('auth.registro')->with('paises', $paises);
     }
     
-      public function postRecuperar(){
-        
-          $correo=Input::get('correo');
-          $usuario = Usuario::where('correo', '=', $correo)->first();
-          $str = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz1234567890";
-          $cad = "";
-           for($i=0;$i<12;$i++) {
-           $cad .= substr($str,rand(0,62),1);
-           }
-          $usuario->password = Hash::make($cad);
-          
-          $usuario->save();
-           $usuario->normalPassword = ($cad);
-           
-           $this->enviarDatos($usuario);
-                 
+    public function postRecuperar(){
 
-           return Redirect::to('login')->with('mensaje', 'Sus datos fueron enviados por correo' );
-          }
+        $rules = array(
+            'email' => 'required|email'
+        );
+        $validator = Validator::make(Input::all(), $rules);
+
+        if ($validator->fails()) {
+            return Redirect::to('recuperar')
+                            ->with('mensaje_error', 'Debes colocar tu email')
+                            ->withInput();
+        }
+
+        $correo=Input::get('correo');
+        $usuario = Usuario::where('correo', '=', $correo)->first();
+        $str = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz1234567890";
+        $cad = "";
+        for($i=0;$i<12;$i++) {
+            $cad .= substr($str,rand(0,62),1);
+        }
+        $usuario->password = Hash::make($cad);
+
+        $usuario->save();
+        $usuario->normalPassword = ($cad);
+
+        $this->enviarDatos($usuario);
+
+
+        return Redirect::to('login')->with('mensaje', 'Se le ha enviado una nueva contraseña! porfavor revise su correo' );
+    }
           
          
               

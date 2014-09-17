@@ -1,11 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="utf-8">
-    <!-- This file has been downloaded from Bootsnipp.com. Enjoy! -->
-    <title>Login | C.I Pelicanos</title>
-       <html lang="en">
-<head>
+
     <meta charset="utf-8">
     <!-- This file has been downloaded from Bootsnipp.com. Enjoy! -->
     <title>Login | C.I Pelicanos</title>
@@ -15,18 +11,18 @@
         {{ HTML::script('js/plugins/jquery-1.11.0.js'); }}  
         {{ HTML::script('js/plugins/bootstrap.min.js'); }}      
         {{ HTML::style('font-awesome-4.1.0/css/font-awesome.min.css') }}
-  
+ 
 </head>
 <body>
-<div id="fullscreen_bg" class="fullscreen_bg"/>
+<div id="fullscreen_bg" class="fullscreen_bg"><div/>
 
 <div class="container">
        
        {{ Form::open(array('url' => 'login')) }}
-                            <div class="form-signin">
+       <div class="form-signin">
          
    
-         <h1 class="form-signin-heading text-muted"><a href="#"><img src="{{ asset('images/LOGO1.png')}}" alt="Company Logo"></a></a></h1>
+         <h1 class="form-signin-heading text-muted"><a href="http://cipelicanos.biz"><img class="rebotar zoomIt" src="{{ asset('images/LOGO1.png')}}" alt="Company Logo"></a></a></h1>
           {{-- Preguntamos si hay algÃºn mensaje de error y si hay lo mostramos  --}}
                             @if(Session::has('mensaje_error'))
                             <div class="alert alert-danger">{{ Session::get('mensaje_error') }}</div>
@@ -39,20 +35,20 @@
           {{ Form::password('password', array('class' => 'form-control', 'placeholder'=> 'Contraseña')); }}
 
           {{ Form::submit('Iniciar Sesion', array('class' => 'btn-lg btn-primary btn-block')) }}
-          <div align="left">
+      
           <a style="color:#FFFFFF" href="{{url('recuperar')}}" >Recordar Contraseña ? </a></div>
  
           {{ Form::close() }}
      
-</div><script type="text/javascript">
-</script>
+     
+<br><br>
+<br><br>
+<br><br>
+  <footer class="container">
+       <div align="center">
+              <p id="footer-text"><small style="color:#FFFFFF">  Desarrollado por  <a style="color:#FFFFFF"  href="http://the3ballsoft.com/">The3BallSoft</a></small></p>
+         </div> 
+  </footer>
 </body>
-<br><br>
-<br><br>
-<br><br>
 
-<footer class="container">
-     <div align="center">
-            <p id="footer-text"><small style="color:#FFFFFF">  Desarrollado por  <a style="color:#FFFFFF"  href="http://the3ballsoft.com/">The3BallSoft</a></small></p>
-       </div> </footer>
 </html>

@@ -18,6 +18,10 @@ function msg_borradocorrecto() {
 function msg_borradoerror() {
     alert('No se pudo borrar', 'Error', 'error', 'glyphicon glyphicon-warning-sign');
 }
+function msg_actualizadocorrecto() {
+    alert('Se ha actualizado correctamente', 'Listo!', 'success', 'glyphicon glyphicon-refresh');
+}
+
 function bloquear() {
     $('#carga').block({message: '<div class="center"><i class="fa fa-spinner fa-spin fa-5x"></i></div>', css: {
             border: 'none',
@@ -363,6 +367,26 @@ function mostrarDetallePedido(id) {
                 success: function(data) {
                     desbloquear();
                     $('#page-wrapper').html(data);
+                }
+            });
+}
+function finalizarPedido(id){
+    $.ajax(
+            {
+                url: '/pedidos/finalizar/' + id,
+                type: 'POST',
+                beforeSend: function() {
+                    bloquear();
+                },
+                success: function(data) {
+                    desbloquear();
+                    if (data.msg === 'error') {
+                        msg_guadadocorreto();
+                    } else {
+                        abrirPedidos();
+                        msg_actualizadocorrecto();
+                    }
+
                 }
             });
 }
