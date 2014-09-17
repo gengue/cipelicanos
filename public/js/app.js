@@ -1078,3 +1078,65 @@ function cargarLista(datos, sel) {
 
     $("#" + sel).html(cad);
 }
+
+/*
+ * perfil 
+ * 
+ */
+
+function abrirPerfil() {
+
+    $.ajax(
+            {
+                url: '/perfil',
+                type: 'GET',
+                beforeSend: function() {
+                    bloquear();
+
+                },
+                success: function(data) {
+                    desbloquear();
+                    $('#page-wrapper').html(data);
+                }
+            });
+
+}
+
+function mostrarEditarPerfil(id) {
+
+    $.ajax(
+            {
+                url: 'perfil/' + id + '/edit',
+                type: 'GET',
+                beforeSend: function() {
+                    bloquear();
+
+                },
+                success: function(data) {
+                    desbloquear();
+                    $('#page-wrapper').html(data);
+                }
+            });
+}
+function editarPerfil(datos, id) {
+    $.ajax(
+            {
+                url: '/perfil/' + id,
+                type: 'PUT',
+                data: datos,
+                beforeSend: function() {
+                    bloquear();
+
+                },
+                success: function(data) {
+                    desbloquear();
+                    if (data.msg === 'error') {
+                        msg_guadadoerror();
+                    } else {
+                        abrirPerfil();
+                        msg_guadadocorreto();
+                    }
+
+                }
+            });
+}
