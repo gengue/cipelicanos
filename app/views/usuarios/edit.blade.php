@@ -16,7 +16,7 @@
 
     <div class="form-group">
         {{ Form::label('tipo_usuario', 'Tipo de Usuario') }}
-        {{ Form::select('tipo_usuario', array('ADMINISTRADOR' => 'Administrador', 'CLIENTE' => 'Cliente', 'DIGITADOR' => 'Digitador'), null, array('class'=>'form-control','style'=>'' )) }}
+        {{ Form::select('tipo_usuario', array('ADMINISTRADOR' => 'Administrador', 'CLIENTE' => 'cliente', 'DIGITADOR' => 'Digitador'), null, array('class'=>'form-control','style'=>'' )) }}
     </div>
     <div class="form-group">
         {{ Form::label('correo', 'Email') }}
