@@ -84,8 +84,11 @@ Route::get('/mod_cliente/dashboard', function(){
         ->with('ultimoAcceso', $ultimoAcceso);
 });
 Route::resource('/mod_cliente/companias', 'CompaniasClienteController');
+Route::resource('/mod_cliente/perfil', 'PerfilClienteController');
 Route::get('/mod_cliente/pedidos', 'PedidosClienteController@pedidos');
 Route::get('/mod_cliente/historial','PedidosClienteController@historial');
+
+
 
 
 

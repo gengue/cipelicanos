@@ -12,7 +12,7 @@
             </ol>
         </div>
     </div>
-    <a class="btn btn-small btn-info" href="javascript:abrirNavieras();"><i class="fa fa-arrow-left"></i> Atras</a>
+    <a class="btn btn-small btn-info" href="javascript:abrirCompanias();"><i class="fa fa-arrow-left"></i> Atras</a>
     <br><br>
     <div class="jumbotron text-center">
         <h2>{{ $companias->nombre }}</h2>

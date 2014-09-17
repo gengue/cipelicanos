@@ -32,6 +32,7 @@ window.addEventListener('load', function() {
     };
 }, false);
 //INICIO
+
 function abrirDashboard() {
     $.ajax(
             {
@@ -91,6 +92,8 @@ function abrirHistorialPedidos() {
                 }
             });
 }
+
+ 
 /* 
  * COMPAÑIAS
  * 
@@ -157,7 +160,7 @@ function mostrarEditarCompania(id) {
 
     $.ajax(
             {
-                url: '/mod_cliente/companias/' + id + '/edit',
+                url: '/mod_cliente/companias/'+id+'/edit',
                 type: 'GET',
                 beforeSend: function(){
                     $('#page-wrapper').css('padding-top', '20%');
@@ -228,4 +231,84 @@ function mostrarDetalleCompania(id) {
                     $('#page-wrapper').html(data);
                 }
             });
+}
+/* 
+ * PERFILES
+ * 
+ */
+function abrirPerfil() {
+
+    $.ajax(
+            {
+                url: '/mod_cliente/perfil',
+                type: 'GET',
+                beforeSend: function(){
+                    $('#page-wrapper').css('padding-top', '20%');
+                    $('#page-wrapper').html('<div class="center"><i class="fa fa-spinner fa-spin fa-5x"></i></div>');
+                },
+                success: function(data) {
+                    $('#page-wrapper').css('padding-top', '0');
+                    $('#page-wrapper').html(data);
+                }
+            });
+
+}
+
+function mostrarEditarPerfil(id) {
+
+    $.ajax(
+            {
+                url: '/mod_cliente/perfil/'+id+'/edit',
+                type: 'GET',
+                beforeSend: function(){
+                    $('#page-wrapper').css('padding-top', '20%');
+                    $('#page-wrapper').html('<div class="center"><i class="fa fa-spinner fa-spin fa-5x"></i></div>');
+                },
+                success: function(data) {
+                    $('#page-wrapper').css('padding-top', '0');
+                    $('#page-wrapper').html(data);
+                }
+            });
+}
+function editarPerfil(datos, id) {
+    $.ajax(
+            {
+                url: '/mod_cliente/perfil/' + id,
+                type: 'PUT',
+                data: datos,
+                beforeSend: function(){
+                    $('#page-wrapper').css('padding-top', '20%');
+                    $('#page-wrapper').html('<div class="center"><i class="fa fa-spinner fa-spin fa-5x"></i></div>');
+                },
+                success: function(data) {
+                    $('#page-wrapper').css('padding-top', '0');
+                    if (data.msg === 'error') {
+                        msg_guadadoerror();
+                    } else {
+                        abrirPerfil();
+                        msg_guadadocorreto();
+                    }
+
+                }
+            });
+}
+
+
+function cargarCiudades(id_pais) {
+    $.ajax(
+            {
+                url: '/api/paises/' + id_pais,
+                type: 'GET',
+                success: function(data) {
+                    cargarLista(data, 'ciudad');
+                }
+            });
+}
+function cargarLista(datos, sel) {
+    var cad = "";
+    $.each(datos, function(pos, item) {
+        cad += '<option value=' + item.id + '>' + item.nombre + '</option>';
+    });
+
+    $("#" + sel).html(cad);
 }
