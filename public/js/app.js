@@ -18,6 +18,10 @@ function msg_borradocorrecto() {
 function msg_borradoerror() {
     alert('No se pudo borrar', 'Error', 'error', 'glyphicon glyphicon-warning-sign');
 }
+function msg_actualizadocorrecto() {
+    alert('Se ha actualizado correctamente', 'Listo!', 'success', 'glyphicon glyphicon-refresh');
+}
+
 function bloquear() {
     $('#carga').block({message: '<div class="center"><i class="fa fa-spinner fa-spin fa-5x"></i></div>', css: {
             border: 'none',
@@ -371,6 +375,26 @@ function mostrarDetallePedido(id) {
                 success: function(data) {
                     desbloquear();
                     $('#page-wrapper').html(data);
+                }
+            });
+}
+function finalizarPedido(id){
+    $.ajax(
+            {
+                url: '/pedidos/finalizar/' + id,
+                type: 'POST',
+                beforeSend: function() {
+                    bloquear();
+                },
+                success: function(data) {
+                    desbloquear();
+                    if (data.msg === 'error') {
+                        msg_guadadocorreto();
+                    } else {
+                        abrirPedidos();
+                        msg_actualizadocorrecto();
+                    }
+
                 }
             });
 }
@@ -1085,4 +1109,108 @@ function cargarLista(datos, sel) {
     });
 
     $("#" + sel).html(cad);
+}
+
+/*
+ * perfil 
+ * 
+ */
+
+function abrirPerfil() {
+
+    $.ajax(
+            {
+                url: '/perfil',
+                type: 'GET',
+                beforeSend: function() {
+                    bloquear();
+
+                },
+                success: function(data) {
+                    desbloquear();
+                    $('#page-wrapper').html(data);
+                }
+            });
+
+}
+
+function mostrarEditarPerfil(id) {
+
+    $.ajax(
+            {
+                url: 'perfil/' + id + '/edit',
+                type: 'GET',
+                beforeSend: function() {
+                    bloquear();
+
+                },
+                success: function(data) {
+                    desbloquear();
+                    $('#page-wrapper').html(data);
+                }
+            });
+}
+function mostrarCambiarPassword(id) {
+    $('#modalCambiarPassword').modal();
+}
+
+function actualizarPassword(datos){
+    $.ajax(
+            {
+                url: '/perfil/cambiarPassword/',
+                type: 'POST',
+                data: datos,
+                success: function(res) {
+                  if(res.msg === "ok"){
+                    $('#modalCambiarPassword').modal('hide');
+                    alert("Contraseña actualizada con exito", "Exito", "success");
+                  }
+                  if(res.msg === "errorPass"){
+                    alert("Su contraseña actual es invalida", "Error", "error");
+                  }
+                  if(res.msg === "errorConfirm"){
+                    alert("Las contraseñas no coinciden", "Error", "error");
+                  }
+                }
+            });
+}
+
+function actualizarPasswordUsuario(datos, id){
+    $.ajax(
+            {
+                url: '/usuarios/cambiarPasswordUsuario/'+id,
+                type: 'POST',
+                data: datos,
+                success: function(res) {
+                  if(res.msg === "ok"){
+                    $('#modalCambiarPassword').modal('hide');
+                    alert("Contraseña actualizada con exito", "Exito", "success");
+                  }
+                  if(res.msg === "errorConfirm"){
+                    alert("Las contraseñas no coinciden", "Error", "error");
+                  }
+                }
+            });
+}
+function editarPerfil(datos, id) {
+    $.ajax(
+            {
+                url: '/perfil/' + id,
+                type: 'PUT',
+                data: datos,
+                beforeSend: function() {
+                    bloquear();
+
+                },
+                success: function(data) {
+                    desbloquear();
+                    if (data.msg === 'error') {
+                        msg_guadadoerror();
+                    } else {
+                        abrirPerfil();
+                        msg_guadadocorreto();
+                    }
+
+                }
+            });
 }

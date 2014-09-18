@@ -3,13 +3,11 @@
     <div class="row">
         <div class="col-lg-12">
             <h1 class="page-header">
-<<<<<<< HEAD
+
 
                 <i class="fa fa-fw fa-calendar"></i> Historial <small>Pedidos finalizados</small>
 
-=======
-                <i class="fa fa-fw fa-calendar"></i> Historial <small>Pedidos finalizados</small>
->>>>>>> d0da0a9f0e7db1ce30857a5502355f38d845a9f0
+
             </h1>
             
         </div>

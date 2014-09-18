@@ -189,6 +189,23 @@ class PedidosController extends BaseController {
         }
     }
 
+ /* Actualiza el estado del pedido a inactivo, este automaticamente se pasara al
+    historial de pedidos
+  */
+    public function finalizar($id){
+        $pedido = Pedido::find($id);
+        $pedido->estado = 'INACTIVO';
+        if($pedido->save()){
+            return Response::json(array(
+                    'msg' => 'ok'
+            ));
+        }else{
+            return Response::json(array(
+                    'msg' => 'error'
+            ));
+        }
+    }
+
     public function destroy($id) {
         $relacion = PedidosContainer::where('pedido_id', '=', $id);
         $pedido = Pedido::find($id);
