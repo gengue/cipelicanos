@@ -50,6 +50,7 @@ class Pedido extends Eloquent{
         'numero_reserva' => 'required',
         'buque' => 'required',
         'compania_id' => 'required',
+        'tipo' => 'required',
     );
 
 
@@ -65,6 +66,9 @@ class Pedido extends Eloquent{
     }
     public function guias(){
         return $this->hasMany('Guia');
+    }
+    public function documentos(){
+        return $this->hasMany('Documento');
     }
     public function containers(){
         return $this->belongsToMany('Container', 'pedidos_containers');

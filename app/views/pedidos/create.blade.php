@@ -51,7 +51,7 @@
             </div>
         </div>
     </div>
-    {{ Form::hidden('containers', '', array('id' => 'id_containers')}}
+    {{ Form::hidden('containers', '', array('id' => 'id_containers'))}}
 
     <div class="form-group">
         <div class="panel panel-success">
@@ -125,7 +125,7 @@
     </div>
     <div class="form-group">
         {{ Form::label('tipo', 'Tipo de Pedido') }}
-        {{ Form::select('tipo', array('EXPORTE'=>'Exportacion', 'IMPORTE'=>'Importacion'), null, array('class'=>'form-control','style'=>'' )) }}
+        {{ Form::select('tipo', array(''=>'', 'EXPORTE'=>'Exportacion', 'IMPORTE'=>'Importacion'), null, array('class'=>'form-control','style'=>'' )) }}
     </div>
 
     <a class="btn btn-small btn-danger" href="javascript:abrirPedidos();">Cancelar</a>
@@ -199,6 +199,8 @@
     $('#datepicker2').datetimepicker({ pickTime: false });
     $('#datepicker3').datetimepicker({ pickTime: false });
     $('#datepicker4').datetimepicker({ pickTime: false });
+    
+    var pedidosid = null;
 </script>
 
 <script src="js/pedidos.js"></script>

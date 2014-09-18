@@ -33,6 +33,7 @@ class GuiasController extends BaseController {
             // store            
             $guia = new Guia;
             $guia->numero_guia = Input::get('numero_guia');
+            $guia->pedido_id = Input::get('pedido_id');
             $guia->empresa_envio = Input::get('empresa_envio');
             if (Input::hasFile('url_archivo')) {
                 $archivo = Input::file('url_archivo');

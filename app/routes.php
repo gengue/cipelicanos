@@ -23,7 +23,7 @@ Route::post('recuperar','AuthController@postRecuperar');
 
 
 Route::post('documentos/upload', 'DocumentosController@postDropzone');
-Route::get('documentos/upload', 'DocumentosController@getDropzone');
+Route::get('documentos/upload/{id}', 'DocumentosController@getDropzone');
 Route::post('documentos/delete/{id}', 'DocumentosController@delete');
 
 Route::get('cruds', function(){

@@ -299,10 +299,10 @@ function crearPedido(datos) {
                     thisDropzone.processQueue();
                 }
                 // thisDropzone.on('queuecomplete', function(){
-                    
+
                 // });
                 abrirPedidos();
-                    msg_guadadocorreto();
+                msg_guadadocorreto();
             }
 
         }
@@ -321,11 +321,6 @@ function mostrarEditarPedido(id) {
                 success: function(data) {
                     desbloquear();
                     $('#page-wrapper').html(data);
-                    var select = document.getElementById("id_containers");
-                    for (var i = 0; i < select.length; i++) {
-                        containers.push(select.options[i].text);
-                    }
-                    actualizarContainers();
                 }
             });
 }
@@ -344,6 +339,19 @@ function editarPedido(datos, id) {
                     if (data.msg === 'error') {
                         msg_guadadoerror();
                     } else {
+                        if (data.id_pedido) {
+                            //alert(data.id_pedido);
+                            insertarGuiasAjax(0, data.id_pedido);
+                            //Insertamos los archivos
+                            thisDropzone.on('sending', function(file, xhr, formData) {
+                                formData.append('pedido_id', data.id_pedido);
+                            });
+
+                            thisDropzone.processQueue();
+                        }
+                        // thisDropzone.on('queuecomplete', function(){
+
+                        // });
                         abrirPedidos();
                         msg_guadadocorreto();
                     }
@@ -794,7 +802,7 @@ function eliminarUsuarios(id) {
                 }
             });
 }
-    
+
 function crearUsuarios(datos) {
 
     $.ajax(
