@@ -83,6 +83,8 @@ class UsuarioController extends BaseController {
         $usuario = Usuario::find($id);
         $paises = Country::lists('nombre', 'Code');
         $ciudades = Country::find($usuario->pais_id)->ciudades->lists('nombre', 'id');
+        unset($usuario->password); //eliminamos el atributo de la contraseña
+
         return View::make('usuarios.edit', array('usuario' => $usuario,
                                                    'paises'=> $paises,
                                                    'ciudades' => $ciudades
@@ -122,7 +124,6 @@ class UsuarioController extends BaseController {
             // store
             $usuario = Usuario::find($id);
             $usuario->nombre = Input::get('nombre');
-            $usuario->password = Hash::make(Input::get('password'));
             $usuario->apellido = Input::get('apellido');
             $usuario->telefono = Input::get('telefono');
             $usuario->correo = Input::get('correo');
@@ -156,6 +157,20 @@ class UsuarioController extends BaseController {
                         'msg' => 'error'
             ));
         }
+    }
+
+    
+    public function cambiarPasswordUsuario($id){
+        $usuario = Usuario::find($id);
+       
+        if(Input::get('password_nueva') == Input::get('password_nueva2')){
+            $usuario->password = Hash::make(Input::get('password_nueva'));
+            $usuario->save();               //Se actualiza la contraseña
+            return Response::json(array('msg' => 'ok' )); 
+        }else{
+            return Response::json(array('msg' => 'errorConfirm' )); //no coinciden
+        }
+
     }
 
 }

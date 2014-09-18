@@ -262,6 +262,30 @@ function abrirPerfil() {
 
 }
 
+function mostrarCambiarPassword(id) {
+    $('#modalCambiarPassword').modal();
+}
+
+function actualizarPassword(datos){
+    $.ajax(
+            {
+                url: '/mod_cliente/perfil/cambiarPassword/',
+                type: 'POST',
+                data: datos,
+                success: function(res) {
+                  if(res.msg === "ok"){
+                    $('#modalCambiarPassword').modal('hide');
+                    alert("Contraseña actualizada con exito", "Exito", "success");
+                  }
+                  if(res.msg === "errorPass"){
+                    alert("Su contraseña actual es invalida", "Error", "error");
+                  }
+                  if(res.msg === "errorConfirm"){
+                    alert("Las contraseñas no coinciden", "Error", "error");
+                  }
+                }
+            });
+}
 function mostrarEditarPerfil(id) {
 
     $.ajax(

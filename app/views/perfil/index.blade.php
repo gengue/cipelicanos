@@ -70,13 +70,62 @@
               </div>
             </div>
                  <div class="panel-footer">
-                  <a class="btn btn-small btn-info" href="javascript:mostrarEditarPerfil({{ $value->id }});">Editar <i class="fa fa-pencil"></i></a>
+                  <a class="btn btn-small btn-primary" href="javascript:mostrarEditarPerfil({{ $value->id }});">Editar <i class="fa fa-pencil"></i></a>
+                  <a class="btn btn-small btn-success" href="javascript:mostrarCambiarPassword({{ $value->id }});">Cambiar contraseña <i class="fa fa-lock"></i></a>
                  </div>
             
           </div>
         </div>
-</div>
+        <!-- Modal para cambiar password -->
+        <div class="modal fade" id="modalCambiarPassword" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                        <h4 class="modal-title" id="myModalLabel">Cambiar contraseña</h4>
+                    </div>
 
-<script>
-   
+                    <div class="modal-body form-horizontal">
+                    
+                    {{ Form::open(array('id' => 'formCambiarPassword')) }}
+                    
+                        
+                        <div class="form-group">
+                            {{ Form::label('password_vieja', 'Contraseña actual') }}
+                            {{ Form::password('password_vieja', Input::old('password'), array('class' => 'form-control')) }}
+                        </div>
+                        <div class="form-group">
+                            {{ Form::label('password_nueva', 'Nueva contraseña') }}
+                            {{ Form::password('password_nueva', Input::old('nueva password'), array('class' => 'form-control')) }}
+                        </div>
+                        <div class="form-group">
+                            {{ Form::label('password_nueva2', 'Confirmar contraseña') }}
+                            {{ Form::password('password_nueva2', Input::old('confimar password'), array('class' => 'form-control')) }}
+                        </div>
+
+                  <div class="modal-footer">
+                      <button href="#" class="btn" data-dismiss="modal" aria-hidden="true">Cancelar</button>
+                      {{ Form::submit('Cambiar contraseña!', array('class' => 'btn btn-primary', 'id'=>'btnsubmit')) }}
+
+                      {{ Form::close() }}
+                  </div>
+
+                </div>
+            </div>
+        </div>
+<!-- FIN Modal-->
+        
+</div>
+<script type="text/javascript">
+  $("input[type=password]").addClass('form-control');                  
+
+  $("#formCambiarPassword").submit(function(e) {
+      e.preventDefault();
+      
+      if ($('#password_vieja').val() !=="" && $('#password_nueva').val()!== "" && $('#password_nueva2').val() !== "") {
+         actualizarPassword($("#formCambiarPassword").serialize());
+      } else {
+          alert("Todos los campos son obligatorios", "Error", "error");
+      }
+  });
 </script>

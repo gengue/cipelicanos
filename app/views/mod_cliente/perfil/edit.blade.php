@@ -36,10 +36,7 @@
         {{ Form::label('correo', 'Email') }}
         {{ Form::text('correo', Input::old('ejemplo@dominio.com'), array('class' => 'form-control')) }}
     </div>
-    <div class="form-group">
-        {{ Form::label('password', 'Contraseña') }}
-        {{ Form::text('password', Input::old(''), array('class' => 'form-control')) }}
-    </div>
+    
     <div class="form-group">
         {{ Form::label('nombre', 'Nombre') }}
         {{ Form::text('nombre', Input::old('nombre'), array('class' => 'form-control')) }}

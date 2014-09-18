@@ -1142,6 +1142,48 @@ function mostrarEditarPerfil(id) {
                 }
             });
 }
+function mostrarCambiarPassword(id) {
+    $('#modalCambiarPassword').modal();
+}
+
+function actualizarPassword(datos){
+    $.ajax(
+            {
+                url: '/perfil/cambiarPassword/',
+                type: 'POST',
+                data: datos,
+                success: function(res) {
+                  if(res.msg === "ok"){
+                    $('#modalCambiarPassword').modal('hide');
+                    alert("Contraseña actualizada con exito", "Exito", "success");
+                  }
+                  if(res.msg === "errorPass"){
+                    alert("Su contraseña actual es invalida", "Error", "error");
+                  }
+                  if(res.msg === "errorConfirm"){
+                    alert("Las contraseñas no coinciden", "Error", "error");
+                  }
+                }
+            });
+}
+
+function actualizarPasswordUsuario(datos, id){
+    $.ajax(
+            {
+                url: '/usuarios/cambiarPasswordUsuario/'+id,
+                type: 'POST',
+                data: datos,
+                success: function(res) {
+                  if(res.msg === "ok"){
+                    $('#modalCambiarPassword').modal('hide');
+                    alert("Contraseña actualizada con exito", "Exito", "success");
+                  }
+                  if(res.msg === "errorConfirm"){
+                    alert("Las contraseñas no coinciden", "Error", "error");
+                  }
+                }
+            });
+}
 function editarPerfil(datos, id) {
     $.ajax(
             {

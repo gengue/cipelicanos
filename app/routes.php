@@ -4,6 +4,7 @@
 Route::resource('navieras', 'NavierasController');
 Route::get('usuarios/clientes', 'UsuarioController@clientes');
 Route::get('usuarios/clientes/aprobar/{id}', 'UsuarioController@aprobarCliente');
+Route::post('/usuarios/cambiarPasswordUsuario/{id}', 'UsuarioController@cambiarPasswordUsuario');
 Route::resource('usuarios', 'UsuarioController');
 Route::resource('proveedores', 'ProveedoresController');
 Route::get('proveedores/api/productos/{id}', 'ProveedoresController@productos');
@@ -20,7 +21,6 @@ Route::get('registro','AuthController@getRegistro');
 Route::post('login','AuthController@postLogin');
 Route::post('registro','AuthController@postRegistro');
 Route::post('recuperar','AuthController@postRecuperar');
-
 
 
 Route::post('documentos/upload', 'DocumentosController@postDropzone');
@@ -86,11 +86,17 @@ Route::get('/mod_cliente/dashboard', function(){
         
         ->with('ultimoAcceso', $ultimoAcceso);
 });
-Route::resource('/mod_cliente/companias', 'CompaniasClienteController');
-Route::resource('/mod_cliente/perfil', 'PerfilClienteController');
+
+Route::post('/perfil/cambiarPassword', 'PerfilAdminController@cambiarPassword');
+Route::post('/mod_cliente/perfil/cambiarPassword', 'PerfilClienteController@cambiarPassword');
 Route::get('/mod_cliente/pedidos', 'PedidosClienteController@pedidos');
 Route::get('/mod_cliente/historial','PedidosClienteController@historial');
+Route::resource('/mod_cliente/companias', 'CompaniasClienteController');
+Route::resource('/mod_cliente/perfil', 'PerfilClienteController');
 Route::resource('/perfil', 'PerfilAdminController');
+
+
+
 
 
 

@@ -35,6 +35,8 @@ class PerfilClienteController extends BaseController {
         $usuario = Usuario::find($id);
         $paises = Country::lists('nombre', 'Code');
         $ciudades = Country::find($usuario->pais_id)->ciudades->lists('nombre', 'id');
+        unset($usuario->password); //eliminamos el atributo de la contraseña
+
         return View::make('mod_cliente.perfil.edit', array('perfil' => $usuario,
                                                    'paises'=> $paises,
                                                    'ciudades' => $ciudades
@@ -52,9 +54,8 @@ class PerfilClienteController extends BaseController {
                 ));
         } else {
             // store
-              $usuario = Usuario::find($id);
+            $usuario = Usuario::find($id);
             $usuario->nombre = Input::get('nombre');
-            $usuario->password = Hash::make(Input::get('password'));
             $usuario->apellido = Input::get('apellido');
             $usuario->telefono = Input::get('telefono');
             $usuario->correo = Input::get('correo');
@@ -82,6 +83,24 @@ class PerfilClienteController extends BaseController {
                 ));
         }
         
+    }
+
+    public function cambiarPassword(){
+        $usuario = Usuario::find(Auth::id());
+      
+        if (Hash::check(Input::get('password_vieja'), $usuario->password)) 
+        {
+            if(Input::get('password_nueva') == Input::get('password_nueva2')){
+                $usuario->password = Hash::make(Input::get('password_nueva'));
+                $usuario->save();               //Se actualiza la contraseña
+                return Response::json(array('msg' => 'ok' )); 
+            }else{
+                return Response::json(array('msg' => 'errorConfirm' )); //no coinciden
+            }
+
+        }else{
+            return Response::json(array('msg' => 'errorPass' )); //la contraseña ingresada no es la que esta registrada en el sistema
+        }
     }
 
 }
