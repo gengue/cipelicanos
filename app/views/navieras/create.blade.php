@@ -40,15 +40,12 @@
             {{ Form::text('direccion', Input::old('direccion'), array('class' => 'form-control')) }}
         </div>    
         <div class="col-md-6">
-            {{ Form::label('url_seguimiento', 'Url de Tracking') }}
+            {{ Form::label('url_seguimiento', 'Url Seguimiento') }}
             {{ Form::text('url_seguimiento', Input::old('url_seguimiento'), array('class' => 'form-control')) }}
         </div>
     </div>
     
-    <div class="form-group">
-        {{ Form::label('url_seguimiento', 'Url Seguimiento') }}
-        {{ Form::text('url_seguimiento', Input::old('url_seguimiento'), array('class' => 'form-control')) }}
-    </div>
+    <br>
     <a class="btn btn-small btn-danger" href="javascript:abrirNavieras();">Cancelar</a>
     {{ Form::submit('Crear naviera!', array('class' => 'btn btn-primary')) }}
 
