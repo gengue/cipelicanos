@@ -16,6 +16,7 @@
 
 
             <div class="form-group">
+                
                 {{ Form::label('tipo_usuario', 'Tipo de Usuario') }}
                 {{ Form::select('tipo_usuario', array('ADMINISTRADOR' => 'Administrador', 'CLIENTE' => 'Cliente', 'DIGITADOR' => 'Digitador'), null, array('class'=>'form-control','style'=>'' )) }}
             </div>
