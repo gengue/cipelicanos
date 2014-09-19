@@ -1,6 +1,7 @@
 var containers = [];
 var DFormGuias = [];
 var guias = [];
+var Oldguias = [];
 var thisDropzone;
 
 //Dropzone
@@ -8,14 +9,17 @@ $('#dropzone').dropzone({
     url: '/documentos/upload/',
     init: function() {
         thisDropzone = this;
+        if (pedidosid) {
+            $.get('documentos/upload/'+pedidosid, function(data) {
+                $.each($.parseJSON(data), function(key, value) {
+                    var mockFile = {name: value.name, size: value.size, tipo: 'viejo'};
+                    thisDropzone.options.addedfile.call(thisDropzone, mockFile);
+                    thisDropzone.options.thumbnail.call(thisDropzone, mockFile, 'images/protegido.png');
+                });
+            });
+        }
         //Cargar archivos en el directorio
-//            $.get('documentos/upload', function(data) {
-//                $.each($.parseJSON(data), function(key, value) {
-//                    var mockFile = {name: value.name, size: value.size};
-//                    thisDropzone.options.addedfile.call(thisDropzone, mockFile);
-//                    thisDropzone.options.thumbnail.call(thisDropzone, mockFile, 'archivos/PDF-2.png');
-//                });
-//            });
+
         this.on("error", function(file, message) {
             alert(message);
         });
@@ -24,8 +28,11 @@ $('#dropzone').dropzone({
         });
 
         this.on("removedfile", function(file) {
-            if (!file.name) {
-                return;
+            if (file.tipo) {
+                var mockFile = {name: file.name, size: file.size, tipo: 'viejo'};
+                    thisDropzone.options.addedfile.call(thisDropzone, mockFile);
+                    thisDropzone.options.thumbnail.call(thisDropzone, mockFile, 'images/protegido.png');
+                    alert('Este archivo no se puede borrar, ya está almacenado', 'No se puede borrar', 'info', 'glyphicon glyphicon-info-sign');
             }
         });
     }
@@ -41,6 +48,7 @@ $("#formPedidos").submit(function(e) {
     crearPedido(datos);
 });
 
+
 /****** CONTAINERS **********/
 //Envio de formulario de Cointainers
 $("#formContainer").submit(function(e) {
@@ -49,7 +57,7 @@ $("#formContainer").submit(function(e) {
     if (id) {
         var datos = $('input:text[name=numero_container]').val();
         $('input:text[name=numero_container]').val('');
-        containers[id] = datos;
+        containers[id] = datos.toUpperCase();
         $('#id').val('');
         $('#modalContainer').modal('hide');
         actualizarContainers();
@@ -130,6 +138,9 @@ $('#formGuia').submit(function(e) {
 
 function actualizarGuia() {
     $('#ulGuias').html('');
+    for (var k = 0; k < Oldguias.length; k++) {
+        $('#ulGuias').append('<li class="list-group-item">' + 'Numero de Guia:  ' + Oldguias[k].numero_guia + ' ->Empresa de Envio:  ' + Oldguias[k].empresa_envio + '  ->Archivo:  ' + Oldguias[k].url_archivo + '</li>');
+    }
     for (var i = 0; i < guias.length; i++) {
         $('#ulGuias').append('<li class="list-group-item">' + 'Numero de Guia:  ' + guias[i].numero_guia + ' ->Empresa de Envio:  ' + guias[i].empresa_envio + '  ->Archivo:  ' + guias[i].url_archivo + '   ' + ' <a href="javascript:editarGuia(' + i + ')">Editar </a><a href="javascript:eliminarGuia(' + i + ')">Borrar</a></li>');
     }
