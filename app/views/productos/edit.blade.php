@@ -16,22 +16,30 @@
             'method' => 'PUT')) 
 }}
 
-	<div class="form-group">
-		{{ Form::label('nombre', 'Nombre') }}
-		{{ Form::text('nombre', Input::old('nombre'), array('class' => 'form-control')) }}
-	</div>
-	<div class="form-group">
-		{{ Form::label('descripcion', 'Descripcion') }}
-		{{ Form::text('descripcion', Input::old('Descripcion del producto'), array('class' => 'form-control')) }}
-	</div>
-	<div class="form-group">
-                {{ Form::label('proveedor', 'Proveedor') }}
-                {{ Form::select('proveedor', $proveedores, $producto->proveedor->id, array('class' => 'form-control')) }}
-        </div>
-	<a class="btn btn-small btn-danger" href="javascript:abrirProductos();">Cancelar</a>
-	{{ Form::submit('Editar Producto!', array('class' => 'btn btn-primary')) }}
+	<div class="row">
+        <div class="col-md-6">
+		  {{ Form::label('nombre', 'Nombre') }}
+		  {{ Form::text('nombre', Input::old('nombre'), array('class' => 'form-control')) }}
+	    </div>
 
-{{ Form::close() }}
+	    <div class="col-md-6">
+            {{ Form::label('proveedor', 'Proveedor') }}
+            {{ Form::select('proveedor', $proveedores, $producto->proveedor->id, array('class' => 'form-control')) }}
+	    </div>
+    </div>    
+	<div class="row">
+        <div class="col-md-12">
+            {{ Form::label('descripcion', 'Descripcion') }}
+          {{ Form::text('descripcion', Input::old('Descripcion del producto'), array('class' => 'form-control')) }}
+             </div>
+    </div>
+    <br/>
+
+    <div class="form-group">
+	   <a class="btn btn-small btn-danger" href="javascript:abrirProductos();">Cancelar</a>
+	   {{ Form::submit('Editar Producto!', array('class' => 'btn btn-primary')) }}
+        {{ Form::close() }}
+    </div>
 </div>
 <script>
 

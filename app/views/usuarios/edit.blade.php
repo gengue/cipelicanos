@@ -15,44 +15,54 @@
     {{ Form::model($usuario, array('route' => array('usuarios.update', $usuario->id),'id' => 'formEditarUsuario', 'method' => 'PUT')) }}
 
 
-    <div class="form-group">
-        {{ Form::label('tipo_usuario', 'Tipo de Usuario') }}
-        {{ Form::select('tipo_usuario', array('ADMINISTRADOR' => 'Administrador', 'CLIENTE' => 'cliente', 'DIGITADOR' => 'Digitador'), null, array('class'=>'form-control','style'=>'' )) }}
-    </div>
-    <div class="form-group">
-        {{ Form::label('correo', 'Email') }}
-        {{ Form::text('correo', Input::old('ejemplo@dominio.com'), array('class' => 'form-control')) }}
-    </div>
-    <div class="form-group">
-        {{ Form::label('nombre', 'Nombre') }}
-        {{ Form::text('nombre', Input::old('nombre'), array('class' => 'form-control')) }}
-    </div>
-    <div class="form-group">
-        {{ Form::label('apellido', 'Apellidos') }}
-        {{ Form::text('apellido', Input::old(''), array('class' => 'form-control')) }}
-    </div>
-    <div class="form-group">
-        {{ Form::label('telefono', 'Telefono') }}
-        {{ Form::text('telefono', Input::old('telefono'), array('class' => 'form-control')) }}
-    </div>
-    <div class="form-group">
-        {{ Form::label('direccion', 'Direccion') }}
-        {{ Form::text('direccion', Input::old('direccion'), array('class' => 'form-control')) }}
+    <div class="row">
+        <div class="col-md-6">
+            {{ Form::label('tipo_usuario', 'Tipo de Usuario') }}
+            {{ Form::select('tipo_usuario', array('ADMINISTRADOR' => 'Administrador', 'CLIENTE' => 'cliente', 'DIGITADOR' => 'Digitador'), null, array('class'=>'form-control','style'=>'' )) }}
+        </div>
+        <div class="col-md-6">
+            {{ Form::label('correo', 'Email') }}
+            {{ Form::text('correo', Input::old('ejemplo@dominio.com'), array('class' => 'form-control')) }}
+        </div>
     </div>
 
-    <div class="form-group">
-        {{ Form::label('pais', 'Pais') }}
-        {{ Form::select('pais', $paises, $usuario->pais_id, array('class'=>'form-control','style'=>'' )) }}
+    <div class="row">
+        <div class="col-md-6">
+            {{ Form::label('nombre', 'Nombre') }}
+            {{ Form::text('nombre', Input::old('nombre'), array('class' => 'form-control')) }}
+        </div>
+        <div class="col-md-6">
+            {{ Form::label('apellido', 'Apellidos') }}
+            {{ Form::text('apellido', Input::old(''), array('class' => 'form-control')) }}
+        </div>
     </div>
-    <div class="form-group">
-        {{ Form::label('ciudad', 'Ciudad') }}
-        {{ Form::select('ciudad',$ciudades, $usuario->ciudad_id, array('class'=>'form-control','style'=>'' )) }}
+    <div class="row">
+        <div class="col-md-6">
+            {{ Form::label('pais', 'Pais') }}
+            {{Form::select('pais', $paises, $usuario->pais_id, array('class'=>'form-control','style'=>'' )) }}
+        </div>
+        <div class="col-md-6">
+            {{ Form::label('ciudad', 'Ciudad') }}
+            {{ Form::select('ciudad',$ciudades, $usuario->ciudad_id, array('class'=>'form-control','style'=>'' )) }}
+        </div>
     </div>
+    <div class="row">
+        <div class="col-md-6">
+            {{ Form::label('telefono', 'Telefono') }}
+            {{ Form::text('telefono', Input::old('telefono'), array('class' => 'form-control')) }}
+        </div>
+        <div class="col-md-6">
+            {{ Form::label('direccion', 'Direccion') }}
+            {{ Form::text('direccion', Input::old('direccion'), array('class' => 'form-control')) }}
+        </div>
+    </div>
+    <br/>
+         
     <a class="btn btn-small btn-danger" href="javascript:abrirUsuarios();">Cancelar</a>
     {{ Form::submit('Editar!', array('class' => 'btn btn-primary')) }}
 
     {{ Form::close() }}
-
+   
 </div>
         <!-- Modal para cambiar password -->
         <div class="modal fade" id="modalCambiarPassword" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">

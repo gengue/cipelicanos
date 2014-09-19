@@ -18,22 +18,28 @@
     {{ Form::open(array('url' => 'proveedores', 'id' => 'formProveedores')) }}
 
 
-    <div class="form-group">
-        {{ Form::label('nombre', 'Nombre') }}
-        {{ Form::text('nombre', Input::old('nombre'), array('class' => 'form-control')) }}
+    <div class="row">
+        <div class="col-md-6">
+            {{ Form::label('nombre', 'Nombre') }}
+            {{ Form::text('nombre', Input::old('nombre'), array('class' => 'form-control')) }}
+        </div>
+        <div class="col-md-6">
+            {{ Form::label('nombre_contacto', 'Nombre de Contacto') }}
+            {{ Form::text('nombre_contacto', Input::old('nombre de contacto'), array('class' => 'form-control')) }}
+        </div>
     </div>
-    <div class="form-group">
-        {{ Form::label('nombre_contacto', 'Nombre de Contacto') }}
-        {{ Form::text('nombre_contacto', Input::old('nombre de contacto'), array('class' => 'form-control')) }}
+
+    <div class="row">
+        <div class="col-md-6">
+            {{ Form::label('telefono', 'Telefono') }}
+            {{ Form::text('telefono', Input::old('telefono'), array('class' => 'form-control')) }}
+        </div>
+        <div class="col-md-6">
+            {{ Form::label('direccion', 'Direccion') }}
+            {{ Form::text('direccion', Input::old('direccion'), array('class' => 'form-control')) }}
+        </div>
     </div>
-    <div class="form-group">
-        {{ Form::label('telefono', 'Telefono') }}
-        {{ Form::text('telefono', Input::old('telefono'), array('class' => 'form-control')) }}
-    </div>
-    <div class="form-group">
-        {{ Form::label('direccion', 'Direccion') }}
-        {{ Form::text('direccion', Input::old('direccion'), array('class' => 'form-control')) }}
-    </div>
+    
     <div class="form-group">
         {{ Form::label('correo', 'Email') }}
         {{ Form::text('correo', Input::old('ejemplo@dominio.com'), array('class' => 'form-control')) }}

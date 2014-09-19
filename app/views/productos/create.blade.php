@@ -15,22 +15,31 @@
 
     {{ Form::open(array('', 'id' => 'formProducto')) }}
 
-    <div class="form-group">
-        {{ Form::label('nombre', 'Nombre') }}
-        {{ Form::text('nombre', Input::old('nombre'), array('class' => 'form-control')) }}
+    <div class="row">
+        <div class="col-md-6">
+            {{ Form::label('nombre', 'Nombre') }}
+            {{ Form::text('nombre', Input::old('nombre'), array('class' => 'form-control')) }}
+        </div>
+        <div class="col-md-6">
+            {{ Form::label('proveedor', 'Proveedor') }}
+            {{ Form::select('proveedor', $proveedores, Input::old('Selecciona uno'), array('class' => 'form-control')) }}
+            
+        </div>  
     </div>
-    <div class="form-group">
-        {{ Form::label('descripcion', 'Descripcion') }}
-        {{ Form::text('descripcion', Input::old('Descripcion'), array('class' => 'form-control')) }}
-    </div>          
-    <div class="form-group">
-        {{ Form::label('proveedor', 'Proveedor') }}
-        {{ Form::select('proveedor', $proveedores, Input::old('Selecciona uno'), array('class' => 'form-control')) }}
-    </div>	
-    <a class="btn btn-small btn-danger" href="javascript:abrirProductos();">Cancelar</a>
-    {{ Form::submit('Crear Producto!', array('class' => 'btn btn-primary')) }}
 
-    {{ Form::close() }}
+    <div class="row">
+        <div class="col-md-12">
+            {{ Form::label('descripcion', 'Descripcion') }}
+            {{ Form::text('descripcion', Input::old('Descripcion'), array('class' => 'form-control')) }}
+        </div>	
+    </div>
+    <br/>
+
+    <div class="form-group">
+        <a class="btn btn-small btn-danger" href="javascript:abrirProductos();">Cancelar</a>
+        {{ Form::submit('Crear Producto!', array('class' => 'btn btn-primary')) }}
+        {{ Form::close() }}
+    </div>
 
 </div>
 

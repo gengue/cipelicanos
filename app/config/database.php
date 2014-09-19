@@ -68,7 +68,7 @@ return array(
 			'driver'    => 'mysql',
 			'host'      => 'localhost',
 			'database'  => 'cipelicanos',
-			'username'  => 'root',
+			'username'  => 'cipelicanos',
 			'password'  => '1234',
 			'charset'   => 'utf8',
 			'collation' => 'utf8_unicode_ci',

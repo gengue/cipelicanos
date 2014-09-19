@@ -17,25 +17,27 @@
                 'files' => true, 'url'=> '/pedidos')) }}
 
     <div class="form-group">
-        {{ Form::label('compania', 'Compañia') }}
-        {{ Form::select('compania_id', $companias, null, array('class'=>'form-control','style'=>'' )) }}
+        <div class="col-lg-6">
+            {{ Form::label('compania', 'Compañia') }}
+            {{ Form::select('compania_id', $companias, null, array('class'=>'form-control','style'=>'' )) }}
+            
+            {{ Form::label('proveedor_id', 'Proveedor') }}
+            {{ Form::select('proveedor_id', $proveedores, null, array('class'=>'form-control','style'=>'' )) }}
+        </div>
     </div>
 
     <div class="form-group">
-        {{ Form::label('proveedor_id', 'Proveedor') }}
-        {{ Form::select('proveedor_id', $proveedores, null, array('class'=>'form-control','style'=>'' )) }}
-    </div>
+        <div class="col-lg-6">
+            {{ Form::label('producto_id', 'Producto') }}
+            {{ Form::select('producto_id', $productos, null, array('class'=>'form-control','style'=>'' )) }}
 
-    <div class="form-group">
-        {{ Form::label('producto_id', 'Producto') }}
-        {{ Form::select('producto_id', $productos, null, array('class'=>'form-control','style'=>'' )) }}
+            {{ Form::label('naviera_id', 'Naviera') }}
+            {{ Form::select('naviera_id', $navieras, null, array('class'=>'form-control','style'=>'' )) }}
+        </div>
     </div>
+    <br/><br/><br/><br/><br/><br/><br/>
 
-    <div class="form-group">
-        {{ Form::label('naviera_id', 'Naviera') }}
-        {{ Form::select('naviera_id', $navieras, null, array('class'=>'form-control','style'=>'' )) }}
-    </div>
-    <div class="form-group">
+    <div class="form-group">        
         <div class="panel panel-success">
             <div class="panel-heading">
                 <h3 class="panel-title">Containers</h3>
@@ -49,41 +51,26 @@
             <div class="panel-footer">
                 <a id="aContainers" href="javascript:agregarContainer();" class="btn btn-primary btn-sm" role="button">Agregar Container</a>
             </div>
-        </div>
+        
+    </div>
     </div>
     {{ Form::hidden('containers', '', array('id' => 'id_containers'))}}
 
-    <div class="form-group">
-        <div class="panel panel-success">
-            <div class="panel-heading">
-                <h3 class="panel-title">Guias</h3>
-            </div>
-            <!-- <div class="alert alert-info alert-dismissible" role="alert">
-                            <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-                            <strong>ey!</strong> Aca puedes agregar, editar o eliminar los containers correspondientes a este pedido!.
-                        </div>-->
-            <ul id="ulGuias" class="list-group">
-            </ul>
-            <div class="panel-footer">
-                <a id="aGuias" href="javascript:agregarGuia();" class="btn btn-primary btn-sm" role="button">Agregar Guia</a>
+    <div class="row">
+        <div class="col-md-6">
+            {{ Form::label('numero_reserva', 'Numero de Reserva') }}
+            {{ Form::text('numero_reserva', Input::old('eje: 129XC83'), array('class' => 'form-control')) }}
+           
+        </div>
+        <div class="row">
+            <div class="col-md-5">
+            {{ Form::label('tipo', 'Tipo de Pedido') }}
+            {{ Form::select('tipo', array(''=>'', 'EXPORTE'=>'Exportacion', 'IMPORTE'=>'Importacion'), null, array('class'=>'form-control','style'=>'' )) }}      
             </div>
         </div>
-    </div>
-    <div class="form-group">
-        <div class="panel panel-success">
-            <div class="panel-heading">
-                <h3 class="panel-title">Otros Documetos</h3>
-            </div>
-            <div id="dropzone" class="dropzone"></div>
-        </div>
-    </div>
-
-    <div class="form-group">
-        {{ Form::label('numero_reserva', 'Numero de Reserva') }}
-        {{ Form::text('numero_reserva', Input::old('eje: 129XC83'), array('class' => 'form-control')) }}
     </div>
     <div class="row">
-        <div class="col-md-8">
+        <div class="col-md-6">
     <div class="form-group">
         {{ Form::label('buque', 'Buque') }}
         {{ Form::text('buque', Input::old('eje: El condor Herido'), array('class' => 'form-control')) }}
@@ -123,10 +110,35 @@
             
         </div>
     </div>
-    <div class="form-group">
-        {{ Form::label('tipo', 'Tipo de Pedido') }}
-        {{ Form::select('tipo', array(''=>'', 'EXPORTE'=>'Exportacion', 'IMPORTE'=>'Importacion'), null, array('class'=>'form-control','style'=>'' )) }}
+
+    <br/>
+    <div class="form-group">        
+        <div class="panel panel-success">
+            <div class="panel-heading">
+                <h3 class="panel-title">Guias</h3>
+            </div>
+            <!-- <div class="alert alert-info alert-dismissible" role="alert">
+                            <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                            <strong>ey!</strong> Aca puedes agregar, editar o eliminar los containers correspondientes a este pedido!.
+                        </div>-->
+            <ul id="ulGuias" class="list-group">
+            </ul>
+            <div class="panel-footer">
+                <a id="aGuias" href="javascript:agregarGuia();" class="btn btn-primary btn-sm" role="button">Agregar Guia</a>
+            </div>
+        
     </div>
+    </div>
+
+    <div class="form-group">
+        <div class="panel panel-success">
+            <div class="panel-heading">
+                <h3 class="panel-title">Otros Documetos</h3>
+            </div>
+            <div id="dropzone" class="dropzone"></div>
+        </div>
+    </div>
+
 
     <a class="btn btn-small btn-danger" href="javascript:abrirPedidos();">Cancelar</a>
     {{ Form::submit('Crear Pedido!', array('class' => 'btn btn-primary')) }}
