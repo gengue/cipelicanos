@@ -9,63 +9,69 @@
         </div>
     </div>
 
+    <a class="btn btn-small btn-info" href="javascript:abrirPedidos();"><i class="fa fa-list"></i> Listar todos</a>
+
+    <br><br>
+
     <div class="table-responsive">
 
         <table id="pedidosTbl" class="table table-striped table-hover table-bordered table-condensed">
             <thead>
                 <tr>
                     <td data-class="expand">Producto</td>
-                    <td data-hide="phone,tablet">Proveedor</td>
+                    <td data-hide="phone,tablet,pc">Proveedor</td>
+                    <td data-hide="phone,tablet">Compañia</td>
                     <td data-hide="phone,tablet">Naviera</td>
                     <td data-hide="phone,tablet">Containers</td>
                     <td data-hide="phone">Guia</td>
-                    <td data-hide="phone,tablet">Numero de reserva</td>
+                    <td data-hide="phone,tablet">N.Reserva</td>
                     <td data-hide="phone,tablet">Buque</td>
-                    <td data-hide="phone">carga</td>
-                    <td>Abordaje</td>
-                    <td data-hide="phone,tablet">Entrega</td>
+                    <td data-hide="phone,tablet,pc">carga</td>
+                    <td data-hide="phone,tablet">Abordaje</td>
+                    <td data-hide="phone,tablet,pc">Entrega</td>
+                    <td data-hide="phone">Tipo</td>
                 </tr>
             </thead>
             <tbody>
-
-    
-               
-                @foreach($pedidos as $pedido)
+               @foreach($pedidos as $key => $value)
                 <tr>
-                    <td>{{ $pedido->producto->nombre}}</td>
-                    <td>{{ $pedido->producto->proveedor->nombre }}</td>
-                    <td>{{ $pedido->naviera->nombre }}</td>
+                    <td>{{ $value->producto->nombre}}</td>
+                    <td>{{ $value->producto->proveedor->nombre }}</td>
+                    <td>{{ $value->naviera->nombre }}</td>
+                    <td>{{ $value->compania->nombre }}</td>
                     <td> 
-                        @foreach($pedido->containers as $container) 
-                        <a href="{{ $pedido->naviera->url_seguimiento . $container->numero_container }}" target="_blank">
-                        	{{ $container->numero_container }}
-                        </a> <br>
+                        @foreach($value->containers as $llave => $container) 
 
+                        <a href="{{ $value->naviera->url_seguimiento . $container->numero_container }}" target="_blank">
+                            {{ $container->numero_container }}
+                        </a> 
+                        <br>
                         @endforeach
                     </td>
                     <td> 
-                        @foreach($pedido->guias as $guia) 
-                          {{ $guia->numero_guia }} - {{ $guia->empresa_envio}},
+                        @foreach($value->guias as $llave => $guia) 
+                         {{ $guia->numero_guia. " - ".$guia->empresa_envio}},
                         @endforeach
                     </td>
-                    <td>{{ $pedido->numero_reserva}}</td>
-                    <td>{{ $pedido->buque}}</td>
-                    <td>{{ $pedido->fecha_carga}}</td>
-                    <td>{{ $pedido->fecha_abordaje}}</td>
-                    <td>{{ $pedido->fecha_entrega}}</td>
-
-                    
+                    <td>{{ $value->numero_reserva}}</td>
+                    <td>{{ $value->buque."-".$value->numero_viaje}}</td>
+                    <td>{{ $value->fecha_carga}}</td>
+                    <td>{{ $value->fecha_abordaje}}</td>
+                    <td>{{ $value->fecha_entrega}}</td>
+                    <td>{{ $value->tipo}}</td>
+s
                 </tr>
                 @endforeach
-               
             </tbody>
         </table>
     </div>
 </div>
 <script>
+    $('[data-toggle="confirmation"]').confirmation();
     "use strict";
     var responsiveHelper = undefined;
     var breakpointDefinition = {
+        pc: 1444,
         tablet: 1024,
         phone: 480
     };

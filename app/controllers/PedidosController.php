@@ -101,8 +101,7 @@ class PedidosController extends BaseController {
 
     public function show($id) {
 
-        $pedidosdb = new Pedido();
-        $pedido = $pedidosdb->obtenerPedido($id);
+        $pedido = Pedido::find($id);
         //print_r($pedido);
         return View::make('pedidos.show', array('pedido' => $pedido));
     }

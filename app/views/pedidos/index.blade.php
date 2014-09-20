@@ -19,15 +19,17 @@
             <thead>
                 <tr>
                     <td data-class="expand">Producto</td>
-                    <td data-hide="phone,tablet">Proveedor</td>
+                    <td data-hide="phone,tablet,pc">Proveedor</td>
+                    <td data-hide="phone,tablet">Compañia</td>
                     <td data-hide="phone,tablet">Naviera</td>
                     <td data-hide="phone,tablet">Containers</td>
                     <td data-hide="phone">Guia</td>
-                    <td data-hide="phone,tablet">Numero de reserva</td>
+                    <td data-hide="phone,tablet">N.Reserva</td>
                     <td data-hide="phone,tablet">Buque</td>
-                    <td data-hide="phone">carga</td>
-                    <td>Abordaje</td>
-                    <td data-hide="phone,tablet">Entrega</td>
+                    <td data-hide="phone,tablet,pc">carga</td>
+                    <td data-hide="phone,tablet">Abordaje</td>
+                    <td data-hide="phone,tablet,pc">Entrega</td>
+                    <td data-hide="phone">Tipo</td>
                     <td data-hide="phone,tablet">Opciones</td>
                 </tr>
             </thead>
@@ -37,6 +39,7 @@
                     <td>{{ $value->producto->nombre}}</td>
                     <td>{{ $value->producto->proveedor->nombre }}</td>
                     <td>{{ $value->naviera->nombre }}</td>
+                    <td>{{ $value->compania->nombre }}</td>
                     <td> 
                         @foreach($value->containers as $llave => $container) 
 
@@ -56,12 +59,14 @@
                     <td>{{ $value->fecha_carga}}</td>
                     <td>{{ $value->fecha_abordaje}}</td>
                     <td>{{ $value->fecha_entrega}}</td>
+                    <td>{{ $value->tipo}}</td>
 
                     <td>  
                         <a class="btn btn-small btn-success" href="javascript:mostrarDetallePedido({{ $value->id }});"><i class="fa fa-search"></i></a>
                         <a class="btn btn-small btn-primary" data-toggle="confirmation" data-href="javascript:finalizarPedido({{ $value->id }});" href="javascript:finalizarPedido({{ $value->id }});"><i class="fa fa-check"></i></a>
                         <a class="btn btn-small btn-info" href="javascript:mostrarEditarPedido({{ $value->id }});"><i class="fa fa-pencil"></i></a>
                         <a class="btn btn-small btn-danger" data-toggle="confirmation" data- data-href="javascript:eliminarPedido({{ $value->id }});" href="javascript:eliminarPedido({{ $value->id }});"><i class="fa fa-trash-o"></i></a>
+                        <a class="btn btn-small btn-info" href="javascript:"><i class="fa fa-list"></i></a>
                     </td>
                 </tr>
                 @endforeach
@@ -74,6 +79,7 @@
     "use strict";
     var responsiveHelper = undefined;
     var breakpointDefinition = {
+        pc: 1444,
         tablet: 1024,
         phone: 480
     };
