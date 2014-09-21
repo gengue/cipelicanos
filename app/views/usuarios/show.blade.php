@@ -72,7 +72,7 @@
               </div>
             </div>
                  <div class="panel-footer">
-                  <a class="btn btn-small btn-info" href="javascript:abrirUsuarios();"><i class="fa fa-arrow-left"></i> Atras</a>
+                  <a class="btn btn-small btn-info" onClick="javascript:abrirUsuarios();"><i class="fa fa-arrow-left"></i> Atras</a>
                  </div>
           </div>
         </div>

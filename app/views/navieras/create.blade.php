@@ -7,7 +7,7 @@
             
         </div>
     </div>
-    <a class="btn btn-small btn-info" href="javascript:abrirNavieras();"><i class="fa fa-arrow-left"></i> Atras</a>
+    <a class="btn btn-small btn-info" onClick="javascript:abrirNavieras();"><i class="fa fa-arrow-left"></i> Atras</a>
     <br><br>
 
     {{ Form::open(array('url' => 'navieras', 'id' => 'formNaviera')) }}
@@ -46,7 +46,7 @@
     </div>
     
     <br>
-    <a class="btn btn-small btn-danger" href="javascript:abrirNavieras();">Cancelar</a>
+    <a class="btn btn-small btn-danger" onClick="javascript:abrirNavieras();">Cancelar</a>
     {{ Form::submit('Crear naviera!', array('class' => 'btn btn-primary')) }}
 
     {{ Form::close() }}

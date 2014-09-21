@@ -1220,3 +1220,36 @@ function editarPerfil(datos, id) {
                 }
             });
 }
+function validarEmail( email ) {
+    expr = /^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/;
+    if ( !expr.test(email.val()) ){
+        email.parent().addClass('has-error');   
+        alert('Email invalido', 'Error', 'error', 'glyphicon glyphicon-warning-sign');
+        return false
+    }
+    email.parent().addClass('has-success');
+    return true;
+}
+function validarCampoVacio(elemento){
+    if(elemento.val() === ""){
+        elemento.parent().addClass('has-error');
+        alert('Algunos campos son obligatorios', 'Error', 'error', 'glyphicon glyphicon-warning-sign');
+        return false;
+    }
+
+    elemento.parent().addClass('has-success');
+    return true;
+}
+
+function validarCampoNulo(elemento){
+    if(elemento.val() === null){
+        elemento.parent().addClass('has-error');
+        alert('Algunos campos son obligatorios', 'Error', 'error', 'glyphicon glyphicon-warning-sign');
+        return false;
+    }
+
+    elemento.parent().addClass('has-success');
+    return true;
+}
+
+

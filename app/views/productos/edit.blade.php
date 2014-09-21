@@ -7,7 +7,7 @@
            
         </div>
     </div>
-    <a class="btn btn-small btn-info" href="javascript:abrirProductos();"><i class="fa fa-arrow-left"></i> Atras</a>
+    <a class="btn btn-small btn-info" onClick="javascript:abrirProductos();"><i class="fa fa-arrow-left"></i> Atras</a>
     <br><br>
 
 
@@ -36,7 +36,7 @@
     <br/>
 
     <div class="form-group">
-	   <a class="btn btn-small btn-danger" href="javascript:abrirProductos();">Cancelar</a>
+	   <a class="btn btn-small btn-danger" onClick="javascript:abrirProductos();">Cancelar</a>
 	   {{ Form::submit('Editar Producto!', array('class' => 'btn btn-primary')) }}
         {{ Form::close() }}
     </div>

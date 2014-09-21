@@ -7,7 +7,7 @@
 
         </div>
     </div>
-    <a class="btn btn-small btn-info" href="javascript:abrirPedidos();"><i class="fa fa-arrow-left"></i> Atras</a>
+    <a class="btn btn-small btn-info" onClick="javascript:abrirPedidos();"><i class="fa fa-arrow-left"></i> Atras</a>
     <br><br>
 
     <!-- if there are creation errors, they will show here -->
@@ -51,7 +51,7 @@
             <ul id="ulContainers" class="list-group">
             </ul>
             <div class="panel-footer">
-                <a id="aContainers" href="javascript:agregarContainer();" class="btn btn-primary btn-sm" role="button">Agregar Container</a>
+                <a id="aContainers" onClick="javascript:agregarContainer();" class="btn btn-primary btn-sm" role="button">Agregar Container</a>
             </div>
         </div>
     </div>
@@ -123,9 +123,12 @@
                             <strong>ey!</strong> Aca puedes agregar, editar o eliminar los containers correspondientes a este pedido!.
                         </div>-->
             <ul id="ulGuias" class="list-group">
+                <li class="list-group-item">
+                    Numero de Guia: 
+                </li>
             </ul>
             <div class="panel-footer">
-                <a id="aGuias" href="javascript:agregarGuia();" class="btn btn-primary btn-sm" role="button">Agregar Guia</a>
+                <a id="aGuias" onClick="javascript:agregarGuia();" class="btn btn-primary btn-sm" role="button">Agregar Guia</a>
             </div>
         </div>
     </div>
@@ -140,7 +143,7 @@
 
     
 
-    <a class="btn btn-small btn-danger" href="javascript:abrirPedidos();">Cancelar</a>
+    <a class="btn btn-small btn-danger" onClick="javascript:abrirPedidos();">Cancelar</a>
     {{ Form::submit('Editar!', array('class' => 'btn btn-primary')) }}
 
 
@@ -193,7 +196,7 @@
                 </div>
                 <div class="form-group">
                     {{ Form::label('url_archivo', 'Documento adjunto') }}
-                    {{ Form::file('url_archivo') }}
+                    {{ Form::file('url_archivo', array('accept'=>'application/pdf', 'required')) }}
                 </div>
                 {{ Form::submit('Crear Guia!', array('class' => 'btn btn-primary', 'id'=>'btnsubmit')) }}
 

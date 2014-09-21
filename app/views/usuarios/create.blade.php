@@ -9,7 +9,7 @@
         </div>
     </div>
 
-    <a class="btn btn-small btn-info" href="javascript:abrirUsuarios();"><i class="fa fa-arrow-left"></i> Atras</a>
+    <a class="btn btn-small btn-info" onClick="javascript:abrirUsuarios();"><i class="fa fa-arrow-left"></i> Atras</a>
    <br><br>
           
             {{ Form::open(array('url' => 'usuarios','id' => 'formUsuarios')) }}
@@ -62,7 +62,7 @@
                 {{ Form::label('direccion', 'Direccion') }}
                 {{ Form::text('direccion', Input::old('direccion'), array('class' => 'form-control')) }}
             </div>
-            <a class="btn btn-small btn-danger" href="javascript:abrirUsuarios();">Cancelar</a>
+            <a class="btn btn-small btn-danger" onClick="javascript:abrirUsuarios();">Cancelar</a>
             {{ Form::submit('Crear Usuario!', array('class' => 'btn btn-primary')) }}
             
             {{ Form::close() }}
@@ -73,6 +73,31 @@
     $("#formUsuarios").submit(function(e) {
         e.preventDefault();
         
+        if(!validarCampoNulo($("#ciudad"))) {
+            return false;
+        }
+
+        if(!validarCampoVacio($("#correo"))) {
+            return false;
+        }
+
+        if(!validarEmail($("#correo"))) {
+            return false; 
+        }
+
+        if(!validarCampoVacio($("#nombre"))) {
+            return false;
+        }
+
+        if(!validarCampoVacio($("#apellido"))) {
+            return false;
+        }
+
+        if(!validarCampoVacio($("#password"))) {
+            return false;
+        }
+
+
         var datos =  $("#formUsuarios").serialize();
         crearUsuarios(datos);
     });
