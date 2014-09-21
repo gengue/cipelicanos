@@ -37,7 +37,7 @@ class GuiasController extends BaseController {
             $guia->empresa_envio = Input::get('empresa_envio');
             if (Input::hasFile('url_archivo')) {
                 $archivo = Input::file('url_archivo');
-                $guia->url_archivo = $dir . $nombreArchivo;
+                $guia->url_archivo = $dir .'/'. $nombreArchivo;
                 $archivo->move($dir, $nombreArchivo);
             }
 

@@ -193,7 +193,7 @@
                 </div>
                 <div class="form-group">
                     {{ Form::label('url_archivo', 'Documento adjunto') }}
-                    {{ Form::file('url_archivo') }}
+                    {{ Form::file('url_archivo', array('accept'=>'application/pdf', 'required')) }}
                 </div>
                 {{ Form::submit('Crear Guia!', array('class' => 'btn btn-primary', 'id'=>'btnsubmit')) }}
 

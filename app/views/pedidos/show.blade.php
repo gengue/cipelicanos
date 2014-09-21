@@ -105,7 +105,7 @@
                 </div>
             </div>
             <div class="panel-footer">
-                <a class="btn btn-small btn-info" href="javascript:abrirCompanias();"><i class="fa fa-arrow-left"></i> Atras</a>
+                <a class="btn btn-small btn-info" onclick="javascript:abrirPedidos();"><i class="fa fa-arrow-left"></i> Atras</a>
             </div>
 
         </div>

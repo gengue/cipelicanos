@@ -123,6 +123,9 @@
                             <strong>ey!</strong> Aca puedes agregar, editar o eliminar los containers correspondientes a este pedido!.
                         </div>-->
             <ul id="ulGuias" class="list-group">
+                <li class="list-group-item">
+                    Numero de Guia: 
+                </li>
             </ul>
             <div class="panel-footer">
                 <a id="aGuias" href="javascript:agregarGuia();" class="btn btn-primary btn-sm" role="button">Agregar Guia</a>
@@ -193,7 +196,7 @@
                 </div>
                 <div class="form-group">
                     {{ Form::label('url_archivo', 'Documento adjunto') }}
-                    {{ Form::file('url_archivo') }}
+                    {{ Form::file('url_archivo', array('accept'=>'application/pdf', 'required')) }}
                 </div>
                 {{ Form::submit('Crear Guia!', array('class' => 'btn btn-primary', 'id'=>'btnsubmit')) }}
 

@@ -64,7 +64,7 @@
                         </li>
                         <li>
 
-                            <a href="javascript:abrirPedidos();"><i class="fa fa-fw fa-shopping-cart"></i> Pedidos</a>
+                            <a onclick="javascript:abrirPedidos();" href="javascript:"><i class="fa fa-fw fa-shopping-cart"></i> Pedidos</a>
 
                         </li>
                         <li>
