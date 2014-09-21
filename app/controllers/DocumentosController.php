@@ -6,12 +6,12 @@ class DocumentosController extends BaseController {
         Log::info(Input::all());
         $file = Input::file('file');
         $pedido_id = Input::get('pedido_id');
-        $dir = public_path() . '/archivos/' . $pedido_id . '/otros/';
+        $dir = 'public/archivos/' . $pedido_id . '/otros/';
         $subir = $file->move($dir, $file->getClientOriginalName());
         if ($subir) {
             $documentos = new Documento;
             $documentos->pedido_id = Input::get('pedido_id');
-            $documentos->url_archivo = $dir.$file->getClientOriginalName();
+            $documentos->url_archivo = $dir . $file->getClientOriginalName();
             $documentos->save();
         }
     }
@@ -36,7 +36,6 @@ class DocumentosController extends BaseController {
         header('Content-type: application/json');
         echo json_encode($result);
     }
-
     public function delete($id) {
         File::delete(public_path() . '/encoded/' . $id);
     }

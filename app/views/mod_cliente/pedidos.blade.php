@@ -9,7 +9,7 @@
         </div>
     </div>
 
-    <a class="btn btn-small btn-info" href="javascript:abrirPedidos();"><i class="fa fa-list"></i> Listar todos</a>
+    <a class="btn btn-small btn-info" onClick="javascript:abrirPedidos();"><i class="fa fa-list"></i> Listar todos</a>
 
     <br><br>
 
@@ -21,6 +21,7 @@
                     <td data-class="expand">Producto</td>
                     <td data-hide="phone,tablet,pc">Proveedor</td>
                     <td data-hide="phone,tablet">Compañia</td>
+                    <td data-hide="phone,tablet">Cliente</td>
                     <td data-hide="phone,tablet">Naviera</td>
                     <td data-hide="phone,tablet">Containers</td>
                     <td data-hide="phone">Guia</td>
@@ -30,6 +31,7 @@
                     <td data-hide="phone,tablet">Abordaje</td>
                     <td data-hide="phone,tablet,pc">Entrega</td>
                     <td data-hide="phone">Tipo</td>
+                    <td data-hide="phone,tablet">Documentos</td>
                 </tr>
             </thead>
             <tbody>
@@ -39,6 +41,7 @@
                     <td>{{ $value->producto->proveedor->nombre }}</td>
                     <td>{{ $value->naviera->nombre }}</td>
                     <td>{{ $value->compania->nombre }}</td>
+                    <td>{{ $value->compania->cliente->nombre }}</td>
                     <td> 
                         @foreach($value->containers as $llave => $container) 
 
@@ -59,6 +62,14 @@
                     <td>{{ $value->fecha_abordaje}}</td>
                     <td>{{ $value->fecha_entrega}}</td>
                     <td>{{ $value->tipo}}</td>
+                    <td>
+                        @foreach($value->documentos as $llave => $docu)
+                        <a href="{{ URL::to('showOtpdf/'.$docu->url_archivo)}}" target="_blank" >
+                            {{explode("/",$docu->url_archivo)[4];}}
+                        </a> 
+                        <br>
+                        @endforeach
+                    </td>
 s
                 </tr>
                 @endforeach

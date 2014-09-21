@@ -60,7 +60,7 @@
               </div>
             </div>
                  <div class="panel-footer">
-                  <a class="btn btn-small btn-info" href="javascript:abrirNavieras();"><i class="fa fa-arrow-left"></i> Atras</a>
+                  <a class="btn btn-small btn-info" onClick="javascript:abrirNavieras();"><i class="fa fa-arrow-left"></i> Atras</a>
                  </div>
             
           </div>

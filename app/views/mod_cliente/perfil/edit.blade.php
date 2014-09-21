@@ -18,7 +18,7 @@
             </div>
             <div class="panel-body">
             
-  <a class="btn btn-small btn-info" href="javascript:abrirPerfil();"><i class="fa fa-arrow-left"></i> Atras</a>
+  <a class="btn btn-small btn-info" onClick="javascript:abrirPerfil();"><i class="fa fa-arrow-left"></i> Atras</a>
     <br><br>
 
     {{ Form::model($perfil, array('route' => array('usuarios.update',
@@ -62,7 +62,7 @@
         {{ Form::label('direccion', 'Direccion') }}
         {{ Form::text('direccion', Input::old('direccion'), array('class' => 'form-control')) }}
     </div>
-    <a class="btn btn-small btn-danger" href="javascript:abrirPerfil();">Cancelar</a>
+    <a class="btn btn-small btn-danger" onClick="javascript:abrirPerfil();">Cancelar</a>
     {{ Form::submit('Editar!', array('class' => 'btn btn-primary')) }}
 
     {{ Form::close() }}

@@ -7,7 +7,7 @@
             
         </div>
     </div>
-    <a class="btn btn-small btn-info" href="javascript:abrirPedidos();"><i class="fa fa-arrow-left"></i> Atras</a>
+    <a class="btn btn-small btn-info" onClick="javascript:abrirPedidos();"><i class="fa fa-arrow-left"></i> Atras</a>
     <br><br>
 
     <!-- if there are creation errors, they will show here -->
@@ -49,7 +49,7 @@
             <ul id="ulContainers" class="list-group">
             </ul>
             <div class="panel-footer">
-                <a id="aContainers" href="javascript:agregarContainer();" class="btn btn-primary btn-sm" role="button">Agregar Container</a>
+                <a id="aContainers" onClick="javascript:agregarContainer();" class="btn btn-primary btn-sm" role="button">Agregar Container</a>
             </div>
         
     </div>
@@ -124,7 +124,7 @@
             <ul id="ulGuias" class="list-group">
             </ul>
             <div class="panel-footer">
-                <a id="aGuias" href="javascript:agregarGuia();" class="btn btn-primary btn-sm" role="button">Agregar Guia</a>
+                <a id="aGuias" onClick="javascript:agregarGuia();" class="btn btn-primary btn-sm" role="button">Agregar Guia</a>
             </div>
         
     </div>
@@ -140,7 +140,7 @@
     </div>
 
 
-    <a class="btn btn-small btn-danger" href="javascript:abrirPedidos();">Cancelar</a>
+    <a class="btn btn-small btn-danger" onClick="javascript:abrirPedidos();">Cancelar</a>
     {{ Form::submit('Crear Pedido!', array('class' => 'btn btn-primary')) }}
 
     {{ Form::close() }}
@@ -161,7 +161,7 @@
                 {{Form::hidden('id','',array('id'=>'id'))}}
                 <div class="form-group">
                     {{ Form::label('numero_container', 'Numero de Container') }}
-                    {{ Form::text('numero_container', Input::old('nombre'), array('class' => 'form-control')) }}
+                    {{ Form::text('numero_container', Input::old('nombre'), array('class' => 'form-control', 'required')) }}
                 </div>
                 {{ Form::submit('Crear container!', array('class' => 'btn btn-primary', 'id'=>'btnsubmit')) }}
 
@@ -185,15 +185,15 @@
                 {{Form::hidden('id','',array('id'=>'idGuia'))}}
                 <div class="form-group">
                     {{ Form::label('numero_guia', 'Numero de guia') }}
-                    {{ Form::text('numero_guia', Input::old('numero de guia'), array('class' => 'form-control')) }}
+                    {{ Form::text('numero_guia', Input::old('numero de guia'), array('class' => 'form-control', 'required')) }}
                 </div>
                 <div class="form-group">
                     {{ Form::label('empresa_envio', 'Empresa de envio') }}
-                    {{ Form::text('empresa_envio', Input::old('ejemplo: Fedex'), array('class' => 'form-control')) }}
+                    {{ Form::text('empresa_envio', Input::old('ejemplo: Fedex'), array('class' => 'form-control', 'required')) }}
                 </div>
                 <div class="form-group">
                     {{ Form::label('url_archivo', 'Documento adjunto') }}
-                    {{ Form::file('url_archivo') }}
+                    {{ Form::file('url_archivo', array('accept'=>'application/pdf', 'required')) }}
                 </div>
                 {{ Form::submit('Crear Guia!', array('class' => 'btn btn-primary', 'id'=>'btnsubmit')) }}
 

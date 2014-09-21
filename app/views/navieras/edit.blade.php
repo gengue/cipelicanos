@@ -7,7 +7,7 @@
            
         </div>
     </div>
-    <a class="btn btn-small btn-info" href="javascript:abrirNavieras();"><i class="fa fa-arrow-left"></i> Atras</a>
+    <a class="btn btn-small btn-info" onClick="javascript:abrirNavieras();"><i class="fa fa-arrow-left"></i> Atras</a>
     <br><br>
 
     {{ Form::model($naviera, array('route' => array('navieras.update', 
@@ -50,7 +50,7 @@
     </div>
     <br/>
     
-    <a class="btn btn-small btn-danger" href="javascript:abrirNavieras();">Cancelar</a>
+    <a class="btn btn-small btn-danger" onClick="javascript:abrirNavieras();">Cancelar</a>
     {{ Form::submit('Editar naviera!', array('class' => 'btn btn-primary')) }}
 
     {{ Form::close() }}

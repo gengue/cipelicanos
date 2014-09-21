@@ -8,8 +8,8 @@
            
         </div>
     </div>
-    <a class="btn btn-small btn-info" href="javascript:abrirUsuarios();"><i class="fa fa-arrow-left"></i> Atras</a>
-    <a class="btn btn-small btn-success" href="javascript:mostrarCambiarPassword();">Cambiar contraseña <i class="fa fa-lock"></i></a>
+    <a class="btn btn-small btn-info" onClick="javascript:abrirUsuarios();"><i class="fa fa-arrow-left"></i> Atras</a>
+    <a class="btn btn-small btn-success" onClick="javascript:mostrarCambiarPassword();">Cambiar contraseña <i class="fa fa-lock"></i></a>
     <br><br>
 
     {{ Form::model($usuario, array('route' => array('usuarios.update', $usuario->id),'id' => 'formEditarUsuario', 'method' => 'PUT')) }}
@@ -58,7 +58,7 @@
     </div>
     <br/>
          
-    <a class="btn btn-small btn-danger" href="javascript:abrirUsuarios();">Cancelar</a>
+    <a class="btn btn-small btn-danger" onClick="javascript:abrirUsuarios();">Cancelar</a>
     {{ Form::submit('Editar!', array('class' => 'btn btn-primary')) }}
 
     {{ Form::close() }}

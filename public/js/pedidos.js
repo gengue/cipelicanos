@@ -139,10 +139,10 @@ $('#formGuia').submit(function(e) {
 function actualizarGuia() {
     $('#ulGuias').html('');
     for (var k = 0; k < Oldguias.length; k++) {
-        $('#ulGuias').append('<li class="list-group-item">' + 'Numero de Guia:  ' + Oldguias[k].numero_guia + ' ->Empresa de Envio:  ' + Oldguias[k].empresa_envio + '  ->Archivo:  ' + Oldguias[k].url_archivo + '</li>');
+        $('#ulGuias').append('<li class="list-group-item">' + '<strong>Numero de Guia:</strong> ' + Oldguias[k].numero_guia + ' <strong>Empresa de Envio: </strong> ' + Oldguias[k].empresa_envio + ' <a href="/showpdf/'+Oldguias[k].url_archivo+'" target="_blank" >Ver Pdf</a>' + '</li>');
     }
     for (var i = 0; i < guias.length; i++) {
-        $('#ulGuias').append('<li class="list-group-item">' + 'Numero de Guia:  ' + guias[i].numero_guia + ' ->Empresa de Envio:  ' + guias[i].empresa_envio + '  ->Archivo:  ' + guias[i].url_archivo + '   ' + ' <a href="javascript:editarGuia(' + i + ')">Editar </a><a href="javascript:eliminarGuia(' + i + ')">Borrar</a></li>');
+        $('#ulGuias').append('<li class="list-group-item">' + '<strong>Numero de Guia: </strong> ' + guias[i].numero_guia + ' <strong>Empresa de Envio:</strong>  ' + guias[i].empresa_envio + '  <strong>Archivo:</strong>  ' + guias[i].url_archivo + '   ' + ' <a href="javascript:editarGuia(' + i + ')">Editar </a><a href="javascript:eliminarGuia(' + i + ')">Borrar</a></li>');
     }
 }
 
