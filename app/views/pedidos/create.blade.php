@@ -86,15 +86,14 @@
         <div class="col-md-6">
              {{ Form::label('fecha_carga', 'Fecha de Carga') }}
              <div class="input-group date" id="datepicker1">  
-              {{ Form::date('fecha_carga', null, array('class'=>'form-control')) }}
+              {{ Form::text('fecha_carga', null, array('class'=>'form-control', 'data-date-format'=>'YYYY-MM-DD')) }}
                 <span class="input-group-addon">
                         <span class="fa fa-calendar"></span>
                 </span>
             </div>
             {{ Form::label('fecha_abordaje', 'Fecha de Abordaje') }}
             <div class="input-group date" id="datepicker2">
-                 {{ Form::date('fecha_abordaje', null, array('class'=>'form-control')) }}
-                <span class="input-group-addon">
+                 {{ Form::text('fecha_abordaje', null, array('class'=>'form-control', 'data-date-format'=>'YYYY-MM-DD')) }}                <span class="input-group-addon">
                         <span class="fa fa-calendar"></span>
                 </span>
             </div>
@@ -102,7 +101,7 @@
         <div class="col-md-6">
             {{ Form::label('fecha_entrega', 'Fecha de Entrega') }}
             <div class="input-group date" id="datepicker3">
-                 {{ Form::date('fecha_entrega', null, array('class'=>'form-control')) }}
+                 {{ Form::text('fecha_entrega', null, array('class'=>'form-control', 'data-date-format'=>'YYYY-MM-DD')) }}
                 <span class="input-group-addon">
                         <span class="fa fa-calendar"></span>
                 </span>
