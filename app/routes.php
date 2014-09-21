@@ -55,11 +55,14 @@ Route::get('/dashboard', function()
     $numHistorial = Pedido::where('estado','=','INACTIVO')->count();
     $pedidos = Pedido::all()->take(5);
     $ultimoAcceso = Auth::user()->ultimo_acceso;
-    
+    $numClientes = Usuario::where('tipo_usuario', 'CLIENTE')->count();
+
+
     return View::make('dashboard')
         ->with('numpedidos', $numPedidos)
         ->with('numhistorial', $numHistorial)
         ->with('pedidos', $pedidos)
+        ->with('numclientes', $numClientes)
         ->with('ultimoAcceso', $ultimoAcceso);
 });
 
@@ -69,7 +72,7 @@ Route::get('/mod_cliente/dashboard', function(){
     $usuario = Usuario::find(Auth::id());
     $objPedidos = array();
     $ultimoAcceso = Auth::user()->ultimo_acceso;
-
+    
          foreach ($usuario->companias as $compania) {
              foreach ($compania->pedidos as $pedido) {
                 if($pedido->estado == 'ACTIVO'){
@@ -82,8 +85,6 @@ Route::get('/mod_cliente/dashboard', function(){
     return View::make('mod_cliente.dashboard')
         ->with('pedidos', $objPedidos)
         ->with('numpedidos', $numPedidos)
-
-        
         ->with('ultimoAcceso', $ultimoAcceso);
 });
 

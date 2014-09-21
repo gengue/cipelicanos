@@ -63,9 +63,9 @@
 
                     <td>  
                         <a class="btn btn-small btn-success" href="javascript:mostrarDetallePedido({{ $value->id }});"><i class="fa fa-search"></i></a>
-                        <a class="btn btn-small btn-primary" data-toggle="confirmation" data-href="javascript:finalizarPedido({{ $value->id }});" href="javascript:finalizarPedido({{ $value->id }});"><i class="fa fa-check"></i></a>
+                        <a class="btn btn-small btn-primary" data-toggle="confirmation" data-href="javascript:finalizarPedido({{ $value->id }});" data-title="¿Pedido finalizado?" href="javascript:finalizarPedido({{ $value->id }});"><i class="fa fa-check"></i></a>
                         <a class="btn btn-small btn-info" href="javascript:mostrarEditarPedido({{ $value->id }});"><i class="fa fa-pencil"></i></a>
-                        <a class="btn btn-small btn-danger" data-toggle="confirmation" data- data-href="javascript:eliminarPedido({{ $value->id }});" href="javascript:eliminarPedido({{ $value->id }});"><i class="fa fa-trash-o"></i></a>
+                        <a class="btn btn-small btn-danger" data-toggle="confirmation" data- data-href="javascript:eliminarPedido({{ $value->id }});" data-title="¿Esta seguro?" href="javascript:eliminarPedido({{ $value->id }});"><i class="fa fa-trash-o"></i></a>
                         <a class="btn btn-small btn-info" href="javascript:"><i class="fa fa-list"></i></a>
                     </td>
                 </tr>

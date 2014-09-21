@@ -31,43 +31,40 @@ class UsuarioController extends BaseController {
     }
  
     public function store() {
-       if (Request::ajax()) {
-            $rules = array(
-            );
-        $validator = Validator::make(Input::all(), $rules);
-        if ($validator->fails()) {
-            return Response::json(array(
-                            'msg' => 'error'
-        ));
+        if (Request::ajax()) {
+            $rules = array();
+            $validator = Validator::make(Input::all(), $rules);
+            if ($validator->fails()) {
+                return Response::json(array('msg' => 'error'));
+            } else {
+                // store
+                $usuario = new Usuario;
+                $usuario->nombre = Input::get('nombre');
+                $usuario->password = Hash::make(Input::get('password'));
+                $usuario->apellido = Input::get('apellido');
+                $usuario->telefono = Input::get('telefono');
+                $usuario->correo = Input::get('correo');
+                $usuario->direccion = Input::get('direccion');
+                $usuario->pais_id = Input::get('pais');
+                $usuario->ciudad_id = Input::get('ciudad');
+                $usuario->tipo_usuario = Input::get('tipo_usuario');
+                $usuario->ultimo_acceso = new DateTime();
+                $usuario->save();    
+                $usuario->normalPassword = Input::get('password');
+                $this->enviarMail($usuario);   
 
-        } else {
-            // store
-            $usuario = new Usuario;
-            $usuario->nombre = Input::get('nombre');
-            $usuario->password = Hash::make(Input::get('password'));
-            $usuario->apellido = Input::get('apellido');
-            $usuario->telefono = Input::get('telefono');
-            $usuario->correo = Input::get('correo');
-            $usuario->direccion = Input::get('direccion');
-            $usuario->pais_id = Input::get('pais');
-            $usuario->ciudad_id = Input::get('ciudad');
-            $usuario->tipo_usuario = Input::get('tipo_usuario');
-            $usuario->ultimo_acceso = new DateTime();
-            $usuario->save();    
-            $usuario->normalPassword = Input::get('password');
-            $this->enviarMail($usuario);   
-
-            return Response::json(array(
-                            'msg' => 'ok'
-                ));
+                return Response::json(array(
+                                'msg' => 'ok'
+                    ));
+            }
         }
-    }}
+    }
 
     private function enviarMail($usuario){
         Mail::send('emails.cuentaCreada', array('usuario' => $usuario), function ($message) use($usuario){
         $message->subject('C.I Pelicanos - Se ha creado tu cuenta!');
         $message->to($usuario->correo, $usuario->nombre." ".$usuario->apellido);
-});
+        });
     }
 
     public function show($id) {
@@ -107,9 +104,7 @@ class UsuarioController extends BaseController {
     }
     public function update($id) {
        
-       
-
-         if (Request::ajax()) {
+        if (Request::ajax()) {
             $rules = array(
                
                 
@@ -120,29 +115,29 @@ class UsuarioController extends BaseController {
                 return Response::json(array(
                             'msg' => 'error'
                 ));
-        } else {
-            // store
-            $usuario = Usuario::find($id);
-            $usuario->nombre = Input::get('nombre');
-            $usuario->apellido = Input::get('apellido');
-            $usuario->telefono = Input::get('telefono');
-            $usuario->correo = Input::get('correo');
-            $usuario->direccion = Input::get('direccion');
-            $usuario->pais_id = Input::get('pais');
-            $usuario->ciudad_id = Input::get('ciudad');
-            
-            if(Input::get('tipo_usuario')){
-                $usuario->tipo_usuario = Input::get('tipo_usuario');
+            } else {
+                // store
+                $usuario = Usuario::find($id);
+                $usuario->nombre = Input::get('nombre');
+                $usuario->apellido = Input::get('apellido');
+                $usuario->telefono = Input::get('telefono');
+                $usuario->correo = Input::get('correo');
+                $usuario->direccion = Input::get('direccion');
+                $usuario->pais_id = Input::get('pais');
+                $usuario->ciudad_id = Input::get('ciudad');
                 
-            }else{
-                $usuario->tipo_usuario = 'CLIENTE';
-            }
-            $usuario->save();
+                if(Input::get('tipo_usuario')){
+                    $usuario->tipo_usuario = Input::get('tipo_usuario');
+                    
+                }else{
+                    $usuario->tipo_usuario = 'CLIENTE';
+                }
+                $usuario->save();
 
-             return Response::json(array(
-                            'msg' => 'ok'
-                ));}
-    }}
+                 return Response::json(array('msg' => 'ok'));
+             }
+        }
+    }
 
             
     public function destroy($id) {
@@ -161,6 +156,14 @@ class UsuarioController extends BaseController {
 
     
     public function cambiarPasswordUsuario($id){
+        $rules = array(
+          'password_nueva' => 'required|alpha_num|between:6,25',
+          'password_nueva2' => 'required|alpha_num|between:6,25');
+        
+        $validator = Validator::make(Input::all(), $rules);
+        if ($validator->fails()) {
+            return Response::json(array('msg' => 'errorFormat'));
+        }
         $usuario = Usuario::find($id);
        
         if(Input::get('password_nueva') == Input::get('password_nueva2')){

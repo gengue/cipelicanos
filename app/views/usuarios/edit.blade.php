@@ -114,7 +114,6 @@
 
     $("#formCambiarPassword").submit(function(e) {
       e.preventDefault();
-      
       if ($('#password_nueva').val()!== "" && $('#password_nueva2').val()!== "" ) {
          actualizarPasswordUsuario($("#formCambiarPassword").serialize(), {{ $usuario->id }});
       } else {

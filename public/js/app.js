@@ -1171,6 +1171,9 @@ function actualizarPassword(datos){
                   if(res.msg === "errorConfirm"){
                     alert("Las contraseñas no coinciden", "Error", "error");
                   }
+                  if(res.msg === "errorFormat"){
+                    alert("La contraseña debe tener minimo 6 caracteres", "Error", "error");
+                  }
                 }
             });
 }
@@ -1188,6 +1191,9 @@ function actualizarPasswordUsuario(datos, id){
                   }
                   if(res.msg === "errorConfirm"){
                     alert("Las contraseñas no coinciden", "Error", "error");
+                  }
+                  if(res.msg === "errorFormat"){
+                    alert("La contraseña debe tener minimo 6 caracteres", "Error", "error");
                   }
                 }
             });
