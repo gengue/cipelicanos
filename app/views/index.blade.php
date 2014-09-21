@@ -11,7 +11,6 @@
         {{ HTML::style('css/plugins/morris.css') }}
         {{ HTML::style('dropzone/downloads/css/dropzone.css') }}
         {{ HTML::style('font-awesome-4.1.0/css/font-awesome.min.css') }}
-
         <meta name="_token" content="{{ csrf_token() }}"/>
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
     </head>

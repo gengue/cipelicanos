@@ -18,21 +18,21 @@
 
     <div class="form-group">
         <div class="col-lg-6">
-            {{ Form::label('compania', 'Compañia') }}
-            {{ Form::select('compania_id', $companias, null, array('class'=>'form-control','style'=>'' )) }}
+            {{ Form::label('compania_id', 'Compañia') }}
+            {{ Form::select('compania_id', $companias, null, array('class'=>'form-control')) }}
             
             {{ Form::label('proveedor_id', 'Proveedor') }}
-            {{ Form::select('proveedor_id', $proveedores, null, array('class'=>'form-control','style'=>'' )) }}
+            {{ Form::select('proveedor_id', $proveedores, null, array('class'=>'form-control')) }}
         </div>
     </div>
 
     <div class="form-group">
         <div class="col-lg-6">
             {{ Form::label('producto_id', 'Producto') }}
-            {{ Form::select('producto_id', $productos, null, array('class'=>'form-control','style'=>'' )) }}
+            {{ Form::select('producto_id', $productos, null, array('class'=>'form-control')) }}
 
             {{ Form::label('naviera_id', 'Naviera') }}
-            {{ Form::select('naviera_id', $navieras, null, array('class'=>'form-control','style'=>'' )) }}
+            {{ Form::select('naviera_id', $navieras, null, array('class'=>'form-control' )) }}
         </div>
     </div>
     <br/><br/><br/><br/><br/><br/><br/>

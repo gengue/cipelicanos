@@ -18,10 +18,10 @@ class PedidosController extends BaseController {
     }
 
     public function create() {
-        $productos = Producto::lists('nombre', 'id');
-        $proveedores = Proveedor::lists('nombre', 'id');
-        $navieras = Naviera::lists('nombre', 'id');
-        $companias = Compania::lists('nombre', 'id');
+        $productos = ['null' => 'Seleccione uno...'] + Producto::lists('nombre', 'id');
+        $proveedores = ['null' => 'Seleccione uno...'] + Proveedor::lists('nombre', 'id');
+        $navieras = ['null' => 'Seleccione una...'] + Naviera::lists('nombre', 'id');
+        $companias = ['null' => 'Seleccione una...'] + Compania::lists('nombre', 'id');
         //$container = Container::lists('numero_container', 'id');
         //$guias = Guia::lists('numero_guia', 'id');
 
@@ -109,13 +109,12 @@ class PedidosController extends BaseController {
     public function edit($id) {
         $containerdb = new PedidosContainer();
         $pedido = Pedido::find($id);
-
         $pedido->containers = $containerdb->obtenerListaContainer($id);
 
-        $productos = Producto::lists('nombre', 'id');
-        $proveedores = Proveedor::lists('nombre', 'id');
-        $navieras = Naviera::lists('nombre', 'id');
-        $companias = Compania::lists('nombre', 'id');
+        $productos = ['null' => 'Seleccione uno...'] + Producto::lists('nombre', 'id');
+        $proveedores = ['null' => 'Seleccione uno...'] + Proveedor::lists('nombre', 'id');
+        $navieras = ['null' => 'Seleccione una...'] + Naviera::lists('nombre', 'id');
+        $companias = ['null' => 'Seleccione una...'] + Compania::lists('nombre', 'id');
 
         $guias = Guia::where('pedido_id', $id)->get();
 

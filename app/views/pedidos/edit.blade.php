@@ -21,20 +21,20 @@
     <div class="form-group">
         <div class="col-lg-6">    
             {{ Form::label('compania', 'Compañia') }}
-            {{ Form::select('compania_id', $companias, null, array('class'=>'form-control','style'=>'' )) }}
-            
+            {{ Form::select('compania_id', $companias, null, array('class'=>'form-control')) }}
+            {{ $pedido->proveedor_id }}
             {{ Form::label('proveedor_id', 'Proveedor') }}
-            {{ Form::select('proveedor_id', $proveedores, $pedido->proveedor_id, array('class'=>'form-control','style'=>'' )) }}
+            {{ Form::select('proveedor_id', $proveedores, $pedido->producto->proveedor->id, array('class'=>'form-control')) }}
         </div>
     </div>
 
     <div class="form-group">
         <div class="col-lg-6">  
             {{ Form::label('producto_id', 'Producto') }}
-            {{ Form::select('producto_id', $productos, $pedido->producto_id, array('class'=>'form-control','style'=>'' )) }}
+            {{ Form::select('producto_id', $productos, $pedido->producto_id, array('class'=>'form-control' )) }}
             
             {{ Form::label('naviera_id', 'Naviera') }}
-            {{ Form::select('naviera_id', $navieras, $pedido->naviera_id, array('class'=>'form-control','style'=>'' )) }}
+            {{ Form::select('naviera_id', $navieras, $pedido->naviera_id, array('class'=>'form-control')) }}
         </div>
     </div>
 <br/><br/><br/><br/><br/><br/><br/>
