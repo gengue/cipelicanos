@@ -80,7 +80,7 @@
                         <a class="btn btn-small btn-success" onclick="javascript:mostrarDetallePedido({{ $value->id }});"><i class="fa fa-search"></i></a>
                         <a class="btn btn-small btn-primary" data-toggle="confirmation" data-href="javascript:finalizarPedido({{ $value->id }});" href="javascript:finalizarPedido({{ $value->id }});"><i class="fa fa-check"></i></a>
                         <a class="btn btn-small btn-info" onclick="javascript:mostrarEditarPedido({{ $value->id }});"><i class="fa fa-pencil"></i></a>
-                        <a class="btn btn-small btn-danger" data-toggle="confirmation" data- data-href="javascript:eliminarPedido({{ $value->id }});" href="javascript:eliminarPedido({{ $value->id }});"><i class="fa fa-trash-o"></i></a>
+                        <a class="btn btn-small btn-danger" data-toggle="confirmation"  data-href="javascript:eliminarPedido({{ $value->id }});" href="javascript:eliminarPedido({{ $value->id }});"><i class="fa fa-trash-o"></i></a>
                     </td>
                 </tr>
                 @endforeach

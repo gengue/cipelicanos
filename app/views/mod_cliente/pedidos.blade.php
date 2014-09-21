@@ -9,7 +9,7 @@
         </div>
     </div>
 
-    <a class="btn btn-small btn-info" href="javascript:abrirPedidos();"><i class="fa fa-list"></i> Listar todos</a>
+    <a class="btn btn-small btn-info" onClick="javascript:abrirPedidos();"><i class="fa fa-list"></i> Listar todos</a>
 
     <br><br>
 

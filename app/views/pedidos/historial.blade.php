@@ -9,7 +9,7 @@
         </div>
     </div>
 
-    <a class="btn btn-small btn-info" href="javascript:abrirPedidos();"><i class="fa fa-list"></i> Mostrar pedidos activos</a>
+    <a class="btn btn-small btn-info" onClick="javascript:abrirPedidos();"><i class="fa fa-list"></i> Mostrar pedidos activos</a>
     <br>
     
 
@@ -77,7 +77,7 @@
                         @endforeach
                     </td>
                     <td>  
-                        <a class="btn btn-small btn-success" href="javascript:mostrarDetallePedido({{ $value->id }});"><i class="fa fa-search"></i></a>
+                        <a class="btn btn-small btn-success" onClick="javascript:mostrarDetallePedido({{ $value->id }});"><i class="fa fa-search"></i></a>
                     </td>
                 </tr>
                 @endforeach

@@ -8,7 +8,7 @@
             
         </div>
     </div>
-    <a class="btn btn-small btn-info" href="javascript:abrirProveedores();"><i class="fa fa-arrow-left"></i> Atras</a>
+    <a class="btn btn-small btn-info" onClick="javascript:abrirProveedores();"><i class="fa fa-arrow-left"></i> Atras</a>
     <br><br>
 
     <!-- if there are creation errors, they will show here -->
@@ -42,7 +42,7 @@
         {{ Form::label('correo', 'Email') }}
         {{ Form::text('correo', Input::old('email'), array('class' => 'form-control')) }}
     </div>
-    <a class="btn btn-small btn-danger" href="javascript:abrirProveedores();">Cancelar</a>
+    <a class="btn btn-small btn-danger" onClick="javascript:abrirProveedores();">Cancelar</a>
     {{ Form::submit('Editar proveedor!', array('class' => 'btn btn-primary')) }}
 
     {{ Form::close() }}
