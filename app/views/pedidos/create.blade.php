@@ -161,7 +161,7 @@
                 {{Form::hidden('id','',array('id'=>'id'))}}
                 <div class="form-group">
                     {{ Form::label('numero_container', 'Numero de Container') }}
-                    {{ Form::text('numero_container', Input::old('nombre'), array('class' => 'form-control')) }}
+                    {{ Form::text('numero_container', Input::old('nombre'), array('class' => 'form-control', 'required')) }}
                 </div>
                 {{ Form::submit('Crear container!', array('class' => 'btn btn-primary', 'id'=>'btnsubmit')) }}
 
@@ -185,11 +185,11 @@
                 {{Form::hidden('id','',array('id'=>'idGuia'))}}
                 <div class="form-group">
                     {{ Form::label('numero_guia', 'Numero de guia') }}
-                    {{ Form::text('numero_guia', Input::old('numero de guia'), array('class' => 'form-control')) }}
+                    {{ Form::text('numero_guia', Input::old('numero de guia'), array('class' => 'form-control', 'required')) }}
                 </div>
                 <div class="form-group">
                     {{ Form::label('empresa_envio', 'Empresa de envio') }}
-                    {{ Form::text('empresa_envio', Input::old('ejemplo: Fedex'), array('class' => 'form-control')) }}
+                    {{ Form::text('empresa_envio', Input::old('ejemplo: Fedex'), array('class' => 'form-control', 'required')) }}
                 </div>
                 <div class="form-group">
                     {{ Form::label('url_archivo', 'Documento adjunto') }}

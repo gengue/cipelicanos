@@ -43,10 +43,14 @@
                                 </tr>
                                 <tr>
                                     <td>Guias:</td>
-                                    <td>
-                                    @foreach($pedido->guias as $llave => $guia) 
-                                    {{ $guia->numero_guia. " - ".$guia->empresa_envio}},
-                                    @endforeach
+                                    <td> 
+                                        @foreach($pedido->guias as $llave => $guia) 
+                                        <a href="{{ URL::to('showpdf/'.$guia->url_archivo)}}" target="_blank" >
+                                            {{ $guia->numero_guia}}
+                                        </a>
+                                        {{"-".$guia->empresa_envio}}
+                                        <br>
+                                        @endforeach
                                     </td>
                                 </tr>
                                 <tr>
@@ -91,12 +95,23 @@
                                     <td>Numero de cotainers:</td>
                                     <td>@foreach($pedido->containers as $llave => $container) 
 
-                                    <a href="{{ $pedido->naviera->url_seguimiento . $container->numero_container }}" target="_blank">
-                                        {{ $container->numero_container }}
-                                    </a>
-                                    
-                                    <br>
-                                    @endforeach
+                                        <a href="{{ $pedido->naviera->url_seguimiento . $container->numero_container }}" target="_blank">
+                                            {{ $container->numero_container }}
+                                        </a>
+
+                                        <br>
+                                        @endforeach
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>Documentos Disponibles:</td>
+                                    <td>
+                                        @foreach($pedido->documentos as $llave => $docu)
+                                        <a href="{{ URL::to('showOtpdf/'.$docu->url_archivo)}}" target="_blank" >
+                                            {{explode("/",$docu->url_archivo)[4];}}
+                                        </a> 
+                                        <br>
+                                        @endforeach
                                     </td>
                                 </tr>
                             </tbody>

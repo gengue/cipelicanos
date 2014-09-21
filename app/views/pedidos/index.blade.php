@@ -21,6 +21,7 @@
                     <td data-class="expand">Producto</td>
                     <td data-hide="phone,tablet,pc">Proveedor</td>
                     <td data-hide="phone,tablet">Compañia</td>
+                    <td data-hide="phone,tablet">Cliente</td>
                     <td data-hide="phone,tablet">Naviera</td>
                     <td data-hide="phone,tablet">Containers</td>
                     <td data-hide="phone">Guia</td>
@@ -30,7 +31,7 @@
                     <td data-hide="phone,tablet">Abordaje</td>
                     <td data-hide="phone,tablet,pc">Entrega</td>
                     <td data-hide="phone">Tipo</td>
-                    <td data-hide="phone,tablet">Documentos</td>
+                    <td data-hide="phone,tablet,pc">Documentos</td>
                     <td data-hide="phone,tablet">Opciones</td>
                 </tr>
             </thead>
@@ -41,6 +42,7 @@
                     <td>{{ $value->producto->proveedor->nombre }}</td>
                     <td>{{ $value->naviera->nombre }}</td>
                     <td>{{ $value->compania->nombre }}</td>
+                    <td>{{ $value->compania->cliente->nombre }}</td>
                     <td> 
                         @foreach($value->containers as $llave => $container) 
 
@@ -87,11 +89,11 @@
     </div>
 </div>
 <script>
-    $('[data-toggle="confirmation"]').confirmation();
+            $('[data-toggle="confirmation"]').confirmation();
             "use strict";
             var responsiveHelper = undefined;
             var breakpointDefinition = {
-            pc: 1444,
+                    pc: 1444,
                     tablet: 1024,
                     phone: 480
             };

@@ -38,7 +38,7 @@ Route::get('showpdf/public/archivos/{id}/{nombre}', function($id, $nombre) {
         //  and an array of html headers including the pdf content type
         return Response::make($content, 200, array('content-type' => 'application/pdf'));
     }else{
-        return Response::make("No tiene permiso para estar aca!", 404);
+        return Response::make("No tiene permiso para estar aca, o el archivo no existe, o ud es un care verga!", 404);
     }
 });
 Route::get('showOtpdf/public/archivos/{id}/otros/{nombre}', function($id, $nombre) {
@@ -52,7 +52,7 @@ Route::get('showOtpdf/public/archivos/{id}/otros/{nombre}', function($id, $nombr
         //  and an array of html headers including the pdf content type
         return Response::make($content, 200, array('content-type' => 'application/pdf'));
     }else{
-        return Response::make("No tiene permiso para estar aca!", 404);
+        return Response::make("No tiene permiso para estar aca, o el archivo no existe, o ud es un care verga!", 404);
     }
 });
 
