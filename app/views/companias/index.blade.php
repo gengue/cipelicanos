@@ -1,12 +1,12 @@
 <div class="container-fluid">
     <div class="row">
         <div class="col-lg-12">
-            <h1 class="page-header"><i class="fa fa-fw fa-university"></i> Compa&ntilde;ias <small>Todas las compa&ntilde;ias</small></h1>
+            <h1 class="page-header"><i class="fa fa-fw fa-university"></i> Compa&ntilde;&iacute;as <small>Todas las compa&ntilde;&iacute;as</small></h1>
             
         </div>
     </div>
-    <a class="btn btn-small btn-info" onClick="javascript:abrirCompanias();"><i class="fa fa-list"></i> Listar todos</a>
-    <a class="btn btn-small btn-info" onClick="javascript:mostrarCrearCompanias();"><i class="fa fa-plus"></i> Agregar compa&ntilde;ia</a>
+    <a class="btn btn-small btn-info" href="javascript:abrirCompanias();"><i class="fa fa-list"></i> Listar todos</a>
+    <a class="btn btn-small btn-info" href="javascript:mostrarCrearCompanias();"><i class="fa fa-plus"></i> Agregar compa&ntilde;&iacute;a</a>
     <br>
     <br>
     <div class="table-responsive">
@@ -16,9 +16,9 @@
 
                     <td data-class="expand">Nombre</td>
                     <td data-hide="phone,tablet">NIT</td>
-                    <td data-hide="phone, tablet">Telefono</td>
+                    <td data-hide="phone, tablet">Tel&eacute;fono</td>
                     <td data-hide="phone">Correo</td>
-                    <td data-hide="phone">Direccion</td>
+                    <td data-hide="phone">Direcci&oacute;n</td>
                     <td>Usuario</td>
                     <td data-hide="phone">Opciones</td>
                 </tr>
@@ -35,8 +35,8 @@
                     <td>{{ $value->cliente->nombre." ".$value->cliente->apellido}}</td>
 
                     <td>
-                        <a class="btn btn-small btn-success" onClick="javascript:mostrarDetalleCompania({{ $value->id }});"><i class="fa fa-search"></i></a>
-                        <a class="btn btn-small btn-info" onClick="javascript:mostrarEditarCompania({{ $value->id }});"><i class="fa fa-pencil"></i>
+                        <a class="btn btn-small btn-success" href="javascript:mostrarDetalleCompania({{ $value->id }});"><i class="fa fa-search"></i></a>
+                        <a class="btn btn-small btn-info" href="javascript:mostrarEditarCompania({{ $value->id }});"><i class="fa fa-pencil"></i>
                         </a><a class="btn btn-small btn-danger" data-toggle="confirmation" data-href="javascript:eliminarCompania({{ $value->id }});" href="javascript:eliminarCompania({{ $value->id }});"><i class="fa fa-trash-o"></i></a>
                     </td>
                 </tr>

@@ -5,7 +5,7 @@
     <div class="row">
         <div class="col-lg-12">
             <h1 class="page-header">
-                <i class="fa fa-fw fa-users"></i> Datos Personales <small>Perfil de Usuario</small>
+                <i class="fa fa-fw fa-users"></i> Datos Personales <small>Perf&iacute;l de usuario</small>
             </h1>
             
         </div>
@@ -28,29 +28,29 @@
                       <tbody>
                      
                         <tr>
-                        <td>Tipo de Usuario:</td>
+                        <td>Tipo de usuario:</td>
                         <td>{{ $value->tipo_usuario }}</td>
                       </tr>
                       <tr>
-                        <td>Nombre Completo:</td>
+                        <td>Nombre completo:</td>
                          <td>{{ $value->nombre }} {{ $value->apellido }}</td>
                       </tr>
                       <tr>
-                        <td>Telefono :</td>
+                        <td>Tel&eacute;fono :</td>
                         <td>{{ $value->telefono }}</td>
                       </tr>
                    
                          <tr>
                              <tr>
-                        <td>Correo Electronico :</td>
+                        <td>E-mail :</td>
                          <td>{{ $value->correo }}</td>
                       </tr>
                         <tr>
-                        <td>Direccion :</td>
+                        <td>Direcci&oacute;n :</td>
                         <td>{{ $value->direccion }}</td>
                       </tr>
                       <tr>
-                        <td>Pais :</td>
+                        <td>Pa&iacute;s :</td>
                         <td>{{ $value->pais->nombre }}</td>
                       </tr>
                       <tr>  
@@ -70,8 +70,8 @@
               </div>
             </div>
                  <div class="panel-footer">
-                  <a class="btn btn-small btn-primary" onClick="javascript:mostrarEditarPerfil({{ $value->id }});">Editar <i class="fa fa-pencil"></i></a>
-                  <a class="btn btn-small btn-success" onClick="javascript:mostrarCambiarPassword({{ $value->id }});">Cambiar contraseña <i class="fa fa-lock"></i></a>
+                  <a class="btn btn-small btn-primary" href="javascript:mostrarEditarPerfil({{ $value->id }});">Editar <i class="fa fa-pencil"></i></a>
+                  <a class="btn btn-small btn-success" href="javascript:mostrarCambiarPassword({{ $value->id }});">Cambiar contrase&ntilde;a <i class="fa fa-lock"></i></a>
                  </div>
             
           </div>
@@ -82,7 +82,7 @@
                 <div class="modal-content">
                     <div class="modal-header">
                         <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-                        <h4 class="modal-title" id="myModalLabel">Cambiar contraseña</h4>
+                        <h4 class="modal-title" id="myModalLabel">Cambiar contrase&ntilde;a</h4>
                     </div>
 
                     <div class="modal-body form-horizontal">

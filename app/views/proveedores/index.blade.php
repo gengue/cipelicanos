@@ -9,8 +9,8 @@
         </div>
     </div>
 
-    <a class="btn btn-small btn-info" onClick="javascript:abrirProveedores();"><i class="fa fa-list"></i> Listar todos</a>
-    <a class="btn btn-small btn-info" onClick="javascript:mostrarCrearProveedores();"><i class="fa fa-plus"></i> Agregar Proveedor</a>
+    <a class="btn btn-small btn-info" href="javascript:abrirProveedores();"><i class="fa fa-list"></i> Listar todos</a>
+    <a class="btn btn-small btn-info" href="javascript:mostrarCrearProveedores();"><i class="fa fa-plus"></i> Agregar proveedor</a>
     <br><br>
 
 
@@ -24,9 +24,9 @@
         <thead>
             <tr>                
                 <td data-class="expand">Nombre</td>
-                <td>Nombre de Contacto</td>
+                <td>Nombre del Cont&aacute;cto</td>
                 <td data-hide="phone">Telefono</td>
-                <td data-hide="phone,tablet">Direccion</td>
+                <td data-hide="phone,tablet">Direcci&oacute;n</td>
                 <td data-hide="phone,tablet">Correo</td>
                 <td data-hide="phone">Opciones</td>
             </tr>
@@ -42,8 +42,8 @@
 
                 <td>                            
                     
-                    <a class="btn btn-small btn-success" onClick= "javascript:mostrarDetalleProveedores({{$value->id}});" title="Ver Detalles"><i class="fa fa-search" ></i></a>
-                    <a class="btn btn-small btn-info" onClick="javascript:mostrarEditarProveedores({{ $value->id}});" title="Modificar" ><i class="fa fa-pencil" ></i></a>
+                    <a class="btn btn-small btn-success" href= "javascript:mostrarDetalleProveedores({{$value->id}});" title="Ver Detalles"><i class="fa fa-search" ></i></a>
+                    <a class="btn btn-small btn-info" href="javascript:mostrarEditarProveedores({{ $value->id}});" title="Modificar" ><i class="fa fa-pencil" ></i></a>
                     <a class="btn btn-small btn-danger" data-toggle="confirmation" data-href="javascript:eliminarProveedores({{ $value->id }});" href="javascript:eliminarProveedores({{ $value->id }});" title="Eliminar"><i class="fa fa-trash-o" ></i></a>
 
                 </td>

@@ -71,8 +71,8 @@
               </div>
             </div>
                  <div class="panel-footer">
-                  <a class="btn btn-small btn-info" onClick="javascript:mostrarEditarPerfil({{ $value->id }});">Editar <i class="fa fa-pencil"></i></a>
-                  <a class="btn btn-small btn-success" onClick="javascript:mostrarCambiarPassword({{ $value->id }});">Cambiar contraseña <i class="fa fa-lock"></i></a>
+                  <a class="btn btn-small btn-info" href="javascript:mostrarEditarPerfil({{ $value->id }});">Editar <i class="fa fa-pencil"></i></a>
+                  <a class="btn btn-small btn-success" href="javascript:mostrarCambiarPassword({{ $value->id }});">Cambiar contraseña <i class="fa fa-lock"></i></a>
                  </div>
             
           </div>

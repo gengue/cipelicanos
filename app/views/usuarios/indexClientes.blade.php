@@ -13,10 +13,10 @@
             <thead>
                 <tr>
                     <td data-class="expand">Nombre</td>
-                    <td data-hide="phone, tablet">Telefono</td>
+                    <td data-hide="phone, tablet">Tel&eacute;fono</td>
                     <td>Correo</td>
-                    <td data-hide="phone,tablet">Direccion</td>
-                    <td data-hide="phone,tablet">Pais</td>
+                    <td data-hide="phone,tablet">Direcci&oacute;n</td>
+                    <td data-hide="phone,tablet">Pa&iacute;s</td>
                     <td data-hide="phone">Ciudad</td>
                     <td data-hide="phone">Opciones</td>
                 </tr>
@@ -33,7 +33,7 @@
 	                    <td>{{ $value->ciudad->nombre }}</td>
 	
 	                    <td>                            
-	                        <a class="btn btn-small btn-success" onClick="javascript:mostrarDetalleCliente({{ $value->id }});"><i class="fa fa-search"></i></a>
+	                        <a class="btn btn-small btn-success" href="javascript:mostrarDetalleCliente({{ $value->id }});"><i class="fa fa-search"></i></a>
 	                        <a class="btn btn-small btn-danger" data-toggle="confirmation" data-href="javascript:eliminarCliente({{ $value->id }});" href="javascript:eliminarCliente({{ $value->id }});"><i class="fa fa-trash-o"></i></a>
 	
 	                    </td>

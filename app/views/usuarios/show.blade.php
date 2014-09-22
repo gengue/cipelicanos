@@ -3,7 +3,7 @@
      <div class="row">
         <div class="col-lg-12">
             <h1 class="page-header">
-                <!--i></i-->Usuario <small>Mostrar Usuario</small>
+                <!--i></i-->Usuario <small>Mostrar usuario</small>
             </h1>
             <ol class="breadcrumb">
                 <li class="active">
@@ -30,7 +30,7 @@
                       <tbody>
                      
                         <tr>
-                        <td>Tipo de Usuario:</td>
+                        <td>Tipo de usuario:</td>
                         <td>{{ $usuarios->tipo_usuario }}</td>
                       </tr>
                       <tr>
@@ -41,20 +41,20 @@
                         <td>{{ $usuarios->apellido }}</td>
                       </tr>
                        <tr>
-                        <td>Email:</td>
+                        <td>E-mail:</td>
                         <td>{{ $usuarios->correo }}</td>
                       </tr>
                       <tr>
-                        <td>Telefono:</td>
+                        <td>Tel&eacute;fono:</td>
                         <td>{{ $usuarios->telefono }}</td>
                       </tr>
                       <tr>
                        
-                        <td>Direccion:</td>
+                        <td>Direcci&oacute;n:</td>
                         <td>{{ $usuarios->direccion }}</td>
                       </tr>
                       <tr>
-                        <td>Pais:</td>
+                        <td>Pa&iacute;s:</td>
                         <td>{{ $usuarios->pais->nombre }}</td>
                       </tr>
                       <tr>
@@ -72,7 +72,7 @@
               </div>
             </div>
                  <div class="panel-footer">
-                  <a class="btn btn-small btn-info" onClick="javascript:abrirUsuarios();"><i class="fa fa-arrow-left"></i> Atras</a>
+                  <a class="btn btn-small btn-info" href="javascript:abrirUsuarios();"><i class="fa fa-arrow-left"></i> Atr&aacute;s</a>
                  </div>
           </div>
         </div>

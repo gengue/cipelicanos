@@ -3,7 +3,7 @@
      <div class="row">
         <div class="col-lg-12">
             <h1 class="page-header">
-                <!--i></i-->Proveedores <small>Mostrar Proveedor</small>
+                <!--i></i-->Proveedores <small>Mostrar proveedor</small>
             </h1>
             <ol class="breadcrumb">
                 <li class="active">
@@ -30,18 +30,18 @@
                       <tbody>
                      
                         <tr>
-                        <td>Nombre de Contacto:</td>
+                        <td>Nombre del cont&aacute;cto:</td>
                         <td>{{ $proveedor->nombre_contacto }}</td>
                       </tr>
                       <tr>
-                        <td>Telefono:</td>
+                        <td>Tel&eacute;fono:</td>
                          <td>{{ $proveedor->telefono }}</tr>
                        <tr>
                         <td>Direccion:</td>
                         <td>{{ $proveedor->direccion }}</td>
                       </tr>
                        <tr>
-                        <td>Email:</td>
+                        <td>E-mail:</td>
                         <td>{{ $proveedor->correo }}</td>
                       </tr>
                       <tr>
@@ -56,7 +56,7 @@
               </div>
             </div>
                  <div class="panel-footer">
-                  <a class="btn btn-small btn-info" onClick="javascript:abrirProveedores();"><i class="fa fa-arrow-left"></i> Atras</a>
+                  <a class="btn btn-small btn-info" href="javascript:abrirProveedores();"><i class="fa fa-arrow-left"></i> Atr&aacute;s</a>
                  </div>
           </div>
         </div>

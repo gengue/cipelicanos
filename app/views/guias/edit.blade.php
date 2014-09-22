@@ -3,12 +3,12 @@
     <nav class="navbar navbar-inverse">
 
         <ul class="nav navbar-nav">
-            <li><a href="{{ URL::to('guias') }}">Ver todas las guias</a></li>
-            <li><a href="{{ URL::to('guias/create') }}">Crear una guia</a>
+            <li><a href="{{ URL::to('guias') }}">Ver todas las gu&iacute;as</a></li>
+            <li><a href="{{ URL::to('guias/create') }}">Crear una gu&iacute;a</a>
         </ul>
     </nav>
 
-    <h1>Editar guia {{ $guia->numero_guia }}</h1>
+    <h1>Editar gu&iacute;a {{ $guia->numero_guia }}</h1>
 
     <!-- if there are creation errors, they will show here -->
     {{ HTML::ul($errors->all()) }}
@@ -20,8 +20,8 @@
     }}
 
     <div class="form-group">
-        {{ Form::label('numero_guia', 'Numero de guia') }}
-        {{ Form::text('numero_guia', Input::old('numero de guia'), array('class' => 'form-control')) }}
+        {{ Form::label('numero_guia', 'Numero de gu&iacute;a') }}
+        {{ Form::text('numero_guia', Input::old('numero de gu&iacute;a'), array('class' => 'form-control')) }}
     </div>
     <div class="form-group">
         {{ Form::label('empresa_envio', 'Empresa de envio') }}
@@ -32,7 +32,7 @@
         {{ Form::file('url_archivo') }}
     </div>
 
-    {{ Form::submit('Editar guia!', array('class' => 'btn btn-primary')) }}
+    {{ Form::submit('Editar gu&iacute;a!', array('class' => 'btn btn-primary')) }}
 
     {{ Form::close() }}
 

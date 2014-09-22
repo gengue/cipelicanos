@@ -2,12 +2,12 @@
 
     <nav class="navbar navbar-inverse">                
         <ul class="nav navbar-nav">
-            <li><a href="{{ URL::to('guias') }}">Ver todas las guias</a></li>
-            <li><a href="{{ URL::to('guias/create') }}">Crear Guia</a>
+            <li><a href="{{ URL::to('guias') }}">Ver todas las gu&iacute;as</a></li>
+            <li><a href="{{ URL::to('guias/create') }}">Crear Gu&iacute;a</a>
         </ul>
     </nav>
 
-    <h1>Todas las guias</h1>
+    <h1>Todas las gu&iacute;as</h1>
 
     <!-- will be used to show any messages -->
     @if (Session::has('message'))
@@ -18,7 +18,7 @@
             <thead>
                 <tr>
                     <td>ID</td>
-                    <td>Numero de guia</td>
+                    <td>Numero de gu&iacute;a</td>
                     <td>Empresa de envio</td>
                     <td>Documento</td>
                     <td>Opciones</td>

@@ -37,7 +37,7 @@
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"></i>{{ ' '.Auth::user()->nombre;}}<b class="caret"></b></a>
                         <ul class="dropdown-menu">
                             <li>
-                                <a onClick="javascript:abrirPerfil();" href="javascript:"><i class="fa fa-fw fa-user"></i> Perfil</a>
+                                <a href="javascript:abrirPerfil();"><i class="fa fa-fw fa-user"></i> Perfil</a>
                             </li>
                             <!--li>
                                 <a href="#"><i class="fa fa-fw fa-envelope"></i> Inbox</a>
@@ -54,19 +54,19 @@
                 <div class="collapse navbar-collapse navbar-ex1-collapse">
                     <ul class="nav navbar-nav side-nav" id="menu-vertical">
                         <li class="active">
-                            <a onClcik="javascript:abrirDashboard();" href="javascript:"><i class="fa fa-fw fa-home fa-4x"></i> Inicio</a>
+                            <a href="javascript:abrirDashboard();"><i class="fa fa-fw fa-home fa-4x"></i> Inicio</a>
                         </li>
                         <li>
 
-                            <a onClick="javascript:abrirPedidos();" href="javascript:"><i class="fa fa-fw fa-shopping-cart fa-4x"></i> Pedidos</a>
+                            <a href="javascript:abrirPedidos();"><i class="fa fa-fw fa-shopping-cart fa-4x"></i> Pedidos</a>
 
                         </li>
                         <li>
-                            <a onClick="javascript:abrirCompanias();" href="javascript:"><i class="fa fa-fw fa-suitcase fa-4x"></i> Compa&ntilde;ias</a>
+                            <a href="javascript:abrirCompanias();"><i class="fa fa-fw fa-suitcase fa-4x"></i> Compa&ntilde;ias</a>
                         </li>
                        
                         <li>
-                            <a onClick="javascript:abrirHistorialPedidos();" href="javascript:"><i class="fa fa-fw fa-calendar fa-4x"></i> Historial</a>
+                            <a href="javascript:abrirHistorialPedidos();"><i class="fa fa-fw fa-calendar fa-4x"></i> Historial</a>
                         </li>
                         
                         <!--li>

@@ -41,7 +41,7 @@
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"></i>{{ ' '.Auth::user()->nombre;}}<b class="caret"></b></a>
                         <ul class="dropdown-menu">
                             <li>
-                                <a href="javascript:" onCLick="javascript:abrirPerfil();"><i class="fa fa-fw fa-user"></i> Perfil</a>
+                                <a href="javascript:abrirPerfil();"><i class="fa fa-fw fa-user"></i> Perfil</a>
                             </li>
                             <!--li>
                                 <a href="#"><i class="fa fa-fw fa-envelope"></i> Inbox</a>
@@ -60,37 +60,37 @@
                 <div class="collapse navbar-collapse navbar-ex1-collapse">
                     <ul class="nav navbar-nav side-nav" id="menu-vertical">
                         <li class="active">
-                            <a onClick="javascript:abrirDashboard();"><i class="fa fa-fw fa-home"></i> Inicio</a>
+                            <a href="javascript:abrirDashboard();"><i class="fa fa-fw fa-home"></i> Inicio</a>
                         </li>
                         <li>
 
-                            <a onclick="javascript:abrirPedidos();" href="javascript:"><i class="fa fa-fw fa-shopping-cart"></i> Pedidos</a>
+                            <a href="javascript:abrirPedidos();"><i class="fa fa-fw fa-shopping-cart"></i> Pedidos</a>
 
                         </li>
                         <li>
-                            <a onClick="javascript:abrirClientes();" href="javascript:"><i class="fa fa-fw fa-money"></i> Clientes</a>
+                            <a href="javascript:abrirClientes();"><i class="fa fa-fw fa-money"></i> Clientes</a>
                         </li>
                         <li>
-                            <a onClick="javascript:abrirCompanias();" href="javascript:"><i class="fa fa-fw fa-university"></i> Compa&ntilde;ias</a>
+                            <a href="javascript:abrirCompanias();"><i class="fa fa-fw fa-university"></i> Compa&ntilde;&iacute;as</a>
                         </li>
                         @if ($tipoUsuario == 'ADMINISTRADOR')
                             <li>
-                                <a onClick="javascript:abrirProductos();" href="javascript:"><i class="fa fa-fw fa-gift"></i> Productos</a>
+                                <a href="javascript:abrirProductos();"><i class="fa fa-fw fa-gift"></i> Productos</a>
                             </li>
                             <li>
-                                <a onClick="javascript:abrirNavieras();" href="javascript:"><i class="fa fa-fw fa-anchor"></i> Navieras</a>
+                                <a href="javascript:abrirNavieras();"><i class="fa fa-fw fa-anchor"></i> Navieras</a>
 
                             </li>
                             <li>
-                                <a onClick="javascript:abrirProveedores();" href="javascript:"><i class="fa fa-fw fa-suitcase"></i> Proveedores</a>
+                                <a href="javascript:abrirProveedores();"><i class="fa fa-fw fa-suitcase"></i> Proveedores</a>
                             </li>
                         @endif
                         <li>
-                            <a onClick="javascript:abrirHistorialPedidos();" href="javascript:"><i class="fa fa-fw fa-calendar"></i> Historial pedidos</a>
+                            <a href="javascript:abrirHistorialPedidos();"><i class="fa fa-fw fa-calendar"></i> Historial de pedidos</a>
                         </li>
                         @if ($tipoUsuario == 'ADMINISTRADOR')
                             <li>
-                                <a onClick="javascript:abrirUsuarios();" href="javascript:"><i class="fa fa-fw fa-users"></i> Usuarios</a>
+                                <a href="javascript:abrirUsuarios();"><i class="fa fa-fw fa-users"></i> Usuarios</a>
                             </li>
                         @endif
                         <!--li>

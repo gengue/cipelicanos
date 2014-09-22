@@ -7,7 +7,7 @@
            
         </div>
     </div>
-    <a class="btn btn-small btn-info" onClick="javascript:abrirCompanias();"><i class="fa fa-arrow-left"></i> Atras</a>
+    <a class="btn btn-small btn-info" href="javascript:abrirCompanias();"><i class="fa fa-arrow-left"></i> Atras</a>
     <br><br>
 
     {{ Form::model($compania, array('route' => array('companias.update',
@@ -18,27 +18,27 @@
 
     <div class="row">
         <div class="col-md-6">
-            {{ Form::label('nombre', 'Nombre') }}
+            {{ Form::label('nombre', 'Nombre de la compañía') }}
             {{ Form::text('nombre', Input::old('nombre'), array('class' => 'form-control')) }}
         </div>
         <div class="col-md-6">
-            {{ Form::label('nit', 'NIT') }}
+            {{ Form::label('nit', 'NIT de la compañía') }}
             {{ Form::text('nit', Input::old('nit'), array('class' => 'form-control')) }}
         </div>
     </div>
 
     <div class="row">
         <div class="col-md-6">
-            {{ Form::label('telefono', 'Telefono') }}
+            {{ Form::label('telefono', 'Telefono de la compañía') }}
             {{ Form::text('telefono', Input::old('telefono'), array('class' => 'form-control')) }}
         </div>
         <div class="col-md-6">
-            {{ Form::label('correo', 'Correo') }}
+            {{ Form::label('correo', 'Correo electrónico') }}
             {{ Form::text('correo', Input::old('correo'), array('class' => 'form-control')) }}
         </div>
     </div>
     <br/>
-    <a class="btn btn-small btn-danger" onClick="javascript:abrirCompanias();">Cancelar</a>
+    <a class="btn btn-small btn-danger" href="javascript:abrirCompanias();">Cancelar</a>
     {{ Form::submit('Editar!', array('class' => 'btn btn-primary')) }}
 
 {{ Form::close() }}

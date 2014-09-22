@@ -4,8 +4,8 @@
             <h1 class="page-header"><i class="fa fa-fw fa-anchor"></i> Navieras <small>Todas las navieras</small></h1>
         </div>
     </div>
-    <a class="btn btn-small btn-info" onClick="javascript:abrirNavieras();"><i class="fa fa-list"></i> Listar todos</a>
-    <a class="btn btn-small btn-info" onClick="javascript:mostrarCrearNaviera();"><i class="fa fa-plus"></i> Agregar naviera</a>
+    <a class="btn btn-small btn-info" href="javascript:abrirNavieras();"><i class="fa fa-list"></i> Listar todos</a>
+    <a class="btn btn-small btn-info" href="javascript:mostrarCrearNaviera();"><i class="fa fa-plus"></i> Agregar naviera</a>
 
     <br>
     <br>
@@ -15,10 +15,10 @@
             <thead>
                 <tr>
                     <td data-class="expand">Nombre</td>
-                    <td>Nombre de Contacto</td>
+                    <td>Nombre de Cont&aacute;cto</td>
                     <td data-hide="phone">Email</td>
-                    <td data-hide="phone">Telefono</td>
-                    <td data-hide="phone,tablet">Direccion</td>
+                    <td data-hide="phone">Tel&eacute;fono</td>
+                    <td data-hide="phone,tablet">Direcci&oacute;n</td>
                     <td data-hide="phone,tablet, pc">URL Tracking</td>
                     <td data-hide="phone">Opciones</td>
                 </tr>
@@ -34,8 +34,8 @@
                     <td valign="top"> {{ $value->url_seguimiento }}</td>
 
                     <td>
-                        <a class="btn btn-small btn-success" onClick="javascript:mostrarDetalleNaviera({{ $value->id }});"><i class="fa fa-search"></i></a>
-                        <a class="btn btn-small btn-info" onClick="javascript:mostrarEditarNaviera({{ $value->id }});"><i class="fa fa-pencil"></i>
+                        <a class="btn btn-small btn-success" href="javascript:mostrarDetalleNaviera({{ $value->id }});"><i class="fa fa-search"></i></a>
+                        <a class="btn btn-small btn-info" href="javascript:mostrarEditarNaviera({{ $value->id }});"><i class="fa fa-pencil"></i>
                         </a><a class="btn btn-small btn-danger" data-toggle="confirmation" data-href="javascript:eliminarNaviera({{ $value->id }});" href="javascript:eliminarNaviera({{ $value->id }});"><i class="fa fa-trash-o"></i></a>
                     </td>
                 </tr>

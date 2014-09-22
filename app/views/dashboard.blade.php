@@ -77,7 +77,7 @@
                         <table class="table table-hover">
                             <thead>
                                 <tr>
-                                    <th>Compania</th>
+                                    <th>Compa&ntilde;&iacute;a</th>
                                     <th>Producto</th>
                                     <th>Fecha Carga</th>
                                 </tr>

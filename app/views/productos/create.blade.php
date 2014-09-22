@@ -8,7 +8,7 @@
             
         </div>
     </div>
-    <a class="btn btn-small btn-info" onClick="javascript:abrirProductos();"><i class="fa fa-arrow-left"></i> Atras</a>
+    <a class="btn btn-small btn-info" href="javascript:abrirProductos();"><i class="fa fa-arrow-left"></i> Atr&aacute;s</a>
     <br><br>
     <!-- if there are creation errors, they will show here -->
     {{ HTML::ul($errors->all()) }}
@@ -17,11 +17,11 @@
 
     <div class="row">
         <div class="col-md-6">
-            {{ Form::label('nombre', 'Nombre') }}
+            {{ Form::label('nombre', 'Nombre del producto') }}
             {{ Form::text('nombre', Input::old('nombre'), array('class' => 'form-control')) }}
         </div>
         <div class="col-md-6">
-            {{ Form::label('proveedor', 'Proveedor') }}
+            {{ Form::label('proveedor', 'Proveedor del producto') }}
             {{ Form::select('proveedor', $proveedores, Input::old('Selecciona uno'), array('class' => 'form-control')) }}
             
         </div>  
@@ -29,15 +29,15 @@
 
     <div class="row">
         <div class="col-md-12">
-            {{ Form::label('descripcion', 'Descripcion') }}
+            {{ Form::label('descripcion', 'Descripci&oacute;n del producto') }}
             {{ Form::text('descripcion', Input::old('Descripcion'), array('class' => 'form-control')) }}
         </div>	
     </div>
     <br/>
 
     <div class="form-group">
-        <a class="btn btn-small btn-danger" onClick="javascript:abrirProductos();">Cancelar</a>
-        {{ Form::submit('Crear Producto!', array('class' => 'btn btn-primary')) }}
+        <a class="btn btn-small btn-danger" href="javascript:abrirProductos();">Cancelar</a>
+        {{ Form::submit('Crear producto!', array('class' => 'btn btn-primary')) }}
         {{ Form::close() }}
     </div>
 

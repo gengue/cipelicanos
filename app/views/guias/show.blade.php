@@ -3,13 +3,13 @@
     <nav class="navbar navbar-inverse">
 
         <ul class="nav navbar-nav">
-            <li><a href="{{ URL::to('guias') }}">Ver todas las guias</a></li>
-            <li><a href="{{ URL::to('guias/create') }}">Crear una guia</a>
+            <li><a href="{{ URL::to('guias') }}">Ver todas las gu&iacute;as</a></li>
+            <li><a href="{{ URL::to('guias/create') }}">Crear una gu&iacute;a</a>
         </ul>
     </nav>
 
 
-    <h1>Detalle de guia {{ $guia->numero_guia }}</h1>
+    <h1>Detalle de gu&iacute;a {{ $guia->numero_guia }}</h1>
 
     <div class="jumbotron text-center">
         <h2>{{ $guia->numero_guia }}</h2>

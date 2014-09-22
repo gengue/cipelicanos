@@ -3,7 +3,7 @@
      <div class="row">
         <div class="col-lg-12">
             <h1 class="page-header">
-                <!--i></i-->Productos <small>Mostrar Producto</small>
+                <!--i></i-->Productos <small>Mostrar producto</small>
             </h1>
             <ol class="breadcrumb">
                 <li class="active">
@@ -30,7 +30,7 @@
                       <tbody>
                      
                         <tr>
-                        <td>Descripcion:</td>
+                        <td>Descripci&oacute;n:</td>
                         <td>{{ $producto->descripcion }}</td>
                       </tr>
                       <tr>
@@ -44,7 +44,7 @@
               </div>
             </div>
                  <div class="panel-footer">
-                  <a class="btn btn-small btn-info" onClick="javascript:abrirProductos();"><i class="fa fa-arrow-left"></i> Atras</a>
+                  <a class="btn btn-small btn-info" href="javascript:abrirProductos();"><i class="fa fa-arrow-left"></i> Atr&aacute;s</a>
                  </div>
           </div>
         </div>

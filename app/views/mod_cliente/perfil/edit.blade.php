@@ -18,7 +18,7 @@
             </div>
             <div class="panel-body">
             
-  <a class="btn btn-small btn-info" onClick="javascript:abrirPerfil();"><i class="fa fa-arrow-left"></i> Atras</a>
+  <a class="btn btn-small btn-info" href="javascript:abrirPerfil();"><i class="fa fa-arrow-left"></i> Atras</a>
     <br><br>
 
     {{ Form::model($perfil, array('route' => array('usuarios.update',
@@ -29,7 +29,7 @@
   
     <div class="form-group">
         <div class="col-lg-6">
-            {{ Form::label('nombre', 'Nombre') }}
+            {{ Form::label('nombre', 'Nombres') }}
             {{ Form::text('nombre', Input::old('nombre'), array('class' => 'form-control')) }}
         </div>    
         <div class="col-lg-6">
@@ -39,30 +39,30 @@
     </div>
     <div class="form-group">
         <div class="col-lg-6">
-            {{ Form::label('correo', 'Email') }}
+            {{ Form::label('correo', 'Correo electrónico') }}
             {{ Form::text('correo', Input::old('ejemplo@dominio.com'), array('class' => 'form-control')) }}
         </div>
         <div class="col-lg-6">
-            {{ Form::label('telefono', 'Telefono') }}
+            {{ Form::label('telefono', 'Telefono de contácto') }}
             {{ Form::text('telefono', Input::old('telefono'), array('class' => 'form-control')) }}
         </div>
     </div>
 
     <div class="form-group">
         <div class="col-lg-6">
-            {{ Form::label('pais', 'Pais') }}
+            {{ Form::label('pais', 'Pais de residencia') }}
             {{ Form::select('pais', $paises, $perfil->pais_id, array('class'=>'form-control','style'=>'' )) }}
         </div>
         <div class="col-lg-6">
-            {{ Form::label('ciudad', 'Ciudad') }}
+            {{ Form::label('ciudad', 'Ciudad de residencia') }}
             {{ Form::select('ciudad',$ciudades, $perfil->ciudad_id, array('class'=>'form-control','style'=>'' )) }}
         </div>
     </div>
     <div class="form-group">
-        {{ Form::label('direccion', 'Direccion') }}
+        {{ Form::label('direccion', 'Direccion de residencia') }}
         {{ Form::text('direccion', Input::old('direccion'), array('class' => 'form-control')) }}
     </div>
-    <a class="btn btn-small btn-danger" onClick="javascript:abrirPerfil();">Cancelar</a>
+    <a class="btn btn-small btn-danger" href="javascript:abrirPerfil();">Cancelar</a>
     {{ Form::submit('Editar!', array('class' => 'btn btn-primary')) }}
 
     {{ Form::close() }}

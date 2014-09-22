@@ -8,8 +8,8 @@
         </div>
     </div>
 
-    <a class="btn btn-small btn-info" onClick="javascript:abrirUsuarios();"><i class="fa fa-list"></i> Listar todos</a>
-    <a class="btn btn-small btn-info" onClick="javascript:mostrarCrearUsuario();"><i class="fa fa-plus"></i> Agregar usuario</a>
+    <a class="btn btn-small btn-info" href="javascript:abrirUsuarios();"><i class="fa fa-list"></i> Listar todos</a>
+    <a class="btn btn-small btn-info" href="javascript:mostrarCrearUsuario();"><i class="fa fa-plus"></i> Agregar usuario</a>
     <br><br>
     <div class="table-responsive">
         <table id="usuariosTbl" class="table condensed table-striped table-bordered">
@@ -18,10 +18,10 @@
                     <td data-hide="phone,tablet">ID</td>
                     <td data-hide="phone,tablet">Tipo</td>
                     <td data-class="expand">Nombre</td>
-                    <td data-hide="phone,tablet">Telefono</td>
+                    <td data-hide="phone,tablet">Tel&eacute;fono</td>
                     <td>Correo</td>
-                    <td data-hide="phone,tablet">Direccion</td>
-                    <td data-hide="phone,tablet">Pais</td>
+                    <td data-hide="phone,tablet">Direcci&oacute;n</td>
+                    <td data-hide="phone,tablet">Pa&iacute;s</td>
                     <td data-hide="phone">Ciudad</td>
                     <td data-hide="phone,tablet">Estado</td>
                     <td data-hide="phone">Opciones</td>
@@ -41,8 +41,8 @@
                     <td>{{ $value->estado }}</td>
                     <td>                            
 
-                        <a class="btn btn-small btn-success" onClick= "javascript:mostrarDetalleUsuarios({{$value->id}});" title="Ver Detalles"><i class="fa fa-search" ></i></a>
-                        <a class="btn btn-small btn-info" onClick="javascript:mostrarEditarUsuarios({{ $value->id}});" title="Modificar" ><i class="fa fa-pencil" ></i></a>
+                        <a class="btn btn-small btn-success" href= "javascript:mostrarDetalleUsuarios({{$value->id}});" title="Ver Detalles"><i class="fa fa-search" ></i></a>
+                        <a class="btn btn-small btn-info" href="javascript:mostrarEditarUsuarios({{ $value->id}});" title="Modificar" ><i class="fa fa-pencil" ></i></a>
                         <a class="btn btn-small btn-danger" data-toggle="confirmation" data-href="javascript:eliminarUsuarios({{ $value->id }});" href="javascript:eliminarUsuarios({{ $value->id }});" title="Eliminar"><i class="fa fa-trash-o" ></i></a>
 
                     </td>

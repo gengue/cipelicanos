@@ -34,19 +34,19 @@
                         <td>{{ $naviera->nombre }}</td>
                       </tr>
                       <tr>
-                        <td>Nombre de Contacto :</td>
+                        <td>Nombre del cont&aacute;cto :</td>
                          <td>{{ $naviera->nombre_contacto }}</td>
                       </tr>
                       <tr>
-                        <td>Correo de la Naviera :</td>
+                        <td>E-mail de la Naviera :</td>
                         <td> {{ $naviera->email }}</td>
                       </tr>
                       <tr>
-                        <td>Telefono :</td>
+                        <td>Tel&eacute;fono :</td>
                          <td>{{ $naviera->telefono }}</td>
                       </tr>
                       <tr>
-                        <td>Direccion :</td>
+                        <td>Direcci&oacute;n :</td>
                          <td>{{ $naviera->direccion }}</td>
                       </tr>
                       <tr>
@@ -60,7 +60,7 @@
               </div>
             </div>
                  <div class="panel-footer">
-                  <a class="btn btn-small btn-info" onClick="javascript:abrirNavieras();"><i class="fa fa-arrow-left"></i> Atras</a>
+                  <a class="btn btn-small btn-info" href="javascript:abrirNavieras();"><i class="fa fa-arrow-left"></i> Atras</a>
                  </div>
             
           </div>

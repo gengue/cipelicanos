@@ -7,7 +7,7 @@
             
         </div>
     </div>
-    <a class="btn btn-small btn-info" onClick="javascript:abrirPedidos();"><i class="fa fa-arrow-left"></i> Atras</a>
+    <a class="btn btn-small btn-info" href="javascript:abrirPedidos();"><i class="fa fa-arrow-left"></i> Atr&aacute;s</a>
     <br><br>
 
     <!-- if there are creation errors, they will show here -->
@@ -18,10 +18,10 @@
 
     <div class="form-group">
         <div class="col-lg-6">
-            {{ Form::label('compania', 'Compañia') }}
+            {{ Form::label('compania', 'Compa&ntilde;&iacute;a que realiza el pedido') }}
             {{ Form::select('compania_id', $companias, null, array('class'=>'form-control','style'=>'' )) }}
             
-            {{ Form::label('proveedor_id', 'Proveedor') }}
+            {{ Form::label('proveedor_id', 'Proveedor del producto') }}
             {{ Form::select('proveedor_id', $proveedores, null, array('class'=>'form-control','style'=>'' )) }}
         </div>
     </div>
@@ -31,7 +31,7 @@
             {{ Form::label('producto_id', 'Producto') }}
             {{ Form::select('producto_id', $productos, null, array('class'=>'form-control','style'=>'' )) }}
 
-            {{ Form::label('naviera_id', 'Naviera') }}
+            {{ Form::label('naviera_id', 'Naviera contratada') }}
             {{ Form::select('naviera_id', $navieras, null, array('class'=>'form-control','style'=>'' )) }}
         </div>
     </div>
@@ -40,7 +40,7 @@
     <div class="form-group">        
         <div class="panel panel-success">
             <div class="panel-heading">
-                <h3 class="panel-title">Containers</h3>
+                <h3 class="panel-title">Containers del pedido</h3>
             </div>
             <!-- <div class="alert alert-info alert-dismissible" role="alert">
                             <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
@@ -49,7 +49,7 @@
             <ul id="ulContainers" class="list-group">
             </ul>
             <div class="panel-footer">
-                <a id="aContainers" onClick="javascript:agregarContainer();" class="btn btn-primary btn-sm" role="button">Agregar Container</a>
+                <a id="aContainers" href="javascript:agregarContainer();" class="btn btn-primary btn-sm" role="button">Agregar Container</a>
             </div>
         
     </div>
@@ -58,13 +58,13 @@
 
     <div class="row">
         <div class="col-md-6">
-            {{ Form::label('numero_reserva', 'Numero de Reserva') }}
+            {{ Form::label('numero_reserva', 'N&uacute;mero de reserva') }}
             {{ Form::text('numero_reserva', Input::old('eje: 129XC83'), array('class' => 'form-control')) }}
            
         </div>
         <div class="row">
             <div class="col-md-5">
-            {{ Form::label('tipo', 'Tipo de Pedido') }}
+            {{ Form::label('tipo', 'Tipo de pedido') }}
             {{ Form::select('tipo', array(''=>'', 'EXPORTE'=>'Exportacion', 'IMPORTE'=>'Importacion'), null, array('class'=>'form-control','style'=>'' )) }}      
             </div>
         </div>
@@ -72,26 +72,26 @@
     <div class="row">
         <div class="col-md-6">
     <div class="form-group">
-        {{ Form::label('buque', 'Buque') }}
+        {{ Form::label('buque', 'Buque de transporte') }}
         {{ Form::text('buque', Input::old('eje: El condor Herido'), array('class' => 'form-control')) }}
     </div>
         </div>
         
         <div class="col-md-4">
-         {{ Form::label('numero_viaje', 'Numero de Viaje') }}
+         {{ Form::label('numero_viaje', 'N&uacute;mero de viaje') }}
         {{ Form::text('numero_viaje', Input::old('numero_viaje'), array('class' => 'form-control')) }}   
         </div>
     </div>
     <div class="row">
         <div class="col-md-6">
-             {{ Form::label('fecha_carga', 'Fecha de Carga') }}
+             {{ Form::label('fecha_carga', 'Fecha de carga') }}
              <div class="input-group date" id="datepicker1">  
               {{ Form::date('fecha_carga', null, array('class'=>'form-control')) }}
                 <span class="input-group-addon">
                         <span class="fa fa-calendar"></span>
                 </span>
             </div>
-            {{ Form::label('fecha_abordaje', 'Fecha de Abordaje') }}
+            {{ Form::label('fecha_abordaje', 'Fecha de abordaje') }}
             <div class="input-group date" id="datepicker2">
                  {{ Form::date('fecha_abordaje', null, array('class'=>'form-control')) }}
                 <span class="input-group-addon">
@@ -100,7 +100,7 @@
             </div>
         </div>
         <div class="col-md-6">
-            {{ Form::label('fecha_entrega', 'Fecha de Entrega') }}
+            {{ Form::label('fecha_entrega', 'Fecha de entrega') }}
             <div class="input-group date" id="datepicker3">
                  {{ Form::date('fecha_entrega', null, array('class'=>'form-control')) }}
                 <span class="input-group-addon">
@@ -115,7 +115,7 @@
     <div class="form-group">        
         <div class="panel panel-success">
             <div class="panel-heading">
-                <h3 class="panel-title">Guias</h3>
+                <h3 class="panel-title">Gu&iacute;as de los documentos</h3>
             </div>
             <!-- <div class="alert alert-info alert-dismissible" role="alert">
                             <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
@@ -124,7 +124,7 @@
             <ul id="ulGuias" class="list-group">
             </ul>
             <div class="panel-footer">
-                <a id="aGuias" onClick="javascript:agregarGuia();" class="btn btn-primary btn-sm" role="button">Agregar Guia</a>
+                <a id="aGuias" href="javascript:agregarGuia();" class="btn btn-primary btn-sm" role="button">Agregar Guia</a>
             </div>
         
     </div>
@@ -133,14 +133,14 @@
     <div class="form-group">
         <div class="panel panel-success">
             <div class="panel-heading">
-                <h3 class="panel-title">Otros Documetos</h3>
+                <h3 class="panel-title">Otros documetos</h3>
             </div>
             <div id="dropzone" class="dropzone"></div>
         </div>
     </div>
 
 
-    <a class="btn btn-small btn-danger" onClick="javascript:abrirPedidos();">Cancelar</a>
+    <a class="btn btn-small btn-danger" href="javascript:abrirPedidos();">Cancelar</a>
     {{ Form::submit('Crear Pedido!', array('class' => 'btn btn-primary')) }}
 
     {{ Form::close() }}
@@ -160,8 +160,8 @@
                 {{ Form::open(array('id' => 'formContainer')) }}
                 {{Form::hidden('id','',array('id'=>'id'))}}
                 <div class="form-group">
-                    {{ Form::label('numero_container', 'Numero de Container') }}
-                    {{ Form::text('numero_container', Input::old('nombre'), array('class' => 'form-control', 'required')) }}
+                    {{ Form::label('numero_container', 'N&uacute;mero de container') }}
+                    {{ Form::text('numero_container', Input::old('nombre'), array('class' => 'form-control')) }}
                 </div>
                 {{ Form::submit('Crear container!', array('class' => 'btn btn-primary', 'id'=>'btnsubmit')) }}
 
@@ -184,16 +184,16 @@
                 {{ Form::open(array('id' => 'formGuia', 'files' => true, 'url'=>'/guias')) }}
                 {{Form::hidden('id','',array('id'=>'idGuia'))}}
                 <div class="form-group">
-                    {{ Form::label('numero_guia', 'Numero de guia') }}
-                    {{ Form::text('numero_guia', Input::old('numero de guia'), array('class' => 'form-control', 'required')) }}
+                    {{ Form::label('numero_guia', 'Numero de gu&iacute;a') }}
+                    {{ Form::text('numero_guia', Input::old('numero de guia'), array('class' => 'form-control')) }}
                 </div>
                 <div class="form-group">
-                    {{ Form::label('empresa_envio', 'Empresa de envio') }}
-                    {{ Form::text('empresa_envio', Input::old('ejemplo: Fedex'), array('class' => 'form-control', 'required')) }}
+                    {{ Form::label('empresa_envio', 'Empresa de env&iacute;o') }}
+                    {{ Form::text('empresa_envio', Input::old('ejemplo: Fedex'), array('class' => 'form-control')) }}
                 </div>
                 <div class="form-group">
                     {{ Form::label('url_archivo', 'Documento adjunto') }}
-                    {{ Form::file('url_archivo', array('accept'=>'application/pdf', 'required')) }}
+                    {{ Form::file('url_archivo') }}
                 </div>
                 {{ Form::submit('Crear Guia!', array('class' => 'btn btn-primary', 'id'=>'btnsubmit')) }}
 
