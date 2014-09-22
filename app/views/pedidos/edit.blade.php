@@ -27,6 +27,7 @@
             {{ Form::label('proveedor_id', 'Proveedor del producto') }}
             {{ Form::select('proveedor_id', $proveedores, $pedido->proveedor_id, array('class'=>'form-control','style'=>'' )) }}
 
+
         </div>
     </div>
 
@@ -35,6 +36,7 @@
             {{ Form::label('producto_id', 'Producto') }}
             {{ Form::select('producto_id', $productos, $pedido->producto_id, array('class'=>'form-control' )) }}
             
+
 
             {{ Form::label('naviera_id', 'Naviera contratada') }}
             {{ Form::select('naviera_id', $navieras, $pedido->naviera_id, array('class'=>'form-control','style'=>'' )) }}

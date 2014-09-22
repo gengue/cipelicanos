@@ -19,11 +19,13 @@
     <div class="form-group">
         <div class="col-lg-6">
 
+
             {{ Form::label('compania', 'Compa&ntilde;&iacute;a que realiza el pedido') }}
             {{ Form::select('compania_id', $companias, null, array('class'=>'form-control','style'=>'' )) }}
             
             {{ Form::label('proveedor_id', 'Proveedor del producto') }}
             {{ Form::select('proveedor_id', $proveedores, null, array('class'=>'form-control','style'=>'' )) }}
+
 
         </div>
     </div>
@@ -32,6 +34,7 @@
         <div class="col-lg-6">
             {{ Form::label('producto_id', 'Producto') }}
             {{ Form::select('producto_id', $productos, null, array('class'=>'form-control')) }}
+
 
 
             {{ Form::label('naviera_id', 'Naviera contratada') }}
