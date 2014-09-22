@@ -77,7 +77,7 @@ Route::get('/dashboard', function() {
     $numHistorial = Pedido::where('estado', '=', 'INACTIVO')->count();
     $pedidos = Pedido::all()->take(5);
     $ultimoAcceso = Auth::user()->ultimo_acceso;
-    $numClientes = Usuario::where('tipo_usuario', 'CLIENTE')->count();
+    $numClientes = Usuario::where('tipo_usuario','CLIENTE')->where('estado', 'ACTIVO')->count();
 
     return View::make('dashboard')
         ->with('numpedidos', $numPedidos)
