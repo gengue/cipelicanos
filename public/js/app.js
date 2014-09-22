@@ -79,6 +79,21 @@ function abrirDashboard() {
             });
 
 }
+function abrirAyuda() {
+    $.ajax(
+            {
+                url: '/ayuda',
+                type: 'GET',
+                beforeSend: function() {
+                    bloquear();
+                },
+                success: function(data) {
+                    desbloquear();
+                    $('#page-wrapper').html(data);
+                }
+            });
+
+}
 
 /*
  *
@@ -1171,6 +1186,9 @@ function actualizarPassword(datos){
                   if(res.msg === "errorConfirm"){
                     alert("Las contraseñas no coinciden", "Error", "error");
                   }
+                  if(res.msg === "errorFormat"){
+                    alert("La contraseña debe tener minimo 6 caracteres", "Error", "error");
+                  }
                 }
             });
 }
@@ -1188,6 +1206,9 @@ function actualizarPasswordUsuario(datos, id){
                   }
                   if(res.msg === "errorConfirm"){
                     alert("Las contraseñas no coinciden", "Error", "error");
+                  }
+                  if(res.msg === "errorFormat"){
+                    alert("La contraseña debe tener minimo 6 caracteres", "Error", "error");
                   }
                 }
             });
@@ -1214,3 +1235,36 @@ function editarPerfil(datos, id) {
                 }
             });
 }
+function validarEmail( email ) {
+    expr = /^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/;
+    if ( !expr.test(email.val()) ){
+        email.parent().addClass('has-error');   
+        alert('Email invalido', 'Error', 'error', 'glyphicon glyphicon-warning-sign');
+        return false
+    }
+    email.parent().addClass('has-success');
+    return true;
+}
+function validarCampoVacio(elemento){
+    if(elemento.val() === ""){
+        elemento.parent().addClass('has-error');
+        alert('Algunos campos son obligatorios', 'Error', 'error', 'glyphicon glyphicon-warning-sign');
+        return false;
+    }
+
+    elemento.parent().addClass('has-success');
+    return true;
+}
+
+function validarCampoNulo(elemento){
+    if(elemento.val() === null){
+        elemento.parent().addClass('has-error');
+        alert('Algunos campos son obligatorios', 'Error', 'error', 'glyphicon glyphicon-warning-sign');
+        return false;
+    }
+
+    elemento.parent().addClass('has-success');
+    return true;
+}
+
+

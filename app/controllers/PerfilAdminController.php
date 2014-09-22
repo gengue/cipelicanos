@@ -80,7 +80,15 @@ class PerfilAdminController extends BaseController {
 
     public function cambiarPassword(){
         $usuario = Usuario::find(Auth::id());
-       
+        
+        $rules = array(
+          'password_nueva' => 'required|alpha_num|between:6,25',
+          'password_nueva2' => 'required|alpha_num|between:6,25');
+        
+        $validator = Validator::make(Input::all(), $rules);
+        if ($validator->fails()) {
+            return Response::json(array('msg' => 'errorFormat'));
+        }
             
         if (Hash::check(Input::get('password_vieja'), $usuario->password)) 
         {

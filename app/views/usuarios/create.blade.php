@@ -73,6 +73,31 @@
     $("#formUsuarios").submit(function(e) {
         e.preventDefault();
         
+        if(!validarCampoNulo($("#ciudad"))) {
+            return false;
+        }
+
+        if(!validarCampoVacio($("#correo"))) {
+            return false;
+        }
+
+        if(!validarEmail($("#correo"))) {
+            return false; 
+        }
+
+        if(!validarCampoVacio($("#nombre"))) {
+            return false;
+        }
+
+        if(!validarCampoVacio($("#apellido"))) {
+            return false;
+        }
+
+        if(!validarCampoVacio($("#password"))) {
+            return false;
+        }
+
+
         var datos =  $("#formUsuarios").serialize();
         crearUsuarios(datos);
     });

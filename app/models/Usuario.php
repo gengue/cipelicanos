@@ -39,8 +39,8 @@ class Usuario extends Eloquent implements UserInterface, RemindableInterface {
         'nombre' => 'required|alpha|min:2',
         'apellido' => 'required|alpha|min:2',
         'correo' => 'required|email|unique:usuarios',
-        'password' => 'required|alpha_num|between:6,12|confirmed',
-        'password_confirmation' => 'required|alpha_num|between:6,12'
+        'password' => 'required|alpha_num|between:6,25|confirmed',
+        'password_confirmation' => 'required|alpha_num|between:6,25'
     );
 
 }

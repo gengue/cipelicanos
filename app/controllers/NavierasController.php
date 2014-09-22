@@ -18,7 +18,8 @@ class NavierasController extends BaseController {
     public function store() {
       
         $rules = array(
-            'nombre' => 'required'
+            'nombre' => 'required',
+            'nombre_contacto' => 'required'
         );
         $validator = Validator::make(Input::all(), $rules);
 
@@ -61,6 +62,7 @@ class NavierasController extends BaseController {
     public function update($id) {
         $rules = array(
             'nombre' => 'required',
+            'nombre_contacto' => 'required'
         );
         $validator = Validator::make(Input::all(), $rules);
 

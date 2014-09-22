@@ -58,10 +58,15 @@
                     <td>{{ $value->fecha_entrega}}</td>
 
                     <td>  
-                        <a class="btn btn-small btn-success" href="javascript:mostrarDetallePedido({{ $value->id }});"><i class="fa fa-search"></i></a>
-                        <a class="btn btn-small btn-primary" data-toggle="confirmation" data-href="javascript:finalizarPedido({{ $value->id }});" href="javascript:finalizarPedido({{ $value->id }});"><i class="fa fa-check"></i></a>
-                        <a class="btn btn-small btn-info" href="javascript:mostrarEditarPedido({{ $value->id }});"><i class="fa fa-pencil"></i></a>
-                        <a class="btn btn-small btn-danger" data-toggle="confirmation" data- data-href="javascript:eliminarPedido({{ $value->id }});" href="javascript:eliminarPedido({{ $value->id }});"><i class="fa fa-trash-o"></i></a>
+
+
+
+                        <a class="btn btn-small btn-success" onclick="javascript:mostrarDetallePedido({{ $value->id }});"><i class="fa fa-search"></i></a>
+                        <a class="btn btn-small btn-primary" data-toggle="confirmation"  data-title="¿Pedido finalizado?" data-href="javascript:finalizarPedido({{ $value->id }});" href="javascript:finalizarPedido({{ $value->id }});"><i class="fa fa-check"></i></a>
+                        <a class="btn btn-small btn-info" onclick="javascript:mostrarEditarPedido({{ $value->id }});"><i class="fa fa-pencil"></i></a>
+                        <a class="btn btn-small btn-danger" data-toggle="confirmation" data-title="¿Esta seguro?" data-href="javascript:eliminarPedido({{ $value->id }});" href="javascript:eliminarPedido({{ $value->id }});"><i class="fa fa-trash-o"></i></a>
+
+
                     </td>
                 </tr>
                 @endforeach

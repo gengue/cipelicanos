@@ -11,7 +11,6 @@
         {{ HTML::style('css/plugins/morris.css') }}
         {{ HTML::style('dropzone/downloads/css/dropzone.css') }}
         {{ HTML::style('font-awesome-4.1.0/css/font-awesome.min.css') }}
-
         <meta name="_token" content="{{ csrf_token() }}"/>
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
     </head>
@@ -93,17 +92,10 @@
                                 <a href="javascript:abrirUsuarios();"><i class="fa fa-fw fa-users"></i> Usuarios</a>
                             </li>
                         @endif
-                        <!--li>
-                            <a href="javascript:;" data-toggle="collapse" data-target="#demo"><i class="fa fa-fw fa-arrows-v"></i> Dropdown <i class="fa fa-fw fa-caret-down"></i></a>
-                            <ul id="demo" class="collapse">
-                                <li>
-                                    <a href="#">Dropdown Item</a>
-                                </li>
-                                <li>
-                                    <a href="#">Dropdown Item</a>
-                                </li>
-                            </ul>
-                        </li-->
+                         <li>
+                                <a href="javascript:abrirAyuda();"><i class="fa fa-fw fa-info-circle"></i> Centro de Ayuda</a>
+                            </li>
+                      
                     </ul>
                 </div>
                 <!-- /.navbar-collapse -->

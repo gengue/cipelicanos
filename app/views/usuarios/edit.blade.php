@@ -102,6 +102,32 @@
 
     $("#formEditarUsuario").submit(function(e) {
         e.preventDefault();
+
+        
+        if(!validarCampoNulo($("#ciudad"))) {
+            return false;
+        }
+
+        if(!validarCampoVacio($("#correo"))) {
+            return false;
+        }
+
+        if(!validarEmail($("#correo"))) {
+            return false; 
+        }
+
+        if(!validarCampoVacio($("#nombre"))) {
+            return false;
+        }
+
+        if(!validarCampoVacio($("#apellido"))) {
+            return false;
+        }
+
+        if(!validarCampoVacio($("#password"))) {
+            return false;
+        }
+
         var datos = $("#formEditarUsuario").serialize();
                 editarUsuarios(datos, {{ $usuario -> id }});
     });
@@ -114,7 +140,6 @@
 
     $("#formCambiarPassword").submit(function(e) {
       e.preventDefault();
-      
       if ($('#password_nueva').val()!== "" && $('#password_nueva2').val()!== "" ) {
          actualizarPasswordUsuario($("#formCambiarPassword").serialize(), {{ $usuario->id }});
       } else {

@@ -21,6 +21,8 @@ class CompaniasController extends BaseController {
 
     public function store() {
        $rules = array(
+        'nombre' => 'required',
+        'nit' => 'required'
         );
         $validator = Validator::make(Input::all(), $rules);
 

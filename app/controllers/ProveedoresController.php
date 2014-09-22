@@ -22,7 +22,7 @@ class ProveedoresController extends BaseController {
          if (Request::ajax()) {
             $rules = array(
                 'nombre' => 'required',
-              
+                'nombre_contacto' => 'required'
             );
         
 
@@ -79,7 +79,7 @@ class ProveedoresController extends BaseController {
           if (Request::ajax()) {
             $rules = array(
                 'nombre' => 'required',
-                
+                'nombre_contacto' => 'required'
             );
             $validator = Validator::make(Input::all(), $rules);
 
