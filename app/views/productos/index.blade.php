@@ -2,11 +2,13 @@
     <div class="row">
         <div class="col-lg-12">
             <h1 class="page-header">
-                <i class="fa fa-fw fa-gift"></i> Productos <small>Todos los productos</small>
+                <i class="fa fa-fw fa-gift"></i> Productos <small>Todos los productos</small>  
+
             </h1>
-           
+            
         </div>
     </div>
+   
     <a class="btn btn-small btn-info" href="javascript:abrirProductos();"><i class="fa fa-list"></i> Listar todos</a>
     <a class="btn btn-small btn-info" href="javascript:mostrarCrearProducto();"><i class="fa fa-plus"></i> Agregar producto</a>
     <br><br>
