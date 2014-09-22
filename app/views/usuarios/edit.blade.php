@@ -25,7 +25,7 @@
             {{ Form::text('correo', Input::old('ejemplo@dominio.com'), array('class' => 'form-control')) }}
         </div>
     </div>
-
+    <br>
     <div class="row">
         <div class="col-md-6">
             {{ Form::label('nombre', 'Nombres del usuario') }}
@@ -36,6 +36,7 @@
             {{ Form::text('apellido', Input::old(''), array('class' => 'form-control')) }}
         </div>
     </div>
+    <br>
     <div class="row">
         <div class="col-md-6">
             {{ Form::label('pais', 'Pa&iacute;s de residencia') }}
@@ -46,16 +47,22 @@
             {{ Form::select('ciudad',$ciudades, $usuario->ciudad_id, array('class'=>'form-control','style'=>'' )) }}
         </div>
     </div>
+    <br>
     <div class="row">
-        <div class="col-md-6">
+        <div class="col-md-5">
             {{ Form::label('telefono', 'Tel&eacute;fono del usuario') }}
             {{ Form::text('telefono', Input::old('telefono'), array('class' => 'form-control')) }}
         </div>
-        <div class="col-md-6">
+        <div class="col-md-5">
             {{ Form::label('direccion', 'Direcci&oacute;n de residencia') }}
             {{ Form::text('direccion', Input::old('direccion'), array('class' => 'form-control')) }}
         </div>
+        <div class="col-md-2">
+            {{ Form::label('estado', 'Estado') }}
+            {{ Form::select('estado', array('ACTIVO'=>'ACTIVO', 'INACTIVO'=>'INACTIVO'), $usuario->estado ,array('class' => 'form-control')) }}
+        </div>
     </div>
+    
     <br/>
          
     <a class="btn btn-small btn-danger" href="javascript:abrirUsuarios();">Cancelar</a>

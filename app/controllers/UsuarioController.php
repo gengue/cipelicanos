@@ -125,6 +125,7 @@ class UsuarioController extends BaseController {
                 $usuario->direccion = Input::get('direccion');
                 $usuario->pais_id = Input::get('pais');
                 $usuario->ciudad_id = Input::get('ciudad');
+                $usuario->estado = Input::get('estado');
                 
                 if(Input::get('tipo_usuario')){
                     $usuario->tipo_usuario = Input::get('tipo_usuario');
