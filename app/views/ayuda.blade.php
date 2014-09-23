@@ -39,7 +39,7 @@
                     diferentes m&oacute;dulos o vistas a las cuales puede acceder. En el panel central, se puede observar informaci&oacute; dependiendo
                     de la vista en la cu&aacute;l se encuentre. De esta manera, la plataforma se encuentra desarrollada para que en cada una de las vistas
                     pueda encontrar toda la información y realizar cambios sobre los datos que correspondan a ella.
-                    </p><p>En la vista de <a href="javascript:abrirDashboard();" target="_blank">Inicio</a> podrá encontrar los indicadores de acutalizaciones:</p>
+                    </p><p>En la vista de <a href="javascript:abrirDashboard();" target="_blank">Inicio</a> podrá encontrar los indicadores de actualizaciones:</p>
                     <p>
                         El indicador de color azúl le muestra cuantos pedidos tiene activos a la fecha; si pulsa en ver detalles lo dirigirá a la vista de Pedidos, donde encontrará un listado con los pedidos que se encuentran activos para los diferentes clientes que posee.
                     </p>
@@ -696,6 +696,9 @@
     </div> <br>
 </div></div>
 <script type="text/javascript">
+ $('#menu-vertical li').removeClass();
+  $('#menu-vertical').find('a:contains("Ayuda")').parent().addClass("active");
+
 $(document).ready(function()
 {
     var navItems = $('.admin-menu li > a');
@@ -714,5 +717,7 @@ $(document).ready(function()
         var target = $(this).attr('data-target-id');
         $('#' + target).show();
     });
-});</script>
+});
+</script>
 
+   
